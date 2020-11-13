@@ -1,0 +1,10 @@
+<hc-picklist2
+    [items]="cars"
+    bindLabel="details.name"
+    bindValue="id"
+    [formControl]="selectedCars"
+    autofocus>
+</hc-picklist2>
+
+<br>
+Selected: <code>{{ selectedCars.value | json }}</code>

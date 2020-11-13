@@ -20,8 +20,9 @@ import { getInvalidPopoverError, getInvalidTriggerError } from '../popover.error
 import { HcPopoverAnchoringService } from '../popover-anchoring.service';
 import { HcPopoverHorizontalAlign, HcPopoverOpenOptions, HcPopoverTrigger, HcPopoverVerticalAlign, VALID_TRIGGER } from '../types';
 import { PopoverNotification, PopoverNotificationService, NotificationAction } from '../notification.service';
-import { HcPopoverAccessibilityService, HcPopKeyboardNotifier, KEY_CODE } from '../popover-accessibility.service';
+import { HcPopoverAccessibilityService, HcPopKeyboardNotifier } from '../popover-accessibility.service';
 import { HcTooltipComponent } from '../tooltip/tooltip.component';
+import { KEY_CODE } from '../../keycodes';
 
 @Directive({
     selector: '[hcPop],[hcTooltip]',

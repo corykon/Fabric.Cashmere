@@ -132,9 +132,15 @@
         "usageDoc": true
     },
     "picklist": {
-        "name": "Picklist",
-        "category": "layout",
+        "name": "Picklist (Deprecated)",
+        "category": "forms",
         "examples": ["picklist-simple", "picklist-valueset"],
+        "usageDoc": true
+    },
+    "picklist2": {
+        "name": "Picklist2",
+        "category": "forms",
+        "examples": ["picklist2-simple"],
         "usageDoc": true
     },
     "pop": {
