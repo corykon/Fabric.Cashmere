@@ -11,8 +11,8 @@ import { ResizableComponent } from '@healthcatalyst/cashmere';
     styleUrls: ['./resizable-overview-example.component.scss']
 })
 export class ResizableOverviewExampleComponent {
-    resizablePosition = new FormControl('top', {nonNullable: true});
-    resizeableEnabled = new FormControl(true, {nonNullable: true});
+    resizablePosition = new FormControl('top', { nonNullable: true });
+    resizeableEnabled = new FormControl(true, { nonNullable: true });
     @ViewChild('resizableContainer') resizableContainer: ResizableComponent;
 
     get topContainer(): boolean {
@@ -20,7 +20,7 @@ export class ResizableOverviewExampleComponent {
     }
 
     get isVertical(): boolean {
-        if ( this.resizablePosition.value === 'top' || this.resizablePosition.value === 'bottom' ) {
+        if (this.resizablePosition.value === 'top' || this.resizablePosition.value === 'bottom') {
             return true;
         } else {
             return false;

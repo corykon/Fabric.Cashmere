@@ -1,4 +1,4 @@
-import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 
 /** Container for additional label content for HcFormFieldComponent */
 @Component({

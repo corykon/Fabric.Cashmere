@@ -1,9 +1,9 @@
-import {takeUntil} from 'rxjs/operators';
-import {Component, Inject, OnDestroy, OnInit, Input, ViewEncapsulation, Output, EventEmitter, HostBinding} from '@angular/core';
-import {Subject, Observable} from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Component, Inject, OnDestroy, OnInit, Input, ViewEncapsulation, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
-import {IAppSwitcherService, IDiscoveryApplication, APP_SWITCHER_SERVICE} from './app-switcher-interfaces';
-import {WorkTrackerService} from '../shared/work-tracker.service';
+import { IAppSwitcherService, IDiscoveryApplication, APP_SWITCHER_SERVICE } from './app-switcher-interfaces';
+import { WorkTrackerService } from '../shared/work-tracker.service';
 
 /**
  * `hc-app-switcher` is typically included in a popover to display links to available apps from the Discovery Service
@@ -92,11 +92,11 @@ export class AppSwitcherComponent implements OnInit, OnDestroy {
                 .getApplications()
                 .pipe(takeUntil(this.ngUnsubscribe))
                 .subscribe(
-                    (response) => {
+                    response => {
                         this.loadFailed = false;
                         this.applications = response.value;
                     },
-                    (error) => {
+                    error => {
                         this.handleError(error);
                     }
                 )
@@ -116,7 +116,7 @@ export class AppSwitcherComponent implements OnInit, OnDestroy {
         return app.ServiceName === this.serviceName && `${app.Version}` === this.serviceVersion;
     }
 
-    _appClick( app: IDiscoveryApplication ): void {
-        this.appClick.emit( app );
+    _appClick(app: IDiscoveryApplication): void {
+        this.appClick.emit(app);
     }
 }

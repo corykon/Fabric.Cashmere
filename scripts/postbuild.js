@@ -29,7 +29,7 @@ sass.render(
         outFile: './dist/cashmere/cashmere.css',
         file: './projects/cashmere/src/lib/static.scss'
     },
-    function(error, result) {
+    function (error, result) {
         if (error) {
             console.error(error);
         }
@@ -38,7 +38,7 @@ sass.render(
             return;
         }
 
-        fse.writeFile('./dist/cashmere/cashmere.css', result.css, function(err) {
+        fse.writeFile('./dist/cashmere/cashmere.css', result.css, function (err) {
             if (err) {
                 console.error(error);
                 return;

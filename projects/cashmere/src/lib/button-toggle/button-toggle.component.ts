@@ -1,7 +1,6 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, Output, ViewEncapsulation } from '@angular/core';
 import { parseBooleanAttribute } from '../util';
 
-
 /** Button Toggle components are the individually selectable buttons used within the Button Toggle Group component. */
 
 @Component({
@@ -10,7 +9,6 @@ import { parseBooleanAttribute } from '../util';
     styleUrls: ['./button-toggle.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-
 export class ButtonToggleComponent {
     _disabled = false;
     _parentDisabled = false;
@@ -43,17 +41,17 @@ export class ButtonToggleComponent {
     }
     set disabled(isDisabled: boolean) {
         this._disabled = parseBooleanAttribute(isDisabled);
-        if ( this._disabled && !this._hostClass.includes( 'hc-toggle-disabled' )) {
+        if (this._disabled && !this._hostClass.includes('hc-toggle-disabled')) {
             this._hostClass += ' hc-toggle-disabled';
         }
-        if ( !this._disabled && this._hostClass.includes( 'hc-toggle-disabled' )) {
-            this._hostClass = this._hostClass.replace( ' hc-toggle-disabled', '' );
+        if (!this._disabled && this._hostClass.includes('hc-toggle-disabled')) {
+            this._hostClass = this._hostClass.replace(' hc-toggle-disabled', '');
         }
     }
 
     @HostListener('click')
     _onClick(): void {
-        if ( !this.disabled && !this._parentDisabled ) {
+        if (!this.disabled && !this._parentDisabled) {
             this.selected = !this.selected;
         }
     }

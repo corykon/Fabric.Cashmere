@@ -20,7 +20,7 @@ describe('PaginationComponent', () => {
     });
 
     function beforeEachWithTimeout(action: () => void): void {
-        beforeEach((done) => {
+        beforeEach(done => {
             action();
             setTimeout(done);
         });
@@ -200,7 +200,7 @@ describe('PaginationComponent', () => {
             });
 
             describe('when page number set before page size', () => {
-                it('page number is not sanitized until after timeout', (done) => {
+                it('page number is not sanitized until after timeout', done => {
                     component.length = 35;
                     component.pageNumber = 2;
                     component.pageSize = 40;

@@ -1,2 +1,2 @@
-export {MultiselectComponent} from './multiselect.component';
-export {MultiselectModule} from './multiselect.module';
+export { MultiselectComponent } from './multiselect.component';
+export { MultiselectModule } from './multiselect.module';

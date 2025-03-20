@@ -1,6 +1,6 @@
-import {PaginationComponent} from '../pagination/pagination.component';
-import {HcTableDataSource} from './table-data-source';
-import {HcSort} from '../sort';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { HcTableDataSource } from './table-data-source';
+import { HcSort } from '../sort';
 
 interface PeriodicElement {
     name: string;
@@ -10,26 +10,26 @@ interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900')},
-    {id: 2, name: 'Helium', weight: 4.0026, discoveryDate: new Date('January 1 1900')},
-    {id: 3, name: 'Lithium', weight: 6.941, discoveryDate: new Date('January 1 1800')},
-    {id: 4, name: 'Beryllium', weight: 9.0122, discoveryDate: new Date('January 1 2000')},
-    {id: 5, name: 'Boron', weight: 10.811, discoveryDate: new Date('January 1 1956')},
-    {id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945')},
-    {id: 7, name: 'Nitrogen', weight: 14.0067, discoveryDate: new Date('January 1 1976')},
-    {id: 8, name: 'Oxygen', weight: 15.9994, discoveryDate: new Date('January 1 1923')},
-    {id: 9, name: 'Fluorine', weight: 18.9984, discoveryDate: new Date('February 1 1900')},
-    {id: 10, name: 'Neon', weight: 20.1797, discoveryDate: new Date('May 1 1900')},
-    {id: 11, name: '1CasHydrogen', weight: 10.0079, discoveryDate: new Date('November 1 1900')},
-    {id: 12, name: 'CasHelium', weight: 40.0026, discoveryDate: new Date('June 1 1900')},
-    {id: 13, name: '2CasLithium', weight: 60.941, discoveryDate: new Date('January 1 1010')},
-    {id: 14, name: 'CasBeryllium', weight: 90.0122, discoveryDate: new Date('January 1 1923')},
-    {id: 15, name: '3CasBoron', weight: 100.811, discoveryDate: new Date('January 1 2001')},
-    {id: 16, name: 'CasCarbon', weight: 120.0107, discoveryDate: new Date('January 1 2002')},
-    {id: 17, name: 'CasNitrogen', weight: 140.0067, discoveryDate: new Date('January 1 2004')},
-    {id: 18, name: 'CasOxygen', weight: 150.9994, discoveryDate: new Date('January 1 2005')},
-    {id: 19, name: '', weight: 180.9984, discoveryDate: new Date('January 1 2007')},
-    {id: 20, name: '7CasNeon', weight: 200.1797, discoveryDate: new Date('January 1 2006')}
+    { id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900') },
+    { id: 2, name: 'Helium', weight: 4.0026, discoveryDate: new Date('January 1 1900') },
+    { id: 3, name: 'Lithium', weight: 6.941, discoveryDate: new Date('January 1 1800') },
+    { id: 4, name: 'Beryllium', weight: 9.0122, discoveryDate: new Date('January 1 2000') },
+    { id: 5, name: 'Boron', weight: 10.811, discoveryDate: new Date('January 1 1956') },
+    { id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945') },
+    { id: 7, name: 'Nitrogen', weight: 14.0067, discoveryDate: new Date('January 1 1976') },
+    { id: 8, name: 'Oxygen', weight: 15.9994, discoveryDate: new Date('January 1 1923') },
+    { id: 9, name: 'Fluorine', weight: 18.9984, discoveryDate: new Date('February 1 1900') },
+    { id: 10, name: 'Neon', weight: 20.1797, discoveryDate: new Date('May 1 1900') },
+    { id: 11, name: '1CasHydrogen', weight: 10.0079, discoveryDate: new Date('November 1 1900') },
+    { id: 12, name: 'CasHelium', weight: 40.0026, discoveryDate: new Date('June 1 1900') },
+    { id: 13, name: '2CasLithium', weight: 60.941, discoveryDate: new Date('January 1 1010') },
+    { id: 14, name: 'CasBeryllium', weight: 90.0122, discoveryDate: new Date('January 1 1923') },
+    { id: 15, name: '3CasBoron', weight: 100.811, discoveryDate: new Date('January 1 2001') },
+    { id: 16, name: 'CasCarbon', weight: 120.0107, discoveryDate: new Date('January 1 2002') },
+    { id: 17, name: 'CasNitrogen', weight: 140.0067, discoveryDate: new Date('January 1 2004') },
+    { id: 18, name: 'CasOxygen', weight: 150.9994, discoveryDate: new Date('January 1 2005') },
+    { id: 19, name: '', weight: 180.9984, discoveryDate: new Date('January 1 2007') },
+    { id: 20, name: '7CasNeon', weight: 200.1797, discoveryDate: new Date('January 1 2006') }
 ];
 
 describe('HcTableDataSource', () => {
@@ -147,7 +147,7 @@ describe('HcTableDataSource', () => {
         it('filters through the table by its id', () => {
             const filter = '1';
             const result = dataSource.filterPredicate(
-                {id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900')},
+                { id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900') },
                 filter
             );
             expect(result).toBe(true);
@@ -156,7 +156,7 @@ describe('HcTableDataSource', () => {
         it('filters through the table by its name', () => {
             const filter = 'Hydrogen';
             const result = dataSource.filterPredicate(
-                {id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900')},
+                { id: 1, name: 'Hydrogen', weight: 1.0079, discoveryDate: new Date('January 2 1900') },
                 filter
             );
             expect(result).toBe(true);
@@ -165,7 +165,7 @@ describe('HcTableDataSource', () => {
         it('filters through the table by its weight', () => {
             const filter = '12.0107';
             const result = dataSource.filterPredicate(
-                {id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945')},
+                { id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945') },
                 filter
             );
             expect(result).toBe(true);
@@ -174,7 +174,7 @@ describe('HcTableDataSource', () => {
         it('filters through the table by its id and name', () => {
             const filter = '3 Lithium';
             const result = dataSource.filterPredicate(
-                {id: 3, name: 'Lithium', weight: 6.941, discoveryDate: new Date('January 1 1800')},
+                { id: 3, name: 'Lithium', weight: 6.941, discoveryDate: new Date('January 1 1800') },
                 filter
             );
             expect(result).toBe(true);
@@ -183,7 +183,7 @@ describe('HcTableDataSource', () => {
         it('filters through the table by its name and weight', () => {
             const filter = 'Carbon 12.0107';
             const result = dataSource.filterPredicate(
-                {id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945')},
+                { id: 6, name: 'Carbon', weight: 12.0107, discoveryDate: new Date('January 1 1945') },
                 filter
             );
             expect(result).toBe(true);

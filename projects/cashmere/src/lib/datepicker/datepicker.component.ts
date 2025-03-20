@@ -16,19 +16,19 @@ import {
     ViewContainerRef,
     Inject
 } from '@angular/core';
-import {D} from './datetime/date-formats';
-import {DateAdapter} from './datetime/date-adapter';
-import {createMissingDateImplError} from './datetime/datepicker-errors';
-import {Subject, Subscription, merge} from 'rxjs';
-import {ScrollStrategy, Overlay, ComponentType, OverlayRef, OverlayConfig, PositionStrategy} from '@angular/cdk/overlay';
-import {parseBooleanAttribute} from '../util';
-import {HcCalendarCellCssClasses} from './calendar-body/calendar-body.component';
-import {DatepickerContentComponent} from './datepicker-content/datepicker-content.component';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {DatepickerInputDirective} from './datepicker-input/datepicker-input.directive';
-import {Directionality} from '@angular/cdk/bidi';
-import {DOCUMENT} from '@angular/common';
-import {take, filter} from 'rxjs/operators';
+import { D } from './datetime/date-formats';
+import { DateAdapter } from './datetime/date-adapter';
+import { createMissingDateImplError } from './datetime/datepicker-errors';
+import { Subject, Subscription, merge } from 'rxjs';
+import { ScrollStrategy, Overlay, ComponentType, OverlayRef, OverlayConfig, PositionStrategy } from '@angular/cdk/overlay';
+import { parseBooleanAttribute } from '../util';
+import { HcCalendarCellCssClasses } from './calendar-body/calendar-body.component';
+import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { DatepickerInputDirective } from './datepicker-input/datepicker-input.directive';
+import { Directionality } from '@angular/cdk/bidi';
+import { DOCUMENT } from '@angular/common';
+import { take, filter } from 'rxjs/operators';
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datepickerUid = 0;
@@ -86,9 +86,9 @@ export class DatepickerComponent implements OnDestroy {
     get mode(): 'date' | 'time' | 'date-time' {
         return this._mode;
     }
-    set mode( value: 'date' | 'time' | 'date-time' ) {
+    set mode(value: 'date' | 'time' | 'date-time') {
         this._mode = value;
-        if ( this._selected ) {
+        if (this._selected) {
             this._selectedChanged.next(this._selected);
         }
     }
@@ -101,10 +101,10 @@ export class DatepickerComponent implements OnDestroy {
     get hourCycle(): string | number {
         return this._hourCycle;
     }
-    set hourCycle( value: string | number ) {
-        if ( +value !== this._hourCycle) {
+    set hourCycle(value: string | number) {
+        if (+value !== this._hourCycle) {
             this._hourCycle = +value;
-            if ( this._selected ) {
+            if (this._selected) {
                 this._selectedChanged.next(this._selected);
             }
         }
@@ -369,7 +369,9 @@ export class DatepickerComponent implements OnDestroy {
                 .asObservable()
                 .pipe(take(1))
                 .subscribe(() => {
-                    if (this._popupRef) { this._popupRef.updatePosition(); }
+                    if (this._popupRef) {
+                        this._popupRef.updatePosition();
+                    }
                 });
         }
     }

@@ -1,4 +1,4 @@
-import {Directive, HostBinding, ElementRef, Input, HostListener, Renderer2, Output, EventEmitter} from '@angular/core';
+import { Directive, HostBinding, ElementRef, Input, HostListener, Renderer2, Output, EventEmitter } from '@angular/core';
 
 /** Marks the host element as a link within an `hc-scroll-nav`. */
 @Directive({
@@ -31,13 +31,13 @@ export class ScrollNavLinkDirective {
         this.hcScrollLink = (node as HTMLElement).getAttribute('hcScrollLink');
         this.renderer.addClass(node, 'hc-scroll-nav-link');
 
-        this.renderer.listen(node, "click", () => {
+        this.renderer.listen(node, 'click', () => {
             if (this.hcScrollLink) {
                 this.navigateToSection(this.hcScrollLink);
             }
         });
 
-        this.renderer.listen(node, "keydown.enter", () => {
+        this.renderer.listen(node, 'keydown.enter', () => {
             if (this.hcScrollLink) {
                 this.navigateToSection(this.hcScrollLink);
             }
@@ -58,14 +58,14 @@ export class ScrollNavLinkDirective {
 
     private navigateToSection(id: string) {
         const el = document.getElementById(id);
-        
+
         if (!el) {
             throw new Error(`Failed to navigate. Could not find the element with the id: ${id}.`);
         } else {
             this.setSubsectionClass(el);
 
             if (!this.hasClickedSubsection(el)) {
-                this.navClick.emit( el );
+                this.navClick.emit(el);
             }
         }
     }
@@ -81,8 +81,8 @@ export class ScrollNavLinkDirective {
     private hasClickedSubsection(el: HTMLElement) {
         let subsectionHasBeenClicked = false;
 
-        Array.from(el.children).forEach((childElement) => {
-            if ((childElement.tagName === this.SECTION_TAG_NAME) && (childElement.className.includes(this.CLICKED_SUBSECTION_CLASS))) {
+        Array.from(el.children).forEach(childElement => {
+            if (childElement.tagName === this.SECTION_TAG_NAME && childElement.className.includes(this.CLICKED_SUBSECTION_CLASS)) {
                 subsectionHasBeenClicked = true;
                 childElement.classList.remove(this.CLICKED_SUBSECTION_CLASS);
             }

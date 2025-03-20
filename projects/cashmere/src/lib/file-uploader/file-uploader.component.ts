@@ -1,4 +1,19 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnDestroy, Optional, Output, Self, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    HostBinding,
+    Input,
+    OnDestroy,
+    Optional,
+    Output,
+    Self,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
@@ -13,7 +28,7 @@ let nextUploaderId = 1;
     templateUrl: './file-uploader.component.html',
     styleUrls: ['./file-uploader.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => FileUploaderComponent)}]
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => FileUploaderComponent) }]
 })
 export class FileUploaderComponent extends HcFormControlComponent implements AfterViewInit, OnDestroy {
     @ViewChild('dropZone') _dropZone!: ElementRef<HTMLElement>;
@@ -60,8 +75,8 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
     get multiple(): boolean {
         return this._multiple;
     }
-    set multiple(value: boolean | string ) {
-        this._multiple = parseBooleanAttribute( value );
+    set multiple(value: boolean | string) {
+        this._multiple = parseBooleanAttribute(value);
     }
 
     /** Apply tight styling that condenses the controller to one line. Defaults to false. */
@@ -69,8 +84,8 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
     get tight(): boolean {
         return this._tight;
     }
-    set tight(value: boolean | string ) {
-        this._tight = parseBooleanAttribute( value );
+    set tight(value: boolean | string) {
+        this._tight = parseBooleanAttribute(value);
     }
 
     /** Whether the uploader is disabled. */
@@ -89,7 +104,7 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
         return this._isRequired;
     }
 
-    set required( requiredVal: boolean | string ) {
+    set required(requiredVal: boolean | string) {
         this._isRequired = parseBooleanAttribute(requiredVal);
     }
 
@@ -99,21 +114,21 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
         return this._subtext;
     }
 
-    set subtext( val: string ) {
+    set subtext(val: string) {
         this._subtext = val;
     }
 
     ngAfterViewInit(): void {
-        if ( this._ngControl?.statusChanges ) {
+        if (this._ngControl?.statusChanges) {
             // delay() is necessary to make sure any form or control state changes have been applied before rechecking error states
             this._ngControl.statusChanges.pipe(delay(0), takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
-        if ( this._form ) {
+        if (this._form) {
             this._form.ngSubmit.pipe(takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
 
         /** Monkey patching the markAsTouched function to call error state checking because there is not an event for touched changes */
-        if ( this._ngControl && this._ngControl.control ) {
+        if (this._ngControl && this._ngControl.control) {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             const originalMarkMethod = this._ngControl.control.markAsTouched;
@@ -148,7 +163,7 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
 
     writeValue(value: FileList): void {
         // Prevent the form control from trying to write a value on removing the control
-        if ( this.onChange.name !== 'noop' ) {
+        if (this.onChange.name !== 'noop') {
             this._fileList = value;
         }
     }
@@ -184,7 +199,7 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
 
     /** Triggers the system file selection dialog to open */
     browseFiles(): void {
-        this._fileInputElement.nativeElement.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+        this._fileInputElement.nativeElement.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     }
 
     /** Clears any selected files and returns to the initial state */
@@ -198,13 +213,13 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
         const selectedFiles: FileList = this._fileInputElement.nativeElement.files;
         this._fileNames = [];
         for (let i = 0; i < selectedFiles.length; i++) {
-            this._fileNames.push( selectedFiles[i].name );
+            this._fileNames.push(selectedFiles[i].name);
         }
 
         this._fileList = selectedFiles;
-        this.onChange( this._fileList );
+        this.onChange(this._fileList);
         this.onTouch();
-        this.filesAdded.emit( selectedFiles );
+        this.filesAdded.emit(selectedFiles);
 
         this._determineFileIcon();
     }
@@ -219,7 +234,7 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
         }
 
         // Can't prevent a user from dropping multiple files; if multiple files are not supported, only take the first one
-        if ( !this.multiple && files.length > 1 ) {
+        if (!this.multiple && files.length > 1) {
             const dt = new DataTransfer();
             dt.items.add(files[0]);
             this._fileInputElement.nativeElement.files = dt.files;
@@ -231,11 +246,11 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
 
         this._fileNames = [];
         for (let i = 0; i < selectedFiles.length; i++) {
-            this._fileNames.push( selectedFiles[i].name );
+            this._fileNames.push(selectedFiles[i].name);
         }
 
         this._fileList = selectedFiles;
-        this.onChange( this._fileList );
+        this.onChange(this._fileList);
         this.filesAdded.emit(selectedFiles);
 
         this._determineFileIcon();
@@ -244,23 +259,23 @@ export class FileUploaderComponent extends HcFormControlComponent implements Aft
     _determineFileIcon(): void {
         const mimeType = this._fileList[0].type;
 
-        if ( mimeType.includes('image') ) {
+        if (mimeType.includes('image')) {
             this._fileIcon = 'hc-image-file-icon';
-        } else if ( mimeType.includes('pdf') ) {
+        } else if (mimeType.includes('pdf')) {
             this._fileIcon = 'hc-pdf-file-icon';
-        } else if ( mimeType.includes('csv') ) {
+        } else if (mimeType.includes('csv')) {
             this._fileIcon = 'hc-csv-file-icon';
-        } else if ( mimeType.includes('msword') ) {
+        } else if (mimeType.includes('msword')) {
             this._fileIcon = 'hc-doc-file-icon';
-        } else if ( this._fileList[0].name.includes('.docx') ) {
+        } else if (this._fileList[0].name.includes('.docx')) {
             this._fileIcon = 'hc-docx-file-icon';
-        } else if ( this._fileList[0].name.includes('.xls') ) {
+        } else if (this._fileList[0].name.includes('.xls')) {
             this._fileIcon = 'hc-xls-file-icon';
-        } else if ( mimeType.includes('xml') ) {
+        } else if (mimeType.includes('xml')) {
             this._fileIcon = 'hc-xml-file-icon';
-        } else if ( mimeType === 'text/plain' ) {
+        } else if (mimeType === 'text/plain') {
             this._fileIcon = 'hc-text-file-icon';
-        } else if ( mimeType.includes('text/') ) {
+        } else if (mimeType.includes('text/')) {
             this._fileIcon = 'hc-text-clipping-file-icon';
         } else {
             this._fileIcon = 'hc-generic-file-icon';

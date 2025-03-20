@@ -1,12 +1,21 @@
-import {Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter} from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {DateRangeOptions, PresetItem} from '../model/model';
-import {OverlayRef} from '@angular/cdk/overlay';
-import {ConfigStoreService} from '../services/config-store.service';
-import {DateRange} from '../model/model';
-import {D} from '../../datepicker/datetime/date-formats';
-import {CalendarWrapperComponent} from '../calendar-wrapper/calendar-wrapper.component';
-import {Observable} from 'rxjs';
+import {
+    Component,
+    OnInit,
+    ViewEncapsulation,
+    AfterViewInit,
+    ViewChildren,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    EventEmitter
+} from '@angular/core';
+import type { QueryList } from '@angular/core';
+import { DateRangeOptions, PresetItem } from '../model/model';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { ConfigStoreService } from '../services/config-store.service';
+import { DateRange } from '../model/model';
+import { D } from '../../datepicker/datetime/date-formats';
+import { CalendarWrapperComponent } from '../calendar-wrapper/calendar-wrapper.component';
+import { Observable } from 'rxjs';
 
 // ** Date range wrapper component */
 @Component({
@@ -18,15 +27,37 @@ import {Observable} from 'rxjs';
 })
 export class PickerOverlayComponent implements OnInit, AfterViewInit {
     options$: Observable<DateRangeOptions>;
-    set _fromDate(fd: D | undefined) { this.__fromDate = fd; this.cd.markForCheck(); }
-    get _fromDate(): D | undefined { return this.__fromDate; }
-    set _toDate(td: D | undefined) { this.__toDate = td; this.cd.markForCheck(); }
-    get _toDate(): D | undefined { return this.__toDate; }
-    set _selectedPreset(s: number | null ) { this.__selectedPreset = s; this.cd.markForCheck(); }
-    get _selectedPreset(): number | null { return this.__selectedPreset; }
-    set _rangeIsInvalid(isInvalid: boolean) { this.__rangeIsInvalid = isInvalid; this.cd.markForCheck(); }
-    get _rangeIsInvalid(): boolean { return this.__rangeIsInvalid; }
-    get _invalidRangeErrorMessage(): string | null { return this.__invalidRangeErrorMessage; }
+    set _fromDate(fd: D | undefined) {
+        this.__fromDate = fd;
+        this.cd.markForCheck();
+    }
+    get _fromDate(): D | undefined {
+        return this.__fromDate;
+    }
+    set _toDate(td: D | undefined) {
+        this.__toDate = td;
+        this.cd.markForCheck();
+    }
+    get _toDate(): D | undefined {
+        return this.__toDate;
+    }
+    set _selectedPreset(s: number | null) {
+        this.__selectedPreset = s;
+        this.cd.markForCheck();
+    }
+    get _selectedPreset(): number | null {
+        return this.__selectedPreset;
+    }
+    set _rangeIsInvalid(isInvalid: boolean) {
+        this.__rangeIsInvalid = isInvalid;
+        this.cd.markForCheck();
+    }
+    get _rangeIsInvalid(): boolean {
+        return this.__rangeIsInvalid;
+    }
+    get _invalidRangeErrorMessage(): string | null {
+        return this.__invalidRangeErrorMessage;
+    }
     _presetValues: PresetItem[] | undefined;
     _skipRangeCheck = false;
 
@@ -72,7 +103,7 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
         this.configStoreService.presetUpdate$.subscribe((presetIndex: number | DateRange) => {
             if (typeof presetIndex === 'number') {
                 this._selectedPreset = presetIndex;
-                this._updateRangeByPreset( presetIndex );
+                this._updateRangeByPreset(presetIndex);
             }
         });
     }
@@ -84,7 +115,7 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
     }
 
     _updateFromDate(date?: D): void {
-        if ( !this._skipRangeCheck ) {
+        if (!this._skipRangeCheck) {
             this._fromDate = date;
             this._isRangePreset();
         }
@@ -95,7 +126,7 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
     }
 
     _updateToDate(date?: D): void {
-        if ( !this._skipRangeCheck ) {
+        if (!this._skipRangeCheck) {
             this._toDate = date;
             this._isRangePreset();
         }
@@ -106,17 +137,17 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
     }
 
     _updateRangeByPreset(index: number): void {
-        if (this._presetValues && index < this._presetValues.length && index >= 0 ) {
+        if (this._presetValues && index < this._presetValues.length && index >= 0) {
             // Prevent the system from assigning a preset if one has specifically been selected
             this._skipRangeCheck = true;
             this._fromDate = this._presetValues[index].range.fromDate;
             this._toDate = this._presetValues[index].range.toDate;
 
             setTimeout(() => {
-                if ( this._fromDate ) {
+                if (this._fromDate) {
                     this.calendarWrappers.first.hcCalendar.activeDate = this._fromDate;
                 }
-                if ( this._toDate ) {
+                if (this._toDate) {
                     this.calendarWrappers.last.hcCalendar.activeDate = this._toDate;
                 }
                 this._skipRangeCheck = false;
@@ -130,9 +161,11 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
             for (let i = 0; i < this._presetValues.length; i++) {
                 const radioRange: DateRange = this._presetValues[i].range;
                 if (this._fromDate && radioRange.fromDate && this._toDate && radioRange.toDate) {
-                    if ( this._fromDate.toDateString() === radioRange.fromDate.toDateString() &&
-                        this._toDate.toDateString() === radioRange.toDate.toDateString() ) {
-                            this._selectedPreset = i;
+                    if (
+                        this._fromDate.toDateString() === radioRange.fromDate.toDateString() &&
+                        this._toDate.toDateString() === radioRange.toDate.toDateString()
+                    ) {
+                        this._selectedPreset = i;
                     }
                 }
             }
@@ -141,34 +174,36 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
 
     _applyNewDates(): void {
         this._validateRange();
-        if (this._rangeIsInvalid) { return; }
-        this.configStoreService.updateRange({fromDate: this._fromDate, toDate: this._toDate});
+        if (this._rangeIsInvalid) {
+            return;
+        }
+        this.configStoreService.updateRange({ fromDate: this._fromDate, toDate: this._toDate });
         if (this._selectedPreset !== null) {
             this.configStoreService.updatePreset(this._selectedPreset);
         } else {
-            this.configStoreService.updatePreset({fromDate: this._fromDate, toDate: this._toDate});
+            this.configStoreService.updatePreset({ fromDate: this._fromDate, toDate: this._toDate });
         }
-        this._dismissed.emit( true );
+        this._dismissed.emit(true);
         this.overlayRef.dispose();
     }
 
     _validateRange(): void {
-        let startLabel = this.__startDatePrefix ?? "Start date";
-        if (startLabel.endsWith(":")) {
-            startLabel = startLabel.slice(0,-1);
+        let startLabel = this.__startDatePrefix ?? 'Start date';
+        if (startLabel.endsWith(':')) {
+            startLabel = startLabel.slice(0, -1);
         }
 
-        let endLabel = this.__endDatePrefix ?? "End date";
-        if (endLabel.endsWith(":")) {
-            endLabel = endLabel.slice(0,-1);
+        let endLabel = this.__endDatePrefix ?? 'End date';
+        if (endLabel.endsWith(':')) {
+            endLabel = endLabel.slice(0, -1);
         }
 
         const bothDatesNull = !this._fromDate && !this._toDate;
-        const isDateRequired = !!this._fromDateIsRequired || !!this._toDateIsRequired
+        const isDateRequired = !!this._fromDateIsRequired || !!this._toDateIsRequired;
 
         if (bothDatesNull && isDateRequired) {
             this._rangeIsInvalid = true;
-            this.__invalidRangeErrorMessage = "You must choose a date.";
+            this.__invalidRangeErrorMessage = 'You must choose a date.';
         } else if (!!this._fromDate && !!this._toDate) {
             this._rangeIsInvalid = this._fromDate > this._toDate;
             this.__invalidRangeErrorMessage = `${startLabel} cannot be after ${endLabel}.`;
@@ -181,11 +216,11 @@ export class PickerOverlayComponent implements OnInit, AfterViewInit {
         } else {
             this._rangeIsInvalid = false;
             this.__invalidRangeErrorMessage = null;
-        }        
+        }
     }
 
     _discardNewDates(): void {
-        this._dismissed.emit( false );
+        this._dismissed.emit(false);
         this.overlayRef.dispose();
     }
 }

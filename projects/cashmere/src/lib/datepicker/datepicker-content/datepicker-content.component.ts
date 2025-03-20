@@ -1,7 +1,7 @@
-import {Component, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, ViewChild} from '@angular/core';
-import {HcDatepickerAnimations} from '../datepicker-animations';
-import {CalendarComponent} from '../calendar/calendar.component';
-import {DatepickerComponent} from '../datepicker.component';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, ViewChild } from '@angular/core';
+import { HcDatepickerAnimations } from '../datepicker-animations';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { DatepickerComponent } from '../datepicker.component';
 
 /**
  * Component used as the content for the datepicker popup. We use this instead of using
@@ -38,8 +38,8 @@ export class DatepickerContentComponent implements AfterViewInit {
     }
 
     /** Close the datepicker automatically on selection only if in date mode */
-    autoClose( todayClicked: boolean ): void {
-        if (this.datepicker.mode === 'date' || todayClicked ) {
+    autoClose(todayClicked: boolean): void {
+        if (this.datepicker.mode === 'date' || todayClicked) {
             this.datepicker.close();
         }
     }

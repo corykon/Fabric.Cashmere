@@ -6,14 +6,14 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Injectable, SkipSelf, Optional} from '@angular/core';
-import {Subject} from 'rxjs';
+import { Injectable, SkipSelf, Optional } from '@angular/core';
+import { Subject } from 'rxjs';
 
 /**
  * To modify the labels and text displayed, create a new instance of HcSortHeaderIntl and
  * include it in a custom provider.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HcSortHeaderIntl {
     /**
      * Stream that emits whenever the labels here are changed. Use this to notify

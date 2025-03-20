@@ -1,8 +1,17 @@
-import {Component, EventEmitter, ElementRef, ViewContainerRef, ComponentRef, ChangeDetectorRef, ViewEncapsulation, HostBinding} from '@angular/core';
-import {trigger, state, style, transition, animate, AnimationEvent} from '@angular/animations';
-import {Portal, CdkPortalOutletAttachedRef} from '@angular/cdk/portal';
-import {BehaviorSubject} from 'rxjs';
-import {HcIcon} from '../icon/icon.component';
+import {
+    Component,
+    EventEmitter,
+    ElementRef,
+    ViewContainerRef,
+    ComponentRef,
+    ChangeDetectorRef,
+    ViewEncapsulation,
+    HostBinding
+} from '@angular/core';
+import { trigger, state, style, transition, animate, AnimationEvent } from '@angular/animations';
+import { Portal, CdkPortalOutletAttachedRef } from '@angular/cdk/portal';
+import { BehaviorSubject } from 'rxjs';
+import { HcIcon } from '../icon/icon.component';
 
 const ANIMATION_TIMINGS = '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 
@@ -12,9 +21,9 @@ const ANIMATION_TIMINGS = '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';
     styleUrls: ['./hc-toast.component.scss'],
     animations: [
         trigger('fade', [
-            state('void', style({transform: 'none', opacity: 0})),
-            state('enter', style({transform: 'none', opacity: 1})),
-            state('leave', style({transform: 'none', opacity: 0})),
+            state('void', style({ transform: 'none', opacity: 0 })),
+            state('enter', style({ transform: 'none', opacity: 1 })),
+            state('leave', style({ transform: 'none', opacity: 0 })),
             transition('* => *', animate(ANIMATION_TIMINGS))
         ])
     ],
@@ -69,16 +78,16 @@ export class HcToastComponent {
         }
     }
 
-    _imgIsURL( val:string | HcIcon ): boolean {
+    _imgIsURL(val: string | HcIcon): boolean {
         return typeof val === 'string';
     }
 
-    _customFontSet( val: string | HcIcon ): string {
+    _customFontSet(val: string | HcIcon): string {
         const icon = val as HcIcon;
         return icon.fontSet;
     }
 
-    _customFontIcon( val: string | HcIcon ): string {
+    _customFontIcon(val: string | HcIcon): string {
         const icon = val as HcIcon;
         return icon.fontIcon;
     }

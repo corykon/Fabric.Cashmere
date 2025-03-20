@@ -10,9 +10,9 @@ import {
     Renderer2,
     ViewEncapsulation
 } from '@angular/core';
-import {Drawer} from '../drawer.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {DrawerToolbar} from './drawer-header.directive';
+import { Drawer } from '../drawer.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DrawerToolbar } from './drawer-header.directive';
 
 const drawerThemes = ['dark-theme'];
 
@@ -56,20 +56,16 @@ const closeStateAnimation = '0.25s .05s ease';
                 animate('0ms', style({ transform: 'translate3d(-100%, 0, 0)' })),
                 animate(closeStateAnimation)
             ]),
-            transition('open-left => void', [
-                animate(openStateAnimation, style({ transform: 'translate3d(-100%, 0, 0)' }))
-            ]),
+            transition('open-left => void', [animate(openStateAnimation, style({ transform: 'translate3d(-100%, 0, 0)' }))]),
             transition('void => open-right', [
-                animate('0ms', style({ transform: 'translate3d(100%, 0, 0)'})),
+                animate('0ms', style({ transform: 'translate3d(100%, 0, 0)' })),
                 animate(closeStateAnimation)
             ]),
-            transition('open-right => void', [
-                animate(openStateAnimation, style({ transform: 'translate3d(100%, 0, 0)' }))
-            ])
+            transition('open-right => void', [animate(openStateAnimation, style({ transform: 'translate3d(100%, 0, 0)' }))])
         ])
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{provide: Drawer, useExisting: forwardRef(() => MenuDrawer)}]
+    providers: [{ provide: Drawer, useExisting: forwardRef(() => MenuDrawer) }]
 })
 export class MenuDrawer extends Drawer implements AfterContentInit {
     private _previousTheme: string | null = null;

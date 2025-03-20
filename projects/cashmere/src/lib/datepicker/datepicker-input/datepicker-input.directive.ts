@@ -1,4 +1,4 @@
-import {forwardRef, Directive, ElementRef, Optional, Inject, Input, EventEmitter, Output, OnDestroy} from '@angular/core';
+import { forwardRef, Directive, ElementRef, Optional, Inject, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import {
     NG_VALUE_ACCESSOR,
     NG_VALIDATORS,
@@ -9,14 +9,14 @@ import {
     ControlValueAccessor,
     Validators
 } from '@angular/forms';
-import {createMissingDateImplError} from '../datetime/datepicker-errors';
-import {DatepickerComponent} from '../datepicker.component';
-import {parseBooleanAttribute} from '../../util';
-import {Subscription} from 'rxjs';
-import {D, HC_DATE_FORMATS, HcDateFormats} from '../datetime/date-formats';
-import {DateAdapter} from '../datetime/date-adapter';
-import {HcFormControlComponent} from '../../form-field/hc-form-control.component';
-import {HcFormFieldComponent} from '../../form-field/hc-form-field.component';
+import { createMissingDateImplError } from '../datetime/datepicker-errors';
+import { DatepickerComponent } from '../datepicker.component';
+import { parseBooleanAttribute } from '../../util';
+import { Subscription } from 'rxjs';
+import { D, HC_DATE_FORMATS, HcDateFormats } from '../datetime/date-formats';
+import { DateAdapter } from '../datetime/date-adapter';
+import { HcFormControlComponent } from '../../form-field/hc-form-control.component';
+import { HcFormFieldComponent } from '../../form-field/hc-form-field.component';
 
 /** @docs-private */
 export const HC_DATEPICKER_VALUE_ACCESSOR = {
@@ -67,7 +67,7 @@ export class HcDatepickerInputEvent {
     providers: [
         HC_DATEPICKER_VALUE_ACCESSOR,
         HC_DATEPICKER_VALIDATORS,
-        {provide: HcFormControlComponent, useExisting: forwardRef(() => DatepickerInputDirective)}
+        { provide: HcFormControlComponent, useExisting: forwardRef(() => DatepickerInputDirective) }
     ]
 })
 export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy, Validator {
@@ -109,7 +109,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         this._value = value;
         this._formatValue(value);
 
-        if ( value ) {
+        if (value) {
             this._timeDate = value;
         }
         if (!this._dateAdapter.sameDate(oldDate, value)) {
@@ -213,7 +213,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
 
     /** The form control validator for whether the input parses. */
     private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
-        return this._lastValueValid ? null : {hcDatepickerParse: {text: this._elementRef.nativeElement.value}};
+        return this._lastValueValid ? null : { hcDatepickerParse: { text: this._elementRef.nativeElement.value } };
     };
 
     /** The form control validator for the min date. */
@@ -221,7 +221,7 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
         return !this.min || control.pristine || !controlValue || this._dateAdapter.compareDate(this.min, controlValue) <= 0
             ? null
-            : {hcDatepickerMin: {min: this.min, actual: controlValue}};
+            : { hcDatepickerMin: { min: this.min, actual: controlValue } };
     };
 
     /** The form control validator for the max date. */
@@ -229,13 +229,13 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
         const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
         return !this.max || control.pristine || !controlValue || this._dateAdapter.compareDate(this.max, controlValue) >= 0
             ? null
-            : {hcDatepickerMax: {max: this.max, actual: controlValue}};
+            : { hcDatepickerMax: { max: this.max, actual: controlValue } };
     };
 
     /** The form control validator for the date filter. */
     private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
         const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-        return !this._dateFilter || !controlValue || this._dateFilter(controlValue) ? null : {hcDatepickerFilter: true};
+        return !this._dateFilter || !controlValue || this._dateFilter(controlValue) ? null : { hcDatepickerFilter: true };
     };
 
     /** The combined form control validator for this input. */
@@ -344,8 +344,8 @@ export class DatepickerInputDirective implements ControlValueAccessor, OnDestroy
     _onInput(value: string): void {
         // Add stored date value to a time-only input for javascript date object parsing
         const pickerMode = this._datepicker ? this._datepicker.mode : this._mode;
-        if ( pickerMode === 'time' ) {
-            value = this._timeDate.getDate()  + '/' + (this._timeDate.getMonth() + 1) + '/' + this._timeDate.getFullYear() + ' ' + value;
+        if (pickerMode === 'time') {
+            value = this._timeDate.getDate() + '/' + (this._timeDate.getMonth() + 1) + '/' + this._timeDate.getFullYear() + ' ' + value;
         }
 
         let date = this._dateAdapter.parse(value, this._dateFormats.parse.dateInput);

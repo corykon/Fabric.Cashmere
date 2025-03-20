@@ -8,8 +8,8 @@
  * found in the LICENSE file at https://raw.githubusercontent.com/HealthCatalyst/Fabric.Cashmere/dev/LICENSE
  */
 
-import {inject, InjectionToken, LOCALE_ID} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import { inject, InjectionToken, LOCALE_ID } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 /** InjectionToken for datepicker that can be used to override default locale code. */
 export const HC_DATE_LOCALE = new InjectionToken<string>('HC_DATE_LOCALE', {

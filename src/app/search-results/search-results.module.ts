@@ -9,4 +9,4 @@ import { SharedModule } from '../shared/shared.module';
     declarations: [SearchResultsComponent],
     providers: [SearchService]
 })
-export class SearchResultsModule { }
+export class SearchResultsModule {}

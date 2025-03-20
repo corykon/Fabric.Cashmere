@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /** Use `hcMenuText` for main button text inside of a menu. */
 @Directive({

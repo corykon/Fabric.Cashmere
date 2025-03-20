@@ -37,7 +37,7 @@
 export function patchLogService(log: any) {
     const _warnFn = log.warn;
 
-    log.warn = function(message: string) {
+    log.warn = function (message: string) {
         if (message.includes('Unresolved TypeScript symbol') && message.includes('MixinBase')) {
             return;
         }

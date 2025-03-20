@@ -1,8 +1,8 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {IconModule} from './icon.module';
-import {IconComponent} from './icon.component';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IconModule } from './icon.module';
+import { IconComponent } from './icon.component';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
@@ -17,12 +17,14 @@ describe('IconComponent', () => {
     let component: TestIconComponent;
     let fixture: ComponentFixture<TestIconComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestIconComponent],
-            imports: [IconModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestIconComponent],
+                imports: [IconModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestIconComponent);

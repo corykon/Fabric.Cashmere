@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Filter menu
@@ -10,7 +10,7 @@ import {FormControl} from '@angular/forms';
     styleUrls: ['drawer-menu-example.component.scss']
 })
 export class DrawerMenuExampleComponent {
-    isAnimated = new FormControl(true, {nonNullable: true});
-    useBackdrop = new FormControl(false, {nonNullable: true});
+    isAnimated = new FormControl(true, { nonNullable: true });
+    useBackdrop = new FormControl(false, { nonNullable: true });
     isOpen = false;
 }

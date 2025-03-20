@@ -105,10 +105,7 @@
             "color": "#fff"
         },
         "inRange": {
-            "color": [
-                "#00aeff",
-                "rgb(229, 246, 255)"
-            ]
+            "color": ["#00aeff", "rgb(229, 246, 255)"]
         }
     },
     "timeline": {
@@ -150,10 +147,7 @@
         },
         "splitArea": {
             "areaStyle": {
-                "color": [
-                    "rgba(255, 255, 255, 0.12)",
-                    "rgba(255, 255, 255, 0.5)"
-                ]
+                "color": ["rgba(255, 255, 255, 0.12)", "rgba(255, 255, 255, 0.5)"]
             }
         },
         "minorSplitLine": {
@@ -175,10 +169,7 @@
         },
         "splitArea": {
             "areaStyle": {
-                "color": [
-                    "rgba(255, 255, 255, 0.12)",
-                    "rgba(255, 255, 255, 0.5)"
-                ]
+                "color": ["rgba(255, 255, 255, 0.12)", "rgba(255, 255, 255, 0.5)"]
             }
         },
         "minorSplitLine": {
@@ -200,10 +191,7 @@
         },
         "splitArea": {
             "areaStyle": {
-                "color": [
-                    "rgba(255, 255, 255, 0.12)",
-                    "rgba(255, 255, 255, 0.5)"
-                ]
+                "color": ["rgba(255, 255, 255, 0.12)", "rgba(255, 255, 255, 0.5)"]
             }
         },
         "minorSplitLine": {
@@ -226,10 +214,7 @@
         },
         "splitArea": {
             "areaStyle": {
-                "color": [
-                    "rgba(255, 255, 255, 0.12)",
-                    "rgba(255, 255, 255, 0.5)"
-                ]
+                "color": ["rgba(255, 255, 255, 0.12)", "rgba(255, 255, 255, 0.5)"]
             }
         },
         "minorSplitLine": {

@@ -1,4 +1,17 @@
-import { Component, ElementRef, ViewEncapsulation, AfterViewInit, QueryList, ContentChildren, Renderer2, ViewChild, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    ViewEncapsulation,
+    AfterViewInit,
+    QueryList,
+    ContentChildren,
+    Renderer2,
+    ViewChild,
+    Input,
+    OnDestroy,
+    Output,
+    EventEmitter
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { some, find, map, differenceBy } from 'lodash';
@@ -18,7 +31,7 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
     /** Set to true to enable the component to change for dynamic content changes that might not be picked up by Angular */
     @Input() public hasDynamicContent = false;
     @Output() _scrollEvent = new EventEmitter<HTMLElement>();
-    @ViewChild('scrollContainer', {read: CdkScrollable, static: false}) public _cdkScrollableElement: CdkScrollable;
+    @ViewChild('scrollContainer', { read: CdkScrollable, static: false }) public _cdkScrollableElement: CdkScrollable;
     @ContentChildren(ScrollNavLinkDirective, { descendants: true }) private linkList: QueryList<ScrollNavLinkDirective>;
     public get _links(): Array<HTMLElement> {
         return this.linkList.toArray().map(e => e.nativeElement);
@@ -45,7 +58,7 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
 
     constructor(public _elementRef: ElementRef, private renderer: Renderer2) {}
 
-    public ngOnDestroy(): void  {
+    public ngOnDestroy(): void {
         if (this.dynamicInterval) {
             clearInterval(this.dynamicInterval);
         }
@@ -104,30 +117,29 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
             this.linkList.length !== scrollLinkList.length ||
             differenceBy(scrollLinkList, this.linkList.toArray(), 'hcScrollLink').length > 0
         ) {
-            const newLinkList: ScrollNavLinkDirective[] =
-                map(scrollLinkList, (dynamicLink: CombinedLinkList) => {
-                    let rtnLink: ScrollNavLinkDirective = <ScrollNavLinkDirective>{};
+            const newLinkList: ScrollNavLinkDirective[] = map(scrollLinkList, (dynamicLink: CombinedLinkList) => {
+                let rtnLink: ScrollNavLinkDirective = <ScrollNavLinkDirective>{};
 
-                    if (some(this.linkList.toArray(), ['hcScrollLink', dynamicLink.hcScrollLink])) {
-                        const queryDirective: ScrollNavLinkDirective | undefined =
-                            find(this.linkList.toArray(), ["hcScrollLink", dynamicLink.hcScrollLink]);
-                        if (queryDirective) {
-                            rtnLink = queryDirective;
-                        }
-                    } else {
-                        const scrollNavLinkDirective: ScrollNavLinkDirective =
-                            new ScrollNavLinkDirective(<ElementRef>{}, this.renderer);
-                        scrollNavLinkDirective._setDirectiveToNode(dynamicLink.linkElement);
-                        rtnLink = scrollNavLinkDirective;
+                if (some(this.linkList.toArray(), ['hcScrollLink', dynamicLink.hcScrollLink])) {
+                    const queryDirective: ScrollNavLinkDirective | undefined = find(this.linkList.toArray(), [
+                        'hcScrollLink',
+                        dynamicLink.hcScrollLink
+                    ]);
+                    if (queryDirective) {
+                        rtnLink = queryDirective;
                     }
-
-                    rtnLink.navClick.pipe(takeUntil(this.unsubscribe$)).subscribe( element => {
-                        this._scrollEvent.emit( element );
-                    })
-
-                    return rtnLink;
+                } else {
+                    const scrollNavLinkDirective: ScrollNavLinkDirective = new ScrollNavLinkDirective(<ElementRef>{}, this.renderer);
+                    scrollNavLinkDirective._setDirectiveToNode(dynamicLink.linkElement);
+                    rtnLink = scrollNavLinkDirective;
                 }
-            );
+
+                rtnLink.navClick.pipe(takeUntil(this.unsubscribe$)).subscribe(element => {
+                    this._scrollEvent.emit(element);
+                });
+
+                return rtnLink;
+            });
 
             this.linkList.reset(newLinkList);
             this.linkList.notifyOnChanges();
@@ -153,7 +165,7 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
     }
 
     private initializeLinks(isInit = false): void {
-        this._links.forEach((link) => {
+        this._links.forEach(link => {
             this.setClassesForSubsection(link);
         });
 
@@ -165,9 +177,9 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
                 );
             }
 
-            this.linkList.forEach( link => {
-                link.navClick.pipe(takeUntil(this.unsubscribe$)).subscribe( element => {
-                    this._scrollEvent.emit( element );
+            this.linkList.forEach(link => {
+                link.navClick.pipe(takeUntil(this.unsubscribe$)).subscribe(element => {
+                    this._scrollEvent.emit(element);
                 });
             });
 
@@ -188,7 +200,7 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
             this.handleActiveParentSections(e, false);
 
             // If a nav item on the scroll list currently has focus, remove it so a highlight border doesn't persist on scroll
-            if ( focusedEl === e ) {
+            if (focusedEl === e) {
                 e.blur();
             }
         });
@@ -214,15 +226,17 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
         const offsetTop: number = element.offsetTop;
         const elementClientHeight: number = element.clientHeight;
         const scrollHeight: number = container.scrollHeight;
-        const scrollTop: number = this._cdkScrollableElement.measureScrollOffset("top");
+        const scrollTop: number = this._cdkScrollableElement.measureScrollOffset('top');
         const clientHeight: number = container.clientHeight;
 
         if (!this.isScrolling) {
-            if (this.previousElementPosition < currentElementPosition) { // scroll down
+            if (this.previousElementPosition < currentElementPosition) {
+                // scroll down
                 if (offsetTop > clientHeight && scrollTop <= offsetTop) {
                     this._cdkScrollableElement.scrollTo({ bottom: scrollHeight - offsetTop - elementClientHeight });
                 }
-            } else if (this.previousElementPosition > currentElementPosition) { // scroll up
+            } else if (this.previousElementPosition > currentElementPosition) {
+                // scroll up
                 this._cdkScrollableElement.scrollTo({ bottom: scrollHeight - offsetTop - elementClientHeight });
             }
         }
@@ -232,8 +246,9 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
 
     private handleActiveParentSections(element: HTMLElement, isActive: boolean): void {
         if (element.parentElement) {
-            element.className.includes(this.PARENT_SECTION_CLASS) ?
-                this.setActiveParentSection(element, isActive) : this.setActiveParentSection(element.parentElement, isActive);
+            element.className.includes(this.PARENT_SECTION_CLASS)
+                ? this.setActiveParentSection(element, isActive)
+                : this.setActiveParentSection(element.parentElement, isActive);
         } else if (element.className.includes(this.PARENT_SECTION_CLASS)) {
             this.setActiveParentSection(element, isActive);
         }
@@ -265,11 +280,16 @@ export class HcScrollNavComponent implements AfterViewInit, OnDestroy {
                 parentElement.classList.add(this.PARENT_SECTION_CLASS);
                 parentElement.classList.add(this.INACTIVE_PARENT_SECTION_CLASS);
 
-                let parentHasContent = (parentElement.childNodes[0] && parentElement.childNodes[0].nodeValue) ? true : false;
+                let parentHasContent = parentElement.childNodes[0] && parentElement.childNodes[0].nodeValue ? true : false;
 
-                Array.from(parentElement.children).forEach((child) => {
-                    if (!(child.tagName === this.UNORDERED_LIST_TAG_NAME &&
-                          child.children[0] && child.children[0].hasAttribute(this.SCROLL_LINK_ATTRIBUTE))) {
+                Array.from(parentElement.children).forEach(child => {
+                    if (
+                        !(
+                            child.tagName === this.UNORDERED_LIST_TAG_NAME &&
+                            child.children[0] &&
+                            child.children[0].hasAttribute(this.SCROLL_LINK_ATTRIBUTE)
+                        )
+                    ) {
                         parentHasContent = true;
                     }
                 });

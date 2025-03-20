@@ -36,4 +36,4 @@ import { SearchResultsModule } from './search-results/search-results.module';
     declarations: [AppComponent, HomeComponent],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

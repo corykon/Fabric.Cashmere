@@ -11,11 +11,11 @@ import {
     Optional,
     Inject
 } from '@angular/core';
-import {HcCalendarCellCssClasses, CalendarBodyComponent, HcCalendarCell} from '../calendar-body/calendar-body.component';
-import {Directionality} from '@angular/cdk/bidi';
-import {createMissingDateImplError} from '../datetime/datepicker-errors';
-import {D, HC_DATE_FORMATS, HcDateFormats} from '../datetime/date-formats';
-import {DateAdapter} from '../datetime/date-adapter';
+import { HcCalendarCellCssClasses, CalendarBodyComponent, HcCalendarCell } from '../calendar-body/calendar-body.component';
+import { Directionality } from '@angular/cdk/bidi';
+import { createMissingDateImplError } from '../datetime/datepicker-errors';
+import { D, HC_DATE_FORMATS, HcDateFormats } from '../datetime/date-formats';
+import { DateAdapter } from '../datetime/date-adapter';
 
 const DAYS_PER_WEEK = 7;
 
@@ -122,7 +122,7 @@ export class MonthViewComponent implements AfterContentInit {
     _todayDate: number | null;
 
     /** The names of the weekdays. */
-    _weekdays: {long: string; narrow: string}[];
+    _weekdays: { long: string; narrow: string }[];
 
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
@@ -145,7 +145,7 @@ export class MonthViewComponent implements AfterContentInit {
 
         // Rotate the labels for days of the week based on the configured first day of the week.
         const weekdays = longWeekdays.map((long, i) => {
-            return {long, narrow: narrowWeekdays[i]};
+            return { long, narrow: narrowWeekdays[i] };
         });
         this._weekdays = weekdays.slice(firstDayOfWeek).concat(weekdays.slice(0, firstDayOfWeek));
 

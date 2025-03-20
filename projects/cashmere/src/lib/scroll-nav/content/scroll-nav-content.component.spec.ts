@@ -1,65 +1,55 @@
-import {waitForAsync, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
-import {Component, Renderer2} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { Component, Renderer2 } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-import {HcScrollNavComponent} from '../nav/scroll-nav.component';
-import {HcScrollNavContentComponent} from './scroll-nav-content.component';
-import {ScrollNavModule} from '../scroll-nav.module';
-import {take} from 'rxjs/operators';
-import {ScrollNavTargetDirective} from './scroll-nav-target.directive';
+import { HcScrollNavComponent } from '../nav/scroll-nav.component';
+import { HcScrollNavContentComponent } from './scroll-nav-content.component';
+import { ScrollNavModule } from '../scroll-nav.module';
+import { take } from 'rxjs/operators';
+import { ScrollNavTargetDirective } from './scroll-nav-target.directive';
 
 @Component({
     template: `
-        <div class='container' height='400px'>
+        <div class="container" height="400px">
             <hc-scroll-nav #ScrollNav>
                 <ul>
-                    <li hcScrollLink='a1'>
+                    <li hcScrollLink="a1">
                         Test 1
                         <ul>
-                            <li hcScrollLink='b1'>
+                            <li hcScrollLink="b1">
                                 Test Subsection 1
                                 <ul>
-                                    <li hcScrollLink='c1'>Test SubSubsection 1</li>
-                                    <li hcScrollLink='c2'>Test SubSubsection 1</li>
+                                    <li hcScrollLink="c1">Test SubSubsection 1</li>
+                                    <li hcScrollLink="c2">Test SubSubsection 1</li>
                                 </ul>
                             </li>
-                            <li hcScrollLink='b2'>Test Subsection 2</li>
+                            <li hcScrollLink="b2">Test Subsection 2</li>
                         </ul>
                     </li>
-                    <li hcScrollLink='a2'>Test 2</li>
-                    <li hcScrollLink='a3'>
+                    <li hcScrollLink="a2">Test 2</li>
+                    <li hcScrollLink="a3">
                         Test 3
                         <ul>
-                            <li hcScrollLink='b3'>
-                                Test Subsection 3
-                            </li>
+                            <li hcScrollLink="b3">Test Subsection 3</li>
                         </ul>
                     </li>
                 </ul>
             </hc-scroll-nav>
 
-            <hc-scroll-nav-content [nav]='ScrollNav' style="display: block; height: 100px;">
-                <section id='a1' hcScrollTarget>
+            <hc-scroll-nav-content [nav]="ScrollNav" style="display: block; height: 100px;">
+                <section id="a1" hcScrollTarget>
                     Test 1 Content
-                    <section id='b1' hcScrollTarget>
+                    <section id="b1" hcScrollTarget>
                         Test Subsection 1 Content
-                        <section id='c1' hcScrollTarget>
-                            Test SubSubsection 1 Content
-                        </section>
-                        <section id='c2' hcScrollTarget>
-                            Test SubSubsection 2 Content
-                        </section>
+                        <section id="c1" hcScrollTarget>Test SubSubsection 1 Content</section>
+                        <section id="c2" hcScrollTarget>Test SubSubsection 2 Content</section>
                     </section>
-                    <section id='b2' hcScrollTarget>
-                        Test Subsection 2 Content
-                    </section>
+                    <section id="b2" hcScrollTarget>Test Subsection 2 Content</section>
                 </section>
-                <section id='a2' hcScrollTarget>Test 2 Content</section>
-                <section id='a3' hcScrollTarget>
+                <section id="a2" hcScrollTarget>Test 2 Content</section>
+                <section id="a3" hcScrollTarget>
                     Test 3 Content
-                    <section id='b3' hcScrollTarget>
-                        Test Subsection 3 Content
-                    </section>
+                    <section id="b3" hcScrollTarget>Test Subsection 3 Content</section>
                 </section>
             </hc-scroll-nav-content>
         </div>
@@ -91,16 +81,18 @@ let testApp: TestAppReference;
 const SCROLL_TARGET_ATTRIBUTE = 'hcScrollTarget';
 
 describe('HcScrollNavContentComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [ScrollNavModule],
-            declarations: [TestAppComponent],
-            providers: [Renderer2]
-        }).compileComponents();
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [ScrollNavModule],
+                declarations: [TestAppComponent],
+                providers: [Renderer2]
+            }).compileComponents();
 
-        testApp = new TestAppReference();
-        testApp.detectChanges();
-    }));
+            testApp = new TestAppReference();
+            testApp.detectChanges();
+        })
+    );
 
     it('should create a content component', () => {
         expect(testApp.contentComponent).toBeTruthy();
@@ -125,7 +117,7 @@ describe('HcScrollNavContentComponent', () => {
         expect(testApp.contentComponent._scrollTargets[7].classList.contains('hc-scroll-nav-target')).toBeTruthy();
     });
 
-    it('should call _setActiveSectionById in nav when scrolling', (done) => {
+    it('should call _setActiveSectionById in nav when scrolling', done => {
         const setActiveSectionSpy: jasmine.Spy = spyOn(testApp.contentComponent.nav, '_setActiveSectionById');
 
         testApp.contentComponent._cdkScrollableElement
@@ -136,7 +128,7 @@ describe('HcScrollNavContentComponent', () => {
                 done();
             });
 
-        testApp.contentComponent._cdkScrollableElement.scrollTo({top: 200, behavior: 'auto'});
+        testApp.contentComponent._cdkScrollableElement.scrollTo({ top: 200, behavior: 'auto' });
     });
 
     describe('ngAfterViewInit', () => {
@@ -157,7 +149,7 @@ describe('HcScrollNavContentComponent', () => {
             }));
 
             it('should set minHeight on last target if targets change', fakeAsync(() => {
-                testApp.contentComponent._scrollTargets.forEach((target) => {
+                testApp.contentComponent._scrollTargets.forEach(target => {
                     target.style.minHeight = 'unset';
                 });
 
@@ -168,15 +160,17 @@ describe('HcScrollNavContentComponent', () => {
                 testApp.contentComponent.ngAfterViewInit();
                 tick(110);
 
-                expect(testApp.contentComponent._scrollTargets[testApp.contentComponent._scrollTargets.length - 2].style.minHeight).toEqual('unset');
+                expect(testApp.contentComponent._scrollTargets[testApp.contentComponent._scrollTargets.length - 2].style.minHeight).toEqual(
+                    'unset'
+                );
                 expect(
                     testApp.contentComponent._scrollTargets[testApp.contentComponent._scrollTargets.length - 1].style.minHeight
                 ).not.toEqual('unset');
             }));
         });
 
-        it("should call refreshScrollNavTargets if hasDynamicContent is true", () => {
-            const refreshScrollNavTargetsSpy: jasmine.Spy = spyOn(testApp.contentComponent, "refreshScrollNavTargets");
+        it('should call refreshScrollNavTargets if hasDynamicContent is true', () => {
+            const refreshScrollNavTargetsSpy: jasmine.Spy = spyOn(testApp.contentComponent, 'refreshScrollNavTargets');
             testApp.contentComponent.hasDynamicContent = true;
 
             testApp.contentComponent.ngAfterViewInit();
@@ -187,8 +181,9 @@ describe('HcScrollNavContentComponent', () => {
 
     describe('refreshScrollNavTargets', () => {
         it('should reset targets if list of ScrollNavTargetDirectives are passed in', () => {
-            const scrollNavLinkDirectives: ScrollNavTargetDirective[] =
-                [new ScrollNavTargetDirective(testApp.fixture.nativeElement.querySelector(`[${SCROLL_TARGET_ATTRIBUTE}]`))];
+            const scrollNavLinkDirectives: ScrollNavTargetDirective[] = [
+                new ScrollNavTargetDirective(testApp.fixture.nativeElement.querySelector(`[${SCROLL_TARGET_ATTRIBUTE}]`))
+            ];
             const targetsResetSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'reset');
             const targetNotifyOnChangesSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'notifyOnChanges');
 
@@ -207,14 +202,14 @@ describe('HcScrollNavContentComponent', () => {
 
             const newElement: Node | undefined = scrollTargetElements.item(0)?.cloneNode(true);
             if (newElement) {
-                (newElement as HTMLElement).id = "z1";
+                (newElement as HTMLElement).id = 'z1';
                 scrollTargetHTMLElements.push(newElement as HTMLElement);
             }
 
             const targetsResetSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'reset').and.callThrough();
             const targetsNotifyOnChangesSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'notifyOnChanges').and.callThrough();
 
-            spyOn(testApp.contentComponent["_elementRef"].nativeElement, 'querySelectorAll').and.returnValue(scrollTargetHTMLElements);
+            spyOn(testApp.contentComponent['_elementRef'].nativeElement, 'querySelectorAll').and.returnValue(scrollTargetHTMLElements);
 
             testApp.contentComponent.refreshScrollNavTargets();
 
@@ -225,12 +220,12 @@ describe('HcScrollNavContentComponent', () => {
 
         it('should remove directives from targets if hcScrollTarget list has fewer targets than targets', () => {
             const scrollTargetElement: Node = testApp.fixture.nativeElement.querySelector(`[${SCROLL_TARGET_ATTRIBUTE}]`).cloneNode(true);
-            (scrollTargetElement as HTMLElement).id = "z1";
+            (scrollTargetElement as HTMLElement).id = 'z1';
 
             const targetsResetSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'reset').and.callThrough();
             const targetsNotifyOnChangesSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'notifyOnChanges').and.callThrough();
 
-            spyOn(testApp.contentComponent["_elementRef"].nativeElement, 'querySelectorAll').and.returnValue([scrollTargetElement]);
+            spyOn(testApp.contentComponent['_elementRef'].nativeElement, 'querySelectorAll').and.returnValue([scrollTargetElement]);
 
             testApp.contentComponent.refreshScrollNavTargets();
 
@@ -242,20 +237,20 @@ describe('HcScrollNavContentComponent', () => {
         it('should update directives from targets if hcScrollTarget list has different hcScrollTarget', () => {
             const scrollTargetElements: NodeList = testApp.fixture.nativeElement.querySelectorAll(`[${SCROLL_TARGET_ATTRIBUTE}]`);
             const newNodeArray: Node[] = [];
-            scrollTargetElements.forEach((node) => {
+            scrollTargetElements.forEach(node => {
                 newNodeArray.push(node.cloneNode(true));
             });
-            (newNodeArray[0] as HTMLElement).id = "z1";
+            (newNodeArray[0] as HTMLElement).id = 'z1';
 
             const targetsResetSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'reset').and.callThrough();
             const targetsNotifyOnChangesSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'notifyOnChanges').and.callThrough();
 
-            spyOn(testApp.contentComponent["_elementRef"].nativeElement, 'querySelectorAll').and.returnValue(newNodeArray);
+            spyOn(testApp.contentComponent['_elementRef'].nativeElement, 'querySelectorAll').and.returnValue(newNodeArray);
 
             testApp.contentComponent.refreshScrollNavTargets();
 
             expect(testApp.contentComponent._scrollTargets.length).toEqual(8);
-            expect(testApp.contentComponent._scrollTargets[0].id).toEqual("z1");
+            expect(testApp.contentComponent._scrollTargets[0].id).toEqual('z1');
             expect(targetsResetSpy).toHaveBeenCalled();
             expect(targetsNotifyOnChangesSpy).toHaveBeenCalled();
         });
@@ -266,7 +261,7 @@ describe('HcScrollNavContentComponent', () => {
             const targetsResetSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'reset').and.callThrough();
             const targetsNotifyOnChangesSpy: jasmine.Spy = spyOn(testApp.contentComponent['targets'], 'notifyOnChanges').and.callThrough();
 
-            spyOn(testApp.contentComponent["_elementRef"].nativeElement, 'querySelectorAll').and.returnValue(scrollTargetElements);
+            spyOn(testApp.contentComponent['_elementRef'].nativeElement, 'querySelectorAll').and.returnValue(scrollTargetElements);
 
             testApp.contentComponent.refreshScrollNavTargets();
 

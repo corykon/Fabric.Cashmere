@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { MeasurableComponent } from ".";
+import { Injectable } from '@angular/core';
+import { MeasurableComponent } from '.';
 
 /**
  * This service provides the logic to fill up a container
@@ -7,7 +7,6 @@ import { MeasurableComponent } from ".";
  */
 @Injectable()
 export class MeasurableService {
-
     /**
      * Fills a container with as many components as will fit. See usage for more details.
      *
@@ -25,16 +24,14 @@ export class MeasurableService {
         moreSize: number,
         direction: 'horizontal' | 'vertical' = 'horizontal',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        showFunc: (component: MeasurableComponent) => void = (_component) => void(0),
+        showFunc: (component: MeasurableComponent) => void = _component => void 0,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        hideFunc: (component: MeasurableComponent) => void = (_component) => void(0)
+        hideFunc: (component: MeasurableComponent) => void = _component => void 0
     ): Set<string> {
         const moreKeys = new Set<string>();
         let currentSize = 0;
 
-        const getDirection = direction == 'horizontal'
-            ? (c: MeasurableComponent) => c.width
-            : (c: MeasurableComponent) => c.height;
+        const getDirection = direction == 'horizontal' ? (c: MeasurableComponent) => c.width : (c: MeasurableComponent) => c.height;
 
         const totalComponentSize = components.reduce((prev, curr) => prev + getDirection(curr), 0);
         const currentMoreSize = totalComponentSize > availableSize ? moreSize : 0;
@@ -50,10 +47,8 @@ export class MeasurableService {
                 moreKeys.add(component.itemKey);
                 hideFunc(component);
             }
-        })
+        });
 
         return moreKeys;
     }
 }
-
-

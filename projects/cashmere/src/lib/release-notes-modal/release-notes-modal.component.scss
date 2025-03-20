@@ -1,7 +1,9 @@
-@import "../sass/release-notes.scss";
+@import '../sass/release-notes.scss';
 
 .hc-rn-modal {
-    hc-modal-header, hc-modal-footer, .hc-accordion-toolbar-inner {
+    hc-modal-header,
+    hc-modal-footer,
+    .hc-accordion-toolbar-inner {
         @include hc-rn-flex();
     }
 
@@ -66,14 +68,16 @@
         @include hc-rn-modal-h4();
     }
 
-    p, li, .items{
+    p,
+    li,
+    .items {
         @include hc-rn-modal-simple-el();
     }
 
-    .fa, .hc-ico {
+    .fa,
+    .hc-ico {
         @include hc-rn-modal-ico();
     }
-
 
     hr {
         @include hc-rn-modal-hr();

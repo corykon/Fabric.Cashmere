@@ -1,9 +1,9 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {Drawer} from './drawer.component';
-import {DrawerContainer} from './drawer-container.component';
-import {DrawerModule} from './drawer.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {Component, ViewChild} from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Drawer } from './drawer.component';
+import { DrawerContainer } from './drawer-container.component';
+import { DrawerModule } from './drawer.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
     template: `
@@ -14,11 +14,11 @@ import {Component, ViewChild} from '@angular/core';
     `
 })
 export class TestDrawerContainer {
-    @ViewChild('d', {static: false})
+    @ViewChild('d', { static: false })
     drawerContainer: DrawerContainer;
-    @ViewChild('leftDrawer', {static: false})
+    @ViewChild('leftDrawer', { static: false })
     leftDrawer: Drawer;
-    @ViewChild('rightDrawer', {static: false})
+    @ViewChild('rightDrawer', { static: false })
     rightDrawer: Drawer;
 }
 
@@ -30,22 +30,24 @@ export class TestDrawerContainer {
     `
 })
 export class InvalidDrawerContainer {
-    @ViewChild('d', {static: false})
+    @ViewChild('d', { static: false })
     drawerContainer: DrawerContainer;
 
-    drawers = ["one"];
+    drawers = ['one'];
 }
 
 describe('DrawerContainer', () => {
     let component: TestDrawerContainer;
     let fixture: ComponentFixture<TestDrawerContainer>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestDrawerContainer, InvalidDrawerContainer],
-            imports: [DrawerModule, NoopAnimationsModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestDrawerContainer, InvalidDrawerContainer],
+                imports: [DrawerModule, NoopAnimationsModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestDrawerContainer);
@@ -54,15 +56,15 @@ describe('DrawerContainer', () => {
     });
 
     it('should open all included drawers when open is called', async () => {
-        expect( component.leftDrawer.opened ).toBe(false);
-        expect( component.rightDrawer.opened ).toBe(false);
+        expect(component.leftDrawer.opened).toBe(false);
+        expect(component.rightDrawer.opened).toBe(false);
 
         component.drawerContainer.open();
         fixture.detectChanges();
 
         await fixture.whenStable();
-        expect( component.leftDrawer.opened ).toBe(true);
-        expect( component.rightDrawer.opened ).toBe(true);
+        expect(component.leftDrawer.opened).toBe(true);
+        expect(component.rightDrawer.opened).toBe(true);
     });
 
     it('should close all included drawers when closed is called', async () => {
@@ -71,22 +73,24 @@ describe('DrawerContainer', () => {
         fixture.detectChanges();
 
         await fixture.whenStable();
-        expect( component.leftDrawer.opened ).toBe(true);
-        expect( component.rightDrawer.opened ).toBe(true);
+        expect(component.leftDrawer.opened).toBe(true);
+        expect(component.rightDrawer.opened).toBe(true);
 
         component.drawerContainer.close();
         fixture.detectChanges();
 
         await fixture.whenStable();
-        expect( component.leftDrawer.opened ).toBe(false);
-        expect( component.rightDrawer.opened ).toBe(false);
+        expect(component.leftDrawer.opened).toBe(false);
+        expect(component.rightDrawer.opened).toBe(false);
     });
 
     it('should throw an error if multiple drawers are assigned to the same side', () => {
         const invalidFixture = TestBed.createComponent(InvalidDrawerContainer);
         invalidFixture.detectChanges();
 
-        invalidFixture.componentInstance.drawers.push("two");
-        expect( () => invalidFixture.componentInstance.drawerContainer._validateDrawers() ).toThrowError(/A drawer was already declared for .*/);
+        invalidFixture.componentInstance.drawers.push('two');
+        expect(() => invalidFixture.componentInstance.drawerContainer._validateDrawers()).toThrowError(
+            /A drawer was already declared for .*/
+        );
     });
 });

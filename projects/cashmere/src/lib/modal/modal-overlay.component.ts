@@ -1,6 +1,6 @@
-import {Component, HostBinding, HostListener, Input, ViewEncapsulation} from '@angular/core';
-import {ActiveModal} from './active-modal';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, HostBinding, HostListener, Input, ViewEncapsulation } from '@angular/core';
+import { ActiveModal } from './active-modal';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'hc-modal-overlay',
@@ -22,7 +22,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ],
     animations: [
         trigger('fadeInOut', [
-            state('in', style({opacity: 0.5})),
+            state('in', style({ opacity: 0.5 })),
             transition('void <=> *', [
                 style({
                     opacity: 0

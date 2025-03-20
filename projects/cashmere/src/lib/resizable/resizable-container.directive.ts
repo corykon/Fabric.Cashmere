@@ -19,8 +19,8 @@ export class ResizableContainerDirective {
     get vertical(): boolean {
         return this._vertical;
     }
-    set vertical(value: boolean | string ) {
-        this._vertical = parseBooleanAttribute( value );
+    set vertical(value: boolean | string) {
+        this._vertical = parseBooleanAttribute(value);
         this._verticalClass = this._vertical;
         this._horizontalClass = !this._vertical;
     }

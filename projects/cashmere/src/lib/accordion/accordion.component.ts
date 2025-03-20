@@ -1,6 +1,6 @@
-import {AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} from '@angular/core';
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
-import {parseBooleanAttribute} from '../util';
+import { AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation } from '@angular/core';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { parseBooleanAttribute } from '../util';
 
 const supportedAligns = ['left', 'right'];
 
@@ -141,7 +141,7 @@ export class AccordionComponent implements AfterContentInit {
     _animationStart(event: AnimationEvent): void {
         this._currentlyAnimating = true;
 
-        const {fromState, toState} = event;
+        const { fromState, toState } = event;
         if (fromState === 'void' && toState === 'open') {
             this.openStart.emit();
         } else if (fromState === 'open' && toState === 'void') {
@@ -152,7 +152,7 @@ export class AccordionComponent implements AfterContentInit {
     _animationEnd(event: AnimationEvent): void {
         this._currentlyAnimating = false;
 
-        const {fromState, toState} = event;
+        const { fromState, toState } = event;
         if (fromState === 'void' && toState === 'open') {
             this.opened.emit();
         } else if (fromState === 'open' && toState === 'void') {

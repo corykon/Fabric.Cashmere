@@ -1,9 +1,9 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {SubnavModule} from './subnav.module';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {SubnavComponent} from './subnav.component';
-import {SubnavRightDirective} from './subnav-right.directive';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SubnavModule } from './subnav.module';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { SubnavComponent } from './subnav.component';
+import { SubnavRightDirective } from './subnav-right.directive';
 
 @Component({
     template: `
@@ -18,16 +18,18 @@ describe('SubnavComponent', () => {
     let component: SubNavRightComponent;
     let fixture: ComponentFixture<SubNavRightComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [SubNavRightComponent],
-            imports: [SubnavModule]
-        }).compileComponents();
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [SubNavRightComponent],
+                imports: [SubnavModule]
+            }).compileComponents();
 
-        fixture = TestBed.createComponent(SubNavRightComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    }));
+            fixture = TestBed.createComponent(SubNavRightComponent);
+            component = fixture.componentInstance;
+            fixture.detectChanges();
+        })
+    );
 
     it('should add hc-fixed-position css class when fixedTop is set to true', () => {
         component.fixedValue = true;

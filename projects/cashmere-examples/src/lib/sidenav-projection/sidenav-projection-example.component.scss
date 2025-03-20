@@ -1,4 +1,4 @@
-@import "@healthcatalyst/cashmere/scss/_colors";
+@import '@healthcatalyst/cashmere/scss/_colors';
 
 .sidenav-example-app-shell {
     display: flex;
@@ -9,7 +9,7 @@
     }
 
     .example-app-content {
-        flex: 0 0 calc(100% - 260px);;
+        flex: 0 0 calc(100% - 260px);
         padding: 16px;
         background-color: $slate-gray-100;
     }

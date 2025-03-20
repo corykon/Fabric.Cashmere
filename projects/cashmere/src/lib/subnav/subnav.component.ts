@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 /** Secondary navigation bar appearing below the primary navbar  */
 @Component({

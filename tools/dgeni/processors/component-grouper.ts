@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {DocCollection, Document, Processor} from 'dgeni';
-import {InterfaceExportDoc} from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
+import { DocCollection, Document, Processor } from 'dgeni';
+import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 import * as path from 'path';
-import {CategorizedClassDoc} from '../common/dgeni-definitions';
+import { CategorizedClassDoc } from '../common/dgeni-definitions';
 
 /** Component group data structure. */
 export class ComponentGroup {

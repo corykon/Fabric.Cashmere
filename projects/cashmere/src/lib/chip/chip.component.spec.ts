@@ -1,7 +1,7 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ChipModule} from './chip.module';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChipModule } from './chip.module';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
@@ -17,12 +17,14 @@ describe('ChipComponent', () => {
     let component: TestChipComponent;
     let fixture: ComponentFixture<TestChipComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestChipComponent],
-            imports: [ChipModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestChipComponent],
+                imports: [ChipModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestChipComponent);
@@ -36,7 +38,7 @@ describe('ChipComponent', () => {
     });
 
     it('should throw an error if an unsupported style is set', () => {
-        expect(function() {
+        expect(function () {
             component.colorValue = 'beige';
             fixture.detectChanges();
         }).toThrow(new Error('Unsupported chip color value: beige'));
@@ -73,12 +75,14 @@ describe('ChipRowComponent', () => {
     let component: TestChipRowComponent;
     let fixture: ComponentFixture<TestChipRowComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestChipRowComponent],
-            imports: [ChipModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestChipRowComponent],
+                imports: [ChipModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestChipRowComponent);

@@ -1,10 +1,10 @@
-import {TabComponent} from '../tab/tab.component';
-import {TabSetComponent, TabChangeEvent} from './tab-set.component';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Component, ViewChild} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {TabsModule} from '../tabs.module';
+import { TabComponent } from '../tab/tab.component';
+import { TabSetComponent, TabChangeEvent } from './tab-set.component';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component, ViewChild } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { TabsModule } from '../tabs.module';
 
 const expectedDirection = 'horizontal';
 
@@ -33,12 +33,14 @@ describe('TabSetComponent', () => {
     let testHostComponent: TestTabSetComponent;
     let fixture: ComponentFixture<TestTabSetComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [RouterTestingModule, TabsModule],
-            declarations: [TabSetComponent, TabComponent, TestTabSetComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [RouterTestingModule, TabsModule],
+                declarations: [TabSetComponent, TabComponent, TestTabSetComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestTabSetComponent);
@@ -61,7 +63,7 @@ describe('TabSetComponent', () => {
             expect(component.direction).toBe(expectedDirection);
         });
 
-        it('should be set for all children from parent input after second change detection cycle', (done) => {
+        it('should be set for all children from parent input after second change detection cycle', done => {
             setTimeout(() => {
                 fixture.detectChanges();
                 component._tabs.forEach(t => expect(t._direction).toBe(expectedDirection));

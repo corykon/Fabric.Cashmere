@@ -6,13 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {_isNumberValue} from '@angular/cdk/coercion';
-import {DataSource} from '@angular/cdk/table';
-import {BehaviorSubject, combineLatest, merge, Observable, of as observableOf, Subscription} from 'rxjs';
-import {HcSort, Sort} from '../sort/index';
-import {map} from 'rxjs/operators';
-import {LoadMorePaginationComponent, PageEvent} from '../pagination/index';
-import {BasePaginationComponent} from '../pagination/base-pagination';
+import { _isNumberValue } from '@angular/cdk/coercion';
+import { DataSource } from '@angular/cdk/table';
+import { BehaviorSubject, combineLatest, merge, Observable, of as observableOf, Subscription } from 'rxjs';
+import { HcSort, Sort } from '../sort/index';
+import { map } from 'rxjs/operators';
+import { LoadMorePaginationComponent, PageEvent } from '../pagination/index';
+import { BasePaginationComponent } from '../pagination/base-pagination';
 
 /**
  * Corresponds to `Number.MAX_SAFE_INTEGER`. Moved out into a variable here due to
@@ -207,9 +207,7 @@ export class HcTableDataSource<T extends {}> extends DataSource<T> {
     filterPredicate: (data: T, filter: string) => boolean = (data: T, filter: string): boolean => {
         // Transform the data into a lowercase string of all property values.
         const accumulator = (currentTerm, key) => `${currentTerm} ${data[key]}`;
-        const dataStr = Object.keys(data)
-            .reduce(accumulator, '')
-            .toLowerCase();
+        const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
 
         // Transform the filter by converting it to lowercase and removing whitespace.
         const transformedFilter = filter.trim().toLowerCase();
@@ -244,14 +242,11 @@ export class HcTableDataSource<T extends {}> extends DataSource<T> {
 
         const dataStream = this._data;
         // Watch for base data or filter changes to provide a filtered set of data.
-        const filteredData = combineLatest([dataStream, this._filter])
-            .pipe(map(([data]) => this._filterData(data)));
+        const filteredData = combineLatest([dataStream, this._filter]).pipe(map(([data]) => this._filterData(data)));
         // Watch for filtered data or sort changes to provide an ordered set of data.
-        const orderedData = combineLatest([filteredData, sortChange])
-            .pipe(map(([data]) => this._orderData(data)));
+        const orderedData = combineLatest([filteredData, sortChange]).pipe(map(([data]) => this._orderData(data)));
         // Watch for ordered data or page changes to provide a paged set of data.
-        const paginatedData = combineLatest([orderedData, pageChange])
-            .pipe(map(([data]) => this._pageData(data)));
+        const paginatedData = combineLatest([orderedData, pageChange]).pipe(map(([data]) => this._pageData(data)));
         // Watched for paged data changes and send the result to the table to render.
         this._renderChangesSubscription.unsubscribe();
         this._renderChangesSubscription = paginatedData.subscribe(data => this._renderData.next(data));
@@ -336,5 +331,7 @@ export class HcTableDataSource<T extends {}> extends DataSource<T> {
      * Used by the HcTable. Called when it is destroyed. No-op.
      * @docs-private
      */
-    disconnect(): void { return; }
+    disconnect(): void {
+        return;
+    }
 }

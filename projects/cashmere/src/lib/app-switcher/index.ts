@@ -1,7 +1,7 @@
-export {AppSwitcherComponent} from './app-switcher.component';
-export {AppSwitcherLinksComponent} from './app-switcher-application-link/app-switcher-links.component';
-export {AppSwitcherModule} from './app-switcher.module';
-export {AppSwitcherService} from './app-switcher.service';
+export { AppSwitcherComponent } from './app-switcher.component';
+export { AppSwitcherLinksComponent } from './app-switcher-application-link/app-switcher-links.component';
+export { AppSwitcherModule } from './app-switcher.module';
+export { AppSwitcherService } from './app-switcher.service';
 export {
     IDiscoveryApplication,
     IDiscoveryRequest,

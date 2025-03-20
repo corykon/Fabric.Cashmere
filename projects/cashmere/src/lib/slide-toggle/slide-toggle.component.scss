@@ -76,11 +76,11 @@ $large-toggle-buffer: 2px;
 }
 
 .hc-slide-toggle-md {
-    @include hc-slide-toggle-height($medium-toggle-height)
+    @include hc-slide-toggle-height($medium-toggle-height);
 }
 
 .hc-slide-toggle-lg {
-    @include hc-slide-toggle-height($large-toggle-height)
+    @include hc-slide-toggle-height($large-toggle-height);
 }
 
 .hc-slide-toggle-knobs-handle-sm {

@@ -1,4 +1,4 @@
-import {ButtonToggleComponent} from './button-toggle.component';
+import { ButtonToggleComponent } from './button-toggle.component';
 
 export class ButtonToggleChangeEvent {
     /**

@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'hc-picklist-hc-pick-option-example',
-    templateUrl: './picklist-hc-pick-option-example.component.html',
+    templateUrl: './picklist-hc-pick-option-example.component.html'
 })
 export class PicklistHcPickOptionExampleComponent {
-
     selected = [];
     veggies = [
         { id: 1, name: 'Celery' },

@@ -1,9 +1,9 @@
-import {Component, OnDestroy} from '@angular/core';
-import {GuidesService} from './guides.service';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {ApplicationInsightsService} from '../shared/application-insights/application-insights.service';
+import { Component, OnDestroy } from '@angular/core';
+import { GuidesService } from './guides.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ApplicationInsightsService } from '../shared/application-insights/application-insights.service';
 
 @Component({
     selector: 'hc-guides',

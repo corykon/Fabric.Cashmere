@@ -15,21 +15,22 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="[0, 30, 60, 90, 120, 180, 240]">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const itemsList = fixture.componentInstance.pickPane.itemsList;
             expect(itemsList.items.length).toBe(8); // 7 given items, plus default group item
-            expect(itemsList.items[1]).toEqual(jasmine.objectContaining({
-                label: '0',
-                value: 0
-            }));
+            expect(itemsList.items[1]).toEqual(
+                jasmine.objectContaining({
+                    label: '0',
+                    value: 0
+                })
+            );
         }));
 
         it('should map label correctly', fakeAsync(() => {
-            const fixture = createTestingModule(
-                HcPickPaneTestCmp,
-                `<hc-pick-pane [items]="cities" bindLabel="name"> </hc-pick-pane>`);
+            const fixture = createTestingModule(HcPickPaneTestCmp, `<hc-pick-pane [items]="cities" bindLabel="name"> </hc-pick-pane>`);
 
             fixture.componentInstance.cities = [{ id: 1, name: 'Vilnius' }];
             tickAndDetectChanges(fixture);
@@ -44,7 +45,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             const pickPane = fixture.componentInstance.pickPane;
 
@@ -66,7 +68,8 @@ describe('PickPaneComponent', () => {
             createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [virtualScroll]="false">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             const panelItems = document.querySelector('.hc-pick-pane-list-items');
             const firstChild = <HTMLScriptElement>panelItems?.firstChild;
@@ -75,11 +78,11 @@ describe('PickPaneComponent', () => {
         }));
 
         it('should have div #padding with height other than 0 in dropdown panel when virtual scroll is enabled', fakeAsync(() => {
-
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [virtualScroll]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             fixture.detectChanges();
@@ -101,12 +104,12 @@ describe('PickPaneComponent', () => {
             expect(firstChild.offsetHeight).not.toBe(0);
         }));
 
-
         it('should scroll to item and do not change scroll position when scrolled to visible item', fakeAsync(() => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
             const cmp = fixture.componentInstance;
             const el: HTMLElement = fixture.debugElement.nativeElement;
             tickAndDetectChanges(fixture);
@@ -132,7 +135,8 @@ describe('PickPaneComponent', () => {
                 `<hc-pick-pane [items]="cities"
                         bindLabel="name"
                         [loading]="citiesLoading">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
             pickPane = fixture.componentInstance.pickPane;
         });
 
@@ -193,7 +197,8 @@ describe('PickPaneComponent', () => {
             fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [loading]="citiesLoading">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
             pickPane = fixture.componentInstance.pickPane;
             listPanel = fixture.debugElement.query(By.css('.hc-pick-pane-list'));
         });
@@ -306,7 +311,9 @@ describe('PickPaneComponent', () => {
         let pickPane: PickPaneComponent;
         beforeEach(() => {
             fixture = createTestingModule(
-                HcPickPaneTestCmp, `<hc-pick-pane [items]="cities" bindLabel="name" placeholder="select value"></hc-pick-pane>`);
+                HcPickPaneTestCmp,
+                `<hc-pick-pane [items]="cities" bindLabel="name" placeholder="select value"></hc-pick-pane>`
+            );
             pickPane = fixture.componentInstance.pickPane;
         });
 
@@ -324,7 +331,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [addCustomItem]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -342,7 +350,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="citiesNames" [addCustomItem]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -359,41 +368,44 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="[]" [addCustomItem]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
-                tickAndDetectChanges(fixture);
-                const pickPane = fixture.componentInstance.pickPane;
-                pickPane.filter('Copenhagen');
-                tickAndDetectChanges(fixture);
-                const searchBox = fixture.debugElement.query(By.css('.hc-pick-search-input'));
-                spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
-                pickPane.itemsList.unmark();
-                triggerKeyDownEvent(searchBox, KeyCode.Enter);
-                expect(pickPane.itemsList.selectedItems[0].value).toBe('Copenhagen');
+            tickAndDetectChanges(fixture);
+            const pickPane = fixture.componentInstance.pickPane;
+            pickPane.filter('Copenhagen');
+            tickAndDetectChanges(fixture);
+            const searchBox = fixture.debugElement.query(By.css('.hc-pick-search-input'));
+            spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
+            pickPane.itemsList.unmark();
+            triggerKeyDownEvent(searchBox, KeyCode.Enter);
+            expect(pickPane.itemsList.selectedItems[0].value).toBe('Copenhagen');
         }));
 
         it('should add custom item as string when down arrow pressed', fakeAsync(() => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="citiesNames" [addCustomItem]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
-                tickAndDetectChanges(fixture);
-                const pickPane = fixture.componentInstance.pickPane;
-                pickPane.filter('Copenhagen');
-                tickAndDetectChanges(fixture);
-                const searchBox = fixture.debugElement.query(By.css('.hc-pick-search-input'));
-                spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
-                pickPane.itemsList.unmark();
-                triggerKeyDownEvent(searchBox, KeyCode.ArrowDown);
-                expect(pickPane.itemsList.selectedItems[0].value).toBe('Copenhagen');
+            tickAndDetectChanges(fixture);
+            const pickPane = fixture.componentInstance.pickPane;
+            pickPane.filter('Copenhagen');
+            tickAndDetectChanges(fixture);
+            const searchBox = fixture.debugElement.query(By.css('.hc-pick-search-input'));
+            spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
+            pickPane.itemsList.unmark();
+            triggerKeyDownEvent(searchBox, KeyCode.ArrowDown);
+            expect(pickPane.itemsList.selectedItems[0].value).toBe('Copenhagen');
         }));
 
         it('can select custom item even if there are filtered items that matches search term', fakeAsync(() => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [addCustomItem]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -412,7 +424,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [addCustomItem]="customItemFunc">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -421,16 +434,21 @@ describe('PickPaneComponent', () => {
             const searchBox = fixture.debugElement.query(By.css('.hc-pick-search-input'));
             spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
             triggerKeyDownEvent(searchBox, KeyCode.Enter);
-            expect(pickPane.itemsList.selectedItems[0].value).toEqual(jasmine.objectContaining({
-                id: 'custom item', name: 'custom item', custom: true
-            }));
+            expect(pickPane.itemsList.selectedItems[0].value).toEqual(
+                jasmine.objectContaining({
+                    id: 'custom item',
+                    name: 'custom item',
+                    custom: true
+                })
+            );
         }));
 
         it('should select custom item with given promise-based function', fakeAsync(() => {
             const fixture = createTestingModule(
                 HcPickPaneTestCmp,
                 `<hc-pick-pane [items]="cities" bindLabel="name" [addCustomItem]="customItemFuncPromise">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -440,9 +458,13 @@ describe('PickPaneComponent', () => {
             spyOnProperty(pickPane, '_companionPane').and.returnValue(pickPane); // faking "companion pane"
             triggerKeyDownEvent(searchBox, KeyCode.Enter);
             tick();
-            expect(pickPane.itemsList.selectedItems[0].value).toEqual(jasmine.objectContaining({
-                id: 5, name: 'server side custom item', valid: true
-            }));
+            expect(pickPane.itemsList.selectedItems[0].value).toEqual(
+                jasmine.objectContaining({
+                    id: 5,
+                    name: 'server side custom item',
+                    valid: true
+                })
+            );
         }));
 
         describe('show add custom item', () => {
@@ -462,13 +484,13 @@ describe('PickPaneComponent', () => {
                         [addCustomItem]="true"
                         placeholder="select value">
                     </hc-pick-pane>`
-                    );
+                );
                 pickPane = fixture.componentInstance.pickPane;
                 companionPickPane = fixture.componentInstance.companionPickPane;
             });
 
             it('should be false when there is no search term', () => {
-                pickPane.searchTerm = "";
+                pickPane.searchTerm = '';
                 expect(pickPane.showAddCustomOption).toBeFalsy();
             });
 
@@ -519,7 +541,9 @@ describe('PickPaneComponent', () => {
 
         it('should filter using custom searchFn', fakeAsync(() => {
             const fixture = createTestingModule(
-                HcPickPaneTestCmp, `<hc-pick-pane [items]="cities" bindLabel="name" [searchFn]="searchFn"></hc-pick-pane>`);
+                HcPickPaneTestCmp,
+                `<hc-pick-pane [items]="cities" bindLabel="name" [searchFn]="searchFn"></hc-pick-pane>`
+            );
             const pickPane = fixture.componentInstance.pickPane;
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -573,7 +597,9 @@ describe('PickPaneComponent', () => {
 
         it('should filter grouped items', fakeAsync(() => {
             const fixture = createTestingModule(
-                HcPickPaneGroupingTestCmp, `<hc-pick-pane [items]="accounts" groupBy="country" bindLabel="name"></hc-pick-pane>`);
+                HcPickPaneGroupingTestCmp,
+                `<hc-pick-pane [items]="accounts" groupBy="country" bindLabel="name"></hc-pick-pane>`
+            );
             const pickPane = fixture.componentInstance.pickPane;
 
             tickAndDetectChanges(fixture);
@@ -589,8 +615,7 @@ describe('PickPaneComponent', () => {
         }));
 
         it('should continue filtering items on update of items', fakeAsync(() => {
-            const fixture = createTestingModule(
-                HcPickPaneTestCmp, `<hc-pick-pane [items]="cities" bindLabel="name"></hc-pick-pane>`);
+            const fixture = createTestingModule(HcPickPaneTestCmp, `<hc-pick-pane [items]="cities" bindLabel="name"></hc-pick-pane>`);
             const pickPane = fixture.componentInstance.pickPane;
             tickAndDetectChanges(fixture);
 
@@ -603,7 +628,7 @@ describe('PickPaneComponent', () => {
                 { id: 1, name: 'Vilnius' },
                 { id: 2, name: 'Kaunas' },
                 { id: 3, name: 'Pabrade' },
-                { id: 4, name: 'Bruchhausen-Vilsen' },
+                { id: 4, name: 'Bruchhausen-Vilsen' }
             ];
             tickAndDetectChanges(fixture);
 
@@ -621,7 +646,8 @@ describe('PickPaneComponent', () => {
                         [externalSearchSubject]="filter"
                         [externalSearchTermMinLength]="externalSearchTermMinLength"
                         bindLabel="name">
-                    </hc-pick-pane>`);
+                    </hc-pick-pane>`
+                );
                 pickPane = fixture.componentInstance.pickPane;
             });
 
@@ -668,7 +694,9 @@ describe('PickPaneComponent', () => {
     describe('Grouping', () => {
         it('should group flat items list by group key', fakeAsync(() => {
             const fixture = createTestingModule(
-                HcPickPaneGroupingTestCmp, `<hc-pick-pane [items]="accounts" groupBy="country"></hc-pick-pane>`);
+                HcPickPaneGroupingTestCmp,
+                `<hc-pick-pane [items]="accounts" groupBy="country"></hc-pick-pane>`
+            );
             tickAndDetectChanges(fixture);
 
             const items = fixture.componentInstance.pickPane.itemsList.items;
@@ -694,7 +722,9 @@ describe('PickPaneComponent', () => {
 
         it('should group items with children array by group key', fakeAsync(() => {
             const fixture = createTestingModule(
-                HcPickPaneGroupingTestCmp, `<hc-pick-pane [items]="groupedAccounts" groupBy="accounts"></hc-pick-pane>`);
+                HcPickPaneGroupingTestCmp,
+                `<hc-pick-pane [items]="groupedAccounts" groupBy="accounts"></hc-pick-pane>`
+            );
             tickAndDetectChanges(fixture);
 
             const items = fixture.componentInstance.pickPane.itemsList.items;
@@ -718,14 +748,16 @@ describe('PickPaneComponent', () => {
 
         it('should group by group fn', fakeAsync(() => {
             const fixture = createTestingModule(
-                HcPickPaneGroupingTestCmp, `<hc-pick-pane [items]="accounts" bindLabel="name" [groupBy]="groupByFn"></hc-pick-pane>`);
+                HcPickPaneGroupingTestCmp,
+                `<hc-pick-pane [items]="accounts" bindLabel="name" [groupBy]="groupByFn"></hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const items = fixture.componentInstance.pickPane.itemsList.items;
 
             expect(items.length).toBe(12);
             expect(items[0].children).toBeDefined();
-            expect(items[0].value?.["name"]).toBe('c1');
+            expect(items[0].value?.['name']).toBe('c1');
             expect(items[6].children).toBeDefined();
             expect(items[6].value?.['name']).toBe('c2');
         }));
@@ -734,7 +766,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneGroupingTestCmp,
                 `<hc-pick-pane [items]="accounts" bindLabel="name" [groupBy]="groupByFn" [groupValue]="groupValueFn">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const items = fixture.componentInstance.pickPane.itemsList.items;
@@ -749,7 +782,8 @@ describe('PickPaneComponent', () => {
         it('should filter grouped items', fakeAsync(() => {
             const fixture = createTestingModule(
                 HcPickPaneGroupingTestCmp,
-                `<hc-pick-pane [items]="accounts" groupBy="country" bindLabel="name"></hc-pick-pane>`);
+                `<hc-pick-pane [items]="accounts" groupBy="country" bindLabel="name"></hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -768,7 +802,8 @@ describe('PickPaneComponent', () => {
             const fixture = createTestingModule(
                 HcPickPaneGroupingTestCmp,
                 `<hc-pick-pane [items]="accounts" groupBy="country" bindLabel="name" bindValue="email" [canSelectGroup]="true">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
 
             tickAndDetectChanges(fixture);
             const pickPane = fixture.componentInstance.pickPane;
@@ -792,7 +827,8 @@ describe('PickPaneComponent', () => {
                     [addCustomItem]="true"
                     placeholder="select value"
                     [searchWhileComposing]="false">
-                </hc-pick-pane>`);
+                </hc-pick-pane>`
+            );
             pickPane = fixture.componentInstance.pickPane;
         });
 
@@ -830,19 +866,16 @@ describe('PickPaneComponent', () => {
     });
 });
 
-
 function createTestingModule<T>(cmp: Type<T>, template: string): ComponentFixture<T> {
-
     TestBed.configureTestingModule({
         imports: [FormsModule, PicklistModule],
         declarations: [cmp],
         providers: [PicklistService]
-    })
-        .overrideComponent(cmp, {
-            set: {
-                template: template
-            }
-        });
+    }).overrideComponent(cmp, {
+        set: {
+            template: template
+        }
+    });
 
     TestBed.compileComponents();
 
@@ -874,14 +907,14 @@ class HcPickPaneTestCmp {
     selectedCityIds: number[];
     selectedCity: { id: number; name: string };
     selectedCities: { id: number; name: string }[];
-    cities: Array<{ id: number, name: string, disabled?: boolean }> = [
+    cities: Array<{ id: number; name: string; disabled?: boolean }> = [
         { id: 1, name: 'Vilnius', disabled: false },
         { id: 2, name: 'Kaunas', disabled: false },
-        { id: 3, name: 'Pabrade', disabled: false },
+        { id: 3, name: 'Pabrade', disabled: false }
     ];
     citiesNames = this.cities.map(x => x.name);
 
-    selectedCountry: { id: number, description: { name: string, id: string } };
+    selectedCountry: { id: number; description: { name: string; id: string } };
     countries = [
         { id: 1, description: { name: 'Lithuania', id: 'a' } },
         { id: 2, description: { name: 'USA', id: 'b' } },
@@ -894,7 +927,9 @@ class HcPickPaneTestCmp {
 
     customItemFuncPromise(term: string) {
         return Promise.resolve({
-            id: 5, name: term, valid: true
+            id: 5,
+            name: term,
+            valid: true
         });
     }
 
@@ -908,7 +943,7 @@ class HcPickPaneTestCmp {
 }
 
 @Component({
-    template: ``,
+    template: ``
 })
 class HcPickPaneGroupingTestCmp {
     @ViewChild(PickPaneComponent, { static: true }) pickPane: PickPaneComponent;
@@ -932,14 +967,14 @@ class HcPickPaneGroupingTestCmp {
             country: 'United States',
             accounts: [
                 { name: 'Adam', email: 'adam@email.com', age: 12 },
-                { name: 'Samantha', email: 'samantha@email.com', age: 30 },
+                { name: 'Samantha', email: 'samantha@email.com', age: 30 }
             ]
         },
         {
             country: 'Argentina',
             accounts: [
                 { name: 'Amalie', email: 'amalie@email.com', age: 12 },
-                { name: 'Estefanía', email: 'estefania@email.com', age: 21 },
+                { name: 'Estefanía', email: 'estefania@email.com', age: 21 }
             ]
         },
         {
@@ -947,7 +982,7 @@ class HcPickPaneGroupingTestCmp {
             accounts: [
                 { name: 'Adrian', email: 'adrian@email.com', age: 21 },
                 { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
-                { name: 'Natasha', email: 'natasha@email.com', age: 54 },
+                { name: 'Natasha', email: 'natasha@email.com', age: 54 }
             ]
         },
         {
@@ -960,19 +995,17 @@ class HcPickPaneGroupingTestCmp {
         }
     ];
 
-    groupByFn = (item) => item.child.name;
-    groupValueFn = (key) => ({ group: key });
+    groupByFn = item => item.child.name;
+    groupValueFn = key => ({ group: key });
 }
 
-function triggerKeyDownEvent(
-    element: DebugElement, which: number, key = '', pressedShiftKey = false, pressedCtrlKey = false
-): void {
+function triggerKeyDownEvent(element: DebugElement, which: number, key = '', pressedShiftKey = false, pressedCtrlKey = false): void {
     element.triggerEventHandler('keydown', {
         which: which,
         key: key,
         shiftKey: pressedShiftKey,
         ctrlKey: pressedCtrlKey,
-        preventDefault: () => null,
+        preventDefault: () => null
     });
 }
 

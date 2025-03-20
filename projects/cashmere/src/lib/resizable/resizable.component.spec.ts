@@ -11,9 +11,8 @@ import { ResizableMetadata as Meta } from './resizable.meta';
     template: `
         <div hcResizable [disabled]="disabled" [position]="position" #resizableInstance>
             <p>
-                Sed eget porttitor velit. Ut ac efficitur ligula. Aliquam erat volutpat. Donec quis varius ipsum. Etiam
-                justo eros, vestibulum sit amet metus ut, sodales tincidunt velit. Cras feugiat vulputate urna sed
-                mollis. eleifend.
+                Sed eget porttitor velit. Ut ac efficitur ligula. Aliquam erat volutpat. Donec quis varius ipsum. Etiam justo eros,
+                vestibulum sit amet metus ut, sodales tincidunt velit. Cras feugiat vulputate urna sed mollis. eleifend.
             </p>
         </div>
     `
@@ -21,7 +20,7 @@ import { ResizableMetadata as Meta } from './resizable.meta';
 export class ResizableHostComponent {
     disabled = false;
     position: string;
-    @ViewChild('resizableInstance', {static: false}) resizableInstance: ResizableComponent;
+    @ViewChild('resizableInstance', { static: false }) resizableInstance: ResizableComponent;
 }
 
 const componentHasClass = (fixture: DebugElement, testClass: string) => {

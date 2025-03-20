@@ -1,12 +1,12 @@
-import {waitForAsync, ComponentFixture, TestBed, fakeAsync} from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 
-import {CalendarWrapperComponent} from './calendar-wrapper.component';
-import {ConfigStoreService} from '../services/config-store.service';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {DatepickerInputDirective, HcDatepickerInputEvent} from '../../datepicker/datepicker-input/datepicker-input.directive';
-import {DateRangeOptions} from '../model/model';
-import {InputModule} from '../../input/input.module';
-import {FormFieldModule} from '../../form-field/hc-form-field.module';
+import { CalendarWrapperComponent } from './calendar-wrapper.component';
+import { ConfigStoreService } from '../services/config-store.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { DatepickerInputDirective, HcDatepickerInputEvent } from '../../datepicker/datepicker-input/datepicker-input.directive';
+import { DateRangeOptions } from '../model/model';
+import { InputModule } from '../../input/input.module';
+import { FormFieldModule } from '../../form-field/hc-form-field.module';
 
 describe('CalendarWrapperComponent', () => {
     let component: CalendarWrapperComponent;
@@ -18,14 +18,16 @@ describe('CalendarWrapperComponent', () => {
         applyLabel: 'Submit'
     };
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [InputModule, FormFieldModule],
-            declarations: [CalendarWrapperComponent],
-            providers: [ConfigStoreService],
-            schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [InputModule, FormFieldModule],
+                declarations: [CalendarWrapperComponent],
+                providers: [ConfigStoreService],
+                schemas: [NO_ERRORS_SCHEMA]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         configStoreService = TestBed.inject(ConfigStoreService);
@@ -50,7 +52,7 @@ describe('CalendarWrapperComponent', () => {
         component.selectedDateChange.subscribe(val => {
             expect(val instanceof Date).toBeTruthy();
         });
-        component.datePickerInput = <DatepickerInputDirective>{value: new Date()};
+        component.datePickerInput = <DatepickerInputDirective>{ value: new Date() };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const change: HcDatepickerInputEvent = new HcDatepickerInputEvent(component.datePickerInput, <any>null);
         component._onInputChange(change);

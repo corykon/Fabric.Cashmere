@@ -1,11 +1,11 @@
-import {Component, OnDestroy} from '@angular/core';
-import {SectionService} from '../../../shared/section.service';
-import {BaseDemoComponent} from '../../../shared/base-demo.component';
-import {ProductFile, ProductCentricIndexService} from '../product-centric-index-service';
-import {ActivatedRoute} from '@angular/router';
-import {NavigationEnd, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { SectionService } from '../../../shared/section.service';
+import { BaseDemoComponent } from '../../../shared/base-demo.component';
+import { ProductFile, ProductCentricIndexService } from '../product-centric-index-service';
+import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'hc-product-centric-index',
@@ -26,13 +26,13 @@ export class ProductCentricIndexComponent extends BaseDemoComponent implements O
         super(sectionService);
         this.productLists = productCentricIndexService.productPersonasLists;
         this.productLists.sort(this.compareProducts);
-        if ( activatedRoute.firstChild && activatedRoute.firstChild.routeConfig ) {
+        if (activatedRoute.firstChild && activatedRoute.firstChild.routeConfig) {
             this.viewerMode = true;
         }
 
         this.router.events.pipe(takeUntil(this.unsubscribe)).subscribe(event => {
             if (event instanceof NavigationEnd) {
-                if ( activatedRoute.firstChild && activatedRoute.firstChild.routeConfig ) {
+                if (activatedRoute.firstChild && activatedRoute.firstChild.routeConfig) {
                     this.viewerMode = true;
                 } else {
                     this.viewerMode = false;

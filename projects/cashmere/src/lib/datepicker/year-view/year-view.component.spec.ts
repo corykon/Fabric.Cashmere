@@ -1,32 +1,34 @@
-import {Direction, Directionality} from '@angular/cdk/bidi';
-import {Component, ViewChild} from '@angular/core';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {HcNativeDateModule} from '../datetime/datetime.module';
-import {MAR, JUL, JUN, JAN, DEC, NOV, FEB, SEP, AUG, MAY, OCT} from '../../utils/month-constants';
-import {dispatchFakeEvent, dispatchEvent} from '../../utils/dispatch-events';
-import {CalendarBodyComponent} from '../calendar-body/calendar-body.component';
-import {YearViewComponent} from './year-view.component';
+import { Direction, Directionality } from '@angular/cdk/bidi';
+import { Component, ViewChild } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { HcNativeDateModule } from '../datetime/datetime.module';
+import { MAR, JUL, JUN, JAN, DEC, NOV, FEB, SEP, AUG, MAY, OCT } from '../../utils/month-constants';
+import { dispatchFakeEvent, dispatchEvent } from '../../utils/dispatch-events';
+import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
+import { YearViewComponent } from './year-view.component';
 
 describe('HcYearView', () => {
-    let dir: {value: Direction};
+    let dir: { value: Direction };
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [HcNativeDateModule],
-            declarations: [
-                CalendarBodyComponent,
-                YearViewComponent,
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [HcNativeDateModule],
+                declarations: [
+                    CalendarBodyComponent,
+                    YearViewComponent,
 
-                // Test components.
-                StandardYearView,
-                YearViewWithDateFilter
-            ],
-            providers: [{provide: Directionality, useFactory: () => (dir = {value: 'ltr'})}]
-        });
+                    // Test components.
+                    StandardYearView,
+                    YearViewWithDateFilter
+                ],
+                providers: [{ provide: Directionality, useFactory: () => (dir = { value: 'ltr' }) }]
+            });
 
-        TestBed.compileComponents();
-    }));
+            TestBed.compileComponents();
+        })
+    );
 
     describe('standard year view', () => {
         let fixture: ComponentFixture<StandardYearView>;

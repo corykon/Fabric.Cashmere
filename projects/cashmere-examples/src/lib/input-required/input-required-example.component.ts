@@ -1,5 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 /**
  * @title Required Input
@@ -12,7 +12,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 export class InputRequiredExampleComponent {
     @ViewChild('exampleForm') exampleForm: NgForm;
 
-    validationControl = new FormControl('onBlur', {nonNullable: true});
+    validationControl = new FormControl('onBlur', { nonNullable: true });
     exampleFormGroup = new FormGroup({
         exampleInput: new FormControl('', [Validators.email, Validators.required])
     });

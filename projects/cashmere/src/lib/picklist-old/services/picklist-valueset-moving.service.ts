@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {PicklistFilterService} from './picklist-filter.service';
-import {PicklistPaneComponent} from '../pane/picklist-pane.component';
-import {FilterableSelectList, PicklistValueOptions, ValueListOption, ValueSetListOption} from '../pane/picklist-pane.model';
-import {PicklistStateService} from './picklist-state.service';
-import {IValueOption} from '../picklist-old.model';
+import { PicklistFilterService } from './picklist-filter.service';
+import { PicklistPaneComponent } from '../pane/picklist-pane.component';
+import { FilterableSelectList, PicklistValueOptions, ValueListOption, ValueSetListOption } from '../pane/picklist-pane.model';
+import { PicklistStateService } from './picklist-state.service';
+import { IValueOption } from '../picklist-old.model';
 
 @Injectable()
 export class PicklistValuesetMovingService {

@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /** Prefixes an icon to the beginning of a `<hc-list-item>`. */
 @Directive({

@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DocItem, DocumentItemsService, DocItemType, DocItemCategory} from '../core/document-items.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {takeUntil, tap, map} from 'rxjs/operators';
-import {Subject, merge} from 'rxjs';
-import {ApplicationInsightsService} from '../shared/application-insights/application-insights.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DocItem, DocumentItemsService, DocItemType, DocItemCategory } from '../core/document-items.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntil, tap, map } from 'rxjs/operators';
+import { Subject, merge } from 'rxjs';
+import { ApplicationInsightsService } from '../shared/application-insights/application-insights.service';
 
 @Component({
     selector: 'hc-demo-components',
@@ -11,15 +11,15 @@ import {ApplicationInsightsService} from '../shared/application-insights/applica
     styleUrls: ['../shared/base-demo.component.scss']
 })
 export class ComponentsComponent implements OnInit, OnDestroy {
-    readonly categorizedDocItems: Array<{category: DocItemCategory | 'misc'; displayName: string; items?: DocItem[]}> = [
-        {category: 'forms', displayName: 'Forms'},
-        {category: 'nav', displayName: 'Navigation'},
-        {category: 'layout', displayName: 'Layout'},
-        {category: 'buttons', displayName: 'Buttons & Indicators'},
-        {category: 'popups', displayName: 'Popups & Notifications'},
-        {category: 'table', displayName: 'Data Table'},
-        {category: 'pipes', displayName: 'Pipes'},
-        {category: 'misc', displayName: 'Miscellaneous'}
+    readonly categorizedDocItems: Array<{ category: DocItemCategory | 'misc'; displayName: string; items?: DocItem[] }> = [
+        { category: 'forms', displayName: 'Forms' },
+        { category: 'nav', displayName: 'Navigation' },
+        { category: 'layout', displayName: 'Layout' },
+        { category: 'buttons', displayName: 'Buttons & Indicators' },
+        { category: 'popups', displayName: 'Popups & Notifications' },
+        { category: 'table', displayName: 'Data Table' },
+        { category: 'pipes', displayName: 'Pipes' },
+        { category: 'misc', displayName: 'Miscellaneous' }
     ];
 
     private _docItems: DocItem[];
@@ -72,7 +72,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         this.allDocItems = this.docItemService.getDocItems(this.docType);
         const categoriesWithItems = this.categorizedDocItems.filter(c => c.items && c.items.length);
         if (this.id === null && categoriesWithItems[0]) {
-            const items = categoriesWithItems[0].items
+            const items = categoriesWithItems[0].items;
             this.navUpdate(items && items.length > 0 ? items[0].id : '');
             return;
         }

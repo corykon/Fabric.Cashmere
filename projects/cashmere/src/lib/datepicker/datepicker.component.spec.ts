@@ -1,28 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {Directionality} from '@angular/cdk/bidi';
-import {Overlay, OverlayContainer} from '@angular/cdk/overlay';
-import {ScrollDispatcher} from '@angular/cdk/scrolling';
+import { Directionality } from '@angular/cdk/bidi';
+import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 
-import {Component, FactoryProvider, Type, ValueProvider, ViewChild} from '@angular/core';
-import {ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed} from '@angular/core/testing';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {By} from '@angular/platform-browser';
-import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {Subject} from 'rxjs';
-import {DatepickerModule} from './datepicker.module';
-import {dispatchMouseEvent, dispatchFakeEvent, dispatchEvent} from '../utils/dispatch-events';
-import {JAN, DEC, JUL, JUN, SEP} from '../utils/month-constants';
-import {HC_DATEPICKER_SCROLL_STRATEGY, DatepickerComponent} from './datepicker.component';
-import {DatepickerToggleComponent} from './datepicker-toggle/datepicker-toggle.component';
-import {HcNativeDateModule, NativeDateModule} from './datetime/datetime.module';
-import {HC_DATE_LOCALE} from './datetime/date-adapter';
-import {HcDatepickerIntl} from './datepicker-intl';
-import {DatepickerInputDirective} from './datepicker-input/datepicker-input.directive';
-import {FormFieldModule} from '../form-field/hc-form-field.module';
-import {InputModule} from '../input/input.module';
-import {IconModule} from '../icon/icon.module';
-import {HcFormFieldComponent} from '../form-field/hc-form-field.component';
+import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@angular/core';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Subject } from 'rxjs';
+import { DatepickerModule } from './datepicker.module';
+import { dispatchMouseEvent, dispatchFakeEvent, dispatchEvent } from '../utils/dispatch-events';
+import { JAN, DEC, JUL, JUN, SEP } from '../utils/month-constants';
+import { HC_DATEPICKER_SCROLL_STRATEGY, DatepickerComponent } from './datepicker.component';
+import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
+import { HcNativeDateModule, NativeDateModule } from './datetime/datetime.module';
+import { HC_DATE_LOCALE } from './datetime/date-adapter';
+import { HcDatepickerIntl } from './datepicker-intl';
+import { DatepickerInputDirective } from './datepicker-input/datepicker-input.directive';
+import { FormFieldModule } from '../form-field/hc-form-field.module';
+import { InputModule } from '../input/input.module';
+import { IconModule } from '../icon/icon.module';
+import { HcFormFieldComponent } from '../form-field/hc-form-field.component';
 
 @Component({
     template: `
@@ -623,7 +623,7 @@ describe('DatepickerComponent', () => {
                         [
                             {
                                 provide: ScrollDispatcher,
-                                useValue: {scrolled: () => scrolledSubject}
+                                useValue: { scrolled: () => scrolledSubject }
                             },
                             {
                                 provide: HC_DATEPICKER_SCROLL_STRATEGY,
@@ -1215,7 +1215,9 @@ describe('DatepickerComponent', () => {
                     'Expected custom icon to be rendered.'
                 );
 
-                expect(fixture.nativeElement.querySelector('.hc-calendar-ico-cal hc-icon')).toBeFalsy('Expected default icon to be removed.');
+                expect(fixture.nativeElement.querySelector('.hc-calendar-ico-cal hc-icon')).toBeFalsy(
+                    'Expected default icon to be removed.'
+                );
             }));
         });
 
@@ -1575,7 +1577,7 @@ describe('DatepickerComponent', () => {
                     [
                         {
                             provide: Directionality,
-                            useValue: {value: 'rtl'}
+                            useValue: { value: 'rtl' }
                         }
                     ]
                 );
@@ -1590,7 +1592,7 @@ describe('DatepickerComponent', () => {
             });
 
             it('should update the popup direction if the directionality value changes', fakeAsync(() => {
-                const dirProvider = {value: 'ltr'};
+                const dirProvider = { value: 'ltr' };
                 const fixture = createComponent(
                     StandardDatepicker,
                     [HcNativeDateModule],
@@ -1640,7 +1642,7 @@ describe('DatepickerComponent', () => {
             fixture = createComponent(
                 DatepickerWithi18n,
                 [HcNativeDateModule, NativeDateModule],
-                [{provide: HC_DATE_LOCALE, useValue: 'de-DE'}]
+                [{ provide: HC_DATE_LOCALE, useValue: 'de-DE' }]
             );
             fixture.detectChanges();
             testComponent = fixture.componentInstance;

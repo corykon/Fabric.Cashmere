@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {CategorizedClassDoc} from './dgeni-definitions';
-import {ArrayLiteralExpression, CallExpression, ObjectLiteralExpression, PropertyAssignment, StringLiteral, SyntaxKind} from 'typescript';
+import { CategorizedClassDoc } from './dgeni-definitions';
+import { ArrayLiteralExpression, CallExpression, ObjectLiteralExpression, PropertyAssignment, StringLiteral, SyntaxKind } from 'typescript';
 
 /**
  * Determines the component or directive metadata from the specified Dgeni class doc. The resolved

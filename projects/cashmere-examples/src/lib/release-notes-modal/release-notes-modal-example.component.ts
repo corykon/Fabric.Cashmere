@@ -1,5 +1,5 @@
-import {ReleaseNotesService} from '@healthcatalyst/cashmere';
-import {Component} from '@angular/core';
+import { ReleaseNotesService } from '@healthcatalyst/cashmere';
+import { Component } from '@angular/core';
 
 /**
  * @title Release Notes Modal

@@ -12,8 +12,8 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import {untilDestroyed} from '../util';
-import {fromEvent, ReplaySubject, Subscription} from 'rxjs';
+import { untilDestroyed } from '../util';
+import { fromEvent, ReplaySubject, Subscription } from 'rxjs';
 
 export class CellResizeEvent {
     constructor(public width: number, public directionLeft: boolean) {}
@@ -140,5 +140,7 @@ export class HcCellResizer implements OnInit, OnDestroy {
     // Must be present for AOT compilation to work, even if empty
     // Otherwise 'ng build --prod' will optimize away any calls to ngOnDestroy,
     // even if the method is added by the untilDestroyed operator
-    public ngOnDestroy(): void { return; }
+    public ngOnDestroy(): void {
+        return;
+    }
 }

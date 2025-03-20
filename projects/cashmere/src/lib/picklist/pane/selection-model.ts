@@ -19,7 +19,9 @@ export interface PickSelectionModel {
 export class DefaultSelectionModel implements PickSelectionModel {
     private _selected: PickOption[] = [];
 
-    get value(): PickOption[] { return this._selected; }
+    get value(): PickOption[] {
+        return this._selected;
+    }
 
     select(item: PickOption): void {
         item.selected = true;
@@ -56,7 +58,7 @@ export class DefaultSelectionModel implements PickSelectionModel {
 
     selectAll(items: Array<PickOption>, canSelectGroup: boolean): void {
         this._selected = items.filter(i => !i.disabled && !i.children);
-        items.filter(i => !i.disabled && (canSelectGroup || !i.children)).forEach(i => i.selected = true);
+        items.filter(i => !i.disabled && (canSelectGroup || !i.children)).forEach(i => (i.selected = true));
     }
 
     private _setChildrenSelectedState(children: PickOption[], selected: boolean) {
@@ -71,7 +73,7 @@ export class DefaultSelectionModel implements PickSelectionModel {
     private _removeChildren(parent: PickOption) {
         this._selected = [
             ...this._selected.filter(x => x.parent !== parent),
-            ...parent.children?.filter(x => x.parent === parent && x.disabled && x.selected) || []
+            ...(parent.children?.filter(x => x.parent === parent && x.disabled && x.selected) || [])
         ];
     }
 

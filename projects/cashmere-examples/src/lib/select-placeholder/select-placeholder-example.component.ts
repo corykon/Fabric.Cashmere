@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {RadioButtonChangeEvent} from '@healthcatalyst/cashmere';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { RadioButtonChangeEvent } from '@healthcatalyst/cashmere';
 
 /**
  * @title Select Component Placeholder

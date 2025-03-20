@@ -1,21 +1,37 @@
-import {Output, EventEmitter, Input, OnDestroy, ElementRef, Directive, HostListener, OnChanges, SimpleChanges, forwardRef} from '@angular/core';
-import {DatePipe} from '@angular/common';
-import {OverlayRef} from '@angular/cdk/overlay';
-import {CalendarOverlayService} from '../services/calendar-overlay.service';
-import {DateRange, DateRangeOptions} from '../model/model';
-import {ConfigStoreService} from '../services/config-store.service';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+    Output,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    ElementRef,
+    Directive,
+    HostListener,
+    OnChanges,
+    SimpleChanges,
+    forwardRef
+} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { CalendarOverlayService } from '../services/calendar-overlay.service';
+import { DateRange, DateRangeOptions } from '../model/model';
+import { ConfigStoreService } from '../services/config-store.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /** Trigger the date range selector using the `hcDateRange` directive on a button or other clickable element  */
 @Directive({
     selector: '[hcDateRange]',
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => DateRangeDirective),
-        multi: true
-    }, CalendarOverlayService, ConfigStoreService, DatePipe]
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DateRangeDirective),
+            multi: true
+        },
+        CalendarOverlayService,
+        ConfigStoreService,
+        DatePipe
+    ]
 })
 export class DateRangeDirective implements OnDestroy, OnChanges, ControlValueAccessor {
     /** Emits when date range is been changed. */
@@ -53,14 +69,14 @@ export class DateRangeDirective implements OnDestroy, OnChanges, ControlValueAcc
     ) {
         _configStoreService.rangeUpdate$.pipe(takeUntil(this.unsubscribe$)).subscribe((daterange: DateRange) => {
             this.selectedDateRangeChanged.emit(daterange);
-            this.onChange( daterange );
+            this.onChange(daterange);
         });
         _configStoreService.presetUpdate$.pipe(takeUntil(this.unsubscribe$)).subscribe((preset: number | DateRange) => {
             this.selectedPresetChanged.emit(preset);
-            this.onChange( preset );
+            this.onChange(preset);
         });
-        calendarOverlayService._dismissed.pipe(takeUntil(this.unsubscribe$)).subscribe( saved => {
-            this.closed.emit( saved ? this._configStoreService.currentSelection() : null );
+        calendarOverlayService._dismissed.pipe(takeUntil(this.unsubscribe$)).subscribe(saved => {
+            this.closed.emit(saved ? this._configStoreService.currentSelection() : null);
         });
     }
 
@@ -80,25 +96,25 @@ export class DateRangeDirective implements OnDestroy, OnChanges, ControlValueAcc
         }
         if (changes['selectedDate']) {
             const selectedDate: number | DateRange = changes['selectedDate'].currentValue;
-            this._updateSelected( selectedDate );
+            this._updateSelected(selectedDate);
         }
     }
 
     writeValue(value: number | DateRange): void {
         // Prevent the form control from trying to write a value when removing the control
-        if ( this.onChange.name !== 'noop' ) {
-            this._updateSelected( value );
+        if (this.onChange.name !== 'noop') {
+            this._updateSelected(value);
         }
     }
 
-    _updateSelected( selectedDate: number | DateRange ): void {
-        if ( typeof selectedDate === 'number' ) {
+    _updateSelected(selectedDate: number | DateRange): void {
+        if (typeof selectedDate === 'number') {
             this._configStoreService.updatePreset(selectedDate);
         } else {
             this._configStoreService.updateRange(selectedDate);
         }
 
-        this.onChange( selectedDate );
+        this.onChange(selectedDate);
 
         if (!this._touched) {
             this.onTouch();
@@ -108,7 +124,7 @@ export class DateRangeDirective implements OnDestroy, OnChanges, ControlValueAcc
 
     @HostListener('click')
     _onClick(): void {
-        if ( !this.disabled ) {
+        if (!this.disabled) {
             this._overlayRef = this.calendarOverlayService.open(this._elementRef, this.options.center);
         }
     }

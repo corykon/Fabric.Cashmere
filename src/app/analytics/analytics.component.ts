@@ -1,8 +1,8 @@
-import {Component, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Data, NavigationEnd, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {ApplicationInsightsService} from '../shared/application-insights/application-insights.service';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ApplicationInsightsService } from '../shared/application-insights/application-insights.service';
 
 @Component({
     selector: 'hc-demo-analytics',
@@ -23,7 +23,8 @@ export class AnalyticsComponent implements OnDestroy {
         this.router.events.pipe(takeUntil(this.unsubscribe)).subscribe(event => {
             if (event instanceof NavigationEnd) {
                 if (activatedRoute.firstChild) {
-                    this.thisPage = activatedRoute.firstChild.snapshot.data['category'] + ' - ' + activatedRoute.firstChild.snapshot.data['title'];
+                    this.thisPage =
+                        activatedRoute.firstChild.snapshot.data['category'] + ' - ' + activatedRoute.firstChild.snapshot.data['title'];
                     this.appInsights.logPageView(this.thisPage, event.urlAfterRedirects);
                     this.activeCategory = activatedRoute.firstChild.snapshot.data['category'];
                 }
@@ -32,12 +33,12 @@ export class AnalyticsComponent implements OnDestroy {
 
         // Populate the responsive select component with the router information
         const root = this.activatedRoute.routeConfig;
-        if ( root && root.children ) {
-            for (const entry of root.children ) {
+        if (root && root.children) {
+            for (const entry of root.children) {
                 if (entry.data && entry.data.title) {
                     this.selectOptions.push(entry);
-                    if ( entry.data.category && !this.categories.includes( entry.data.category )) {
-                        this.categories.push( entry.data.category );
+                    if (entry.data.category && !this.categories.includes(entry.data.category)) {
+                        this.categories.push(entry.data.category);
                     }
                 }
             }

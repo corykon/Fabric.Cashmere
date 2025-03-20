@@ -1,9 +1,9 @@
-import {Component, AfterViewInit, ChangeDetectorRef, HostListener, ViewChild, ElementRef} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {SearchService} from '../shared/search.service';
-import {PageEvent} from '@healthcatalyst/cashmere';
-import {ActivatedRoute} from '@angular/router';
-import {ApplicationInsightsService} from '../shared/application-insights/application-insights.service';
+import { Component, AfterViewInit, ChangeDetectorRef, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { SearchService } from '../shared/search.service';
+import { PageEvent } from '@healthcatalyst/cashmere';
+import { ActivatedRoute } from '@angular/router';
+import { ApplicationInsightsService } from '../shared/application-insights/application-insights.service';
 
 @Component({
     selector: 'hc-search-results',
@@ -47,11 +47,11 @@ export class SearchResultsComponent implements AfterViewInit {
     });
 
     searchIcons = {
-        components: {icon: 'fa-code'},
-        guides: {icon: 'fa-graduation-cap'},
-        foundations: {icon: 'fa-cogs'},
-        content: {icon: 'fa-file-text-o'},
-        analytics: {icon: 'fa-bar-chart'}
+        components: { icon: 'fa-code' },
+        guides: { icon: 'fa-graduation-cap' },
+        foundations: { icon: 'fa-cogs' },
+        content: { icon: 'fa-file-text-o' },
+        analytics: { icon: 'fa-bar-chart' }
     };
 
     @HostListener('window:resize')
@@ -204,8 +204,8 @@ export class SearchResultsComponent implements AfterViewInit {
     }
 
     resetFilters(): void {
-        this.categories.setValue({components: true, guides: true, foundations: true, content: true, analytics: true});
-        this.types.setValue({doc: true, example: true, api: true, usage: true, persona: true});
+        this.categories.setValue({ components: true, guides: true, foundations: true, content: true, analytics: true });
+        this.types.setValue({ doc: true, example: true, api: true, usage: true, persona: true });
     }
 
     logSearch(): void {

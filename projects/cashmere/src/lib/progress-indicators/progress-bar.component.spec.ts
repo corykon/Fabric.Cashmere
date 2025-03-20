@@ -5,11 +5,13 @@ describe('ProgressBarComponent', () => {
     let component: ProgressBarComponent;
     let fixture: ComponentFixture<ProgressBarComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [ProgressBarComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ProgressBarComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProgressBarComponent);
@@ -26,8 +28,7 @@ describe('ProgressBarComponent', () => {
             expect(() => {
                 component.color = 'beige' as string;
                 fixture.detectChanges();
-            }
-            ).toThrow(new Error('Unsupported progress bar color value: beige'));
+            }).toThrow(new Error('Unsupported progress bar color value: beige'));
         });
     });
 });

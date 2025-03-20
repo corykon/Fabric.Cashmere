@@ -1,7 +1,7 @@
 @import './colors';
 @import './mixins';
 
-$hc-pick-highlight:$azure !default;
+$hc-pick-highlight: $azure !default;
 $hc-pick-primary-text: $offblack !default;
 $hc-pick-border: $gray-300 !default;
 $hc-pick-border-radius: 4px !default;
@@ -26,7 +26,6 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
     justify-content: space-between;
     align-items: stretch;
 }
-
 
 @mixin hc-picklist-pane-container() {
     width: 45%;
@@ -89,7 +88,7 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 
     // prevents a slight jiggle when animating nearby elements
     transform-style: preserve-3d;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
 }
 
 @mixin hc-picklist-move-btn() {
@@ -99,7 +98,8 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
     height: 60px;
     margin-bottom: 12px;
 
-    &[disabled], &[disabled]:hover {
+    &[disabled],
+    &[disabled]:hover {
         background-color: $gray-300;
     }
 }
@@ -112,13 +112,12 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 }
 
 @mixin hc-picklist-left-arrow() {
-    background-image: url("data:image/svg+xml, #{$pick-left-arrow}");
+    background-image: url('data:image/svg+xml, #{$pick-left-arrow}');
 }
 
 @mixin hc-picklist-right-arrow() {
-    background-image: url("data:image/svg+xml, #{$pick-right-arrow}");
+    background-image: url('data:image/svg+xml, #{$pick-right-arrow}');
 }
-
 
 @mixin hc-pick-pane() {
     position: relative;
@@ -146,16 +145,20 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 }
 
 @mixin hc-pick-input-search() {
-    background-image: url("data:image/svg+xml, #{$pick-search}");
+    background-image: url('data:image/svg+xml, #{$pick-search}');
 }
 
 @mixin hc-pick-input-search-clear() {
-    background-image: url("data:image/svg+xml, #{$pick-search-clear}");
+    background-image: url('data:image/svg+xml, #{$pick-search-clear}');
     opacity: 0.5;
     margin-right: 10px;
     cursor: pointer;
-    &:hover { opacity: 0.85; }
-    &:active { opacity: 1; }
+    &:hover {
+        opacity: 0.85;
+    }
+    &:active {
+        opacity: 1;
+    }
 }
 
 @mixin hc-form-field-suffix() {
@@ -184,7 +187,8 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 }
 
 @mixin hc-pane-is-active-option-marked() {
-    outline: lighten($blue, 15) 1px dotted; outline-offset: -2px;
+    outline: lighten($blue, 15) 1px dotted;
+    outline-offset: -2px;
 }
 
 @mixin hc-pick-pane-list-scroll-host() {
@@ -265,7 +269,6 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
     display: none;
 }
 
-
 @mixin hc-pick-group-icon() {
     display: inline-block;
     background-repeat: no-repeat;
@@ -273,10 +276,10 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
     height: 14px;
     width: 28px;
     cursor: pointer;
-    background-image: url("data:image/svg+xml, #{$folder-icon}");
+    background-image: url('data:image/svg+xml, #{$folder-icon}');
 
     &:before {
-        content: "";
+        content: '';
         position: relative;
         top: -1px;
         width: 0;
@@ -289,13 +292,16 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 }
 
 @mixin hc-pick-group-icon-open() {
-    background-image: url("data:image/svg+xml, #{$folder-icon-open}");
-    &:before { transform: rotate(90deg); top: 0px; left: -2px; }
+    background-image: url('data:image/svg+xml, #{$folder-icon-open}');
+    &:before {
+        transform: rotate(90deg);
+        top: 0px;
+        left: -2px;
+    }
 }
 
-
 @mixin hc-pick-group-icon-selected() {
-    background-image: url("data:image/svg+xml, #{$folder-icon-white}");
+    background-image: url('data:image/svg+xml, #{$folder-icon-white}');
 
     &:before {
         border-left-color: $white;
@@ -303,11 +309,11 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
 }
 
 @mixin hc-pick-group-icon-selected-open() {
-    background-image: url("data:image/svg+xml, #{$folder-icon-open-white}");
+    background-image: url('data:image/svg+xml, #{$folder-icon-open-white}');
 }
 
 @mixin hc-pick-optgroup() {
-    background-color:shade($slate-gray-100, 5%);
+    background-color: shade($slate-gray-100, 5%);
     user-select: none;
     font-weight: 500;
     @include fontSize(13px);
@@ -338,5 +344,5 @@ $pick-search-clear: "%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/
     height: 100%;
     width: 100%;
     position: absolute;
-    color: $gray-400
+    color: $gray-400;
 }

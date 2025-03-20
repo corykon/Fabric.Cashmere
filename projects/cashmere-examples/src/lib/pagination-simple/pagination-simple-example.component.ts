@@ -9,10 +9,10 @@ import { FormControl } from '@angular/forms';
     templateUrl: 'pagination-simple-example.component.html'
 })
 export class PaginationSimpleExampleComponent {
-    pageNumberControl = new FormControl(8, {nonNullable: true});
-    pageSizeControl = new FormControl(100, {nonNullable: true});
-    totalItemsControl = new FormControl(1000, {nonNullable: true});
-    widthControl = new FormControl('lg', {nonNullable: true});
+    pageNumberControl = new FormControl(8, { nonNullable: true });
+    pageSizeControl = new FormControl(100, { nonNullable: true });
+    totalItemsControl = new FormControl(1000, { nonNullable: true });
+    widthControl = new FormControl('lg', { nonNullable: true });
 
     get pageNumber(): number {
         return this.pageNumberControl.value;

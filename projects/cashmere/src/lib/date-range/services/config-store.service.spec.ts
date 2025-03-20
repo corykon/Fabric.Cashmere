@@ -1,6 +1,6 @@
-import {TestBed, inject, waitForAsync} from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 
-import {ConfigStoreService} from './config-store.service';
+import { ConfigStoreService } from './config-store.service';
 
 describe('ConfigStoreService', () => {
     beforeEach(() => {
@@ -13,15 +13,18 @@ describe('ConfigStoreService', () => {
         expect(service).toBeTruthy();
     }));
 
-    it('should setup default options', waitForAsync(
-        inject([ConfigStoreService], (service: ConfigStoreService) => {
-            service.updateDateRangeOptions({
-                presets: [],
-                format: 'mediumDate'
-            });
-            service.dateRangeOptions$.subscribe(options => {
-                expect(Object.keys(options)).toContain('excludeWeekends');
-            });
-        })
-    ));
+    it(
+        'should setup default options',
+        waitForAsync(
+            inject([ConfigStoreService], (service: ConfigStoreService) => {
+                service.updateDateRangeOptions({
+                    presets: [],
+                    format: 'mediumDate'
+                });
+                service.dateRangeOptions$.subscribe(options => {
+                    expect(Object.keys(options)).toContain('excludeWeekends');
+                });
+            })
+        )
+    );
 });

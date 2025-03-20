@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 /**
  * @title Multiple Form Field Elements
@@ -13,15 +13,15 @@ export class FormFieldOverviewExampleComponent {
     enabledState = true;
 
     exampleForm: FormGroup = new FormGroup({
-        selectControl: new FormControl('daily', {nonNullable: true}),
-        inputControl: new FormControl('', {nonNullable: true}),
-        radioControl: new FormControl('SM', {nonNullable: true}),
-        checkControl: new FormControl(false, {nonNullable: true}),
-        slideControl: new FormControl(true, {nonNullable: true})
+        selectControl: new FormControl('daily', { nonNullable: true }),
+        inputControl: new FormControl('', { nonNullable: true }),
+        radioControl: new FormControl('SM', { nonNullable: true }),
+        checkControl: new FormControl(false, { nonNullable: true }),
+        slideControl: new FormControl(true, { nonNullable: true })
     });
 
     disableToggle(): void {
-        if ( this.enabledState ) {
+        if (this.enabledState) {
             this.enabledState = false;
             this.exampleForm.disable();
         } else {
@@ -31,10 +31,10 @@ export class FormFieldOverviewExampleComponent {
     }
 
     invalidForm(): void {
-        this.exampleForm.controls['inputControl'].setErrors({incorrect: true});
-        this.exampleForm.controls['selectControl'].setErrors({incorrect: true});
-        this.exampleForm.controls['checkControl'].setErrors({incorrect: true});
-        this.exampleForm.controls['radioControl'].setErrors({incorrect: true});
-        this.exampleForm.controls['slideControl'].setErrors({incorrect: true});
+        this.exampleForm.controls['inputControl'].setErrors({ incorrect: true });
+        this.exampleForm.controls['selectControl'].setErrors({ incorrect: true });
+        this.exampleForm.controls['checkControl'].setErrors({ incorrect: true });
+        this.exampleForm.controls['radioControl'].setErrors({ incorrect: true });
+        this.exampleForm.controls['slideControl'].setErrors({ incorrect: true });
     }
 }

@@ -13,11 +13,11 @@ import {
     Attribute,
     SimpleChanges
 } from '@angular/core';
-import {merge, Subscription, of as observableOf} from 'rxjs';
-import {parseBooleanAttribute} from '../../util';
-import {HcDatepickerIntl} from '../datepicker-intl';
-import {DatepickerComponent} from '../datepicker.component';
-import {ButtonComponent} from '../../button/button.component';
+import { merge, Subscription, of as observableOf } from 'rxjs';
+import { parseBooleanAttribute } from '../../util';
+import { HcDatepickerIntl } from '../datepicker-intl';
+import { DatepickerComponent } from '../datepicker.component';
+import { ButtonComponent } from '../../button/button.component';
 
 /** Can be used to override the icon of a `hcDatepickerToggle`. */
 @Directive({

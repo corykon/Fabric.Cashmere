@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, Component, ElementRef, Input, ViewEncapsulation} from '@angular/core';
-import {parseBooleanAttribute} from '../../util';
+import { ChangeDetectorRef, Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { parseBooleanAttribute } from '../../util';
 
 /** Primary navigation links */
 @Component({
@@ -16,7 +16,7 @@ export class NavbarLinkComponent {
         return this._active;
     }
     set active(value: boolean | null) {
-        this._active = value !== null ? parseBooleanAttribute(value): null;
+        this._active = value !== null ? parseBooleanAttribute(value) : null;
     }
 
     /** RouterLink uri. See https://angular.io/api/router/RouterLink */

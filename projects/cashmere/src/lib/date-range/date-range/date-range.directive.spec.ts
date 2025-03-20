@@ -1,15 +1,15 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA, Component} from '@angular/core';
-import {CalendarOverlayService} from '../services/calendar-overlay.service';
-import {ConfigStoreService} from '../services/config-store.service';
-import {DateRangeDirective} from './date-range.directive';
-import {DateRangeOptions, DateRange} from '../model/model';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { CalendarOverlayService } from '../services/calendar-overlay.service';
+import { ConfigStoreService } from '../services/config-store.service';
+import { DateRangeDirective } from './date-range.directive';
+import { DateRangeOptions, DateRange } from '../model/model';
+import { By } from '@angular/platform-browser';
 
 class MockOverlayService {
     open = jasmine.createSpy('open');
     _dismissed = jasmine.createSpyObj('_dismissed', {
-        'pipe': jasmine.createSpyObj( 'subscribe', {'subscribe': 'subscribe'})
+        pipe: jasmine.createSpyObj('subscribe', { subscribe: 'subscribe' })
     });
 }
 
@@ -28,17 +28,17 @@ class MockOverlayService {
 })
 class TestComponent {
     options: DateRangeOptions;
-    range: number | DateRange = {fromDate: new Date(), toDate: new Date()};
+    range: number | DateRange = { fromDate: new Date(), toDate: new Date() };
     constructor() {
         this.options = {
             presets: [
                 {
                     presetLabel: 'Preset One',
-                    range: {fromDate: new Date(1900, 1, 1), toDate: new Date(1900, 1, 2)}
+                    range: { fromDate: new Date(1900, 1, 1), toDate: new Date(1900, 1, 2) }
                 },
                 {
                     presetLabel: 'Preset Two',
-                    range: {fromDate: new Date(2000, 1, 1), toDate: new Date(2000, 1, 2)}
+                    range: { fromDate: new Date(2000, 1, 1), toDate: new Date(2000, 1, 2) }
                 }
             ],
             format: 'mediumDate',
@@ -49,7 +49,7 @@ class TestComponent {
         this.range = range;
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    updatePreset(index: number|DateRange) {
+    updatePreset(index: number | DateRange) {
         // do nothing
     }
 }
@@ -60,20 +60,22 @@ describe('DateRangeDirective', () => {
     let fixture: ComponentFixture<TestComponent>;
     let overlay: MockOverlayService;
 
-    beforeEach(waitForAsync(() => {
-        overlay = new MockOverlayService();
+    beforeEach(
+        waitForAsync(() => {
+            overlay = new MockOverlayService();
 
-        TestBed.configureTestingModule({
-            declarations: [TestComponent, DateRangeDirective],
-            schemas: [NO_ERRORS_SCHEMA]
-        })
-            .overrideDirective(DateRangeDirective, {
-                set: {
-                    providers: [{provide: CalendarOverlayService, useValue: overlay}, ConfigStoreService]
-                }
+            TestBed.configureTestingModule({
+                declarations: [TestComponent, DateRangeDirective],
+                schemas: [NO_ERRORS_SCHEMA]
             })
-            .compileComponents();
-    }));
+                .overrideDirective(DateRangeDirective, {
+                    set: {
+                        providers: [{ provide: CalendarOverlayService, useValue: overlay }, ConfigStoreService]
+                    }
+                })
+                .compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);
@@ -95,7 +97,7 @@ describe('DateRangeDirective', () => {
         const today = new Date();
         const currMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
         const currMonthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-        const resetRange = {fromDate: currMonthStart, toDate: currMonthEnd};
+        const resetRange = { fromDate: currMonthStart, toDate: currMonthEnd };
 
         spyOn(component, 'updateRange');
         component.range = resetRange;

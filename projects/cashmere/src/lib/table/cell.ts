@@ -7,8 +7,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Directive, ElementRef, HostBinding, Input} from '@angular/core';
-import {CdkCell, CdkCellDef, CdkColumnDef, CdkFooterCell, CdkFooterCellDef, CdkHeaderCell, CdkHeaderCellDef} from '@angular/cdk/table';
+import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { CdkCell, CdkCellDef, CdkColumnDef, CdkFooterCell, CdkFooterCellDef, CdkHeaderCell, CdkHeaderCellDef } from '@angular/cdk/table';
 
 /**
  * Cell definition for the hc-table.
@@ -16,7 +16,7 @@ import {CdkCell, CdkCellDef, CdkColumnDef, CdkFooterCell, CdkFooterCellDef, CdkH
  */
 @Directive({
     selector: '[hcCellDef]',
-    providers: [{provide: CdkCellDef, useExisting: HcCellDef}]
+    providers: [{ provide: CdkCellDef, useExisting: HcCellDef }]
 })
 export class HcCellDef extends CdkCellDef {}
 
@@ -26,7 +26,7 @@ export class HcCellDef extends CdkCellDef {}
  */
 @Directive({
     selector: '[hcHeaderCellDef]',
-    providers: [{provide: CdkHeaderCellDef, useExisting: HcHeaderCellDef}]
+    providers: [{ provide: CdkHeaderCellDef, useExisting: HcHeaderCellDef }]
 })
 export class HcHeaderCellDef extends CdkHeaderCellDef {}
 
@@ -36,7 +36,7 @@ export class HcHeaderCellDef extends CdkHeaderCellDef {}
  */
 @Directive({
     selector: '[hcFooterCellDef]',
-    providers: [{provide: CdkFooterCellDef, useExisting: HcFooterCellDef}]
+    providers: [{ provide: CdkFooterCellDef, useExisting: HcFooterCellDef }]
 })
 export class HcFooterCellDef extends CdkFooterCellDef {}
 
@@ -46,7 +46,7 @@ export class HcFooterCellDef extends CdkFooterCellDef {}
  */
 @Directive({
     selector: '[hcColumnDef]',
-    providers: [{provide: CdkColumnDef, useExisting: HcColumnDef}]
+    providers: [{ provide: CdkColumnDef, useExisting: HcColumnDef }]
 })
 export class HcColumnDef extends CdkColumnDef {
     private _justify = 'left';
@@ -56,7 +56,7 @@ export class HcColumnDef extends CdkColumnDef {
     get colName(): string {
         return this.name;
     }
-    set colName( value: string ) {
+    set colName(value: string) {
         this.name = value;
     }
 
@@ -77,7 +77,7 @@ export class HcColumnDef extends CdkColumnDef {
     /** Whether this column should be sticky positioned at the start of the row */
     @Input()
     public get sticky(): boolean {
-        return super.sticky
+        return super.sticky;
     }
     public set sticky(value: boolean) {
         super.sticky = value;
@@ -88,7 +88,7 @@ export class HcColumnDef extends CdkColumnDef {
     get stickyEnd(): boolean {
         return this._stickyEnd;
     }
-    set stickyEnd( value: boolean ) {
+    set stickyEnd(value: boolean) {
         this._stickyEnd = value;
     }
 }

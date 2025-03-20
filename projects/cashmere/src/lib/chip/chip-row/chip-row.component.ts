@@ -1,11 +1,11 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {parseBooleanAttribute} from '../../util';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { parseBooleanAttribute } from '../../util';
 
 /** Supporting component to help with grouping chips into collections */
 @Component({
     selector: 'hc-chip-row',
     template: `
-        <div class="hc-chip-row-contents" [ngClass]="{'hc-chip-single-row': !wrap}">
+        <div class="hc-chip-row-contents" [ngClass]="{ 'hc-chip-single-row': !wrap }">
             <div>
                 <div class="hc-chip-row-buffer"><ng-content></ng-content></div>
             </div>

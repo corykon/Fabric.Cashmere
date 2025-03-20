@@ -1,12 +1,12 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {EnvSwitcherComponent} from './env-switcher.component';
-import {PopModule} from '../pop/popover.module';
-import {PipesModule} from '../pipes/pipes.module';
-import {ProgressIndicatorsModule} from '../progress-indicators';
-import {CheckboxModule} from '../checkbox/checkbox.module';
-import {ButtonModule} from '../button/button.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { EnvSwitcherComponent } from './env-switcher.component';
+import { PopModule } from '../pop/popover.module';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProgressIndicatorsModule } from '../progress-indicators';
+import { CheckboxModule } from '../checkbox/checkbox.module';
+import { ButtonModule } from '../button/button.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('EnvSwitcherComponent', () => {
     let component: EnvSwitcherComponent;

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {StepInterface} from '@healthcatalyst/cashmere';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { StepInterface } from '@healthcatalyst/cashmere';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Stepper overview
@@ -22,12 +22,12 @@ export class StepperOverviewExampleComponent implements OnInit {
     ngOnInit(): void {
         // To use with a router, add a `routerLink` to each step
         this.progressSteps = [
-            {label: 'Winter', iconSet: 'fa', icon: 'fa-check'},
-            {label: 'January', iconSet: 'fa', icon: 'fa-check'},
-            {label: 'Spring'},
-            {label: 'Summer'},
-            {label: 'Fall', iconSet: 'fa', icon: 'fa-lock', disabled: true},
-            {label: 'Year Round', iconSet: 'fa', icon: 'fa-lock', disabled: true}
+            { label: 'Winter', iconSet: 'fa', icon: 'fa-check' },
+            { label: 'January', iconSet: 'fa', icon: 'fa-check' },
+            { label: 'Spring' },
+            { label: 'Summer' },
+            { label: 'Fall', iconSet: 'fa', icon: 'fa-lock', disabled: true },
+            { label: 'Year Round', iconSet: 'fa', icon: 'fa-lock', disabled: true }
         ];
     }
 }

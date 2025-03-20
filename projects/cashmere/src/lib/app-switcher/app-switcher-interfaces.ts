@@ -1,5 +1,5 @@
-import {Observable, of} from 'rxjs';
-import {InjectionToken} from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { InjectionToken } from '@angular/core';
 
 export interface IDiscoveryApplication {
     /** Usually the name of the application */

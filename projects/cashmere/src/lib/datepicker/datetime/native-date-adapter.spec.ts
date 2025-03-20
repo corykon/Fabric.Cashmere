@@ -1,10 +1,10 @@
-import {Platform} from '@angular/cdk/platform';
-import {LOCALE_ID} from '@angular/core';
-import {waitForAsync, inject, TestBed} from '@angular/core/testing';
-import {JAN, DEC, FEB, MAR} from '../../utils/month-constants';
-import {DateAdapter, HC_DATE_LOCALE} from './date-adapter';
-import {NativeDateAdapter} from './native-date-adapter';
-import {NativeDateModule} from './datetime.module';
+import { Platform } from '@angular/cdk/platform';
+import { LOCALE_ID } from '@angular/core';
+import { waitForAsync, inject, TestBed } from '@angular/core/testing';
+import { JAN, DEC, FEB, MAR } from '../../utils/month-constants';
+import { DateAdapter, HC_DATE_LOCALE } from './date-adapter';
+import { NativeDateAdapter } from './native-date-adapter';
+import { NativeDateModule } from './datetime.module';
 
 const SUPPORTS_INTL = typeof Intl !== 'undefined';
 
@@ -13,14 +13,15 @@ describe('NativeDateAdapter', () => {
     let adapter: NativeDateAdapter;
     let assertValidDate: (d: Date | null, valid: boolean) => void;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [NativeDateModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NativeDateModule]
+            }).compileComponents();
+        })
+    );
 
-    beforeEach(inject([DateAdapter, Platform],
-        (dateAdapter: NativeDateAdapter, _platform: Platform) => {
+    beforeEach(inject([DateAdapter, Platform], (dateAdapter: NativeDateAdapter, _platform: Platform) => {
         adapter = dateAdapter;
         platform = _platform;
 
@@ -449,9 +450,9 @@ describe('NativeDateAdapter', () => {
 
     it('should use UTC for formatting by default', () => {
         if (SUPPORTS_INTL) {
-            expect(adapter.format(new Date(1800, 7, 14), {day: 'numeric'})).toBe('14');
+            expect(adapter.format(new Date(1800, 7, 14), { day: 'numeric' })).toBe('14');
         } else {
-            expect(adapter.format(new Date(1800, 7, 14), {day: 'numeric'})).toBe('Thu Aug 14 1800');
+            expect(adapter.format(new Date(1800, 7, 14), { day: 'numeric' })).toBe('Thu Aug 14 1800');
         }
     });
 
@@ -503,12 +504,14 @@ describe('NativeDateAdapter', () => {
 describe('NativeDateAdapter with HC_DATE_LOCALE override', () => {
     let adapter: NativeDateAdapter;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [NativeDateModule],
-            providers: [{provide: HC_DATE_LOCALE, useValue: 'da-DK'}]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NativeDateModule],
+                providers: [{ provide: HC_DATE_LOCALE, useValue: 'da-DK' }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(inject([DateAdapter], (d: NativeDateAdapter) => {
         adapter = d;
@@ -526,12 +529,14 @@ describe('NativeDateAdapter with HC_DATE_LOCALE override', () => {
 describe('NativeDateAdapter with LOCALE_ID override', () => {
     let adapter: NativeDateAdapter;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [NativeDateModule],
-            providers: [{provide: LOCALE_ID, useValue: 'da-DK'}]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NativeDateModule],
+                providers: [{ provide: LOCALE_ID, useValue: 'da-DK' }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(inject([DateAdapter], (d: NativeDateAdapter) => {
         adapter = d;

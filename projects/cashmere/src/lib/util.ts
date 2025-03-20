@@ -1,5 +1,5 @@
-import {Observable, Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 /** Parse a given input into a boolean. */
 export function parseBooleanAttribute(value: boolean | string): boolean {

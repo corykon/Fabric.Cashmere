@@ -1,6 +1,6 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {HcPopComponent} from '../popover.component';
-import {transformPopover} from '../popover.animations';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { HcPopComponent } from '../popover.component';
+import { transformPopover } from '../popover.animations';
 
 /** Displays additional information on hover above the element after a specified delay */
 @Component({

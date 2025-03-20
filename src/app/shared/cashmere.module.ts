@@ -100,4 +100,4 @@ import {
         TypeformSurveyModule
     ]
 })
-export class CashmereModule { }
+export class CashmereModule {}

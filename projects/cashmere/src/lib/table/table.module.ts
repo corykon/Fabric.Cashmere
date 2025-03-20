@@ -6,13 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {NgModule} from '@angular/core';
-import {HcTable} from './table.component';
-import {HcCell, HcCellDef, HcColumnDef, HcFooterCell, HcFooterCellDef, HcHeaderCell, HcHeaderCellDef, HcIndexCell} from './cell';
-import {HcFooterRow, HcFooterRowDef, HcHeaderRow, HcHeaderRowDef, HcRow, HcRowDef} from './row';
-import {HcCellResizer} from './cell-resizer.component';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { HcTable } from './table.component';
+import { HcCell, HcCellDef, HcColumnDef, HcFooterCell, HcFooterCellDef, HcHeaderCell, HcHeaderCellDef, HcIndexCell } from './cell';
+import { HcFooterRow, HcFooterRowDef, HcHeaderRow, HcHeaderRowDef, HcRow, HcRowDef } from './row';
+import { HcCellResizer } from './cell-resizer.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CommonModule } from '@angular/common';
 import { TableContainerDirective } from './table-container.directive';
 
 const EXPORTED_DECLARATIONS = [

@@ -22,19 +22,27 @@
  * THE SOFTWARE.
  */
 
-import {DocCollection, Processor} from 'dgeni';
-import {MethodMemberDoc} from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
-import {getDirectiveMetadata} from '../common/directive-metadata';
-import {decorateDeprecatedDoc, getDirectiveSelectors, isDirective, isMethod, isNgModule, isProperty, isService} from '../common/decorators';
+import { DocCollection, Processor } from 'dgeni';
+import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { getDirectiveMetadata } from '../common/directive-metadata';
+import {
+    decorateDeprecatedDoc,
+    getDirectiveSelectors,
+    isDirective,
+    isMethod,
+    isNgModule,
+    isProperty,
+    isService
+} from '../common/decorators';
 import {
     CategorizedClassDoc,
     CategorizedClassLikeDoc,
     CategorizedMethodMemberDoc,
     CategorizedPropertyMemberDoc
 } from '../common/dgeni-definitions';
-import {normalizeMethodParameters} from '../common/normalize-method-parameters';
-import {getInputBindingData, getOutputBindingData} from '../common/property-bindings';
-import {sortCategorizedMembers} from '../common/sort-members';
+import { normalizeMethodParameters } from '../common/normalize-method-parameters';
+import { getInputBindingData, getOutputBindingData } from '../common/property-bindings';
+import { sortCategorizedMembers } from '../common/sort-members';
 
 /**
  * Processor to add properties to docs objects.

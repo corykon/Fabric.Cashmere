@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {ToasterOverviewExampleComponent} from './toaster-overview-example.component';
-import {ToasterOverviewCustomComponent} from './toaster-overview-custom.component';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CashmereModule} from '../cashmere.module';
+import { NgModule } from '@angular/core';
+import { ToasterOverviewExampleComponent } from './toaster-overview-example.component';
+import { ToasterOverviewCustomComponent } from './toaster-overview-custom.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CashmereModule } from '../cashmere.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

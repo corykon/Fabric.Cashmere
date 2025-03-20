@@ -1,13 +1,13 @@
-import {Directionality} from '@angular/cdk/bidi';
-import {Component} from '@angular/core';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {HcNativeDateModule} from '../datetime/datetime.module';
-import {DatepickerModule} from '../datepicker.module';
-import {HcDatepickerIntl} from '../datepicker-intl';
-import {CalendarComponent} from './calendar.component';
-import {JAN, FEB, DEC} from '../../utils/month-constants';
-import {yearsPerPage} from '../multi-year-view/multi-year-view.component';
+import { Directionality } from '@angular/cdk/bidi';
+import { Component } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { HcNativeDateModule } from '../datetime/datetime.module';
+import { DatepickerModule } from '../datepicker.module';
+import { HcDatepickerIntl } from '../datepicker-intl';
+import { CalendarComponent } from './calendar.component';
+import { JAN, FEB, DEC } from '../../utils/month-constants';
+import { yearsPerPage } from '../multi-year-view/multi-year-view.component';
 
 @Component({
     template: `
@@ -27,18 +27,20 @@ class StandardCalendar {
 }
 
 describe('HcCalendarHeader', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [HcNativeDateModule, DatepickerModule],
-            declarations: [
-                // Test components.
-                StandardCalendar
-            ],
-            providers: [HcDatepickerIntl, {provide: Directionality, useFactory: () => ({value: 'ltr'})}]
-        });
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [HcNativeDateModule, DatepickerModule],
+                declarations: [
+                    // Test components.
+                    StandardCalendar
+                ],
+                providers: [HcDatepickerIntl, { provide: Directionality, useFactory: () => ({ value: 'ltr' }) }]
+            });
 
-        TestBed.compileComponents();
-    }));
+            TestBed.compileComponents();
+        })
+    );
 
     describe('standard calendar', () => {
         let fixture: ComponentFixture<StandardCalendar>;

@@ -11,16 +11,16 @@ import { FormControl } from '@angular/forms';
 })
 export class FileUploaderOverviewExampleComponent {
     selectedFiles = new FormControl();
-    multipleFiles = new FormControl(false, {nonNullable: true});
-    controlTight = new FormControl(false, {nonNullable: true});
+    multipleFiles = new FormControl(false, { nonNullable: true });
+    controlTight = new FormControl(false, { nonNullable: true });
 
     get selectedFileNames(): string {
         let printString = '';
-        if ( this.selectedFiles.value ) {
+        if (this.selectedFiles.value) {
             // The file uploader FormControl returns a FileList object
             const files: FileList = this.selectedFiles.value;
             for (let i = 0; i < files.length; i++) {
-                if ( i !== 0 ) {
+                if (i !== 0) {
                     printString += ', ';
                 }
                 printString += files[i].name;
@@ -31,9 +31,9 @@ export class FileUploaderOverviewExampleComponent {
 
     checkFileSize(): void {
         // The filesAdded emitter also sends a FileList if you aren't using a FormControl
-        if ( this.selectedFiles.value[0].size > 2000000 ) {
+        if (this.selectedFiles.value[0].size > 2000000) {
             this.selectedFiles.markAsTouched();
-            this.selectedFiles.setErrors({invalid: true});
+            this.selectedFiles.setErrors({ invalid: true });
         }
     }
 }

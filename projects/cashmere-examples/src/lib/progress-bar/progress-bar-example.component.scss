@@ -1,4 +1,4 @@
-@import "@healthcatalyst/cashmere/scss/_colors";
+@import '@healthcatalyst/cashmere/scss/_colors';
 
 .progress-bar-example {
     display: flex;
@@ -24,7 +24,6 @@
 .progress-bar-example-container.dark-bg {
     background-color: $charcoal-blue;
 }
-
 
 label,
 hc-checkbox {

@@ -5,11 +5,13 @@ describe('ProgressDotsComponent', () => {
     let component: ProgressDotsComponent;
     let fixture: ComponentFixture<ProgressDotsComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [ProgressDotsComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ProgressDotsComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProgressDotsComponent);
@@ -29,10 +31,9 @@ describe('ProgressDotsComponent', () => {
 
         it('should throw an error on bad color', () => {
             expect(() => {
-                component.color = 'beige' as string as ProgressDotsColor;
+                component.color = ('beige' as string) as ProgressDotsColor;
                 fixture.detectChanges();
-            }
-            ).toThrow(new Error('Unsupported progress dots color value: beige'));
+            }).toThrow(new Error('Unsupported progress dots color value: beige'));
         });
     });
 });

@@ -13,15 +13,15 @@ import {
     OnInit,
     Optional,
     Output,
-    ContentChildren,
+    ContentChildren
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {AnimationEvent} from '@angular/animations';
-import {DOCUMENT} from '@angular/common';
-import {ConfigurableFocusTrapFactory, ConfigurableFocusTrap} from '@angular/cdk/a11y';
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
-import {transformPopover} from './popover.animations';
-import {NotificationAction, PopoverNotification, PopoverNotificationService} from './notification.service';
+import type { QueryList } from '@angular/core';
+import { AnimationEvent } from '@angular/animations';
+import { DOCUMENT } from '@angular/common';
+import { ConfigurableFocusTrapFactory, ConfigurableFocusTrap } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { transformPopover } from './popover.animations';
+import { NotificationAction, PopoverNotification, PopoverNotificationService } from './notification.service';
 import {
     getUnanchoredPopoverError,
     getInvalidHorizontalAlignError,
@@ -37,9 +37,9 @@ import {
     VALID_VERT_ALIGN,
     HcPopoverOpenOptions
 } from './types';
-import {OverlayRef} from '@angular/cdk/overlay';
-import {MenuItemDirective} from './directives/menu-item.directive';
-import {Subject} from 'rxjs';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { MenuItemDirective } from './directives/menu-item.directive';
+import { Subject } from 'rxjs';
 
 // See http://cubic-bezier.com/#.25,.8,.25,1 for reference.
 const DEFAULT_TRANSITION = '100ms linear';
@@ -241,7 +241,7 @@ export class HcPopComponent implements OnInit, OnDestroy {
             this._parentClose.unsubscribe();
         }
         this._parentMenu = val;
-        if ( this._parentMenu ) {
+        if (this._parentMenu) {
             this._parentClose = this._parentMenu.closed.subscribe(() => {
                 if (this.isOpen()) {
                     this.close();
@@ -318,7 +318,7 @@ export class HcPopComponent implements OnInit, OnDestroy {
     _parentCloseBlock = false;
 
     /** Reference to hcMenuItems (if the popover contains them) */
-    @ContentChildren(MenuItemDirective, {descendants: true}) _menuItems: QueryList<MenuItemDirective>;
+    @ContentChildren(MenuItemDirective, { descendants: true }) _menuItems: QueryList<MenuItemDirective>;
 
     constructor(
         public _elementRef: ElementRef,
@@ -381,7 +381,7 @@ export class HcPopComponent implements OnInit, OnDestroy {
     }
 
     /** Gets an animation config with customized (or default) transition values. */
-    _getAnimation(): {value: any; params: any} {
+    _getAnimation(): { value: any; params: any } {
         return {
             value: 'visible',
             params: {

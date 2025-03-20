@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Component Validation
@@ -21,7 +21,7 @@ export class SelectValidationExampleComponent {
     toggleValidate(): void {
         this.validCheck = !this.validCheck;
         if (this.validCheck) {
-            this.selectControl.setErrors({incorrect: true});
+            this.selectControl.setErrors({ incorrect: true });
         } else {
             this.selectControl.setErrors(null);
         }

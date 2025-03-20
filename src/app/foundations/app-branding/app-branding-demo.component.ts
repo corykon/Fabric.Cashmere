@@ -1,6 +1,6 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {SectionService} from '../../shared/section.service';
-import {BaseDemoComponent} from '../../shared/base-demo.component';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { SectionService } from '../../shared/section.service';
+import { BaseDemoComponent } from '../../shared/base-demo.component';
 
 @Component({
     selector: 'hc-app-branding-demo',
@@ -8,12 +8,11 @@ import {BaseDemoComponent} from '../../shared/base-demo.component';
     styleUrls: ['./app-branding-demo.component.scss']
 })
 export class AppBrandingDemoComponent extends BaseDemoComponent {
-
-    @ViewChild('canvasContainer') canvasContainer:ElementRef;
-    @ViewChild('imageOutput') imageOutput:ElementRef;
-    theme = "dark";
-    slimText = "Cashmere";
-    boldText = "Dashboard";
+    @ViewChild('canvasContainer') canvasContainer: ElementRef;
+    @ViewChild('imageOutput') imageOutput: ElementRef;
+    theme = 'dark';
+    slimText = 'Cashmere';
+    boldText = 'Dashboard';
     outputFormat = 'image/png';
 
     constructor(sectionService: SectionService) {
@@ -27,26 +26,24 @@ export class AppBrandingDemoComponent extends BaseDemoComponent {
 
     generateLogo() {
         const canvas = this.canvasContainer.nativeElement;
-        const ctx = canvas.getContext("2d", {alpha: true});
-        let slimTextColor = "";
-        let boldTextColor = "";
-        if(this.theme === "light") {
-            slimTextColor = "#0b0c0c"; // slightly grey
-            boldTextColor = "#000000";
-            this.imageOutput.nativeElement.style.backgroundColor = "#ffffff";
-        }
-        else {
-            slimTextColor = "#f4f3f3"; // slightly grey
-            boldTextColor = "#ffffff";
-            this.imageOutput.nativeElement.style.backgroundColor = "#384655";
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let slimTextColor = '';
+        let boldTextColor = '';
+        if (this.theme === 'light') {
+            slimTextColor = '#0b0c0c'; // slightly grey
+            boldTextColor = '#000000';
+            this.imageOutput.nativeElement.style.backgroundColor = '#ffffff';
+        } else {
+            slimTextColor = '#f4f3f3'; // slightly grey
+            boldTextColor = '#ffffff';
+            this.imageOutput.nativeElement.style.backgroundColor = '#384655';
         }
 
-
-        const fontFace = "BrandFont";
-        const slimTextFont = "182px " + fontFace;
-        const boldTextFont = "bold 181px " + fontFace;
-        const slimTextLetterSpacing = "-2.5px";
-        const boldTextLetterSpacing = "-2.5px";
+        const fontFace = 'BrandFont';
+        const slimTextFont = '182px ' + fontFace;
+        const boldTextFont = 'bold 181px ' + fontFace;
+        const slimTextLetterSpacing = '-2.5px';
+        const boldTextLetterSpacing = '-2.5px';
 
         // calculate sizing and positioning of text.
         ctx.font = slimTextFont;
@@ -61,12 +58,11 @@ export class AppBrandingDemoComponent extends BaseDemoComponent {
         const textOffsetY = 157; //slimTextRect.fontBoundingBoxAscent-21;
 
         // render background
-        if(this.outputFormat === "image/jpeg") { 
+        if (this.outputFormat === 'image/jpeg') {
             // solid background
             ctx.fillStyle = this.imageOutput.nativeElement.style.backgroundColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-        else { 
+        } else {
             // transparent background
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
@@ -88,12 +84,16 @@ export class AppBrandingDemoComponent extends BaseDemoComponent {
         this.imageOutput.nativeElement.src = dataUrl;
 
         // create a clean download link
-        const downloadLink = document.getElementById("download-button") as HTMLFormElement;
-        if(downloadLink) {
+        const downloadLink = document.getElementById('download-button') as HTMLFormElement;
+        if (downloadLink) {
             downloadLink.href = dataUrl;
-            let filename = `${this.slimText}${this.boldText ? "-" + this.boldText : ""}`;
-            filename = filename.toLowerCase().replace(/[^0-1a-z\s-]/, '').trim().replace(/\s/, '-');
-            const fileFormat = this.outputFormat.split("/")[1];
+            let filename = `${this.slimText}${this.boldText ? '-' + this.boldText : ''}`;
+            filename = filename
+                .toLowerCase()
+                .replace(/[^0-1a-z\s-]/, '')
+                .trim()
+                .replace(/\s/, '-');
+            const fileFormat = this.outputFormat.split('/')[1];
             downloadLink.download = `${filename}.${fileFormat}`;
         }
     }

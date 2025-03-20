@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RadioButtonComponent, RadioGroupDirective} from './radio';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RadioButtonComponent, RadioGroupDirective } from './radio';
 
 @NgModule({
     imports: [CommonModule],

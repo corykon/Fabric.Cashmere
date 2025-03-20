@@ -13,11 +13,11 @@ import {
     OnDestroy,
     ChangeDetectorRef
 } from '@angular/core';
-import {parseBooleanAttribute} from '../util';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {FormGroupDirective, NgControl, NgForm} from '@angular/forms';
-import {delay, takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { parseBooleanAttribute } from '../util';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import { delay, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export function getUnsupportedHCInputType(type: string): Error {
     return new Error(`hc-input doesn't support the following type: ${type}`);
@@ -37,7 +37,7 @@ const supportedValidation = ['onBlur', 'onChange'];
 /** Directive that allows a native input to work inside a HcFormFieldComponent */
 @Directive({
     selector: '[hcInput]',
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => InputDirective)}]
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => InputDirective) }]
 })
 export class InputDirective extends HcFormControlComponent implements AfterViewInit, OnDestroy {
     private _focused = false;

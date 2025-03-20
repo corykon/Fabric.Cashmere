@@ -1,5 +1,5 @@
-import {Component, Input, HostBinding, ViewEncapsulation} from '@angular/core';
-import {parseBooleanAttribute} from '../util';
+import { Component, Input, HostBinding, ViewEncapsulation } from '@angular/core';
+import { parseBooleanAttribute } from '../util';
 
 /** Container element to help segment content visually against a gray background.
  * The tile will expand to the height and width of the content it contains. */

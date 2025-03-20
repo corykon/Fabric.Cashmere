@@ -17,9 +17,9 @@ export class ComponentApiComponent {
     }
 
     docLoaded(): void {
-        if ( this.section ) {
+        if (this.section) {
             const el = document.getElementById(this.section);
-            if ( el ) {
+            if (el) {
                 el.scrollIntoView();
             }
         }

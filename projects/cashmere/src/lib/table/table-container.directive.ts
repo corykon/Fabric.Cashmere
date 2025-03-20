@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostBinding, Input} from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
 
 /** Use `hcTableContainer` to wrap around tables that have sticky headers/columns or other advanced use cases. */
 @Directive({
@@ -17,7 +17,7 @@ export class TableContainerDirective {
         const isHeightJustNumbers = this.onlyNumbersRegex.test(height.toString());
         this.elRef.nativeElement.style.height = isHeightJustNumbers ? `${height}px` : height;
     }
-    get tableHeight(): string | number{
+    get tableHeight(): string | number {
         return this._height;
     }
     private _height: string | number;

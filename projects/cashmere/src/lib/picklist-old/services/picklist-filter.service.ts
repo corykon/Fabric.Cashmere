@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
-import {FilterableSelectList, SelectListOption, ValueListOption, ValueSetListOption} from '../pane/picklist-pane.model';
-import {PicklistValueType} from '../picklist-old.model';
-import {WorkTrackerService} from '../../shared/work-tracker.service';
-import {PicklistFilterRemoteService} from './picklist-filter-remote.service';
-import {PicklistFilterLocalService} from './picklist-filter-local.service';
-import {PicklistStateService} from './picklist-state.service';
+import { FilterableSelectList, SelectListOption, ValueListOption, ValueSetListOption } from '../pane/picklist-pane.model';
+import { PicklistValueType } from '../picklist-old.model';
+import { WorkTrackerService } from '../../shared/work-tracker.service';
+import { PicklistFilterRemoteService } from './picklist-filter-remote.service';
+import { PicklistFilterLocalService } from './picklist-filter-local.service';
+import { PicklistStateService } from './picklist-state.service';
 
 @Injectable()
 export class PicklistFilterService {
@@ -17,10 +17,7 @@ export class PicklistFilterService {
         return this.stateService.valueSetList;
     }
     public get searchTokens(): string[] {
-        return this.searchTerm
-            .toLocaleLowerCase()
-            .replace(/\s+/g, ' ')
-            .split(' ');
+        return this.searchTerm.toLocaleLowerCase().replace(/\s+/g, ' ').split(' ');
     }
     public searchTerm = '';
 

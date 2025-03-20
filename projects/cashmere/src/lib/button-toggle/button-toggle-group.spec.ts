@@ -1,24 +1,24 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {ButtonToggleGroupComponent} from './button-toggle-group.component';
-import {ButtonToggleComponent} from './button-toggle.component';
-import {ButtonToggleChangeEvent} from './button-toggle-change-event';
-import {ButtonToggleModule} from './button-toggle.module';
-import {Component, ViewChild} from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ButtonToggleGroupComponent } from './button-toggle-group.component';
+import { ButtonToggleComponent } from './button-toggle.component';
+import { ButtonToggleChangeEvent } from './button-toggle-change-event';
+import { ButtonToggleModule } from './button-toggle.module';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
     template: `
-        <hc-button-toggle-group (selectionChangedEvent)='changedEvent($event)' #group>
-            <hc-button-toggle value='one' #one>one</hc-button-toggle>
-            <hc-button-toggle value='two' #two>two</hc-button-toggle>
+        <hc-button-toggle-group (selectionChangedEvent)="changedEvent($event)" #group>
+            <hc-button-toggle value="one" #one>one</hc-button-toggle>
+            <hc-button-toggle value="two" #two>two</hc-button-toggle>
         </hc-button-toggle-group>
     `
 })
 export class TestButtonToggleGroup {
-    @ViewChild('group', {static: false})
+    @ViewChild('group', { static: false })
     toggleGroup: ButtonToggleGroupComponent;
-    @ViewChild('one', {static: false})
+    @ViewChild('one', { static: false })
     toggleOne: ButtonToggleComponent;
-    @ViewChild('two', {static: false})
+    @ViewChild('two', { static: false })
     toggleTwo: ButtonToggleComponent;
 
     changedEvent: (event?: ButtonToggleChangeEvent) => void = () => {
@@ -30,12 +30,14 @@ describe('ButtonToggleGroup', () => {
     let component: TestButtonToggleGroup;
     let fixture: ComponentFixture<TestButtonToggleGroup>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestButtonToggleGroup],
-            imports: [ButtonToggleModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestButtonToggleGroup],
+                imports: [ButtonToggleModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestButtonToggleGroup);
@@ -186,14 +188,15 @@ describe('ButtonToggleGroup', () => {
         describe('.selectionChangedEvent', () => {
             describe('when a selection changes', () => {
                 it('should fire an event with a ButtonToggleChangeEvent', () => {
-                    spyOn( component, 'changedEvent' );
+                    spyOn(component, 'changedEvent');
                     component.toggleOne.selected = true;
                     fixture.detectChanges();
 
                     const toggleEvent: ButtonToggleChangeEvent = new ButtonToggleChangeEvent(
                         component.toggleOne,
                         [component.toggleOne, component.toggleTwo],
-                        ['one']);
+                        ['one']
+                    );
                     expect(component.changedEvent).toHaveBeenCalledWith(toggleEvent);
                 });
             });

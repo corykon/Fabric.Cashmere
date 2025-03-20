@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ChipComponent} from './chip.component';
-import {ChipRowComponent} from './chip-row/chip-row.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChipComponent } from './chip.component';
+import { ChipRowComponent } from './chip-row/chip-row.component';
 
 @NgModule({
     imports: [CommonModule],

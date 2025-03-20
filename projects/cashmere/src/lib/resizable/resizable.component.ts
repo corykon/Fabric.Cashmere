@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, HostBinding, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges,
+    ViewEncapsulation
+} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { ResizablePosition, ResizablePositionOption } from './resizable.config';
 import { ResizableMetadata as Meta } from './resizable.meta';
@@ -12,7 +22,6 @@ import { parseBooleanAttribute, untilDestroyed } from '../util';
     styleUrls: ['./resizable.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-
 export class ResizableComponent implements OnChanges {
     _className: string;
     _classNameSelector: string;
@@ -31,8 +40,8 @@ export class ResizableComponent implements OnChanges {
     get disabled(): boolean {
         return this._disabled;
     }
-    set disabled(value: boolean | string ) {
-        this._disabled = parseBooleanAttribute( value );
+    set disabled(value: boolean | string) {
+        this._disabled = parseBooleanAttribute(value);
     }
 
     /** Determines which corner of the container the drag handle will be available on.
@@ -61,7 +70,9 @@ export class ResizableComponent implements OnChanges {
 
     _dragStarted(event: MouseEvent): void {
         this._className = `${this._className} ${Meta.highlight}`;
-        this._startSize = this._isVertical() ? this._element.nativeElement.getBoundingClientRect().height : this._element.nativeElement.getBoundingClientRect().width;
+        this._startSize = this._isVertical()
+            ? this._element.nativeElement.getBoundingClientRect().height
+            : this._element.nativeElement.getBoundingClientRect().width;
         this._mousePos = this._isVertical() ? event.screenY : event.screenX;
 
         event.stopPropagation();
@@ -89,14 +100,12 @@ export class ResizableComponent implements OnChanges {
         if (this._isVertical()) {
             const delta = event.screenY - this._mousePos;
             this._element.nativeElement.style.height =
-                this.position === ResizablePositionOption.top
-                    ? `${this._startSize - delta}px`
-                    : `${this._startSize + delta}px`;
+                this.position === ResizablePositionOption.top ? `${this._startSize - delta}px` : `${this._startSize + delta}px`;
             this._startSize = this._element.nativeElement.getBoundingClientRect().height;
-            if ( this._startSize > this.max ) {
+            if (this._startSize > this.max) {
                 this._element.nativeElement.style.height = this.max + 'px';
                 this._startSize = this.max;
-            } else if ( this._startSize < this.min ) {
+            } else if (this._startSize < this.min) {
                 this._element.nativeElement.style.height = this.min + 'px';
                 this._startSize = this.min;
             }
@@ -104,14 +113,12 @@ export class ResizableComponent implements OnChanges {
         } else {
             const delta = event.screenX - this._mousePos;
             this._element.nativeElement.style.width =
-                this.position === ResizablePositionOption.left
-                    ? `${this._startSize - delta}px`
-                    : `${this._startSize + delta}px`;
+                this.position === ResizablePositionOption.left ? `${this._startSize - delta}px` : `${this._startSize + delta}px`;
             this._startSize = this._element.nativeElement.getBoundingClientRect().width;
-            if ( this._startSize > this.max ) {
+            if (this._startSize > this.max) {
                 this._element.nativeElement.style.width = this.max + 'px';
                 this._startSize = this.max;
-            } else if ( this._startSize < this.min ) {
+            } else if (this._startSize < this.min) {
                 this._element.nativeElement.style.width = this.min + 'px';
                 this._startSize = this.min;
             }
@@ -151,5 +158,7 @@ export class ResizableComponent implements OnChanges {
     }
 
     // Must be present for AOT compilation to work, even if empty
-    public ngOnDestroy(): void { return; }
+    public ngOnDestroy(): void {
+        return;
+    }
 }

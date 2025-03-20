@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ApplicationInsights} from '@microsoft/applicationinsights-web';
-import {environment} from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -23,31 +23,31 @@ export class ApplicationInsightsService {
 
     logPageView(name?: string, uri?: string): void {
         if ('instrumentationKey' in environment) {
-            this.appInsights.trackPageView({name, uri});
+            this.appInsights.trackPageView({ name, uri });
         }
     }
 
-    logSiteSearch( query: string ): void {
+    logSiteSearch(query: string): void {
         if ('instrumentationKey' in environment) {
-            this.appInsights.trackEvent({name: 'Site Search', properties: {query: query}});
+            this.appInsights.trackEvent({ name: 'Site Search', properties: { query: query } });
         }
     }
 
-    logTermSearch( query: string ): void {
+    logTermSearch(query: string): void {
         if ('instrumentationKey' in environment) {
-            this.appInsights.trackEvent({name: 'Term Search', properties: {query: query}});
+            this.appInsights.trackEvent({ name: 'Term Search', properties: { query: query } });
         }
     }
 
-    logTemplateDownload( template: string ): void {
+    logTemplateDownload(template: string): void {
         if ('instrumentationKey' in environment) {
-            this.appInsights.trackEvent({name: 'Template Download', properties: {template: template}});
+            this.appInsights.trackEvent({ name: 'Template Download', properties: { template: template } });
         }
     }
 
     logEvent(trigger: string, target: string): void {
         if ('instrumentationKey' in environment) {
-            this.appInsights.trackEvent({name: 'Example Click', properties: {example: trigger, target: target}});
+            this.appInsights.trackEvent({ name: 'Example Click', properties: { example: trigger, target: target } });
         }
     }
 }

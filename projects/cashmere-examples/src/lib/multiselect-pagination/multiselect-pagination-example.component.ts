@@ -39,13 +39,13 @@ export class MultiselectPaginationExampleComponent implements OnInit, OnDestroy 
         this.refreshEncounters();
 
         // Custom typeahead function to search the entire list rather than just the current page
-        this.encounterSearch.pipe(takeUntil(this.unsubscribe)).subscribe( (term) => {
-            if ( term ) {
+        this.encounterSearch.pipe(takeUntil(this.unsubscribe)).subscribe(term => {
+            if (term) {
                 this.filteredEncounters = [];
                 this.pageNumber = 1;
 
-                for( let i=0; i < this.encounterIDs.length; i++ ) {
-                    if ( this.encounterIDs[i].includes( term ) ) {
+                for (let i = 0; i < this.encounterIDs.length; i++) {
+                    if (this.encounterIDs[i].includes(term)) {
                         this.filteredEncounters.push(this.encounterIDs[i]);
                     }
                 }
@@ -53,7 +53,7 @@ export class MultiselectPaginationExampleComponent implements OnInit, OnDestroy 
                 // A null value means the typeahead was cleared
                 this.filteredEncounters = [...this.encounterIDs];
             }
-            
+
             this.updateDisplayedEncounters();
         });
     }
@@ -61,7 +61,11 @@ export class MultiselectPaginationExampleComponent implements OnInit, OnDestroy 
     // Update the current page of items when the page changes
     updateDisplayedEncounters(): void {
         this.displayedEncounters = [];
-        for( let i=this.pageSize * (this.pageNumber-1); i < (this.pageSize * this.pageNumber) && i < this.filteredEncounters.length; i++ ) {
+        for (
+            let i = this.pageSize * (this.pageNumber - 1);
+            i < this.pageSize * this.pageNumber && i < this.filteredEncounters.length;
+            i++
+        ) {
             this.displayedEncounters.push(this.filteredEncounters[i]);
         }
     }
@@ -71,7 +75,7 @@ export class MultiselectPaginationExampleComponent implements OnInit, OnDestroy 
         this.encounterIDs = [];
         this.filteredEncounters = [];
         this.pageNumber = 1;
-        for( let i=0; i < 100; i++ ) {
+        for (let i = 0; i < 100; i++) {
             const idVal = Math.floor(Math.random() * 999999);
             this.encounterIDs.push(idVal.toString());
             this.filteredEncounters.push(idVal.toString());
@@ -80,7 +84,7 @@ export class MultiselectPaginationExampleComponent implements OnInit, OnDestroy 
         this.updateDisplayedEncounters();
 
         // Clear any existing search strings
-        if ( this.ngSelectComponent ) {
+        if (this.ngSelectComponent) {
             this.ngSelectComponent.handleClearClick();
         }
     }

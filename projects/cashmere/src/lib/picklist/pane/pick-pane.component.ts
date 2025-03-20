@@ -36,7 +36,7 @@ import { SortFn, GroupValueFn, CompareWithFn, AddCustomItemFn, SELECTION_MODEL_F
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 /** A single pane containing the searchbar, toolbar, items list, and footer.
-*/
+ */
 export class PickPaneComponent implements OnChanges {
     @Input() _isLeftPane = false;
     @Input() bindLabel: string;
@@ -66,11 +66,19 @@ export class PickPaneComponent implements OnChanges {
     @Input() hasToolbar = true;
     @Input() hasFooter = true;
     @Input() escapeHTML = true;
-    @Input() get items(): unknown[] { return this._items; }
-    set items(value: unknown[]) { this._items = value; }
-    @Input() get compareWith(): CompareWithFn { return this._compareWith; }
+    @Input() get items(): unknown[] {
+        return this._items;
+    }
+    set items(value: unknown[]) {
+        this._items = value;
+    }
+    @Input() get compareWith(): CompareWithFn {
+        return this._compareWith;
+    }
     set compareWith(fn: CompareWithFn) {
-        if (isDefined(fn) && !isFunction(fn)) { throw Error('`compareWith` must be a function.'); }
+        if (isDefined(fn) && !isFunction(fn)) {
+            throw Error('`compareWith` must be a function.');
+        }
         this._compareWith = fn;
     }
 
@@ -84,7 +92,7 @@ export class PickPaneComponent implements OnChanges {
     /** Fires when option are being moved via an enter keypress. */
     @Output() triggerMove = new EventEmitter();
     /** Fires when search is triggered on the pane. */
-    @Output() search = new EventEmitter<{ term: string, items: unknown[] }>();
+    @Output() search = new EventEmitter<{ term: string; items: unknown[] }>();
     /** Fires when pane is scrolled. */
     @Output() scroll = new EventEmitter<{ start: number; end: number }>();
     /** Fires when pane has been scrolled to the bottom. */
@@ -109,11 +117,15 @@ export class PickPaneComponent implements OnChanges {
     /** true if the item list has focus.
      * using this property and adding a css class works more smoothly than relying on :focus psuedo selector */
     _paneHasFocus = false;
-    public get disabled(): boolean { return this.readonly || this._disabled; }
+    public get disabled(): boolean {
+        return this.readonly || this._disabled;
+    }
     public get externalOptionCountStr(): string | null {
-        return Number.isFinite(this.externalTotalOptionCount) ? this.externalTotalOptionCount.toLocaleString() : null; }
+        return Number.isFinite(this.externalTotalOptionCount) ? this.externalTotalOptionCount.toLocaleString() : null;
+    }
     public get _companionPane(): PickPaneComponent {
-        return this._isLeftPane ? this.picklistService.selectedPane : this.picklistService.availablePane; }
+        return this._isLeftPane ? this.picklistService.selectedPane : this.picklistService.availablePane;
+    }
 
     @HostBinding('class.hc-pick-pane') useDefaultClass = true;
 
@@ -136,9 +148,15 @@ export class PickPaneComponent implements OnChanges {
         this.dragService.reset(this);
     }
 
-    get selectedItems(): PickOption[] { return this.itemsList.selectedItems; }
-    get selectedValues(): unknown { return this.selectedItems.map(x => x.value); }
-    get hasSelectedItems(): boolean { return this.selectedItems.length > 0; }
+    get selectedItems(): PickOption[] {
+        return this.itemsList.selectedItems;
+    }
+    get selectedValues(): unknown {
+        return this.selectedItems.map(x => x.value);
+    }
+    get hasSelectedItems(): boolean {
+        return this.selectedItems.length > 0;
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.items) {
@@ -199,7 +217,9 @@ export class PickPaneComponent implements OnChanges {
 
     /** Focus on the first item in the list, scrolling as needed */
     private _jumpFocusToFirstItem() {
-        if (this.itemsList.filteredItems.length === 0) { return; }
+        if (this.itemsList.filteredItems.length === 0) {
+            return;
+        }
         this.itemsList.resetListSelectionState();
         this._selectAndScrollToItem(this.itemsList.markedItem);
     }
@@ -212,7 +232,9 @@ export class PickPaneComponent implements OnChanges {
             this._scrollToCustomItem();
         } else {
             this.itemsList.markNextItem(isDown);
-            if (!$event.shiftKey && !$event.ctrlKey) { this.itemsList.clearSelected(); }
+            if (!$event.shiftKey && !$event.ctrlKey) {
+                this.itemsList.clearSelected();
+            }
             const nextItem = this.itemsList.markedItem;
             this._selectAndScrollToItem(nextItem);
         }
@@ -221,7 +243,9 @@ export class PickPaneComponent implements OnChanges {
 
     /** Selects a given item, scrolling to keep it in the viewport as needed */
     private _selectAndScrollToItem(item: PickOption) {
-        if (!item) { return; }
+        if (!item) {
+            return;
+        }
         this.itemsList.select(item);
         this._scrollToMarked();
     }
@@ -244,10 +268,16 @@ export class PickPaneComponent implements OnChanges {
      * Regular click clears current selection and selects anew
      */
     onItemClick($event: MouseEvent, item: PickOption): void {
-        if (!item) { return; }
+        if (!item) {
+            return;
+        }
         const lastMarkedIndex = this.itemsList.markedIndex;
-        if (!$event.ctrlKey) { this.itemsList.clearSelected(); }
-        if (!$event.shiftKey) { this.itemsList.markItem(item); }
+        if (!$event.ctrlKey) {
+            this.itemsList.clearSelected();
+        }
+        if (!$event.shiftKey) {
+            this.itemsList.markItem(item);
+        }
 
         if ($event.shiftKey) {
             const indexOfItemClicked = this.itemsList.filteredItems.findIndex(i => i === item);
@@ -255,7 +285,9 @@ export class PickPaneComponent implements OnChanges {
             const end = Math.max(lastMarkedIndex, indexOfItemClicked);
             for (let i = start; i <= end; i++) {
                 // don't shift + click select a group, as it will select all its children, and that's not likely what is wanted
-                if (this.itemsList.filteredItems[i].isParent) { continue; }
+                if (this.itemsList.filteredItems[i].isParent) {
+                    continue;
+                }
                 this.select(this.itemsList.filteredItems[i]);
             }
         } else {
@@ -271,20 +303,26 @@ export class PickPaneComponent implements OnChanges {
 
     /** Selects items as needed, and moves options to the companion pane */
     onItemDoubledClicked($event: MouseEvent, item: PickOption): void {
-        if (!$event.shiftKey) { this.itemsList.clearSelected(); }
+        if (!$event.shiftKey) {
+            this.itemsList.clearSelected();
+        }
         this.select(item);
         this.triggerMove.emit();
     }
 
     /** If not already selected, selects a given item if that option or the entire pane are not disabled */
     select(item: PickOption): void {
-        if (!item || item.disabled || this.disabled || item.selected) { return; }
+        if (!item || item.disabled || this.disabled || item.selected) {
+            return;
+        }
         this.itemsList.select(item);
     }
 
     /** If not already unselected, unselects a given item if that option or the entire pane are not disabled */
     unselect(item: PickOption): void {
-        if (!item || item.disabled || this.disabled || !item.selected) { return; }
+        if (!item || item.disabled || this.disabled || !item.selected) {
+            return;
+        }
         this.itemsList.unselect(item);
     }
 
@@ -318,7 +356,11 @@ export class PickPaneComponent implements OnChanges {
         }
 
         if (isPromise(customItem)) {
-            (customItem as Promise<unknown>).then(i => this._selectNewCustomOption(i)).catch((e) => { console.error(e); });
+            (customItem as Promise<unknown>)
+                .then(i => this._selectNewCustomOption(i))
+                .catch(e => {
+                    console.error(e);
+                });
         } else if (customItem) {
             this._selectNewCustomOption(customItem);
         }
@@ -334,18 +376,24 @@ export class PickPaneComponent implements OnChanges {
 
     /** Used in the ngFor of the list to maximize DOM reusage */
     trackByOption = (_: number, item: PickOption): PickOption => {
-        if (this.trackByFn) { return this.trackByFn<PickOption>(_, item.value as PickOption); }
+        if (this.trackByFn) {
+            return this.trackByFn<PickOption>(_, item.value as PickOption);
+        }
         return item;
     };
 
     /** If true, the "add custom" option should be displayed */
     get showAddCustomOption(): boolean | AddCustomItemFn | undefined {
-        if (!this._validTerm) { return false; }
+        if (!this._validTerm) {
+            return false;
+        }
         const term = this.searchTerm.toLowerCase().trim();
-        return this.addCustomItem &&
+        return (
+            this.addCustomItem &&
             !this.itemsList.items.some(x => x.label?.toLowerCase() === term) &&
             !this._companionPane.itemsList.items.some(x => x.label?.toLowerCase() === term) &&
-            !this.loading;
+            !this.loading
+        );
     }
 
     /** If true, the "add custom" option currently has focus */
@@ -356,9 +404,11 @@ export class PickPaneComponent implements OnChanges {
     /** If true, the empty pane message should be displayed */
     get showNoItemsFound(): boolean | string {
         const empty = this.itemsList.filteredItems.length === 0;
-        return ((empty && !this._isUsingSearchSubject && !this.loading) ||
-            (empty && this._isUsingSearchSubject && this._validTerm && !this.loading)) &&
-            !this.showAddCustomOption;
+        return (
+            ((empty && !this._isUsingSearchSubject && !this.loading) ||
+                (empty && this._isUsingSearchSubject && this._validTerm && !this.loading)) &&
+            !this.showAddCustomOption
+        );
     }
 
     /** Called when user begins typing in the searchbox */
@@ -369,15 +419,21 @@ export class PickPaneComponent implements OnChanges {
     /** Called when user finsihes typing in the searchbox */
     _onCompositionEnd(term: string): void {
         this._isComposing = false;
-        if (this.searchWhileComposing) { return; }
+        if (this.searchWhileComposing) {
+            return;
+        }
         this.filter(term);
     }
 
     /** Search the items in the list */
     filter(term: string = this.searchTerm): void {
-        if (this._isComposing && !this.searchWhileComposing) { return; }
+        if (this._isComposing && !this.searchWhileComposing) {
+            return;
+        }
 
-        if (this._isUsingSearchSubject && !term || this.searchTerm === term) { this.itemsList.resetFilteredItems(); }
+        if ((this._isUsingSearchSubject && !term) || this.searchTerm === term) {
+            this.itemsList.resetFilteredItems();
+        }
         if (this._isUsingSearchSubject && (this._validTerm || this.externalSearchTermMinLength === 0)) {
             this.externalSearchSubject.next(term);
             this.itemsList.updateCounts();
@@ -393,7 +449,7 @@ export class PickPaneComponent implements OnChanges {
 
     /** Force change detection to refresh the UI */
     detectChanges(): void {
-        if (!(this._cd)['destroyed']) {
+        if (!this._cd['destroyed']) {
             this._cd.detectChanges();
         }
     }
@@ -418,8 +474,10 @@ export class PickPaneComponent implements OnChanges {
 
     /** Clear out search term if any and refresh the list */
     clearSearch(): void {
-        if (!this.searchTerm) { return; }
-        this._changeSearch("");
+        if (!this.searchTerm) {
+            return;
+        }
+        this._changeSearch('');
         this.itemsList.resetFilteredItems();
     }
 
@@ -445,9 +503,12 @@ export class PickPaneComponent implements OnChanges {
     private _nextItemIsCustomItem(nextStepIsDown: boolean): boolean {
         const nextStep = nextStepIsDown ? 1 : -1;
         const nextIndex = this.itemsList.markedIndex + nextStep;
-        return !!this.addCustomItem && !!this.searchTerm
-            && this.itemsList.markedItem
-            && (nextIndex < 0 || nextIndex === this.itemsList.filteredItems.length);
+        return (
+            !!this.addCustomItem &&
+            !!this.searchTerm &&
+            this.itemsList.markedItem &&
+            (nextIndex < 0 || nextIndex === this.itemsList.filteredItems.length)
+        );
     }
 
     /** Returns true if external search is being used */

@@ -17,12 +17,12 @@ import {
     OnDestroy,
     ChangeDetectorRef
 } from '@angular/core';
-import {ControlValueAccessor, NgForm, FormGroupDirective, NgControl} from '@angular/forms';
-import {Subject} from 'rxjs';
-import {delay, takeUntil} from 'rxjs/operators';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {parseBooleanAttribute} from '../util';
-import {SelectService, _buildValueString} from './select.service';
+import { ControlValueAccessor, NgForm, FormGroupDirective, NgControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { parseBooleanAttribute } from '../util';
+import { SelectService, _buildValueString } from './select.service';
 
 let uniqueId = 1;
 
@@ -36,7 +36,7 @@ export class SelectChangeEvent {
     templateUrl: 'select.component.html',
     styleUrls: ['select.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [SelectService, {provide: HcFormControlComponent, useExisting: forwardRef(() => SelectComponent)}]
+    providers: [SelectService, { provide: HcFormControlComponent, useExisting: forwardRef(() => SelectComponent) }]
 })
 export class SelectComponent extends HcFormControlComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
     private _uniqueInputId = `hc-select-${uniqueId++}`;

@@ -17,17 +17,17 @@ import {
     OnChanges,
     HostBinding
 } from '@angular/core';
-import {HcDatepickerIntl} from '../datepicker-intl';
-import {ComponentPortal, Portal, ComponentType} from '@angular/cdk/portal';
-import {createMissingDateImplError} from '../datetime/datepicker-errors';
-import {HC_DATE_FORMATS, HcDateFormats, D} from '../datetime/date-formats';
-import {DateAdapter} from '../datetime/date-adapter';
-import {Subject, Subscription} from 'rxjs';
-import {yearsPerPage, MultiYearViewComponent} from '../multi-year-view/multi-year-view.component';
-import {HcCalendarCellCssClasses} from '../calendar-body/calendar-body.component';
-import {MonthViewComponent} from '../month-view/month-view.component';
-import {YearViewComponent} from '../year-view/year-view.component';
-import {FormControl} from '@angular/forms';
+import { HcDatepickerIntl } from '../datepicker-intl';
+import { ComponentPortal, Portal, ComponentType } from '@angular/cdk/portal';
+import { createMissingDateImplError } from '../datetime/datepicker-errors';
+import { HC_DATE_FORMATS, HcDateFormats, D } from '../datetime/date-formats';
+import { DateAdapter } from '../datetime/date-adapter';
+import { Subject, Subscription } from 'rxjs';
+import { yearsPerPage, MultiYearViewComponent } from '../multi-year-view/multi-year-view.component';
+import { HcCalendarCellCssClasses } from '../calendar-body/calendar-body.component';
+import { MonthViewComponent } from '../month-view/month-view.component';
+import { YearViewComponent } from '../year-view/year-view.component';
+import { FormControl } from '@angular/forms';
 
 /**
  * Possible views for the calendar.
@@ -126,7 +126,7 @@ export class CalendarHeaderComponent {
         const selectedDate = this._dateAdapter.getDate(this._dateAdapter.today());
         const todayDate = this._dateAdapter.createDate(selectedYear, selectedMonth, selectedDate);
 
-        if ( this.calendar.mode !== 'date' ) {
+        if (this.calendar.mode !== 'date') {
             todayDate.setHours(this._dateAdapter.today().getHours());
             todayDate.setMinutes(this._dateAdapter.today().getMinutes());
         }

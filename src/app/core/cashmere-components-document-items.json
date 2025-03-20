@@ -1,8 +1,8 @@
 {
     "$schema": "./document-items.schema.json",
-    "accordion": {"name": "Accordion", "category": "layout", "examples": ["accordion-overview"]},
-    "banner": {"name": "Banner", "category": "popups", "examples": ["banner-overview"]},
-    "breadcrumbs": {"name": "Breadcrumbs", "category": "nav", "examples": [], "usageDoc": true},
+    "accordion": { "name": "Accordion", "category": "layout", "examples": ["accordion-overview"] },
+    "banner": { "name": "Banner", "category": "popups", "examples": ["banner-overview"] },
+    "breadcrumbs": { "name": "Breadcrumbs", "category": "nav", "examples": [], "usageDoc": true },
     "button": {
         "name": "Button",
         "category": "buttons",
@@ -21,34 +21,34 @@
         "examples": ["checkbox-align", "checkbox-forms", "checkbox-indeterminate", "checkbox-standard"],
         "usageDoc": true
     },
-    "chip": {"name": "Chip", "category": "buttons", "examples": ["chip-action", "chip-basic", "chip-row", "chip-singlerow"]},
-    "date-range": {"name": "DateRange", "category": "forms", "examples": ["date-range", "date-range-time"], "usageDoc": true},
+    "chip": { "name": "Chip", "category": "buttons", "examples": ["chip-action", "chip-basic", "chip-row", "chip-singlerow"] },
+    "date-range": { "name": "DateRange", "category": "forms", "examples": ["date-range", "date-range-time"], "usageDoc": true },
     "datepicker": {
         "name": "Datepicker",
         "category": "forms",
         "examples": ["datepicker", "datepicker-selected-value", "datepicker-sugar"],
         "usageDoc": true
     },
-    "drawer": {"name": "Drawer", "category": "layout", "examples": ["drawer-basic", "drawer-menu", "drawer-overlay", "drawer-side"]},
-    "drag-list": {"name": "Drag List", "category": "layout", "examples": ["drag-list-overview"]},
-    "ellipsis-pipe": {"name": "Ellipsis", "category": "pipes", "examples": ["ellipsis-overview"], "hideApi": true, "usageDoc": true},
-    "file-size-pipe": {"name": "File Size", "category": "pipes", "examples": ["file-size-overview"], "hideApi": true, "usageDoc": true},
+    "drawer": { "name": "Drawer", "category": "layout", "examples": ["drawer-basic", "drawer-menu", "drawer-overlay", "drawer-side"] },
+    "drag-list": { "name": "Drag List", "category": "layout", "examples": ["drag-list-overview"] },
+    "ellipsis-pipe": { "name": "Ellipsis", "category": "pipes", "examples": ["ellipsis-overview"], "hideApi": true, "usageDoc": true },
+    "file-size-pipe": { "name": "File Size", "category": "pipes", "examples": ["file-size-overview"], "hideApi": true, "usageDoc": true },
     "form-field": {
         "name": "Form Field",
         "category": "forms",
         "examples": ["form-field-labels", "form-field-overview", "form-field-tight"],
         "usageDoc": true
     },
-    "highlight-pipe": {"name": "Highlight", "category": "pipes", "examples": ["highlight-overview"], "hideApi": true, "usageDoc": true},
-    "icon": {"name": "Icon", "category": "buttons", "examples": ["icon-overview"]},
-    "file-uploader": {"name": "File Uploader", "category": "forms", "examples": ["file-uploader-overview"]},
+    "highlight-pipe": { "name": "Highlight", "category": "pipes", "examples": ["highlight-overview"], "hideApi": true, "usageDoc": true },
+    "icon": { "name": "Icon", "category": "buttons", "examples": ["icon-overview"] },
+    "file-uploader": { "name": "File Uploader", "category": "forms", "examples": ["file-uploader-overview"] },
     "input": {
         "name": "Input",
         "category": "forms",
         "examples": ["input-styles", "input-prefix", "input-required", "input-text-area"],
         "usageDoc": true
     },
-    "list": {"name": "List", "category": "layout", "examples": ["list-overview"]},
+    "list": { "name": "List", "category": "layout", "examples": ["list-overview"] },
     "measurable": {
         "category": "layout",
         "name": "Measurable",
@@ -57,15 +57,21 @@
         "usageDoc": true,
         "hideApi": false
     },
-    "modal": {"name": "Modal", "category": "popups", "examples": ["modal-overview", "modal-simple", "modal-simple-overview"]},
+    "modal": { "name": "Modal", "category": "popups", "examples": ["modal-overview", "modal-simple", "modal-simple-overview"] },
     "multiselect": {
         "name": "Multiselect & Typeahead",
         "category": "forms",
-        "examples": ["multiselect-overview", "multiselect-custom-templates", "multiselect-embed-checkbox", "multiselect-wrapped", "multiselect-pagination"],
+        "examples": [
+            "multiselect-overview",
+            "multiselect-custom-templates",
+            "multiselect-embed-checkbox",
+            "multiselect-wrapped",
+            "multiselect-pagination"
+        ],
         "hideApi": true,
         "usageDoc": true
     },
-    "navbar": {"name": "Navbar", "category": "nav", "examples": ["navbar-overview", "navbar-cobrand"], "usageDoc": true},
+    "navbar": { "name": "Navbar", "category": "nav", "examples": ["navbar-overview", "navbar-cobrand"], "usageDoc": true },
     "instance-switcher": {
         "category": "nav",
         "name": "Instance Switcher",
@@ -131,31 +137,40 @@
         "examples": ["radio-button-standard", "radio-button-disabled", "radio-button-align", "radio-button-forms"],
         "usageDoc": true
     },
-    "release-notes-modal": {"name": "Release Notes Modal", "category": "popups", "examples": ["release-notes-modal"], "usageDoc": true},
-    "scroll-nav": {"name": "ScrollNav", "category": "nav", "examples": ["scroll-nav"]},
+    "release-notes-modal": { "name": "Release Notes Modal", "category": "popups", "examples": ["release-notes-modal"], "usageDoc": true },
+    "scroll-nav": { "name": "ScrollNav", "category": "nav", "examples": ["scroll-nav"] },
     "select": {
         "name": "Select",
         "category": "forms",
         "examples": ["select-standard", "select-forms", "select-placeholder", "select-validation", "select-compare-with"],
         "usageDoc": true
     },
-    "slide-toggle": {"name": "Slide Toggle", "category": "forms", "examples": ["slide-toggle-overview", "slide-toggle-forms"], "usageDoc": false},
-    "sidenav": {"name": "Sidenav", "category": "nav", "examples": ["sidenav", "sidenav-nested-links", "sidenav-tab-group", "sidenav-projection"]},
-    "sort": {"name": "Sort", "category": "table", "examples": [], "usageDoc": true},
-    "column-menu": {"name": "Column Menu", "category": "table", "examples": ["column-menu-basic", "column-menu-advanced"]},
-    "stepper": {"name": "Stepper", "category": "layout", "examples": ["stepper-overview"]},
-    "subnav": {"name": "Subnav", "category": "nav", "examples": ["subnav-overview"]},
+    "slide-toggle": {
+        "name": "Slide Toggle",
+        "category": "forms",
+        "examples": ["slide-toggle-overview", "slide-toggle-forms"],
+        "usageDoc": false
+    },
+    "sidenav": {
+        "name": "Sidenav",
+        "category": "nav",
+        "examples": ["sidenav", "sidenav-nested-links", "sidenav-tab-group", "sidenav-projection"]
+    },
+    "sort": { "name": "Sort", "category": "table", "examples": [], "usageDoc": true },
+    "column-menu": { "name": "Column Menu", "category": "table", "examples": ["column-menu-basic", "column-menu-advanced"] },
+    "stepper": { "name": "Stepper", "category": "layout", "examples": ["stepper-overview"] },
+    "subnav": { "name": "Subnav", "category": "nav", "examples": ["subnav-overview"] },
     "table": {
         "name": "Table",
         "category": "table",
         "examples": ["table-sort", "table-filter", "resizable-columns", "table-sticky", "more-table-styles"],
         "usageDoc": true
     },
-    "tabs": {"name": "Tabs", "category": "layout", "examples": ["tabs-horizontal", "tabs-vertical", "selected-tab-input"]},
-    "tile": {"name": "Tile", "category": "layout", "examples": ["tile-overview"], "usageDoc": true},
-    "toaster": {"name": "Toaster Messages", "category": "popups", "examples": ["toaster-overview"], "usageDoc": true},
-    "typeform-survey": {"name": "Typeform Survey", "category": "popups", "examples": ["typeform-survey-overview"], "usageDoc": true},
-    "app-switcher": {"category": "nav", "name": "App Switcher", "examples": ["navbar-app-switcher"], "usageDoc": true},
+    "tabs": { "name": "Tabs", "category": "layout", "examples": ["tabs-horizontal", "tabs-vertical", "selected-tab-input"] },
+    "tile": { "name": "Tile", "category": "layout", "examples": ["tile-overview"], "usageDoc": true },
+    "toaster": { "name": "Toaster Messages", "category": "popups", "examples": ["toaster-overview"], "usageDoc": true },
+    "typeform-survey": { "name": "Typeform Survey", "category": "popups", "examples": ["typeform-survey-overview"], "usageDoc": true },
+    "app-switcher": { "category": "nav", "name": "App Switcher", "examples": ["navbar-app-switcher"], "usageDoc": true },
     "env-switcher": {
         "category": "nav",
         "name": "Environment Switcher",

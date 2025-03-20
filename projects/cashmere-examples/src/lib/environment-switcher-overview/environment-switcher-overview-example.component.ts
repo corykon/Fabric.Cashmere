@@ -1,6 +1,6 @@
-import {HcIcon, IMetadataEnvironment} from '@healthcatalyst/cashmere';
-import {Component} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { HcIcon, IMetadataEnvironment } from '@healthcatalyst/cashmere';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'hc-environment-switcher-overview-example',
@@ -9,8 +9,8 @@ import {FormControl} from "@angular/forms";
 })
 export class EnvironmentSwitcherOverviewExampleComponent {
     username = 'Christine K.';
-    navIcon: HcIcon = {fontSet: 'hc-icons', fontIcon: 'hci-catalyst-logo', fontSize: 37};
-    listHeader: FormControl = new FormControl("Environments");
+    navIcon: HcIcon = { fontSet: 'hc-icons', fontIcon: 'hci-catalyst-logo', fontSize: 37 };
+    listHeader: FormControl = new FormControl('Environments');
 
     selectedEnvironments = [1234];
     environmentOptions: Array<IMetadataEnvironment> = [
@@ -45,17 +45,17 @@ export class EnvironmentSwitcherOverviewExampleComponent {
     envSwitcherDisabled = false;
     loading = false;
     loadFailed = false;
-    eventOutput: {eventName: string; data: unknown};
+    eventOutput: { eventName: string; data: unknown };
 
     onUpdateEnvironments($event: Array<IMetadataEnvironment>): void {
-        this.eventOutput = {eventName: 'updateEnvironments', data: $event};
+        this.eventOutput = { eventName: 'updateEnvironments', data: $event };
     }
 
     onOpenInNewTab($event: IMetadataEnvironment): void {
-        this.eventOutput = {eventName: 'openInNewTab', data: $event};
+        this.eventOutput = { eventName: 'openInNewTab', data: $event };
     }
 
     onReloadEnvironments(): void {
-        this.eventOutput = {eventName: 'reloadEnvironments', data: ''};
+        this.eventOutput = { eventName: 'reloadEnvironments', data: '' };
     }
 }

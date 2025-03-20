@@ -1,9 +1,9 @@
-import {Directive, HostBinding, ContentChildren, AfterContentInit, OnDestroy} from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {HcPopoverAnchorDirective} from './popover-anchor.directive';
-import {Subject, Subscription} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {MenuItemDirective} from './menu-item.directive';
+import { Directive, HostBinding, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
+import type { QueryList } from '@angular/core';
+import { HcPopoverAnchorDirective } from './popover-anchor.directive';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { MenuItemDirective } from './menu-item.directive';
 
 /** The `hcMenu` directive provides a standard way of displaying a series of selectable elements in a popover. */
 @Directive({
@@ -33,7 +33,7 @@ export class MenuDirective implements AfterContentInit, OnDestroy {
         this._subMenus.forEach((anchor: HcPopoverAnchorDirective) => {
             anchor._hasSubmenu = true;
             // Force the trigger on any menu item with a submenu to a hover trigger
-            anchor.trigger = "hover";
+            anchor.trigger = 'hover';
         });
 
         // Subscribe to submenu mouseenter events so we can close any other submenus currently open

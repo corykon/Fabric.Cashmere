@@ -15,7 +15,7 @@ import {
     ViewEncapsulation,
     AfterViewInit,
     OnDestroy,
-    ChangeDetectorRef, 
+    ChangeDetectorRef,
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NgForm, FormGroupDirective, NgControl } from '@angular/forms';
@@ -27,20 +27,22 @@ import { Subject } from 'rxjs';
 let nextCheckboxId = 1;
 
 export class CheckboxChangeEvent {
-    constructor(public source: CheckboxComponent, public checked: boolean) { }
+    constructor(public source: CheckboxComponent, public checked: boolean) {}
 }
 
 @Component({
     selector: 'hc-checkbox-group',
     styleUrls: ['./checkbox.component.scss'],
-    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => CheckboxGroup)}],
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => CheckboxGroup) }],
     exportAs: 'hcCheckboxGroup',
     template: `
-        <hc-checkbox *ngIf="!_disableParent" [checked]="_groupState" [indeterminate]="_isIndeterminate" (change)="toggleCheckAll()">{{_parentLabel}}</hc-checkbox>
+        <hc-checkbox *ngIf="!_disableParent" [checked]="_groupState" [indeterminate]="_isIndeterminate" (change)="toggleCheckAll()">
+            {{ _parentLabel }}
+        </hc-checkbox>
         <div [class.hc-checkbox-children-group]="!_disableParent">
             <ng-content></ng-content>
         </div>
-        `,
+    `
 })
 export class CheckboxGroup extends HcFormControlComponent {
     /** A list of all the checkboxes included in the group */
@@ -48,15 +50,12 @@ export class CheckboxGroup extends HcFormControlComponent {
     private _checkboxesArray: CheckboxComponent[];
 
     _groupState = false;
-    _parentLabel = "Parent Checkbox";
+    _parentLabel = 'Parent Checkbox';
     _disableParent = false;
     _isIndeterminate = true;
 
     /** gets all children and subscribes to their events */
-    @ContentChildren(
-        forwardRef(() => CheckboxComponent),
-        { descendants: false }
-    )
+    @ContentChildren(forwardRef(() => CheckboxComponent), { descendants: false })
     get checkboxes(): QueryList<CheckboxComponent> {
         return this._checkboxes;
     }
@@ -65,9 +64,7 @@ export class CheckboxGroup extends HcFormControlComponent {
             this._checkboxes = value;
             const arr = value.toArray() || [];
             this._checkboxesArray = arr;
-            arr.forEach(c => c.change.pipe(
-                filter(() => this._checkboxesArray === arr)
-            ).subscribe(() => this.updateParentState()));
+            arr.forEach(c => c.change.pipe(filter(() => this._checkboxesArray === arr)).subscribe(() => this.updateParentState()));
         }
     }
 
@@ -117,9 +114,9 @@ export class CheckboxGroup extends HcFormControlComponent {
     /** Function that handles the parent checkbox functionality */
     toggleCheckAll(): void {
         if (this._groupState === true) {
-            this.checkboxes.filter(c => c.checked = false);
+            this.checkboxes.filter(c => (c.checked = false));
         } else {
-            this.checkboxes.filter(c => c.checked = true);
+            this.checkboxes.filter(c => (c.checked = true));
         }
         this.updateParentState();
     }
@@ -130,7 +127,7 @@ export class CheckboxGroup extends HcFormControlComponent {
     templateUrl: './checkbox.component.html',
     styleUrls: ['./checkbox.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => CheckboxComponent)}],
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => CheckboxComponent) }],
     exportAs: 'hcCheckbox'
 })
 export class CheckboxComponent extends HcFormControlComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
@@ -187,7 +184,7 @@ export class CheckboxComponent extends HcFormControlComponent implements Control
     @Output()
     change = new EventEmitter<CheckboxChangeEvent>();
 
-    @ViewChild('checkboxInput', {static: true})
+    @ViewChild('checkboxInput', { static: true })
     _checkboxInput: ElementRef;
 
     @HostBinding('attr.id')
@@ -273,16 +270,16 @@ export class CheckboxComponent extends HcFormControlComponent implements Control
     }
 
     ngAfterViewInit(): void {
-        if ( this._ngControl?.statusChanges ) {
+        if (this._ngControl?.statusChanges) {
             // delay() is necessary to make sure any form or control state changes have been applied before rechecking error states
             this._ngControl.statusChanges.pipe(delay(0), takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
-        if ( this._form ) {
+        if (this._form) {
             this._form.ngSubmit.pipe(takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
 
         /** Monkey patching the markAsTouched function to call error state checking because there is not an event for touched changes */
-        if ( this._ngControl && this._ngControl.control ) {
+        if (this._ngControl && this._ngControl.control) {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             const originalMarkMethod = this._ngControl.control.markAsTouched;
@@ -325,7 +322,7 @@ export class CheckboxComponent extends HcFormControlComponent implements Control
 
     writeValue(value: unknown): void {
         // Prevent the form control from trying to write a value when removing the control
-        if ( this.onChange.name !== 'noop' ) {
+        if (this.onChange.name !== 'noop') {
             this.checked = !!value;
         }
     }

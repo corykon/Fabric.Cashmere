@@ -1,7 +1,7 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {Component, DebugElement} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {ButtonModule} from './button.module';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { ButtonModule } from './button.module';
 
 @Component({
     template: `
@@ -46,12 +46,14 @@ class TestAppReference {
 }
 
 describe('ButtonComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [ButtonModule],
-            declarations: [TestAppComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [ButtonModule],
+                declarations: [TestAppComponent]
+            }).compileComponents();
+        })
+    );
 
     it('should apply class based on buttonStyle property', () => {
         const testApp = new TestAppReference();

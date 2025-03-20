@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TileComponent} from './tile.component';
-import {TileHeaderDirective} from './tile-header.directive';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TileComponent } from './tile.component';
+import { TileHeaderDirective } from './tile-header.directive';
 
 @NgModule({
     imports: [CommonModule],

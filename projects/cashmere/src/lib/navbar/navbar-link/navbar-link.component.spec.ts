@@ -1,9 +1,9 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NavbarLinkComponent} from './navbar-link.component';
-import {RouterModule} from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
-import {Component, ViewChild} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NavbarLinkComponent } from './navbar-link.component';
+import { RouterModule } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({
     selector: `hc-host-component`,
@@ -19,13 +19,15 @@ describe('NavbarLinkComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [RouterModule.forRoot([{ path: '', component: NavbarLinkComponent }], {})],
-            declarations: [NavbarLinkComponent, TestHostComponent],
-            providers: [{provide: APP_BASE_HREF, useValue: '/'}]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [RouterModule.forRoot([{ path: '', component: NavbarLinkComponent }], {})],
+                declarations: [NavbarLinkComponent, TestHostComponent],
+                providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+            }).compileComponents();
+        })
+    );
     beforeEach(() => {
         testHostFixture = TestBed.createComponent(TestHostComponent);
         testHostComponent = testHostFixture.componentInstance;

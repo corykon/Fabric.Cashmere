@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { BackdropComponent } from "./backdrop.component";
-import { BackdropHostDirective } from "./backdrop-host.directive";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BackdropComponent } from './backdrop.component';
+import { BackdropHostDirective } from './backdrop-host.directive';
 
 @NgModule({
     imports: [CommonModule],

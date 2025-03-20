@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'hc-swatch-demo-component',
@@ -27,9 +27,9 @@ export class SwatchDemoComponent {
 
     gradientString(): string {
         let gradString = 'linear-gradient(to right, ';
-        for ( let i=0; i < this.gradient.length; i++ ) {
-            if ( i !== 0 ) {
-                gradString += ' , '; 
+        for (let i = 0; i < this.gradient.length; i++) {
+            if (i !== 0) {
+                gradString += ' , ';
             }
             gradString += this.gradient[i];
         }

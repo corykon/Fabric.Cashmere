@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation, EventEmitter, Output} from '@angular/core';
+import { Component, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { LinkParent, SidenavLink, SidenavLinkClickEvent, SidenavTabGroup } from './sidenav.models';
 import { isDefined } from '../util';
 
@@ -46,7 +46,7 @@ export class SidenavComponent {
     /** True if nested children should be shown if the link is active. Overrides `openChildrenByDefault`. *Defaults to `true`.* */
     @Input() openChildrenWhenActivated = true;
     /** True to show lines of tree structure. *Defaults to `true`.* */
-    @Input() showTreeLines = true
+    @Input() showTreeLines = true;
     /** Collection of objects representing the main links in the sidenav. */
     @Input() set tabs(tabs: SidenavLink[]) {
         this._tabs = tabs;
@@ -106,9 +106,9 @@ export class SidenavComponent {
     @Output() favoriteItemIconClicked = new EventEmitter<SidenavLinkClickEvent>();
 
     /** @docs-private */
-    tabTooltipText = ''
+    tabTooltipText = '';
     /** @docs-private */
-    menuContext: {links?: SidenavLink[], title?: string, titleIco?: string, parent?: LinkParent, isFav: boolean};
+    menuContext: { links?: SidenavLink[]; title?: string; titleIco?: string; parent?: LinkParent; isFav: boolean };
 
     /** Expand the sidebar to full width. */
     open(): void {
@@ -137,36 +137,45 @@ export class SidenavComponent {
     /** @docs-private */
     onTabClick(event: MouseEvent, link: SidenavLink, isMenuHeader = false, isFavorite = false): void {
         const tabTriggersMenu = !isMenuHeader && this.collapsed && link.children?.length > 0 && !link.parent;
-        if (link.disabled || !link.clickable || tabTriggersMenu) { return; }
-        if (isFavorite) { this.onFavoriteClicked(event, link); return; }
-        this.tabClicked.emit({event, link});
+        if (link.disabled || !link.clickable || tabTriggersMenu) {
+            return;
+        }
+        if (isFavorite) {
+            this.onFavoriteClicked(event, link);
+            return;
+        }
+        this.tabClicked.emit({ event, link });
         this.activeTabKey = link.key;
 
         if (link.children?.length > 0 && this.openChildrenWhenActivated) {
             link.open = true;
         }
 
-        if (!link.onClick) { return; }
+        if (!link.onClick) {
+            return;
+        }
         link.onClick(event, link);
     }
 
     /** @docs-private */
     onTabGroupHeaderClick(event: MouseEvent, link: SidenavLink): void {
-        this.tabGroupHeaderClicked.emit({event, link});
+        this.tabGroupHeaderClicked.emit({ event, link });
     }
 
     /** @docs-private */
     onFavoriteClicked(event: MouseEvent, link: SidenavLink): void {
-        this.favoriteClicked.emit({event, link});
+        this.favoriteClicked.emit({ event, link });
 
-        if (!link.onClick) { return; }
+        if (!link.onClick) {
+            return;
+        }
         link.onClick(event, link);
     }
 
     /** @docs-private */
     onFavoriteItemIconClicked(event: MouseEvent, link: SidenavLink): void {
         event.stopPropagation();
-        this.favoriteItemIconClicked.emit({event, link});
+        this.favoriteItemIconClicked.emit({ event, link });
     }
 
     /** @docs-private */
@@ -187,7 +196,7 @@ export class SidenavComponent {
     }
 
     public collapseAllNestedLinks(): void {
-        if(!this.collapsibleChildren) {
+        if (!this.collapsibleChildren) {
             return;
         }
         this.toggleAllNestedLinks(false);

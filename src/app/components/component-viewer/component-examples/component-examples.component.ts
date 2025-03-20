@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ComponentViewerComponent} from '../component-viewer.component';
+import { Component } from '@angular/core';
+import { ComponentViewerComponent } from '../component-viewer.component';
 
 @Component({
     templateUrl: 'component-examples.component.html',

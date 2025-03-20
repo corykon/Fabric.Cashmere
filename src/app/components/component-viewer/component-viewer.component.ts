@@ -15,7 +15,7 @@ export class ComponentViewerComponent implements AfterViewInit {
 
     @ViewChild('tabSet')
     tabSetRef: TabSetComponent;
-    
+
     @Input()
     get docItem(): DocItem | undefined {
         return this._docItem;
@@ -40,16 +40,16 @@ export class ComponentViewerComponent implements AfterViewInit {
     }
 
     selectFirstTab(): void {
-        if ( this.tabSetRef ) {
+        if (this.tabSetRef) {
             let selected = 0;
-            if ( this.examplesHidden && !this.apiHidden ) {
+            if (this.examplesHidden && !this.apiHidden) {
                 selected = 1;
-            } else if ( this.examplesHidden && this.apiHidden ) {
+            } else if (this.examplesHidden && this.apiHidden) {
                 selected = 2;
             }
 
             setTimeout(() => {
-                this.tabSetRef.selectTab( selected );
+                this.tabSetRef.selectTab(selected);
             });
         }
     }

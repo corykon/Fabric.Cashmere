@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
     {
         path: 'results',
-        component: SearchResultsComponent,
+        component: SearchResultsComponent
     }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class SearchResultsRoutesModule { }
+export class SearchResultsRoutesModule {}

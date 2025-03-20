@@ -10,10 +10,6 @@ import { FormControl } from '@angular/forms';
     styleUrls: ['multiselect-embed-checkbox-example.component.scss']
 })
 export class MultiselectEmbedCheckboxExampleComponent {
-    selectedCareTeamRoles = new FormControl([], {nonNullable: true});
-    careTeamRoles = [
-        { name: "Care Team A" },
-        { name: "Care Team B" },
-        { name: "Care Team C" },
-    ];
+    selectedCareTeamRoles = new FormControl([], { nonNullable: true });
+    careTeamRoles = [{ name: 'Care Team A' }, { name: 'Care Team B' }, { name: 'Care Team C' }];
 }

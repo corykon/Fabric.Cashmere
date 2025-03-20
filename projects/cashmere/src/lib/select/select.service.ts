@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 /** Builds a value string to help with matching objects */
 export function _buildValueString(id: string | null, value: any): string {

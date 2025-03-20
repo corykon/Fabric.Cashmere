@@ -1,4 +1,4 @@
-import {Directive, HostBinding, ElementRef, HostListener, Output, EventEmitter} from '@angular/core';
+import { Directive, HostBinding, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 
 /** Use `hcMenuItem` for a selectable item in an hcMenu. */
 @Directive({

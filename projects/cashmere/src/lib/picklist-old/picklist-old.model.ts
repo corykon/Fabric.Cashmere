@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 /**
  * @type
@@ -91,7 +91,7 @@ export class PicklistSettings implements IPicklistSettings {
     public leftHeaderText = 'Available';
     public rightHeaderText = 'Selected';
     public sort = 'none';
-    public selected = {values: new Array<IValueOption>(), valueSets: new Array<IValueSetOption>()}; // options selected in modal
+    public selected = { values: new Array<IValueOption>(), valueSets: new Array<IValueSetOption>() }; // options selected in modal
     public options = new PicklistOptionsSource(); // options available for choosing
 }
 

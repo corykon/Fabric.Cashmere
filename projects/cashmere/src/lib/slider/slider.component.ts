@@ -1,6 +1,6 @@
-import {Component, forwardRef, HostBinding, Input, ViewEncapsulation} from '@angular/core';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {parseBooleanAttribute} from '../util';
+import { Component, forwardRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { parseBooleanAttribute } from '../util';
 
 let uniqueSliderId = 1;
 
@@ -12,7 +12,7 @@ let uniqueSliderId = 1;
         <ng-content></ng-content>
     `,
     encapsulation: ViewEncapsulation.None,
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => SliderComponent)}]
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => SliderComponent) }]
 })
 export class SliderComponent extends HcFormControlComponent {
     private _uniqueInputId = `hc-slider-${uniqueSliderId++}`;
@@ -37,7 +37,7 @@ export class SliderComponent extends HcFormControlComponent {
         return !this._errorState;
     }
 
-    set valid( val: boolean | string ) {
+    set valid(val: boolean | string) {
         this._errorState = !parseBooleanAttribute(val);
     }
 
@@ -47,7 +47,7 @@ export class SliderComponent extends HcFormControlComponent {
         return this._isRequired;
     }
 
-    set required( requiredVal: boolean | string ) {
+    set required(requiredVal: boolean | string) {
         this._isRequired = parseBooleanAttribute(requiredVal);
     }
 }

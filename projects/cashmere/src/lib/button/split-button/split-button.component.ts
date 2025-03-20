@@ -10,11 +10,11 @@ import {
     ViewChild,
     ContentChildren
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {parseBooleanAttribute, validateInput} from '../../util';
-import {ButtonComponent, supportedSizes} from '../button.component';
-import {HcPopComponent} from '../../pop/popover.component';
-import {MenuItemDirective} from '../../pop/directives/menu-item.directive';
+import type { QueryList } from '@angular/core';
+import { parseBooleanAttribute, validateInput } from '../../util';
+import { ButtonComponent, supportedSizes } from '../button.component';
+import { HcPopComponent } from '../../pop/popover.component';
+import { MenuItemDirective } from '../../pop/directives/menu-item.directive';
 import { supportedColors } from '../../utils/supported-colors';
 
 const supportedStyles = ['primary', 'primary-alt', 'destructive', 'neutral', 'secondary', 'minimal', 'link', 'link-inline'];
@@ -44,7 +44,7 @@ export class SplitButtonComponent {
     @ViewChild('splitMenu')
     _splitMenu: HcPopComponent;
 
-    @ContentChildren(MenuItemDirective, {descendants: true}) _menuItems: QueryList<MenuItemDirective>;
+    @ContentChildren(MenuItemDirective, { descendants: true }) _menuItems: QueryList<MenuItemDirective>;
 
     /** Primary button's click event */
     @Output()
@@ -94,8 +94,8 @@ export class SplitButtonComponent {
 
     set buttonStyle(btnStyle: string) {
         validateInput(btnStyle, supportedColors.concat(supportedStyles), 'buttonStyle', 'SplitButtonComponent');
-        if ( supportedStyles.indexOf(btnStyle) < 0 ) {
-            btnStyle = "button-" + btnStyle;
+        if (supportedStyles.indexOf(btnStyle) < 0) {
+            btnStyle = 'button-' + btnStyle;
         }
         this._style = btnStyle;
     }
@@ -153,7 +153,9 @@ export class SplitButtonComponent {
     /** Manually open the menu */
     openMenu(): void {
         // pass menuItems on to the HcPop instance so that keyboard accessibility works
-        if (this._splitMenu) { this._splitMenu._menuItems = this._menuItems; }
+        if (this._splitMenu) {
+            this._splitMenu._menuItems = this._menuItems;
+        }
 
         this._splitMenu.open();
     }

@@ -10,9 +10,9 @@ import { FormControl } from '@angular/forms';
     styleUrls: ['progress-bar-example.component.scss']
 })
 export class ProgressBarExampleComponent {
-    readonly barIsDeterminate = new FormControl(false, {nonNullable: true});
-    readonly barProgress = new FormControl(25, {nonNullable: true});
-    readonly barColor = new FormControl('blue', {nonNullable: true});
-    readonly hasLabel = new FormControl(false, {nonNullable: true});
-    readonly hasValue = new FormControl(false, {nonNullable: true});
+    readonly barIsDeterminate = new FormControl(false, { nonNullable: true });
+    readonly barProgress = new FormControl(25, { nonNullable: true });
+    readonly barColor = new FormControl('blue', { nonNullable: true });
+    readonly hasLabel = new FormControl(false, { nonNullable: true });
+    readonly hasValue = new FormControl(false, { nonNullable: true });
 }

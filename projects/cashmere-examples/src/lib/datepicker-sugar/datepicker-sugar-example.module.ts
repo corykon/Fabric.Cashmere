@@ -1,10 +1,10 @@
-import {NgModule, Injectable} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PlatformModule} from '@angular/cdk/platform';
-import {CommonModule} from '@angular/common';
-import {NativeDateAdapter, DateAdapter} from '@healthcatalyst/cashmere';
-import {DatepickerSugarExampleComponent} from './datepicker-sugar-example.component';
-import {CashmereModule} from '../cashmere.module';
+import { NgModule, Injectable } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PlatformModule } from '@angular/cdk/platform';
+import { CommonModule } from '@angular/common';
+import { NativeDateAdapter, DateAdapter } from '@healthcatalyst/cashmere';
+import { DatepickerSugarExampleComponent } from './datepicker-sugar-example.component';
+import { CashmereModule } from '../cashmere.module';
 import * as sugar from 'sugar';
 
 @Injectable()

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
-import {getControlMissing, HcFormFieldComponent} from './hc-form-field.component';
-import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
-import {InputModule} from '../input/input.module';
-import {FormFieldModule} from '../form-field/hc-form-field.module';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {By} from '@angular/platform-browser';
+import { getControlMissing, HcFormFieldComponent } from './hc-form-field.component';
+import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
+import { InputModule } from '../input/input.module';
+import { FormFieldModule } from '../form-field/hc-form-field.module';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('HcFormFieldComponent', () => {
     let fixture: ComponentFixture<unknown>;
@@ -72,7 +72,6 @@ describe('HcFormFieldComponent', () => {
 
             expect(labelElement.textContent).toMatch(/^hola$/);
         });
-
     });
 
     describe('validation', () => {
@@ -143,7 +142,7 @@ class InputMissingHcInput {}
     template: `
         <hc-form-field>
             <hc-label>Form Control Label:</hc-label>
-            <input hcInput [formControl]="formControl" #inputElement/>
+            <input hcInput [formControl]="formControl" #inputElement />
             <hc-error>Input is required</hc-error>
         </hc-form-field>
     `
@@ -151,6 +150,6 @@ class InputMissingHcInput {}
 class InputWithFormControl {
     formControl = new FormControl('', Validators.required);
 
-    @ViewChild('inputElement', {static: false})
+    @ViewChild('inputElement', { static: false })
     inputElement: ElementRef;
 }

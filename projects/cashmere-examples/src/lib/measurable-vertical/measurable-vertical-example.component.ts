@@ -1,5 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    HostListener,
+    OnDestroy,
+    QueryList,
+    ViewChild,
+    ViewChildren
+} from '@angular/core';
 import { HcPopoverAnchorDirective, MeasurableComponent, MeasurableService } from '@healthcatalyst/cashmere';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -55,9 +65,7 @@ export class MeasurableVerticalExampleComponent implements AfterViewInit, OnDest
     containerRef: ElementRef;
 
     ngAfterViewInit(): void {
-        this.buttonComponents.changes.pipe(
-            takeUntil(this.unsubscribe$)
-        ).subscribe(() => this.refreshButtons());
+        this.buttonComponents.changes.pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.refreshButtons());
     }
 
     @HostListener('window:resize')
@@ -82,10 +90,7 @@ export class MeasurableVerticalExampleComponent implements AfterViewInit, OnDest
         this.ref.detectChanges();
     }
 
-    constructor(
-        private measurableService: MeasurableService,
-        private ref: ChangeDetectorRef
-    ) {}
+    constructor(private measurableService: MeasurableService, private ref: ChangeDetectorRef) {}
 
     ngOnDestroy(): void {
         this.unsubscribe$.next();

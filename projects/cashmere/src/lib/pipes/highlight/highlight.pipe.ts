@@ -1,4 +1,4 @@
-import {PipeTransform, Pipe} from '@angular/core';
+import { PipeTransform, Pipe } from '@angular/core';
 
 @Pipe({
     name: 'highlight',
@@ -17,11 +17,11 @@ export class HighlightPipe implements PipeTransform {
                 .join('|');
             const regex = new RegExp(pattern, 'gi');
 
-            if ( preserveHTML ) {
+            if (preserveHTML) {
                 const parser = new DOMParser();
                 const htmlDoc = parser.parseFromString(text, 'text/html');
 
-                this.searchChildren( htmlDoc.children[0].children[1], regex );
+                this.searchChildren(htmlDoc.children[0].children[1], regex);
                 return this.reverseEscapeTags(htmlDoc.children[0].children[1].innerHTML);
             } else {
                 return this.escapeTags(text).replace(regex, match => `<span class="hc-text-highlight">${match}</span>`);
@@ -31,11 +31,11 @@ export class HighlightPipe implements PipeTransform {
         }
     }
 
-    searchChildren( parent: ChildNode, regex: RegExp ): void {
-        if( parent.childNodes.length > 0 ){
-            parent.childNodes.forEach( child => this.searchChildren( child, regex ) );
+    searchChildren(parent: ChildNode, regex: RegExp): void {
+        if (parent.childNodes.length > 0) {
+            parent.childNodes.forEach(child => this.searchChildren(child, regex));
         } else {
-            if( parent.nodeValue ) {
+            if (parent.nodeValue) {
                 parent.nodeValue = parent.nodeValue.replace(regex, match => `<span class="hc-text-highlight">${match}</span>`);
             }
         }
@@ -45,7 +45,7 @@ export class HighlightPipe implements PipeTransform {
         return (input || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    reverseEscapeTags( input: string ): string {
+    reverseEscapeTags(input: string): string {
         return (input || '').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
     }
 }

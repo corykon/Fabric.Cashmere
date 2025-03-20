@@ -1,7 +1,7 @@
-import {OverlayRef} from '@angular/cdk/overlay';
-import {HcToastComponent} from './hc-toast.component';
-import {Subject} from 'rxjs';
-import {filter, take} from 'rxjs/operators';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { HcToastComponent } from './hc-toast.component';
+import { Subject } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
 import { Input, Injectable } from '@angular/core';
 
 @Injectable()

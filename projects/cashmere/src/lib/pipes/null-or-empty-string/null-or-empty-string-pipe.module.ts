@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {NullOrEmptyStringPipe} from './null-or-empty-string.pipe';
+import { NgModule } from '@angular/core';
+import { NullOrEmptyStringPipe } from './null-or-empty-string.pipe';
 
 @NgModule({
     declarations: [NullOrEmptyStringPipe],

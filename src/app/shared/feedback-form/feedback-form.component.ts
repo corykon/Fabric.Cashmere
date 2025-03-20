@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NavigationEnd, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {HcToastOptions, HcToasterService} from '@healthcatalyst/cashmere';
-import {environment} from '../../../environments/environment';
+import { HcToastOptions, HcToasterService } from '@healthcatalyst/cashmere';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'hc-feedback-form',
@@ -59,37 +59,39 @@ export class FeedbackFormComponent implements OnInit, OnDestroy {
 
         let headers = new HttpHeaders();
         headers = headers.append('Content-Type', 'application/json');
-        const options = {headers: headers};
+        const options = { headers: headers };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const postSub = this.httpClient.post<any>( environment.productCatalog.url + '/feedback.add',
-            {
-                source: 'Cashmere',
-                url: this.router.url,
-                helpful: this.feedbackForm.controls.helpfulRating.value === 'Yes',
-                email: this.feedbackForm.controls.yourEmail.value ? this.feedbackForm.controls.yourEmail.value : '',
-                suggestions: this.feedbackForm.controls.yourSuggestions.value ? this.feedbackForm.controls.yourSuggestions.value : '',
-                date: new Date()
-            },
-            options
-        )
-        .subscribe({
-            next: () => {
-                this.thankYouMsg = true;
-                this.feedbackForm.reset();
-                postSub.unsubscribe();
-            },
-            error: msg => {
-                const options: HcToastOptions = {
-                    header: 'Submit Failed',
-                    body: "Unable to submit feedback request. Try again later.",
-                    type: 'alert',
-                    position: 'bottom-right'
-                };
-                this.toasterService.addToast(options);
-                console.log( msg );
-                postSub.unsubscribe();
-            }
-        });
+        const postSub = this.httpClient
+            .post<any>(
+                environment.productCatalog.url + '/feedback.add',
+                {
+                    source: 'Cashmere',
+                    url: this.router.url,
+                    helpful: this.feedbackForm.controls.helpfulRating.value === 'Yes',
+                    email: this.feedbackForm.controls.yourEmail.value ? this.feedbackForm.controls.yourEmail.value : '',
+                    suggestions: this.feedbackForm.controls.yourSuggestions.value ? this.feedbackForm.controls.yourSuggestions.value : '',
+                    date: new Date()
+                },
+                options
+            )
+            .subscribe({
+                next: () => {
+                    this.thankYouMsg = true;
+                    this.feedbackForm.reset();
+                    postSub.unsubscribe();
+                },
+                error: msg => {
+                    const options: HcToastOptions = {
+                        header: 'Submit Failed',
+                        body: 'Unable to submit feedback request. Try again later.',
+                        type: 'alert',
+                        position: 'bottom-right'
+                    };
+                    this.toasterService.addToast(options);
+                    console.log(msg);
+                    postSub.unsubscribe();
+                }
+            });
     }
 
     ngOnDestroy(): void {

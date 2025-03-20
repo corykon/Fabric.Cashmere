@@ -1,7 +1,7 @@
-import {ModalOverlayComponent} from './modal-overlay.component';
-import {ComponentRef, EventEmitter} from '@angular/core';
-import {ModalWindowComponent} from './modal-window.component';
-import {Subject, Observable} from 'rxjs';
+import { ModalOverlayComponent } from './modal-overlay.component';
+import { ComponentRef, EventEmitter } from '@angular/core';
+import { ModalWindowComponent } from './modal-window.component';
+import { Subject, Observable } from 'rxjs';
 
 export class HcModal<T> {
     /** Allows direct access to the component used to create the modal. Null when TemplateRef is used */

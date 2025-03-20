@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 import { ButtonToggleComponent } from './button-toggle.component';
 
-
 @NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [ButtonToggleComponent, ButtonToggleGroupComponent],

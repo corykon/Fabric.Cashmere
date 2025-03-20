@@ -51,7 +51,7 @@ export class SidenavLink implements LinkParent {
 
     /** Text or markup to be inserted into a badge.
      * **WARNING:** You are responsible to sanitize any unsafe user input.
-    */
+     */
     public badgeHTML: string;
     /** Select a valid cashmere color for the badge background color (from the primary, secondary, or neutral palette. eg 'blue', 'slate-gray-300', or 'light-pink') */
     public badgeColor = 'slate-gray-200';
@@ -91,7 +91,7 @@ export class SidenavTabGroup implements LinkParent {
     constructor(partial: Partial<SidenavTabGroup>) {
         Object.assign(this, partial);
         this.hasNestedLinks = this.children.some(child => child.children?.length > 0);
-        this.children?.forEach(child => child.parent = this);
+        this.children?.forEach(child => (child.parent = this));
     }
 }
 

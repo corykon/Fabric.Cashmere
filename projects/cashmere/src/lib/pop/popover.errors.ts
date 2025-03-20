@@ -1,4 +1,4 @@
-import {VALID_HORIZ_ALIGN, VALID_VERT_ALIGN, VALID_SCROLL, VALID_TRIGGER} from './types';
+import { VALID_HORIZ_ALIGN, VALID_VERT_ALIGN, VALID_SCROLL, VALID_TRIGGER } from './types';
 
 export function getInvalidPopoverError(): Error {
     return Error('HcPopoverAnchorDirective must be provided an HcPopover component instance.');

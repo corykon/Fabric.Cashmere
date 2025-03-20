@@ -1,12 +1,12 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BrowserModule, By} from '@angular/platform-browser';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ActiveModal} from './active-modal';
-import {ModalService} from './modal.service';
-import {CommonModule} from '@angular/common';
-import {DebugElement} from '@angular/core';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {ModalBodyComponent} from './modal-body.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule, By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActiveModal } from './active-modal';
+import { ModalService } from './modal.service';
+import { CommonModule } from '@angular/common';
+import { DebugElement } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModalBodyComponent } from './modal-body.component';
 
 describe('hc-modal-body', () => {
     let bodyComponent: ModalBodyComponent;

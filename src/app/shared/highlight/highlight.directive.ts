@@ -1,5 +1,5 @@
-import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
-import {highlightElement} from "highlight.js";
+import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
+import { highlightElement } from 'highlight.js';
 
 @Directive({
     selector: '[hcHighlight]'

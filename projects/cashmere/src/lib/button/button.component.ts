@@ -1,8 +1,18 @@
-import {ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Renderer2, ViewEncapsulation} from '@angular/core';
-import {parseBooleanAttribute, validateInput, hcClassify} from '../util';
-import {supportedColors} from '../utils/supported-colors';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { parseBooleanAttribute, validateInput, hcClassify } from '../util';
+import { supportedColors } from '../utils/supported-colors';
 
-export const supportedStyles = ['primary', 'primary-alt', 'destructive', 'neutral', 'secondary', 'minimal', 'link', 'link-inline', 'pagination'];
+export const supportedStyles = [
+    'primary',
+    'primary-alt',
+    'destructive',
+    'neutral',
+    'secondary',
+    'minimal',
+    'link',
+    'link-inline',
+    'pagination'
+];
 export const supportedSizes = ['sm', 'md', 'lg'];
 const buttonAttributes = ['hc-icon-button', 'hc-button'];
 
@@ -30,8 +40,8 @@ export class ButtonComponent {
 
     set buttonStyle(btnStyle: string) {
         validateInput(btnStyle, supportedColors.concat(supportedStyles), 'buttonStyle', 'ButtonComponent');
-        if ( supportedStyles.indexOf(btnStyle) < 0 ) {
-            btnStyle = "button-" + btnStyle;
+        if (supportedStyles.indexOf(btnStyle) < 0) {
+            btnStyle = 'button-' + btnStyle;
         }
         this.setHostClass(this._style, btnStyle);
         this._style = btnStyle;
@@ -61,7 +71,7 @@ export class ButtonComponent {
 
     @HostBinding('attr.disabled')
     get _disabledAttr(): string | null {
-        return this.disabled ? "disabled" : null;
+        return this.disabled ? 'disabled' : null;
     }
 
     constructor(public elementRef: ElementRef, private renderer: Renderer2) {
@@ -88,6 +98,4 @@ export class ButtonComponent {
             this.renderer.addClass(this.elementRef.nativeElement, hcClassify(current));
         }
     }
-
-
 }

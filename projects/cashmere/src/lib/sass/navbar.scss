@@ -1,7 +1,7 @@
-@import "./colors";
-@import "./variables";
-@import "./mixins";
-@import "./icons";
+@import './colors';
+@import './variables';
+@import './mixins';
+@import './icons';
 
 $navbar-color: $charcoal-blue !default;
 $navbar-brand: $primary-brand !default;
@@ -185,7 +185,7 @@ $navbar-fixed-shadow: 0px 2px 6px $shadow;
     margin-left: auto;
 
     @include media-breakpoint-down(sm) {
-        div:nth-child(n+1){
+        div:nth-child(n + 1) {
             display: none;
         }
     }
@@ -239,7 +239,7 @@ $navbar-fixed-shadow: 0px 2px 6px $shadow;
     display: flex;
     align-items: center;
     &::after {
-        content: "|";
+        content: '|';
         font-size: 18px;
         color: $navbar-text;
     }
@@ -427,7 +427,7 @@ $navbar-fixed-shadow: 0px 2px 6px $shadow;
     padding-left: 4px;
 }
 
-@mixin hc-navbar-cobrand( $color ) {
+@mixin hc-navbar-cobrand($color) {
     display: flex;
     align-items: center;
     padding: 0 15px;

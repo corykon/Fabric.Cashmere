@@ -20,10 +20,10 @@ import {
     ContentChild,
     OnDestroy
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {parseBooleanAttribute} from '../util';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {ControlValueAccessor, NgForm, FormGroupDirective, NgControl} from '@angular/forms';
+import type { QueryList } from '@angular/core';
+import { parseBooleanAttribute } from '../util';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { ControlValueAccessor, NgForm, FormGroupDirective, NgControl } from '@angular/forms';
 import { InputDirective } from '../input';
 import { delay, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -33,7 +33,7 @@ let nextUniqueId = 0;
 /** Groups single radio buttons together into a set for which only one can be selected */
 @Directive({
     selector: 'hc-radio-group',
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => RadioGroupDirective), multi: true}],
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => RadioGroupDirective), multi: true }],
     exportAs: 'hcRadioGroup'
 })
 export class RadioGroupDirective extends HcFormControlComponent implements ControlValueAccessor, AfterContentInit, OnDestroy {
@@ -46,10 +46,7 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
     @Output()
     change: EventEmitter<RadioButtonChangeEvent> = new EventEmitter<RadioButtonChangeEvent>();
     /** A list of all the radio buttons included in the group */
-    @ContentChildren(
-        forwardRef(() => RadioButtonComponent),
-        {descendants: true}
-    )
+    @ContentChildren(forwardRef(() => RadioButtonComponent), { descendants: true })
     radios: QueryList<RadioButtonComponent>;
     private _value: any = null;
     private _uniqueName = `hc-radio-group-${nextUniqueId++}`;
@@ -151,7 +148,7 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
     get tight(): boolean {
         return this._tight;
     }
-    set tight(value : boolean) {
+    set tight(value: boolean) {
         this._tight = parseBooleanAttribute(value);
     }
 
@@ -160,7 +157,7 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
     get align(): 'center' | 'top' | 'bottom' {
         return this._align;
     }
-    set align( value: 'center' | 'top' | 'bottom' ) {
+    set align(value: 'center' | 'top' | 'bottom') {
         this._align = value;
         this._markRadiosForCheck();
     }
@@ -185,16 +182,16 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
         this._initialized = true;
         setTimeout(() => this._markRadiosForCheck());
 
-        if ( this._ngControl?.statusChanges ) {
+        if (this._ngControl?.statusChanges) {
             // delay() is necessary to make sure any form or control state changes have been applied before rechecking error states
             this._ngControl.statusChanges.pipe(delay(0), takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
-        if ( this._form ) {
+        if (this._form) {
             this._form.ngSubmit.pipe(takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
 
         /** Monkey patching the markAsTouched function to call error state checking because there is not an event for touched changes */
-        if ( this._ngControl && this._ngControl.control ) {
+        if (this._ngControl && this._ngControl.control) {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             const originalMarkMethod = this._ngControl.control.markAsTouched;
@@ -215,7 +212,7 @@ export class RadioGroupDirective extends HcFormControlComponent implements Contr
 
     writeValue(value: any): void {
         // Prevent the form control from trying to write a value when removing the control
-        if ( this.onChange.name !== 'noop' ) {
+        if (this.onChange.name !== 'noop') {
             this.value = value;
             this._cdRef.markForCheck();
         }
@@ -370,7 +367,7 @@ export class RadioButtonComponent implements OnInit, AfterContentInit, OnDestroy
         return this._required || (this.radioGroup != null && this.radioGroup.required);
     }
 
-    set required(required : boolean) {
+    set required(required: boolean) {
         this._required = parseBooleanAttribute(required);
     }
 
@@ -433,8 +430,8 @@ export class RadioButtonComponent implements OnInit, AfterContentInit, OnDestroy
         } else {
             return this._align;
         }
-    };
-    set align( value: 'center' | 'top' | 'bottom' ) {
+    }
+    set align(value: 'center' | 'top' | 'bottom') {
         this._align = value;
     }
 
@@ -459,14 +456,14 @@ export class RadioButtonComponent implements OnInit, AfterContentInit, OnDestroy
     }
 
     ngAfterContentInit(): void {
-        if ( this._inputChild ) {
-            this._inputChild.focusChanged.pipe(takeUntil(this.unsubscribe$)).subscribe( state => {
-                if ( state ) {
+        if (this._inputChild) {
+            this._inputChild.focusChanged.pipe(takeUntil(this.unsubscribe$)).subscribe(state => {
+                if (state) {
                     this._onInputChange();
                 }
             });
 
-            this._inputChild.inputEvent.pipe(takeUntil(this.unsubscribe$)).subscribe( event => {
+            this._inputChild.inputEvent.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
                 event.stopPropagation();
                 this._onInputChange();
             });
@@ -478,7 +475,7 @@ export class RadioButtonComponent implements OnInit, AfterContentInit, OnDestroy
     }
 
     _onInputChange(event?: Event): void {
-        if ( event ) {
+        if (event) {
             event.stopPropagation();
         }
         const valueChanged = this.radioGroup && this.value !== this.radioGroup.value;

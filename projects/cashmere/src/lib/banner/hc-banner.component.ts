@@ -1,5 +1,5 @@
-import {Component, Input, ViewEncapsulation, EventEmitter, Output} from '@angular/core';
-import {parseBooleanAttribute} from '../util';
+import { Component, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { parseBooleanAttribute } from '../util';
 
 export type BannerType = 'success' | 'info' | 'warning' | 'alert';
 const bannerTypes: BannerType[] = ['success', 'info', 'warning', 'alert'];

@@ -10,14 +10,14 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {EventEmitter, TemplateRef} from '@angular/core';
-import {TabComponent} from '../tab/tab.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subject, interval, fromEvent, Subscription} from 'rxjs';
-import {distinctUntilChanged, filter, take, takeUntil} from 'rxjs/operators';
-import {parseBooleanAttribute} from '../../util';
-import {HcPopoverAnchorDirective} from '../../pop';
+import type { QueryList } from '@angular/core';
+import { EventEmitter, TemplateRef } from '@angular/core';
+import { TabComponent } from '../tab/tab.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, interval, fromEvent, Subscription } from 'rxjs';
+import { distinctUntilChanged, filter, take, takeUntil } from 'rxjs/operators';
+import { parseBooleanAttribute } from '../../util';
+import { HcPopoverAnchorDirective } from '../../pop';
 
 /** Object returned by a `selectedTabChange` event; a -1 index is returned if all tabs are deselected */
 export class TabChangeEvent {
@@ -94,7 +94,7 @@ export class TabSetComponent implements AfterContentInit {
     /** **Write-only**: specify which tab is currently selected. Does not fire a `selectedTabChange` emission. */
     @Input()
     set selectedTab(selected: number | TabComponent) {
-        if ( typeof selected === 'string' ) {
+        if (typeof selected === 'string') {
             selected = Number(selected);
         }
         this._selectedTabSubject.next(selected);
@@ -167,7 +167,7 @@ export class TabSetComponent implements AfterContentInit {
     set overflowStyle(overflowType: string) {
         validateOverflowInput(overflowType);
         this._overflowStyle = overflowType;
-        if ( this._tabBar ) {
+        if (this._tabBar) {
             this._tabBar.nativeElement.scrollLeft = 0;
         }
         this.refreshTabWidths();
@@ -178,7 +178,10 @@ export class TabSetComponent implements AfterContentInit {
 
     ngAfterContentInit(): void {
         // Listeners to support the selectedTab param
-        const selectedChanged$ = this._selectedTabSubject.pipe(distinctUntilChanged(),filter(nextTab => nextTab !== this._selectedTab));
+        const selectedChanged$ = this._selectedTabSubject.pipe(
+            distinctUntilChanged(),
+            filter(nextTab => nextTab !== this._selectedTab)
+        );
         selectedChanged$.pipe(takeUntil(this.unsubscribe)).subscribe(selectedTab => {
             setTimeout(() => {
                 this.selectTab(selectedTab, false);
@@ -190,13 +193,13 @@ export class TabSetComponent implements AfterContentInit {
         this.refreshTabWidths();
 
         // If using routing, selectedTab isn't set, and routerLinkActive hasn't set any active tabs, default to the first route
-        if ( this._routerEnabled ) {
+        if (this._routerEnabled) {
             setTimeout(() => {
                 const noActiveTabs = !this._tabs.some(t => t._active);
-                if ( this.defaultTab !== 'none' && noActiveTabs ) {
+                if (this.defaultTab !== 'none' && noActiveTabs) {
                     const tabArray = this._tabs.toArray();
-                    if ( tabArray[Number(this.defaultTab)] ) {
-                        this.selectTab( tabArray[Number(this.defaultTab)] );
+                    if (tabArray[Number(this.defaultTab)]) {
+                        this.selectTab(tabArray[Number(this.defaultTab)]);
                     }
                 }
             });
@@ -215,9 +218,9 @@ export class TabSetComponent implements AfterContentInit {
     /** Forces a recalculation of the tabs to determine how many should be rolling into a More menu.
      * By default the function will use cached values of the tab widths;
      * if you've changed the title of a tab, set `forceRecalculate` to true to update the cache */
-     @HostListener('window:resize')
-     refreshTabWidths(forceRecalulate = false): void {
-        if ( !this._tabs || !this._tabBar ) {
+    @HostListener('window:resize')
+    refreshTabWidths(forceRecalulate = false): void {
+        if (!this._tabs || !this._tabBar) {
             return;
         }
 
@@ -230,8 +233,8 @@ export class TabSetComponent implements AfterContentInit {
 
         // If the tab bar is hidden, we should skip calculations
         const tabStyles = getComputedStyle(this.el.nativeElement);
-        if ( tabStyles.display === 'none' || tabStyles.visibility === 'hidden' ) {
-            if ( this._widthRecheckSub ) {
+        if (tabStyles.display === 'none' || tabStyles.visibility === 'hidden') {
+            if (this._widthRecheckSub) {
                 this._widthRecheckSub.unsubscribe();
             }
             return;
@@ -245,18 +248,18 @@ export class TabSetComponent implements AfterContentInit {
 
         // The user is asking for an explicit recalculation of the cached tab widths
         // so we need to unhide any tabs currently in the more menu
-        if ( forceRecalulate ) {
+        if (forceRecalulate) {
             this._forceRecollect();
         }
 
         // If the component hasn't fully rendered, start to loop to keep checking and only calculate widths when it has
-        if ( this._tabWidths.length !== this._tabs.length || this._tabWidths.includes(0) ) {
-            if ( !this._widthRecheckSub || this._widthRecheckSub.closed ) {
+        if (this._tabWidths.length !== this._tabs.length || this._tabWidths.includes(0)) {
+            if (!this._widthRecheckSub || this._widthRecheckSub.closed) {
                 const recheckInterval = interval(10);
 
                 this._widthRecheckSub = recheckInterval.pipe(takeUntil(this.unsubscribe)).subscribe(loopCount => {
                     // If it's been a second and the tabs still haven't rendered, bailout and don't loop forever
-                    if ( loopCount < 100 ) {
+                    if (loopCount < 100) {
                         this._collectTabWidths();
                         this.refreshTabWidths();
                     } else {
@@ -266,13 +269,12 @@ export class TabSetComponent implements AfterContentInit {
             }
             return;
         } else {
-            if ( this._widthRecheckSub ) {
+            if (this._widthRecheckSub) {
                 this._widthRecheckSub.unsubscribe();
             }
         }
 
         const tabContainerWidth: number = this._tabBar.nativeElement.offsetWidth;
-
 
         // we'll make sure the selected tab is always shown, even if it was going to be in the overflow
         const selectedTabIndex = this._tabs.toArray().findIndex(t => t._active);
@@ -285,7 +287,7 @@ export class TabSetComponent implements AfterContentInit {
                 t._show();
                 return;
             }
-            if ( !t._hideOverride ) {
+            if (!t._hideOverride) {
                 curLinks += this._tabWidths[i];
             }
 
@@ -294,15 +296,15 @@ export class TabSetComponent implements AfterContentInit {
             const moreWidth: number = this._tabsTotalWidth > tabContainerWidth ? overflowType : 0;
 
             if (curLinks + moreWidth < tabContainerWidth) {
-                if ( !t._hideOverride ) {
+                if (!t._hideOverride) {
                     t._show();
                 }
             } else {
                 this._collapse = true;
-                if ( this.overflowStyle === 'more' ) {
+                if (this.overflowStyle === 'more') {
                     t._hide();
                     // Don't include a tab in the more menu that has its hidden param set to false
-                    if ( !t._hideOverride ) {
+                    if (!t._hideOverride) {
                         this._moreList.push(t);
                     }
                 } else {
@@ -311,7 +313,7 @@ export class TabSetComponent implements AfterContentInit {
             }
         });
 
-        if ( this.overflowStyle === 'arrows' && this._collapse ) {
+        if (this.overflowStyle === 'arrows' && this._collapse) {
             setTimeout(() => {
                 this._tabArrowCheck();
             });
@@ -323,7 +325,7 @@ export class TabSetComponent implements AfterContentInit {
             this._moreButton.closePopover();
         }
 
-        tab._tabClickHandler( event );
+        tab._tabClickHandler(event);
     }
 
     _tabArrowInterval = interval(100);
@@ -332,8 +334,10 @@ export class TabSetComponent implements AfterContentInit {
         const scrollDirection = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? Math.sign(event.deltaX) : Math.sign(event.deltaY);
         const scrollDistance = Math.sqrt(Math.pow(event.deltaX, 2) + Math.pow(event.deltaY, 2)) * scrollDirection;
         const scrollLeft = scrollDistance < 0 && Math.floor(this._tabBar.nativeElement.scrollLeft) > 0;
-        const scrollRight = scrollDistance > 0
-            && this._tabBar.nativeElement.scrollWidth - Math.ceil(this._tabBar.nativeElement.scrollLeft) > this._tabBar.nativeElement.offsetWidth;
+        const scrollRight =
+            scrollDistance > 0 &&
+            this._tabBar.nativeElement.scrollWidth - Math.ceil(this._tabBar.nativeElement.scrollLeft) >
+                this._tabBar.nativeElement.offsetWidth;
 
         if (scrollLeft || scrollRight) {
             event.preventDefault();
@@ -344,33 +348,41 @@ export class TabSetComponent implements AfterContentInit {
         }
     }
 
-    _tabArrowClick( scrollRight: boolean ): void {
+    _tabArrowClick(scrollRight: boolean): void {
         this._tabBar.nativeElement.scrollLeft += scrollRight ? 40 : -40;
         this._tabArrowCheck();
         this._tabArrowInterval.pipe(takeUntil(this._stopTabArrowSubject)).subscribe(() => {
             this._tabBar.nativeElement.scrollLeft += scrollRight ? 40 : -40;
             this._tabArrowCheck();
         });
-        fromEvent<MouseEvent>(window.document, 'mouseup').pipe(take(1)).subscribe(() => {
-            this._stopTabArrowSubject.next();
-        });
+        fromEvent<MouseEvent>(window.document, 'mouseup')
+            .pipe(take(1))
+            .subscribe(() => {
+                this._stopTabArrowSubject.next();
+            });
     }
 
-    _tabArrowTouch( scrollRight: boolean ): void {
+    _tabArrowTouch(scrollRight: boolean): void {
         this._tabBar.nativeElement.scrollLeft += scrollRight ? 40 : -40;
         this._tabArrowCheck();
         this._tabArrowInterval.pipe(takeUntil(this._stopTabArrowSubject)).subscribe(() => {
             this._tabBar.nativeElement.scrollLeft += scrollRight ? 40 : -40;
             this._tabArrowCheck();
         });
-        fromEvent<MouseEvent>(window.document, 'touchend').pipe(take(1)).subscribe(() => {
-            this._stopTabArrowSubject.next();
-        });
+        fromEvent<MouseEvent>(window.document, 'touchend')
+            .pipe(take(1))
+            .subscribe(() => {
+                this._stopTabArrowSubject.next();
+            });
     }
 
     _tabArrowCheck(): void {
         this._tabArrowsEnabled[0] = Math.floor(this._tabBar.nativeElement.scrollLeft) === 0 ? false : true;
-        this._tabArrowsEnabled[1] = this._tabBar.nativeElement.scrollWidth - Math.ceil(this._tabBar.nativeElement.scrollLeft) <= this._tabBar.nativeElement.offsetWidth ? false : true;
+        this._tabArrowsEnabled[1] =
+            this._tabBar.nativeElement.scrollWidth - Math.ceil(this._tabBar.nativeElement.scrollLeft) <=
+            this._tabBar.nativeElement.offsetWidth
+                ? false
+                : true;
     }
 
     private setUpTabs(changeEvent: boolean): void {
@@ -421,25 +433,29 @@ export class TabSetComponent implements AfterContentInit {
         this._tabs.forEach(t => t.tabClick.pipe(takeUntil(this._stopTabSubscriptionSubject)).subscribe(() => this._setActive(t)));
 
         // If using tabs with routing, listen for changes to the routerLinkActive state
-        if ( this._routerEnabled ) {
-            this._tabs.forEach(t => t._routerActiveChange.pipe(takeUntil(this._stopTabSubscriptionSubject)).subscribe(tab => {
-                this._setActive(tab, false);
-            }));
+        if (this._routerEnabled) {
+            this._tabs.forEach(t =>
+                t._routerActiveChange.pipe(takeUntil(this._stopTabSubscriptionSubject)).subscribe(tab => {
+                    this._setActive(tab, false);
+                })
+            );
         }
 
         // Watch for changes to a tab's [hidden] param to remove it from overflow calculations
-        this._tabs.forEach(t => t._tabHideChange.pipe(takeUntil(this._stopTabSubscriptionSubject)).subscribe(() => {
-            if ( t.hidden && t._active ) {
-                this.selectTab(-1);
-            }
+        this._tabs.forEach(t =>
+            t._tabHideChange.pipe(takeUntil(this._stopTabSubscriptionSubject)).subscribe(() => {
+                if (t.hidden && t._active) {
+                    this.selectTab(-1);
+                }
 
-            // Make sure all tabs are visible any time we are going to update the tab width array
-            this._tabs.forEach(t => t._show());
-            this._collectTabWidths();
+                // Make sure all tabs are visible any time we are going to update the tab width array
+                this._tabs.forEach(t => t._show());
+                this._collectTabWidths();
 
-            this.refreshTabWidths();
-            this.changeDetector.detectChanges();
-        }));
+                this.refreshTabWidths();
+                this.changeDetector.detectChanges();
+            })
+        );
     }
 
     /** Sets the currently selected tab by either its numerical index or `TabComponent` object.
@@ -448,22 +464,22 @@ export class TabSetComponent implements AfterContentInit {
         this._selectedTab = tab;
         const activeTab = typeof tab === 'number' ? this._tabs.toArray()[tab] : tab;
 
-        if ( tab === -1 || activeTab?._hideOverride ) {
+        if (tab === -1 || activeTab?._hideOverride) {
             this.tabContent = null;
 
-            if ( this._routerEnabled ) {
+            if (this._routerEnabled) {
                 this._routerDeselected = true;
             }
 
-            this._tabs.toArray().forEach(t => t._active = false);
+            this._tabs.toArray().forEach(t => (t._active = false));
 
             if (shouldEmit) {
                 this.selectedTabChange.emit(new TabChangeEvent(-1, null));
             }
-        } else if ( activeTab ) {
-            if ( this._routerEnabled ) {
+        } else if (activeTab) {
+            if (this._routerEnabled) {
                 const routeArray = Array.isArray(activeTab.routerLink) ? activeTab.routerLink : [activeTab.routerLink];
-                this.router.navigate(routeArray, {relativeTo: this.route, queryParams: activeTab.queryParams});
+                this.router.navigate(routeArray, { relativeTo: this.route, queryParams: activeTab.queryParams });
             }
             this._setActive(activeTab, shouldEmit);
         }
@@ -482,7 +498,7 @@ export class TabSetComponent implements AfterContentInit {
         this._routerDeselected = false;
 
         // For horizontal tabs with arrows overflow, scroll the selected tab into view if it's outside the scroll area
-        if ( this.overflowStyle === 'arrows' && this.direction === 'horizontal' && this._collapse ) {
+        if (this.overflowStyle === 'arrows' && this.direction === 'horizontal' && this._collapse) {
             tab._el.nativeElement.scrollIntoView({ block: 'nearest' });
         }
 
@@ -503,8 +519,8 @@ export class TabSetComponent implements AfterContentInit {
             // is triggered
             const tabArray = this._tabs.toArray();
             // If the selectedTab param is being used, respect that value before defaultTab
-            if ( this._selectedTab ) {
-                this.selectTab( this._selectedTab );
+            if (this._selectedTab) {
+                this.selectTab(this._selectedTab);
             } else {
                 if (tabArray[Number(this.defaultTab)]) {
                     setTimeout(() => {
@@ -528,8 +544,8 @@ export class TabSetComponent implements AfterContentInit {
             this._routerEnabled = true;
 
             // If the selectedTab param is being used, respect that value for the initially selected tab before the url or defaultTab
-            if ( this._selectedTab ) {
-                this.selectTab( this._selectedTab );
+            if (this._selectedTab) {
+                this.selectTab(this._selectedTab);
             }
         }
     }

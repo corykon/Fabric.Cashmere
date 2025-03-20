@@ -5,7 +5,9 @@ import { Component, ViewEncapsulation, Input, HostBinding } from '@angular/core'
 /** Element to add a co-branding image to the right of the navbar */
 @Component({
     selector: 'hc-navbar-cobrand',
-    template: `<img [src]="src" [ngStyle]="{height:_imgHeight, 'width':_imgWidth}" (load)="_checkRatio($event)">`,
+    template: `
+        <img [src]="src" [ngStyle]="{ height: _imgHeight, width: _imgWidth }" (load)="_checkRatio($event)" />
+    `,
     styleUrls: ['./navbar-cobrand.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
@@ -26,7 +28,7 @@ export class NavbarCobrandComponent {
     get color(): 'light' | 'dark' {
         return this._color;
     }
-    set color( val: 'light' | 'dark' ) {
+    set color(val: 'light' | 'dark') {
         this._color = val;
         this._hostClass = 'hc-navbar-cobrand-' + val;
     }
@@ -37,7 +39,7 @@ export class NavbarCobrandComponent {
         const height = evt.srcElement.height;
         const ratio = width / height;
 
-        if ( ratio * 37 > 200 ) {
+        if (ratio * 37 > 200) {
             this._imgWidth = '200px';
             this._imgHeight = 'auto';
         }

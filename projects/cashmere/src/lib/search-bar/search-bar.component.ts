@@ -1,6 +1,18 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation} from '@angular/core';
-import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, takeUntil} from 'rxjs/operators';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'hc-search-bar',
@@ -25,8 +37,8 @@ export class SearchBarComponent implements OnInit, OnDestroy, OnChanges {
     @Input() mobile = false;
     /** If true, condense the default padding and reduce the font size. *Defaults to `false`.*  */
     @Input() tight = false;
-     /** If true, trigger search when search icon is clicked. *Defaults to `true`.*  */
-     @Input() triggerSearchOnSearchIcoClick = true;
+    /** If true, trigger search when search icon is clicked. *Defaults to `true`.*  */
+    @Input() triggerSearchOnSearchIcoClick = true;
     /** Sets the time in milliseconds to wait before triggering a search. *Defaults to `100`. */
     @Input()
     public debounce = 100;
@@ -36,7 +48,7 @@ export class SearchBarComponent implements OnInit, OnDestroy, OnChanges {
     @Output() clearClicked = new EventEmitter<void>();
     /** Fires when search icon is clicked. */
     @Output() searchIconClicked = new EventEmitter<void>();
-    @ViewChild('searchFilter', {static: true}) private searchBar: ElementRef;
+    @ViewChild('searchFilter', { static: true }) private searchBar: ElementRef;
     /** Returns the current search term. */
     public get value(): string {
         return this.searchBar.nativeElement.value;
@@ -99,17 +111,19 @@ export class SearchBarComponent implements OnInit, OnDestroy, OnChanges {
     public _onSearchIconClicked(): void {
         this.focus();
         this.searchIconClicked.emit();
-        if (this.triggerSearchOnSearchIcoClick) { this.search(); }
+        if (this.triggerSearchOnSearchIcoClick) {
+            this.search();
+        }
     }
 
     private setupSearchStream() {
         this.destroy$.next();
 
         this.searchStream
-        .pipe(debounceTime(this.debounce), distinctUntilChanged())
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(t => {
-            this.triggerSearch.emit(t);
-        });
+            .pipe(debounceTime(this.debounce), distinctUntilChanged())
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(t => {
+                this.triggerSearch.emit(t);
+            });
     }
 }

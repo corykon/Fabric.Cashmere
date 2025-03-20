@@ -6,11 +6,11 @@
  * found in the LICENSE file at https://raw.githubusercontent.com/HealthCatalyst/Fabric.Cashmere/dev/LICENSE
  */
 
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 /** Datepicker data that requires internationalization. */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HcDatepickerIntl {
     /**
      * Stream that emits whenever the labels here are changed. Use this to notify

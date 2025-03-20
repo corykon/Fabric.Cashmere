@@ -1,4 +1,4 @@
-import { HcIcon } from "../icon/icon.component";
+import { HcIcon } from '../icon/icon.component';
 
 export interface HcToastOptions {
     /** A string of header text to be included in the toast message.*/

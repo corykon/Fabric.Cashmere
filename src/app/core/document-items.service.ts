@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as cashmereComponentsDocumentItems from './cashmere-components-document-items.json';
 
 export type DocItemCategory = 'forms' | 'nav' | 'layout' | 'buttons' | 'popups' | 'table' | 'pipes';
@@ -17,7 +17,7 @@ export type DocItemType = 'components';
 
 const cashmereComponents: DocItem[] = Object.keys(cashmereComponentsDocumentItems)
     .filter(name => name !== '$schema' && name !== 'default')
-    .map(name => ({...cashmereComponentsDocumentItems[name], id: name}));
+    .map(name => ({ ...cashmereComponentsDocumentItems[name], id: name }));
 
 @Injectable()
 export class DocumentItemsService {

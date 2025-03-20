@@ -92,7 +92,7 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
     private _animationFrameCount = 0;
     private _blurActive = false;
     _instanceContextKey: string | null = null;
-    _instanceContextValue: string | null = null
+    _instanceContextValue: string | null = null;
     private _baseSize: number;
 
     public _collapse = false;
@@ -250,8 +250,7 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
             return;
         }
 
-        const selectedInstance = this._instanceChips
-            .find(instance => instance.itemKey === this._selectedKey);
+        const selectedInstance = this._instanceChips.find(instance => instance.itemKey === this._selectedKey);
 
         selectedInstance?.show();
 
@@ -260,17 +259,15 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
         const moreKeys = this._measurableService.fillContainer(
             this._instanceChips.filter(instance => instance.itemKey !== this._selectedKey),
             this._calculateAvailableSize() - selectedSize,
-            112);
+            112
+        );
 
         this._moreInstances = this._instances.filter(instance => moreKeys.has(instance.instanceKey));
 
         this._ref.detectChanges();
     }
 
-    constructor(
-        private _measurableService: MeasurableService,
-        private _ref: ChangeDetectorRef
-    ) {}
+    constructor(private _measurableService: MeasurableService, private _ref: ChangeDetectorRef) {}
 
     ngAfterViewInit(): void {
         this.checkContainerSize();
@@ -296,9 +293,7 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
             // If the container element is loaded, or we have exceeded the try count, then refresh instances.
             this.refreshInstances();
 
-            this._instanceChips.changes.pipe(
-                takeUntil(this._unsubscribe$)
-            ).subscribe(() => this.refreshInstances());
+            this._instanceChips.changes.pipe(takeUntil(this._unsubscribe$)).subscribe(() => this.refreshInstances());
         }
     }
 
@@ -308,8 +303,7 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
     }
 
     _isSelected(key: string, isMore: boolean, index: number): boolean {
-        return this.selectedKey === key
-            || (!isMore && index === 0 && !this.selectedKey);
+        return this.selectedKey === key || (!isMore && index === 0 && !this.selectedKey);
     }
 
     _contextTrigger(): string {
@@ -330,7 +324,7 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
     }
 
     _instanceClick(key: string): void {
-        if (key !== this._selectedKey  && this._selectedKey) {
+        if (key !== this._selectedKey && this._selectedKey) {
             this._previouslySelected.push(this._selectedKey);
         }
 
@@ -385,8 +379,8 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
 
         this._blurActive = false;
 
-        const value = this._renameInstanceControl.value
-        if(value === '') {
+        const value = this._renameInstanceControl.value;
+        if (value === '') {
             this._cancelEdit();
             return;
         }
@@ -404,18 +398,14 @@ export class InstanceSwitcherComponent implements OnDestroy, AfterViewInit {
                     };
                 }
 
-                return instance
+                return instance;
             });
 
             const editedInstance = this.instances.find(instance => instance.instanceKey === key);
 
-            this.edited.emit(
-                editedInstance
-            );
+            this.edited.emit(editedInstance);
 
-            this._instanceChips
-                .find(instance => instance.itemKey === key)
-                ?.reset();
+            this._instanceChips.find(instance => instance.itemKey === key)?.reset();
 
             this.refreshInstances();
         }

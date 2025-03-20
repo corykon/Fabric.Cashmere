@@ -1,8 +1,8 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {CalendarBodyComponent} from '..';
-import {HcCalendarCellCssClasses, HcCalendarCell} from './calendar-body.component';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { CalendarBodyComponent } from '..';
+import { HcCalendarCellCssClasses, HcCalendarCell } from './calendar-body.component';
 
 @Component({
     template: `
@@ -42,18 +42,20 @@ function createCell(value: number, cellClasses?: HcCalendarCellCssClasses) {
 }
 
 describe('CalendarBodyComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                CalendarBodyComponent,
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [
+                    CalendarBodyComponent,
 
-                // Test components.
-                StandardCalendarBody
-            ]
-        });
+                    // Test components.
+                    StandardCalendarBody
+                ]
+            });
 
-        TestBed.compileComponents();
-    }));
+            TestBed.compileComponents();
+        })
+    );
 
     describe('standard calendar body', () => {
         let fixture: ComponentFixture<StandardCalendarBody>;

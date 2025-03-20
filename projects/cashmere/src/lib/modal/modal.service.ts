@@ -1,6 +1,6 @@
-import {ModalWindowComponent} from './modal-window.component';
-import {ModalOverlayComponent} from './modal-overlay.component';
-import {HcModal} from './modal';
+import { ModalWindowComponent } from './modal-window.component';
+import { ModalOverlayComponent } from './modal-overlay.component';
+import { HcModal } from './modal';
 import {
     ApplicationRef,
     ComponentFactoryResolver,
@@ -12,9 +12,15 @@ import {
     TemplateRef,
     Type
 } from '@angular/core';
-import {ModalOptions} from './modal-options';
-import {ActiveModal} from './active-modal';
-import { getDefaultAlertOptions, getDefaultConfirmationOptions, getDefaultDestructiveOptions, getDefaultModalOptions, SimpleModalOptions } from './simple-modal/simple-modal-options.model';
+import { ModalOptions } from './modal-options';
+import { ActiveModal } from './active-modal';
+import {
+    getDefaultAlertOptions,
+    getDefaultConfirmationOptions,
+    getDefaultDestructiveOptions,
+    getDefaultModalOptions,
+    SimpleModalOptions
+} from './simple-modal/simple-modal-options.model';
 import { Observable } from 'rxjs';
 import { SimpleModalComponent } from './simple-modal/simple-modal.component';
 import { map } from 'rxjs/operators';
@@ -69,7 +75,7 @@ export class ModalService {
             autoFocus: false,
             closeIcon: false
         };
-        const options = {...defaultOptions, ...modalOptions};
+        const options = { ...defaultOptions, ...modalOptions };
         if (options.container) {
             container = options.container;
         }
@@ -85,7 +91,7 @@ export class ModalService {
         activeModalRef.data = options.data;
 
         const modalInjector = Injector.create({
-            providers: [{provide: ActiveModal, useValue: activeModalRef}],
+            providers: [{ provide: ActiveModal, useValue: activeModalRef }],
             parent: this._injector
         });
 
@@ -94,8 +100,8 @@ export class ModalService {
         modal._removeOpenClass = () => this._renderer.removeClass(container, 'hc-modal-open');
 
         // if multiple modals are allowed, make sure the newest is always on top
-        if ( this.allowMultiple ) {
-            this._zIndexCounter = this._zIndexBase + (this._modalsOpen * 2);
+        if (this.allowMultiple) {
+            this._zIndexCounter = this._zIndexBase + this._modalsOpen * 2;
         }
 
         // Create, attach, and append overlay to container
@@ -157,10 +163,9 @@ export class ModalService {
             this._modalsOpen--;
             modal._modalClose.unsubscribe();
 
-            if ( modal.window ) {
-                this._restoreFocusAndDestroyTrap( modal.window.instance );
+            if (modal.window) {
+                this._restoreFocusAndDestroyTrap(modal.window.instance);
             }
-
         });
 
         return modal;
@@ -196,7 +201,7 @@ export class ModalService {
      */
     alert(contentOptions: SimpleModalOptions, modalOptions?: ModalOptions): Observable<boolean> {
         const mergedContentOptions = Object.assign(getDefaultAlertOptions(), contentOptions);
-        const mergedModalOptions = Object.assign({size: 'sm'}, modalOptions);
+        const mergedModalOptions = Object.assign({ size: 'sm' }, modalOptions);
         return this._openSimpleModal(mergedContentOptions, mergedModalOptions);
     }
 
@@ -212,7 +217,7 @@ export class ModalService {
     }
 
     /** Restore focus to the element focused before the popover opened. Also destroy trap. */
-    _restoreFocusAndDestroyTrap( modalWindow: ModalWindowComponent ): void {
+    _restoreFocusAndDestroyTrap(modalWindow: ModalWindowComponent): void {
         const toFocus = modalWindow._previouslyFocusedElement;
 
         // Must check active element is focusable for IE sake

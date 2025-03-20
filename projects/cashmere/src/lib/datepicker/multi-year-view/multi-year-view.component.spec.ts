@@ -1,32 +1,34 @@
-import {Direction, Directionality} from '@angular/cdk/bidi';
-import {Component, ViewChild} from '@angular/core';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {HcNativeDateModule} from '../datetime/datetime.module';
-import {yearsPerPage, yearsPerRow, MultiYearViewComponent} from './multi-year-view.component';
-import {JAN} from '../../utils/month-constants';
-import {dispatchFakeEvent, dispatchEvent} from '../../utils/dispatch-events';
-import {CalendarBodyComponent} from '../calendar-body/calendar-body.component';
+import { Direction, Directionality } from '@angular/cdk/bidi';
+import { Component, ViewChild } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { HcNativeDateModule } from '../datetime/datetime.module';
+import { yearsPerPage, yearsPerRow, MultiYearViewComponent } from './multi-year-view.component';
+import { JAN } from '../../utils/month-constants';
+import { dispatchFakeEvent, dispatchEvent } from '../../utils/dispatch-events';
+import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
 
 describe('HcMultiYearView', () => {
-    let dir: {value: Direction};
+    let dir: { value: Direction };
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [HcNativeDateModule],
-            declarations: [
-                CalendarBodyComponent,
-                MultiYearViewComponent,
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [HcNativeDateModule],
+                declarations: [
+                    CalendarBodyComponent,
+                    MultiYearViewComponent,
 
-                // Test components.
-                StandardMultiYearView,
-                MultiYearViewWithDateFilter
-            ],
-            providers: [{provide: Directionality, useFactory: () => (dir = {value: 'ltr'})}]
-        });
+                    // Test components.
+                    StandardMultiYearView,
+                    MultiYearViewWithDateFilter
+                ],
+                providers: [{ provide: Directionality, useFactory: () => (dir = { value: 'ltr' }) }]
+            });
 
-        TestBed.compileComponents();
-    }));
+            TestBed.compileComponents();
+        })
+    );
 
     describe('standard multi-year view', () => {
         let fixture: ComponentFixture<StandardMultiYearView>;

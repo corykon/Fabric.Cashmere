@@ -13,13 +13,13 @@ import {
     ElementRef,
     Renderer2
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {CdkScrollable} from '@angular/cdk/scrolling';
-import {Subject} from 'rxjs';
-import {HcScrollNavComponent} from '../nav/scroll-nav.component';
-import {takeUntil} from 'rxjs/operators';
-import {differenceBy} from 'lodash';
-import {ScrollNavTargetDirective} from './scroll-nav-target.directive';
+import type { QueryList } from '@angular/core';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { Subject } from 'rxjs';
+import { HcScrollNavComponent } from '../nav/scroll-nav.component';
+import { takeUntil } from 'rxjs/operators';
+import { differenceBy } from 'lodash';
+import { ScrollNavTargetDirective } from './scroll-nav-target.directive';
 
 /** Contains scrollable content that is navigable via `hc-scroll-nav` links. */
 @Component({
@@ -47,7 +47,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
     @Input() public hasDynamicContent = false;
     /** Fires when a new section is scrolled into view. Broadcasts the id of that section. */
     @Output() public newSectionInView: EventEmitter<string> = new EventEmitter<string>();
-    @ViewChild('scrollContainer', {read: CdkScrollable, static: false}) public _cdkScrollableElement: CdkScrollable;
+    @ViewChild('scrollContainer', { read: CdkScrollable, static: false }) public _cdkScrollableElement: CdkScrollable;
     @ContentChildren(ScrollNavTargetDirective, { descendants: true }) private targets: QueryList<ScrollNavTargetDirective>;
     /** Id of the current section scrolled into view. */
     public sectionInView: string;
@@ -132,7 +132,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
 
         if (this.targets.length !== scrollTargetList.length || differenceBy(scrollTargetList, this._scrollTargets, 'id').length > 0) {
             const scrollTargetDirectiveArray: ScrollNavTargetDirective[] = [];
-            scrollTargetList.forEach((dynamicTarget) => {
+            scrollTargetList.forEach(dynamicTarget => {
                 const scrollNavTargetDirective: ScrollNavTargetDirective = new ScrollNavTargetDirective(<ElementRef>{});
                 scrollNavTargetDirective._setDirectiveToNode(dynamicTarget.targetElement);
                 scrollTargetDirectiveArray.push(scrollNavTargetDirective);
@@ -151,7 +151,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
 
     /** Helper function to scroll to the top of the content area. */
     public scrollToTop(): void {
-        this._cdkScrollableElement.scrollTo({top: 0});
+        this._cdkScrollableElement.scrollTo({ top: 0 });
     }
 
     /** Will update the navigation state. */
@@ -179,7 +179,6 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
                 ) {
                     this.lastElementScrolledTo = el as HTMLElement;
                     this.setActiveSection((el as HTMLElement).getAttribute('id') || '');
-
                 }
             });
         }
@@ -194,7 +193,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
         }
     }
 
-    private initializeTargets(): void  {
+    private initializeTargets(): void {
         if (this._cdkScrollableElement) {
             this._cdkScrollableElement
                 .elementScrolled()
@@ -220,14 +219,14 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
                 });
         }
 
-        this._scrollTargets.forEach((target) => {
+        this._scrollTargets.forEach(target => {
             if (!target.id) {
                 throw Error('hcScrollTarget element needs an id.');
             }
         });
 
-        this.nav._scrollEvent.pipe(takeUntil(this.unsubscribe$)).subscribe( element => {
-            this._cdkScrollableElement.scrollTo({top: element.offsetTop});
+        this.nav._scrollEvent.pipe(takeUntil(this.unsubscribe$)).subscribe(element => {
+            this._cdkScrollableElement.scrollTo({ top: element.offsetTop });
         });
 
         this.insureMinHeightForLastTarget();
@@ -236,7 +235,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
     private getTargets(targets: HTMLElement[]): HTMLElement[] {
         let rtnTargets: HTMLElement[] = [];
 
-        targets.forEach((target) => {
+        targets.forEach(target => {
             if (target.hasAttribute('hcScrollTarget')) {
                 rtnTargets.push(target);
             }
@@ -253,7 +252,7 @@ export class HcScrollNavContentComponent implements AfterViewInit, AfterViewChec
         if (this.makeLastTargetFullHeight) {
             const containerHeight: number = this._cdkScrollableElement.getElementRef().nativeElement.offsetHeight;
             if (containerHeight && this._scrollTargets.length > 0) {
-                this._scrollTargets.forEach((target) => {
+                this._scrollTargets.forEach(target => {
                     target.style.minHeight = 'unset';
                 });
 

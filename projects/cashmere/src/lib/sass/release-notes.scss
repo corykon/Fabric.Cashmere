@@ -2,7 +2,6 @@
 @import './mixins';
 @import './icons';
 
-
 @mixin hc-rn-flex() {
     display: flex;
     align-items: center;
@@ -109,10 +108,11 @@
     .hc-accordion-content {
         padding: 12px 24px;
         line-height: 1.5;
-        font-size:15px;
+        font-size: 15px;
     }
 
-    &.hc-accordion-opened, &.hc-accordion-opening {
+    &.hc-accordion-opened,
+    &.hc-accordion-opening {
         .hc-accordion-toolbar-wrapper {
             background-color: $dark-blue;
             color: $white;
@@ -139,10 +139,10 @@
     font-weight: 600;
     margin: 24px 0 0 0;
     font-size: 18px;
-    line-height:1.5;
+    line-height: 1.5;
     color: $dark-blue;
-    padding-bottom: 0px!important;
-    margin-bottom: 0px!important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
     page-break-after: avoid;
     page-break-inside: avoid;
 
@@ -187,7 +187,6 @@
     margin-right: 8px;
 }
 
-
 @mixin hc-rn-modal-hr() {
     page-break-after: avoid;
     page-break-inside: avoid;
@@ -206,7 +205,7 @@
 }
 
 @mixin hc-rn-modal-table-cell() {
-    border: none!important;
+    border: none !important;
 }
 
 @mixin hc-rn-modal-table() {
@@ -230,8 +229,8 @@
 
 /*Used to snuggle together lines when needed for layout purposes*/
 @mixin hc-rn-modal-tight() {
-    padding-bottom: 0px!important;
-    margin-bottom: 0px!important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 @mixin hc-rn-modal-view-again() {
@@ -241,4 +240,3 @@
 @mixin hc-rn-modal-p() {
     margin: 0 0 8px;
 }
-

@@ -8,7 +8,8 @@ import {
     Input,
     OnDestroy,
     Output,
-    ViewEncapsulation } from '@angular/core';
+    ViewEncapsulation
+} from '@angular/core';
 import type { QueryList } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -20,18 +21,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { HcFormControlComponent } from '../form-field/hc-form-control.component';
 import { supportedColors } from '../utils/supported-colors';
 
-
 /** `hc-button-toggle-group` components are on/off toggles with the appearance of an `hc-button`.
  * These toggle groups may be configured to behave as single-select (like radio buttons), or multi-select (like checkboxes). */
 @Component({
     selector: 'hc-button-toggle-group',
     template: '<ng-content></ng-content>',
     styleUrls: ['./button-toggle.component.scss'],
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ButtonToggleGroupComponent),
-        multi: true
-    }],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ButtonToggleGroupComponent),
+            multi: true
+        }
+    ],
     encapsulation: ViewEncapsulation.None
 })
 export class ButtonToggleGroupComponent extends HcFormControlComponent implements AfterContentInit, OnDestroy, ControlValueAccessor {
@@ -52,8 +54,8 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     @Output() selectionChangedEvent: EventEmitter<ButtonToggleChangeEvent> = new EventEmitter<ButtonToggleChangeEvent>();
 
     /** Sets style of toggle. Choose from: `'primary' | 'primary-alt' | 'destructive' | 'neutral' | 'secondary'`.
-    * If needed, colors from the primary or secondary palette may be used as well (e.g. 'pink', 'red-orange', etc).
-    * *Defaults to `secondary`.* */
+     * If needed, colors from the primary or secondary palette may be used as well (e.g. 'pink', 'red-orange', etc).
+     * *Defaults to `secondary`.* */
     @Input()
     get buttonStyle(): string {
         return this._style;
@@ -61,7 +63,7 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     set buttonStyle(val: string) {
         validateInput(val, supportedColors.concat(supportedStyles), 'buttonStyle', 'ButtonToggleComponent');
         if (supportedStyles.indexOf(val) < 0) {
-            val = "button-" + val;
+            val = 'button-' + val;
         }
         this._style = val;
         this._updateButtonStyle();
@@ -73,7 +75,7 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     }
 
     set value(newValue: unknown) {
-        if ( newValue !== undefined && this._value !== newValue) {
+        if (newValue !== undefined && this._value !== newValue) {
             this._value = newValue;
             this.onChange(newValue);
         }
@@ -118,7 +120,7 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     set disabled(isDisabled: boolean) {
         this._disabled = parseBooleanAttribute(isDisabled);
         if (this._buttons) {
-            this._buttons.forEach((button: ButtonToggleComponent) => button._parentDisabled = this._disabled);
+            this._buttons.forEach((button: ButtonToggleComponent) => (button._parentDisabled = this._disabled));
         }
         this._updateButtonStyle();
     }
@@ -140,7 +142,7 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
 
     writeValue(value: unknown): void {
         // Prevent the form control from trying to write a value when removing the control
-        if ( this.onChange.name !== 'noop' ) {
+        if (this.onChange.name !== 'noop') {
             this._value = value;
             this._updateButtonStateFromModel();
         }
@@ -204,8 +206,10 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
             });
         } else {
             this._buttons.forEach((button: ButtonToggleComponent) => {
-                if (this.valueRequired && this._buttons.filter((btn: ButtonToggleComponent) => btn.selected ).length === 0) {
-                    if (button === targetButton) { button._selected = true; }
+                if (this.valueRequired && this._buttons.filter((btn: ButtonToggleComponent) => btn.selected).length === 0) {
+                    if (button === targetButton) {
+                        button._selected = true;
+                    }
                 }
             });
         }
@@ -239,14 +243,18 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     }
 
     private _emitEventForInitiallySelected() {
-        if (this._buttons.some((button: ButtonToggleComponent) => {
-            return button.selected;
-        })) {
-            this.selectionChangedEvent.emit(new ButtonToggleChangeEvent(
-                null,
-                this._buttons.toArray()
-                , this._buttons.filter((btn: ButtonToggleComponent) => btn.selected).map(val => val.value)
-            ));
+        if (
+            this._buttons.some((button: ButtonToggleComponent) => {
+                return button.selected;
+            })
+        ) {
+            this.selectionChangedEvent.emit(
+                new ButtonToggleChangeEvent(
+                    null,
+                    this._buttons.toArray(),
+                    this._buttons.filter((btn: ButtonToggleComponent) => btn.selected).map(val => val.value)
+                )
+            );
         }
     }
 
@@ -260,14 +268,15 @@ export class ButtonToggleGroupComponent extends HcFormControlComponent implement
     }
 
     private _subscribeToButtonClick(button: ButtonToggleComponent) {
-        button._toggleClick.pipe(takeUntil(this.unsubscribe$)).subscribe(
-            (target: ButtonToggleComponent) => {
-                this._updateValueOnClick(target);
-                this.selectionChangedEvent.emit(new ButtonToggleChangeEvent(
+        button._toggleClick.pipe(takeUntil(this.unsubscribe$)).subscribe((target: ButtonToggleComponent) => {
+            this._updateValueOnClick(target);
+            this.selectionChangedEvent.emit(
+                new ButtonToggleChangeEvent(
                     target,
-                    this._buttons.toArray()
-                    , this._buttons.filter((btn: ButtonToggleComponent) => btn.selected).map(val => val.value)
-                ));
-            });
+                    this._buttons.toArray(),
+                    this._buttons.filter((btn: ButtonToggleComponent) => btn.selected).map(val => val.value)
+                )
+            );
+        });
     }
 }

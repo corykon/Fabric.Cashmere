@@ -1,7 +1,7 @@
-import {EventEmitter, Input, Output, OnInit, Component} from '@angular/core';
-import {coerceNumberProperty} from '@angular/cdk/coercion';
-import {Initializable} from '../shared/initializable';
-import {PageEvent} from './page-event';
+import { EventEmitter, Input, Output, OnInit, Component } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { Initializable } from '../shared/initializable';
+import { PageEvent } from './page-event';
 
 /**
  * Base Pagination class for shared functionality

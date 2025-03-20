@@ -12,7 +12,6 @@ export class ReleaseNotesModalComponent implements OnInit {
     public _data: ReleaseNotesModalData;
     constructor(private activeModal: ActiveModal) {}
 
-
     _onReleaseOpened(releaseIndex: number): void {
         this._data.releaseNotes.forEach((rn, index) => {
             rn.isOpen = index === releaseIndex;

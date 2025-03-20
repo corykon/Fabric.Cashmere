@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {MarkdownDirective} from './markdown.directive';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MarkdownDirective } from './markdown.directive';
 
 @Component({
     template: `

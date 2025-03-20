@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {FilterableSelectList, isSubList, SelectListOption, ValueListOption, ValueSetListOption} from '../pane/picklist-pane.model';
-import {PicklistOldService} from './picklist-old.service';
+import { Injectable } from '@angular/core';
+import { FilterableSelectList, isSubList, SelectListOption, ValueListOption, ValueSetListOption } from '../pane/picklist-pane.model';
+import { PicklistOldService } from './picklist-old.service';
 
 @Injectable()
 export class PicklistActionService {

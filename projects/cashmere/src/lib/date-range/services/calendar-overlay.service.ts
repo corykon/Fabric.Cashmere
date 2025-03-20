@@ -1,9 +1,9 @@
-import {Injectable, ElementRef, Injector, EventEmitter, OnDestroy} from '@angular/core';
-import {Overlay, OverlayConfig, OverlayRef} from '@angular/cdk/overlay';
-import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
-import {PickerOverlayComponent} from '../picker-overlay/picker-overlay.component';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Injectable, ElementRef, Injector, EventEmitter, OnDestroy } from '@angular/core';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { PickerOverlayComponent } from '../picker-overlay/picker-overlay.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable()
 export class CalendarOverlayService implements OnDestroy {
@@ -21,13 +21,16 @@ export class CalendarOverlayService implements OnDestroy {
         const calendarPortal = new ComponentPortal(PickerOverlayComponent, null, portalInjector);
         const compRef = overlayRef.attach(calendarPortal);
 
-        overlayRef.backdropClick().pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
-            this._dismissed.emit( false );
-            overlayRef.dispose();
-        });
+        overlayRef
+            .backdropClick()
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
+                this._dismissed.emit(false);
+                overlayRef.dispose();
+            });
 
-        compRef.instance._dismissed.pipe(takeUntil(this.unsubscribe$)).subscribe( saved => {
-            this._dismissed.emit( saved );
+        compRef.instance._dismissed.pipe(takeUntil(this.unsubscribe$)).subscribe(saved => {
+            this._dismissed.emit(saved);
         });
 
         return overlayRef;
@@ -42,45 +45,41 @@ export class CalendarOverlayService implements OnDestroy {
         let positionStrategy;
 
         if (center) {
-            positionStrategy = this.overlay
-            .position()
-            .global()
-            .centerHorizontally()
-            .centerVertically();
+            positionStrategy = this.overlay.position().global().centerHorizontally().centerVertically();
         } else {
             positionStrategy = this.overlay
-            .position()
-            .flexibleConnectedTo(this.hostElemRef)
-            .withFlexibleDimensions(false)
-            .withViewportMargin(8)
-            .withDefaultOffsetY(12)
-            .withLockedPosition()
-            .withPositions([
-                {
-                    originX: 'start',
-                    originY: 'bottom',
-                    overlayX: 'start',
-                    overlayY: 'top'
-                },
-                {
-                    originX: 'start',
-                    originY: 'top',
-                    overlayX: 'start',
-                    overlayY: 'bottom'
-                },
-                {
-                    originX: 'end',
-                    originY: 'bottom',
-                    overlayX: 'end',
-                    overlayY: 'top'
-                },
-                {
-                    originX: 'end',
-                    originY: 'top',
-                    overlayX: 'end',
-                    overlayY: 'bottom'
-                }
-            ]);
+                .position()
+                .flexibleConnectedTo(this.hostElemRef)
+                .withFlexibleDimensions(false)
+                .withViewportMargin(8)
+                .withDefaultOffsetY(12)
+                .withLockedPosition()
+                .withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'bottom',
+                        overlayX: 'start',
+                        overlayY: 'top'
+                    },
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom'
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'bottom',
+                        overlayX: 'end',
+                        overlayY: 'top'
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'top',
+                        overlayX: 'end',
+                        overlayY: 'bottom'
+                    }
+                ]);
         }
 
         const overlayConfig = new OverlayConfig({

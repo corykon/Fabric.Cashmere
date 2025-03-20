@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/directive-selector */
-import {Directive, Input, ElementRef, Optional, Host, Renderer2, OnDestroy} from '@angular/core';
-import {SelectService, _buildValueString} from './select.service';
+import { Directive, Input, ElementRef, Optional, Host, Renderer2, OnDestroy } from '@angular/core';
+import { SelectService, _buildValueString } from './select.service';
 
 /** Utility directive to hold objects used in ngValue */
 @Directive({

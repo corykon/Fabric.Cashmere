@@ -1,11 +1,11 @@
-import {from, Observable, of, Subject, Subscription} from 'rxjs';
+import { from, Observable, of, Subject, Subscription } from 'rxjs';
 
-import {takeUntil} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
-import {PicklistFilterService} from './picklist-filter.service';
-import {PicklistStateService} from './picklist-state.service';
-import {FilterableSelectList, ValueListOption, ValueSetListOption} from '../pane/picklist-pane.model';
+import { PicklistFilterService } from './picklist-filter.service';
+import { PicklistStateService } from './picklist-state.service';
+import { FilterableSelectList, ValueListOption, ValueSetListOption } from '../pane/picklist-pane.model';
 import {
     IPagedCollection,
     IPicklistRemoteQueryResponse,
@@ -121,7 +121,7 @@ export class PicklistFilterRemoteService {
     }
 
     private buildPageSettings(currentPage: number, selectAllCount: number | null) {
-        const pagerSettings = {currentPage: 1, itemsPerPage: this.stateService.optionsSource.pageSize};
+        const pagerSettings = { currentPage: 1, itemsPerPage: this.stateService.optionsSource.pageSize };
         pagerSettings.currentPage = selectAllCount ? 1 : currentPage;
         pagerSettings.itemsPerPage = selectAllCount || pagerSettings.itemsPerPage;
         return pagerSettings;

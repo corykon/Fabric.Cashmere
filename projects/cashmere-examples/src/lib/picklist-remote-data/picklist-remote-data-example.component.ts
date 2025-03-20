@@ -51,11 +51,15 @@ export class PicklistRemoteDataExampleComponent implements OnInit {
             of([]), // default items
             this.peopleInput$.pipe(
                 distinctUntilChanged(),
-                tap(() => this.peopleLoading = true),
-                switchMap(term => this.dataService.getPeople(term, this.selectedPersons).pipe(
-                    catchError(() => of([])), // empty list on error
-                    tap(() => { this.peopleLoading = false; }),
-                ))
+                tap(() => (this.peopleLoading = true)),
+                switchMap(term =>
+                    this.dataService.getPeople(term, this.selectedPersons).pipe(
+                        catchError(() => of([])), // empty list on error
+                        tap(() => {
+                            this.peopleLoading = false;
+                        })
+                    )
+                )
             )
         );
     }

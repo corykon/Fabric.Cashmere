@@ -16,10 +16,10 @@ import {
 } from './pick-templates.directive';
 import { DefaultSelectionModelFactory } from './pane/selection-model';
 import { PickPaneListComponent } from './pane/pick-pane-list.component';
-import {ButtonModule} from '../button/button.module';
-import {InputModule} from '../input/input.module';
-import {FormFieldModule} from '../form-field/hc-form-field.module';
-import {ProgressIndicatorsModule} from '../progress-indicators/progress-indicators.module';
+import { ButtonModule } from '../button/button.module';
+import { InputModule } from '../input/input.module';
+import { FormFieldModule } from '../form-field/hc-form-field.module';
+import { ProgressIndicatorsModule } from '../progress-indicators/progress-indicators.module';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -37,14 +37,7 @@ import { FormsModule } from '@angular/forms';
         PickPaneListComponent,
         PickItemLabelDirective
     ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ButtonModule,
-        InputModule,
-        FormFieldModule,
-        ProgressIndicatorsModule
-    ],
+    imports: [CommonModule, FormsModule, ButtonModule, InputModule, FormFieldModule, ProgressIndicatorsModule],
     exports: [
         PickPaneComponent,
         PicklistComponent,
@@ -59,8 +52,6 @@ import { FormsModule } from '@angular/forms';
         PickPaneListComponent,
         PickItemLabelDirective
     ],
-    providers: [
-        { provide: SELECTION_MODEL_FACTORY, useValue: DefaultSelectionModelFactory }
-    ]
+    providers: [{ provide: SELECTION_MODEL_FACTORY, useValue: DefaultSelectionModelFactory }]
 })
 export class PicklistModule {}

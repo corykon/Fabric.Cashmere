@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as glob from 'glob';
-import {pascalCase} from 'change-case';
+import { pascalCase } from 'change-case';
 import * as ProgressBar from 'progress';
 import chalk from 'chalk';
 import * as prettier from 'prettier';
@@ -42,23 +42,23 @@ console.log(chalk.blue('Generating Example Files'));
 cleanOutputDirectory();
 const projectTemplateFiles = getStackBlitzProjectTemplateFiles();
 const appModuleTemplate = projectTemplateFiles['src/app/app.module.ts'];
-const progress = new ProgressBar('[:bar] :percent :example', {total: exampleList.length + 4});
+const progress = new ProgressBar('[:bar] :percent :example', { total: exampleList.length + 4 });
 for (let example of exampleList) {
-    progress.tick({example});
+    progress.tick({ example });
     generateStackBlitzFiles(example);
 }
-progress.tick({example: 'examples module'});
+progress.tick({ example: 'examples module' });
 generateExamplesModule();
-progress.tick({example: 'example Cashmere module'});
+progress.tick({ example: 'example Cashmere module' });
 generateCashmereModule();
-progress.tick({example: 'example component mappings'});
+progress.tick({ example: 'example component mappings' });
 generateExampleToComponentMappingsFile();
-progress.tick({example: ''}); // clear the progress bar
+progress.tick({ example: '' }); // clear the progress bar
 //////////////////////////////////
 
 function cleanOutputDirectory() {
     fse.ensureDirSync(outputRoot);
-    glob.sync('**/*', {cwd: outputRoot}).forEach(f => {
+    glob.sync('**/*', { cwd: outputRoot }).forEach(f => {
         rimraf.sync(path.join(outputRoot, f));
     });
 }
@@ -66,11 +66,11 @@ function cleanOutputDirectory() {
 function getStackBlitzProjectTemplateFiles() {
     fs.writeFileSync(
         path.join(projectTemplateRoot, 'src/app/cashmere.module.ts'),
-        prettier.format(cashmereModule, {...prettierConfig, filepath: 'cashmere.module.ts'})
+        prettier.format(cashmereModule, { ...prettierConfig, filepath: 'cashmere.module.ts' })
     );
     const exampleFiles: FileHash = {};
     // add all project template files to the StackBlitz
-    glob.sync('**/*', {dot: true, nodir: true, cwd: projectTemplateRoot, posix: true}).reduce((prev, curr) => {
+    glob.sync('**/*', { dot: true, nodir: true, cwd: projectTemplateRoot, posix: true }).reduce((prev, curr) => {
         const fullPath = path.join(projectTemplateRoot, curr);
         const content = fs.readFileSync(fullPath).toString();
         prev[curr] = content;
@@ -95,7 +95,7 @@ function generateStackBlitzFiles(exampleName: string) {
         return;
     }
     const exampleBaseName = pascalCase(exampleName);
-    const exampleFileList = glob.sync('**/*', {nodir: true, dot: true, cwd: exampleDir});
+    const exampleFileList = glob.sync('**/*', { nodir: true, dot: true, cwd: exampleDir });
 
     const moduleImportCommentPattern = /\/\* example-module-import \*\//g;
     const componentImportCommentPattern = /\/\* example-component-import \*\//g;
@@ -149,7 +149,7 @@ function generateStackBlitzFiles(exampleName: string) {
             .replace(componentImportCommentPattern, '')
             .replace(componentCommaPattern, '');
     } else {
-        exampleComponents.push({import: componentImport, name: componentName, exampleName});
+        exampleComponents.push({ import: componentImport, name: componentName, exampleName });
         appModuleContents = appModuleTemplate
             .replace(componentImportCommentPattern, componentImport)
             .replace(componentNameCommentPattern, componentName)
@@ -163,7 +163,7 @@ function generateStackBlitzFiles(exampleName: string) {
         // get formatted file contents
         const fullPath = path.join(examplesRoot, exampleName, curr);
         let content = fs.readFileSync(fullPath).toString();
-        prev[`src/app/${exampleName}/${curr}`] = prettier.format(content, {...prettierConfig, filepath: fullPath});
+        prev[`src/app/${exampleName}/${curr}`] = prettier.format(content, { ...prettierConfig, filepath: fullPath });
 
         // if the file references any assets, include those too
         const assetPattern = /".\/assets\/([^"]+)"/g;
@@ -179,11 +179,11 @@ function generateStackBlitzFiles(exampleName: string) {
     }, {} as FileHash);
 
     const allFiles = Object.assign({}, projectTemplateFiles, exampleFiles, {
-        'src/app/app.module.ts': prettier.format(appModuleContents, {...prettierConfig, filepath: 'app.module.ts'}),
+        'src/app/app.module.ts': prettier.format(appModuleContents, { ...prettierConfig, filepath: 'app.module.ts' })
     });
     fs.writeFileSync(
         path.join(outputRoot, `${exampleName}.json`),
-        prettier.format(JSON.stringify(allFiles, null, 2), {...prettierConfig, filepath: `${exampleName}.json`})
+        prettier.format(JSON.stringify(allFiles, null, 2), { ...prettierConfig, filepath: `${exampleName}.json` })
     );
 }
 
@@ -214,7 +214,7 @@ export class ExampleModule {}
 `;
     fs.writeFileSync(
         path.join(examplesRoot, 'examples.generated.module.ts'),
-        prettier.format(examplesModule, {...prettierConfig, filepath: 'examples.generated.module.ts'})
+        prettier.format(examplesModule, { ...prettierConfig, filepath: 'examples.generated.module.ts' })
     );
 }
 
@@ -243,7 +243,7 @@ export const EXAMPLE_COMPONENTS: { [exampleName: string]: any; } = {
     `;
     fs.writeFileSync(
         path.join(examplesRoot, 'example-mappings.generated.ts'),
-        prettier.format(examplesComponentMappings, {filepath: 'example-mappings.generated.ts'})
+        prettier.format(examplesComponentMappings, { filepath: 'example-mappings.generated.ts' })
     );
 }
 

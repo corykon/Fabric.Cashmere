@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {ExampleContainerComponent} from './example-container.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ExampleContainerComponent } from './example-container.component';
 
 const routes: Routes = [
     {

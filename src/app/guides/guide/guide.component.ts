@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {GuidesService, IGuide} from '../guides.service';
-import {ActivatedRoute} from '@angular/router';
-import {SectionService} from 'src/app/shared/section.service';
+import { Component, OnInit } from '@angular/core';
+import { GuidesService, IGuide } from '../guides.service';
+import { ActivatedRoute } from '@angular/router';
+import { SectionService } from 'src/app/shared/section.service';
 
 @Component({
     selector: 'hc-guide',

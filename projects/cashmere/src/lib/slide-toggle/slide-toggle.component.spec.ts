@@ -1,13 +1,14 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {SlideToggleModule} from './slide-toggle.module';
-import {SlideToggleComponent} from './slide-toggle.component';
-import {Component, ViewChild} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SlideToggleModule } from './slide-toggle.module';
+import { SlideToggleComponent } from './slide-toggle.component';
+import { Component, ViewChild } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     template: `
-        <hc-slide-toggle #st
+        <hc-slide-toggle
+            #st
             [disabled]="disabledVal"
             [buttonSize]="buttonSizeVal"
             [buttonStyle]="buttonStyleVal"
@@ -15,8 +16,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
             [insideLabel]="insideLabelVal"
             [buttonState]="buttonStateVal"
             (buttonStateChanged)="onSlideChange($event)"
-        >
-        </hc-slide-toggle>
+        ></hc-slide-toggle>
     `
 })
 export class SlideToggleTestComponent {
@@ -29,7 +29,7 @@ export class SlideToggleTestComponent {
 
     onSlideChange: (event?: boolean) => void = () => null;
 
-    @ViewChild('st', {static: false})
+    @ViewChild('st', { static: false })
     slideToggleElement: SlideToggleComponent;
 }
 
@@ -39,7 +39,7 @@ export class SlideToggleTestComponent {
     `
 })
 export class SlideToggleFormComponent {
-    slideForm: FormControl = new FormControl( true );
+    slideForm: FormControl = new FormControl(true);
 }
 
 describe('SlideToggleComponent', () => {
@@ -48,21 +48,22 @@ describe('SlideToggleComponent', () => {
     let formComponent: SlideToggleFormComponent;
     let formFixture: ComponentFixture<SlideToggleFormComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [SlideToggleTestComponent, SlideToggleFormComponent],
-            imports: [SlideToggleModule, FormsModule, ReactiveFormsModule]
-        }).compileComponents();
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [SlideToggleTestComponent, SlideToggleFormComponent],
+                imports: [SlideToggleModule, FormsModule, ReactiveFormsModule]
+            }).compileComponents();
 
-        fixture = TestBed.createComponent(SlideToggleTestComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+            fixture = TestBed.createComponent(SlideToggleTestComponent);
+            component = fixture.componentInstance;
+            fixture.detectChanges();
 
-        formFixture = TestBed.createComponent(SlideToggleFormComponent);
-        formComponent = formFixture.componentInstance;
-        formFixture.detectChanges();
-
-    }));
+            formFixture = TestBed.createComponent(SlideToggleFormComponent);
+            formComponent = formFixture.componentInstance;
+            formFixture.detectChanges();
+        })
+    );
 
     it('should change the style of the toggle when buttonStyle is set', () => {
         const slideToggleDebugElement = fixture.debugElement.query(By.directive(SlideToggleComponent));
@@ -95,7 +96,9 @@ describe('SlideToggleComponent', () => {
     });
 
     it('should throw an error when an invalid insideLabel type is set', () => {
-        expect( () => fixture.componentInstance.slideToggleElement.insideLabel = 'healthCatalyst' ).toThrowError(/Unsupported inside label type: .*/);
+        expect(() => (fixture.componentInstance.slideToggleElement.insideLabel = 'healthCatalyst')).toThrowError(
+            /Unsupported inside label type: .*/
+        );
     });
 
     it('should adjust the position of the outside label when labelPosition is set', () => {
@@ -120,22 +123,21 @@ describe('SlideToggleComponent', () => {
 
     it('should update the control when a FormField value changes', () => {
         const slideToggleDebugElement = formFixture.debugElement.query(By.directive(SlideToggleComponent));
-        expect( slideToggleDebugElement.componentInstance.buttonState ).toBe( true );
+        expect(slideToggleDebugElement.componentInstance.buttonState).toBe(true);
 
-        formComponent.slideForm.setValue( false );
+        formComponent.slideForm.setValue(false);
         formFixture.detectChanges();
 
-        expect( slideToggleDebugElement.componentInstance.buttonState ).toBe( false );
+        expect(slideToggleDebugElement.componentInstance.buttonState).toBe(false);
     });
 
     it('should update the FormControl when the toggle is clicked', () => {
         const slideToggleDebugElement = formFixture.debugElement.query(By.directive(SlideToggleComponent));
-        expect( slideToggleDebugElement.componentInstance.buttonState ).toBe( true );
+        expect(slideToggleDebugElement.componentInstance.buttonState).toBe(true);
 
         slideToggleDebugElement.componentInstance.buttonState = false;
         formFixture.detectChanges();
 
-        expect( formComponent.slideForm.value ).toBe( false );
+        expect(formComponent.slideForm.value).toBe(false);
     });
 });
-

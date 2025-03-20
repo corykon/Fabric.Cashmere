@@ -7,14 +7,14 @@ import { FormControl } from '@angular/forms';
     styleUrls: ['search-bar-overview-example.component.scss']
 })
 export class SearchBarOverviewExampleComponent {
-    placeholder = "Search";
+    placeholder = 'Search';
     disabled = false;
     showSearchIcon = true;
     showClearIcon = true;
     autoSearch = true;
     debounce = 100;
-    output = "";
-    styleControl = new FormControl("normal");
+    output = '';
+    styleControl = new FormControl('normal');
 
     search(term: string): void {
         this.output += `Search for '${term}'\n`;

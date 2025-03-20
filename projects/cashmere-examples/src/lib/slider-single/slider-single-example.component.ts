@@ -18,9 +18,9 @@ export class SliderSingleExampleComponent {
         ceil: 250
     };
 
-    updateSlider( value: StringConstructor ): void {
-        if ( !isNaN(+value) ) {
-            this.sliderControl.setValue( Number(value) );
+    updateSlider(value: StringConstructor): void {
+        if (!isNaN(+value)) {
+            this.sliderControl.setValue(Number(value));
         }
     }
 }

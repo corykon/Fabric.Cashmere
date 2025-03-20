@@ -1,5 +1,5 @@
-import {Dgeni} from 'dgeni';
-import {apiDocsPackage} from '../tools/dgeni';
+import { Dgeni } from 'dgeni';
+import { apiDocsPackage } from '../tools/dgeni';
 
 const dgeni = new Dgeni([apiDocsPackage]);
 dgeni.generate().then(docs => {

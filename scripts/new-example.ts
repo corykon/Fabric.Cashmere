@@ -3,12 +3,12 @@
 
 import chalk from 'chalk';
 import * as yargs from 'yargs';
-import {readdirSync, lstatSync, mkdirSync, readFileSync, writeFileSync, existsSync} from 'fs';
-import {join} from 'path';
-import {execSync} from 'child_process';
+import { readdirSync, lstatSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'fs';
+import { join } from 'path';
+import { execSync } from 'child_process';
 import * as inquirer from 'inquirer';
-import {paramCase, pascalCase, titleCase} from 'change-case';
-import {DocItem, DocItemCategory} from 'src/app/core/document-items.service';
+import { paramCase, pascalCase, titleCase } from 'change-case';
+import { DocItem, DocItemCategory } from 'src/app/core/document-items.service';
 import * as prettier from 'prettier';
 
 let prettierConfig: prettier.Options;
@@ -67,9 +67,9 @@ async function promptForMissingArguments() {
             name: 'component',
             message: `Which component is this example for?`,
             type: 'list',
-            choices: x => (cashmereComponents),
+            choices: x => cashmereComponents,
             // when the component isn't specified in args or the component that is specified in args is invalid for the specified category
-            when: x => !args.component || !(cashmereComponents).includes(args.component)
+            when: x => !args.component || !cashmereComponents.includes(args.component)
         },
         {
             name: 'name',
@@ -99,7 +99,7 @@ async function promptForMissingArguments() {
         }
     ]);
 
-    args = {...args, ...input};
+    args = { ...args, ...input };
     args.name = paramCase(args.name);
     args.requiredPackages = (args.requiredPackages || [])
         .map((p: string) => p!.trim().toLowerCase())
@@ -140,7 +140,7 @@ export class ${pascalCase(args.name)}ExampleComponent {
 // TODO: implement your example here
 }
 `;
-    writeFileSync(exampleComponentFileName, prettier.format(componentFileContents, {...prettierConfig, parser: 'typescript'}));
+    writeFileSync(exampleComponentFileName, prettier.format(componentFileContents, { ...prettierConfig, parser: 'typescript' }));
 
     const exampleHtmlFileName = join(newExampleDir, `${args.name}-example.component.html`);
     console.info(chalk.gray(`creating ${exampleHtmlFileName}...`));
@@ -168,7 +168,7 @@ exports: [${componentName}]
 export class ${pascalCase(args.name)}ExampleModule {
 }
 `.trim() + '\n';
-        writeFileSync(exampleModuleFileName, prettier.format(moduleFileContents, {...prettierConfig, parser: 'typescript'}));
+        writeFileSync(exampleModuleFileName, prettier.format(moduleFileContents, { ...prettierConfig, parser: 'typescript' }));
     }
 }
 
@@ -204,9 +204,7 @@ async function registerWithDocumentItemsService() {
             name: titleCase(args.component!),
             examples: [],
             id: args.component,
-            usageDoc: existsSync(
-                join(cashmereComponentDir, args.component!, `${args.component}.md`)
-            ),
+            usageDoc: existsSync(join(cashmereComponentDir, args.component!, `${args.component}.md`)),
             hideApi: false
         } as DocItem;
 
@@ -223,27 +221,27 @@ async function registerWithDocumentItemsService() {
     }
     docItems[args.component!].examples.push(args.name);
     const jsonString = JSON.stringify(docItems);
-    writeFileSync(docItemsFile, prettier.format(jsonString, {...prettierConfig, parser: 'json'}));
+    writeFileSync(docItemsFile, prettier.format(jsonString, { ...prettierConfig, parser: 'json' }));
 }
 
 function installAdditionalPackages() {
     console.info(chalk.gray('installing additional NPM packages to the docs project...'));
-    execSync(`npm install --save ${args.requiredPackages!.join(' ')}`, {cwd: join(__dirname, '../'), stdio: 'inherit'});
+    execSync(`npm install --save ${args.requiredPackages!.join(' ')}`, { cwd: join(__dirname, '../'), stdio: 'inherit' });
 
     console.info(chalk.gray('installing additional NPM packages to the examples project...'));
     const cashmereExamplesProjectDir = join(__dirname, '../projects/cashmere-examples');
-    execSync(`npm install --save ${args.requiredPackages!.join(' ')}`, {cwd: cashmereExamplesProjectDir, stdio: 'inherit'});
+    execSync(`npm install --save ${args.requiredPackages!.join(' ')}`, { cwd: cashmereExamplesProjectDir, stdio: 'inherit' });
 
     console.info(chalk.gray('moving dependencies to peer dependencies...'));
     const packageJsonPath = join(cashmereExamplesProjectDir, 'package.json');
     const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
-    packageJson.peerDependencies = {...packageJson.peerDependencies, ...packageJson.dependencies};
+    packageJson.peerDependencies = { ...packageJson.peerDependencies, ...packageJson.dependencies };
     delete packageJson.dependencies;
     const jsonString = JSON.stringify(packageJson);
-    writeFileSync(packageJsonPath, prettier.format(jsonString, {...prettierConfig, parser: 'json'}));
+    writeFileSync(packageJsonPath, prettier.format(jsonString, { ...prettierConfig, parser: 'json' }));
 }
 
 function runBuild() {
     console.info(chalk.gray('Performing initial build with the new example...'));
-    execSync('npm run build', {cwd: join(__dirname, '../'), stdio: 'inherit'});
+    execSync('npm run build', { cwd: join(__dirname, '../'), stdio: 'inherit' });
 }

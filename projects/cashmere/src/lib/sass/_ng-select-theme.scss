@@ -23,7 +23,8 @@ $ng-select-value-font-size: 14px !default;
 
 .ng-select {
     &.ng-select-opened {
-        > .ng-select-container, >.ng-select-container:hover {
+        > .ng-select-container,
+        > .ng-select-container:hover {
             border-color: $ng-select-border-focus;
             background-color: $white;
             box-shadow: 0 0 3px $primary-brand;
@@ -104,7 +105,9 @@ $ng-select-value-font-size: 14px !default;
             .ng-placeholder {
                 color: $ng-select-placeholder;
             }
-            input { @include fontSize($ng-select-value-font-size)}
+            input {
+                @include fontSize($ng-select-value-font-size);
+            }
         }
     }
     &.ng-select-single {
@@ -184,7 +187,9 @@ $ng-select-value-font-size: 14px !default;
 
     /** Button next to the dropdown arrow to clear out the input */
     .ng-clear-wrapper {
-        .ng-clear {color: transparent; }
+        .ng-clear {
+            color: transparent;
+        }
         &:after {
             content: '';
             display: block;
@@ -278,16 +283,18 @@ ng-dropdown-panel.ng-dropdown-panel {
             &.ng-option-marked {
                 background-color: $ng-select-option-hover;
             }
-            &.ng-option-selected, &.ng-option-selected.ng-option-marked {
+            &.ng-option-selected,
+            &.ng-option-selected.ng-option-marked {
                 background-color: $ng-select-option-selected;
                 color: $white;
             }
         }
         .ng-option {
             background-color: $ng-select-bg;
-            color: rgba(0, 0, 0, .87);
+            color: rgba(0, 0, 0, 0.87);
             padding: 8px 10px;
-            &.ng-option-selected, &.ng-option-selected.ng-option-marked {
+            &.ng-option-selected,
+            &.ng-option-selected.ng-option-marked {
                 color: $white;
                 background-color: $ng-select-option-selected;
             }

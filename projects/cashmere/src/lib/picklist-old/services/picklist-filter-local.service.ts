@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {FilterableSelectList, SelectListOption} from '../pane/picklist-pane.model';
+import { Injectable } from '@angular/core';
+import { FilterableSelectList, SelectListOption } from '../pane/picklist-pane.model';
 
 @Injectable()
 export class PicklistFilterLocalService {
@@ -10,7 +10,7 @@ export class PicklistFilterLocalService {
                 list.filteredOptions.push(item);
             }
         });
-        if (list.sort !== "none") {
+        if (list.sort !== 'none') {
             list.filteredOptions.sort(this.getSortFunc(list));
         }
     }
@@ -24,6 +24,6 @@ export class PicklistFilterLocalService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private getSortFunc<T extends SelectListOption>(list: FilterableSelectList<T>): (a: any, b: any) => number {
         const sortField = list.codeIsSignificant ? 'code' : 'title';
-        return (a, b) => a.option[sortField].localeCompare(b.option[sortField]) * (list.sort === "asc" ? -1 : 1);
+        return (a, b) => a.option[sortField].localeCompare(b.option[sortField]) * (list.sort === 'asc' ? -1 : 1);
     }
 }

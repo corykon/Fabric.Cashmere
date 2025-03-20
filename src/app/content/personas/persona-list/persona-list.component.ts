@@ -1,11 +1,11 @@
-import {Component, OnDestroy} from '@angular/core';
-import {SectionService} from '../../../shared/section.service';
-import {BaseDemoComponent} from '../../../shared/base-demo.component';
-import {PersonaFile, PersonaService} from '../persona-list.service';
-import {ActivatedRoute} from '@angular/router';
-import {NavigationEnd, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { SectionService } from '../../../shared/section.service';
+import { BaseDemoComponent } from '../../../shared/base-demo.component';
+import { PersonaFile, PersonaService } from '../persona-list.service';
+import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'hc-persona-list',
@@ -26,13 +26,13 @@ export class PersonaListComponent extends BaseDemoComponent implements OnDestroy
         super(sectionService);
         this.personaList = personaService.personas;
         this.personaList.sort(this.comparePersonas);
-        if ( activatedRoute.firstChild && activatedRoute.firstChild.routeConfig ) {
+        if (activatedRoute.firstChild && activatedRoute.firstChild.routeConfig) {
             this.viewerMode = true;
         }
 
         this.router.events.pipe(takeUntil(this.unsubscribe)).subscribe(event => {
             if (event instanceof NavigationEnd) {
-                if ( activatedRoute.firstChild && activatedRoute.firstChild.routeConfig ) {
+                if (activatedRoute.firstChild && activatedRoute.firstChild.routeConfig) {
                     this.viewerMode = true;
                 } else {
                     this.viewerMode = false;

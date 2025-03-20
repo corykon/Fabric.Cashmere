@@ -44,11 +44,14 @@ import { SortFn, GroupValueFn, CompareWithFn, AddCustomItemFn, SearchFn, GroupBy
     selector: 'hc-picklist',
     templateUrl: './picklist.component.html',
     styleUrls: ['./picklist.component.scss'],
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => PicklistComponent),
-        multi: true
-    }, PicklistService],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => PicklistComponent),
+            multi: true
+        },
+        PicklistService
+    ],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -141,7 +144,9 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
 
     /** An array of options for the picklist. Options can be of any type, and the array can be an observable stream.
      * Can alternatively use `<hc-pick-option>` components to pass in options. */
-    @Input() get items(): unknown[] { return this._items; }
+    @Input() get items(): unknown[] {
+        return this._items;
+    }
     set items(value: unknown[]) {
         this._itemsAreUsed = true;
         this._items = value;
@@ -150,7 +155,9 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
      * The first argument is a value from an option. The second is a value from the selection (model).
      * A boolean should be returned.
      * Same as used by https://angular.io/api/forms/SelectControlValueAccessor */
-    @Input() get compareWith(): CompareWithFn { return this._compareWith; }
+    @Input() get compareWith(): CompareWithFn {
+        return this._compareWith;
+    }
     set compareWith(fn: CompareWithFn) {
         if (!isFunction(fn)) {
             throw Error('`compareWith` must be a function.');
@@ -159,11 +166,11 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
     }
 
     /** Fires when model is updated. Sends an array of the currently selected values. */
-    @Output() change = new EventEmitter<Array<string|Record<string, unknown>|undefined>>();
+    @Output() change = new EventEmitter<Array<string | Record<string, unknown> | undefined>>();
     /** Fires when options are added. Sends an array of the values being added. */
-    @Output() add = new EventEmitter<Array<string|Record<string, unknown>|undefined>>();
+    @Output() add = new EventEmitter<Array<string | Record<string, unknown> | undefined>>();
     /** Fires when options are removed. Sends an array of the values being removed. */
-    @Output() remove = new EventEmitter<Array<string|Record<string, unknown>|undefined>>();
+    @Output() remove = new EventEmitter<Array<string | Record<string, unknown> | undefined>>();
 
     // custom templates
     @ContentChild(PickOptionTemplateDirective, { read: TemplateRef }) _optionTemplate: TemplateRef<unknown>;
@@ -180,7 +187,9 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
     @ViewChild('available', { static: true }) _availablePane: PickPaneComponent;
     @ViewChild('selected', { static: true }) _selectedPane: PickPaneComponent;
     /** Getter. Returns true if readonly property is true, or if disabled attribute is present on the control. */
-    @HostBinding('class.hc-picklist-disabled') get disabled(): boolean { return this.readonly || this._disabled; }
+    @HostBinding('class.hc-picklist-disabled') get disabled(): boolean {
+        return this.readonly || this._disabled;
+    }
 
     /** whether or not we should escape HTML in default option templates. will be set to false if
      * using <hc-pick-option> instead of passing in an items array */
@@ -199,14 +208,20 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
         _elementRef: ElementRef<HTMLElement>,
         private picklistService: PicklistService,
         private _cd: ChangeDetectorRef,
-        @Attribute('autofocus') private autoFocus: any) {
-            this._el = _elementRef.nativeElement;
+        @Attribute('autofocus') private autoFocus: any
+    ) {
+        this._el = _elementRef.nativeElement;
     }
 
     ngAfterViewInit(): void {
         this.picklistService.reset(this._availablePane, this._selectedPane);
-        if (!this._itemsAreUsed) { this._setItemsFromHcPickOptions(); this._escapeHTML = false; }
-        if (isDefined(this.autoFocus)) { this._availablePane.focus(); }
+        if (!this._itemsAreUsed) {
+            this._setItemsFromHcPickOptions();
+            this._escapeHTML = false;
+        }
+        if (isDefined(this.autoFocus)) {
+            this._availablePane.focus();
+        }
         this._detectChanges();
     }
 
@@ -275,12 +290,16 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
             overLimitBy = this._selectedPane.itemsList.itemsTotalCount + source.selectedItems.length - this.maxSelectedItems;
             maxLimitEnforced = overLimitBy > 0;
         }
-        const optionsToMove = maxLimitEnforced ? source.selectedItems.slice(0, source.selectedItems.length - overLimitBy)
+        const optionsToMove = maxLimitEnforced
+            ? source.selectedItems.slice(0, source.selectedItems.length - overLimitBy)
             : source.selectedItems;
-        optionsToMove.filter(i => !i.disabled).slice().forEach(i => {
-            source.itemsList.removeOption(i);
-            destination.itemsList.addOption(i);
-        });
+        optionsToMove
+            .filter(i => !i.disabled)
+            .slice()
+            .forEach(i => {
+                source.itemsList.removeOption(i);
+                destination.itemsList.addOption(i);
+            });
 
         const eventToFire = isAdding ? this.add : this.remove;
         eventToFire.emit(optionsToMove.map(x => x.value));
@@ -338,23 +357,25 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
                 });
         };
 
-        this._ngOptions.changes
-            .pipe(startWith(this._ngOptions), takeUntil(this._destroy$))
-            .subscribe(options => {
-                this.bindLabel = this._defaultLabel;
-                mapNgOptions(options);
-                handleOptionChange();
-                this._detectChanges();
-            });
+        this._ngOptions.changes.pipe(startWith(this._ngOptions), takeUntil(this._destroy$)).subscribe(options => {
+            this.bindLabel = this._defaultLabel;
+            mapNgOptions(options);
+            handleOptionChange();
+            this._detectChanges();
+        });
     }
 
     /** Apply value passed in from ngModel as the current selection in the component */
     private _handleWriteValue(ngModel: unknown[] | unknown) {
-        if (!this._isValidWriteValue(ngModel)) { return; }
+        if (!this._isValidWriteValue(ngModel)) {
+            return;
+        }
 
         const select = (val: unknown) => {
             const alreadySelected = this._selectedPane.itemsList.findOption(val);
-            if (alreadySelected) { return; }
+            if (alreadySelected) {
+                return;
+            }
 
             const availableItem = this._availablePane.itemsList.findOption(val);
             if (availableItem) {
@@ -363,8 +384,10 @@ export class PicklistComponent implements OnDestroy, AfterViewInit, ControlValue
                 this._availablePane.itemsList.reIndex();
             } else {
                 // where possible, handle cases where we're adding something to the model that's not an existing option
-                if (this.bindValue) { throw new Error(`Attempting to set a value (${val}) in the model that does not exist in the available options.
-                    This is not allowed when the [bindValue] Input() is used. You'll need to add the option to the [items] Input().`); }
+                if (this.bindValue) {
+                    throw new Error(`Attempting to set a value (${val}) in the model that does not exist in the available options.
+                    This is not allowed when the [bindValue] Input() is used. You'll need to add the option to the [items] Input().`);
+                }
                 this._selectedPane.itemsList.addNewOption(val);
             }
         };

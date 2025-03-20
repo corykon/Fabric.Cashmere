@@ -1,10 +1,10 @@
-import {Injectable, ComponentRef, Injector, TemplateRef, Type} from '@angular/core';
-import {Overlay, OverlayConfig, OverlayRef, PositionStrategy} from '@angular/cdk/overlay';
-import {ComponentPortal, PortalInjector, TemplatePortal} from '@angular/cdk/portal';
-import {HcToastComponent} from './hc-toast.component';
-import {HcToastOptions} from './hc-toast-options';
-import {HcToastRef} from './hc-toast-ref';
-import {filter, take} from 'rxjs/operators';
+import { Injectable, ComponentRef, Injector, TemplateRef, Type } from '@angular/core';
+import { Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
+import { HcToastComponent } from './hc-toast.component';
+import { HcToastOptions } from './hc-toast-options';
+import { HcToastRef } from './hc-toast-ref';
+import { filter, take } from 'rxjs/operators';
 
 export type ComponentSetup<T> = Partial<T> | ((instance: T) => void);
 export type ToastContentType<T> = Type<T> | TemplateRef<unknown>;
@@ -29,7 +29,7 @@ export class HcToasterService {
             timeout: 5000,
             clickDismiss: false
         };
-        const options = {...defaultOptions, ...toastOptions};
+        const options = { ...defaultOptions, ...toastOptions };
 
         // Returns an OverlayRef (which is a PortalHost)
         const _overlayRef = this._createOverlay(options);
@@ -66,7 +66,7 @@ export class HcToasterService {
                 if (options.toastClicked) {
                     options.toastClicked();
                 }
-                if ( _toastRef.componentInstance._canDismiss ) {
+                if (_toastRef.componentInstance._canDismiss) {
                     _toastRef.close();
                 }
             });
@@ -192,9 +192,9 @@ export class HcToasterService {
         const positionStrategy = this._getPositionStrategy(String(config.position), this._toasts.length);
 
         if (config.position === 'top-full-width' || config.position === 'bottom-full-width') {
-            overlayConfig = new OverlayConfig({positionStrategy, width: '96%', panelClass: 'overlay-pointer-events'});
+            overlayConfig = new OverlayConfig({ positionStrategy, width: '96%', panelClass: 'overlay-pointer-events' });
         } else {
-            overlayConfig = new OverlayConfig({positionStrategy, panelClass: 'overlay-pointer-events'});
+            overlayConfig = new OverlayConfig({ positionStrategy, panelClass: 'overlay-pointer-events' });
         }
 
         return overlayConfig;
@@ -219,10 +219,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .right('10px');
+                    positionStrategy = this._overlay.position().global().right('10px');
                 }
                 break;
             case 'top-center':
@@ -239,10 +236,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .centerHorizontally();
+                    positionStrategy = this._overlay.position().global().centerHorizontally();
                 }
                 break;
             case 'top-left':
@@ -259,10 +253,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .left('10px');
+                    positionStrategy = this._overlay.position().global().left('10px');
                 }
                 break;
             case 'top-full-width':
@@ -280,10 +271,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .centerHorizontally();
+                    positionStrategy = this._overlay.position().global().centerHorizontally();
                 }
                 break;
             case 'bottom-right':
@@ -300,11 +288,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .bottom()
-                        .right('10px');
+                    positionStrategy = this._overlay.position().global().bottom().right('10px');
                 }
                 break;
             case 'bottom-center':
@@ -321,11 +305,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .bottom()
-                        .centerHorizontally();
+                    positionStrategy = this._overlay.position().global().bottom().centerHorizontally();
                 }
                 break;
             case 'bottom-left':
@@ -342,11 +322,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .bottom()
-                        .left('10px');
+                    positionStrategy = this._overlay.position().global().bottom().left('10px');
                 }
                 break;
             case 'bottom-full-width':
@@ -364,11 +340,7 @@ export class HcToasterService {
                             }
                         ]);
                 } else {
-                    positionStrategy = this._overlay
-                        .position()
-                        .global()
-                        .bottom()
-                        .centerHorizontally();
+                    positionStrategy = this._overlay.position().global().bottom().centerHorizontally();
                 }
                 break;
             default:

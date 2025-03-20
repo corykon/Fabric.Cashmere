@@ -10,10 +10,10 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
-import {parseBooleanAttribute} from '../util';
-import {filter, map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { parseBooleanAttribute } from '../util';
+import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 /** Result of opening or closing the drawer */
 export class DrawerPromiseResult {
@@ -71,16 +71,12 @@ const closeStateAnimation = '0.25s .05s ease';
                 animate('0ms', style({ transform: 'translate3d(-100%, 0, 0)' })),
                 animate(closeStateAnimation)
             ]),
-            transition('open-left => void', [
-                animate(openStateAnimation, style({ transform: 'translate3d(-100%, 0, 0)' }))
-            ]),
+            transition('open-left => void', [animate(openStateAnimation, style({ transform: 'translate3d(-100%, 0, 0)' }))]),
             transition('void => open-right', [
-                animate('0ms', style({ transform: 'translate3d(100%, 0, 0)'})),
+                animate('0ms', style({ transform: 'translate3d(100%, 0, 0)' })),
                 animate(closeStateAnimation)
             ]),
-            transition('open-right => void', [
-                animate(openStateAnimation, style({ transform: 'translate3d(100%, 0, 0)' }))
-            ])
+            transition('open-right => void', [animate(openStateAnimation, style({ transform: 'translate3d(100%, 0, 0)' }))])
         ])
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -119,7 +115,7 @@ export class Drawer implements AfterContentInit {
     @Output()
     get openStart(): Observable<void> {
         return this._animationStarted.pipe(
-            filter(event => (event.fromState === 'void' || event.fromState === 'close-instant') && event.toState.startsWith('open-') ),
+            filter(event => (event.fromState === 'void' || event.fromState === 'close-instant') && event.toState.startsWith('open-')),
             map(() => {
                 // do nothing.
             })
@@ -162,7 +158,7 @@ export class Drawer implements AfterContentInit {
     }
 
     set opened(opened: boolean) {
-        if ( opened !== this._drawerOpened ) {
+        if (opened !== this._drawerOpened) {
             this.toggle(parseBooleanAttribute(opened));
         }
     }
@@ -187,7 +183,7 @@ export class Drawer implements AfterContentInit {
     }
 
     @HostBinding('class.hc-drawer-closing')
-    get _isClosing() : boolean{
+    get _isClosing(): boolean {
         return !this._drawerOpened && !!this._animationPromise;
     }
 
@@ -197,7 +193,7 @@ export class Drawer implements AfterContentInit {
     }
 
     @HostBinding('@openState')
-    get _openState(): 'void' | 'open-instant' | 'close-instant'| 'open-left' | 'open-right' {
+    get _openState(): 'void' | 'open-instant' | 'close-instant' | 'open-left' | 'open-right' {
         if (this._drawerOpened) {
             if (this._animationDisabled || !this._animated) {
                 return 'open-instant';

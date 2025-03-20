@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 /**
  * @title Sidenav w/ Content Projection
  */
@@ -7,5 +7,4 @@ import {Component} from '@angular/core';
     templateUrl: 'sidenav-projection-example.component.html',
     styleUrls: ['sidenav-projection-example.component.scss']
 })
-export class SidenavProjectionExampleComponent {
-}
+export class SidenavProjectionExampleComponent {}

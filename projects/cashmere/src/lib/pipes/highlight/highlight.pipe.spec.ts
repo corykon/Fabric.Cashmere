@@ -1,4 +1,4 @@
-import {HighlightPipe} from './highlight.pipe';
+import { HighlightPipe } from './highlight.pipe';
 
 describe('HighlightPipe', () => {
     let highlightPipe: HighlightPipe;

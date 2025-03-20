@@ -29,11 +29,7 @@
         ],
         "borderColor": "#aaaaaa",
         "borderWidth": "0",
-        "visualMapColor": [
-            "#f13c45",
-            "#e7c447",
-            "#00a859"
-        ],
+        "visualMapColor": ["#f13c45", "#e7c447", "#00a859"],
         "legendTextColor": "#333",
         "kColor": "#f13c45",
         "kColor0": "#00a859",
@@ -66,14 +62,9 @@
                 "axisLabelShow": true,
                 "axisLabelColor": "#6E7079",
                 "splitLineShow": true,
-                "splitLineColor": [
-                    "#E0E6F1"
-                ],
+                "splitLineColor": ["#E0E6F1"],
                 "splitAreaShow": false,
-                "splitAreaColor": [
-                    "rgba(250,250,250,0.2)",
-                    "rgba(210,219,238,0.2)"
-                ]
+                "splitAreaColor": ["rgba(250,250,250,0.2)", "rgba(210,219,238,0.2)"]
             },
             {
                 "type": "category",
@@ -85,14 +76,9 @@
                 "axisLabelShow": true,
                 "axisLabelColor": "#333333",
                 "splitLineShow": false,
-                "splitLineColor": [
-                    "#E0E6F1"
-                ],
+                "splitLineColor": ["#E0E6F1"],
                 "splitAreaShow": false,
-                "splitAreaColor": [
-                    "rgba(250,250,250,0.2)",
-                    "rgba(210,219,238,0.2)"
-                ]
+                "splitAreaColor": ["rgba(250,250,250,0.2)", "rgba(210,219,238,0.2)"]
             },
             {
                 "type": "value",
@@ -104,14 +90,9 @@
                 "axisLabelShow": true,
                 "axisLabelColor": "#333333",
                 "splitLineShow": true,
-                "splitLineColor": [
-                    "#cccccc"
-                ],
+                "splitLineColor": ["#cccccc"],
                 "splitAreaShow": false,
-                "splitAreaColor": [
-                    "rgba(250,250,250,0.2)",
-                    "rgba(210,219,238,0.2)"
-                ]
+                "splitAreaColor": ["rgba(250,250,250,0.2)", "rgba(210,219,238,0.2)"]
             },
             {
                 "type": "log",
@@ -123,14 +104,9 @@
                 "axisLabelShow": true,
                 "axisLabelColor": "#333333",
                 "splitLineShow": true,
-                "splitLineColor": [
-                    "#cccccc"
-                ],
+                "splitLineColor": ["#cccccc"],
                 "splitAreaShow": false,
-                "splitAreaColor": [
-                    "rgba(250,250,250,0.2)",
-                    "rgba(210,219,238,0.2)"
-                ]
+                "splitAreaColor": ["rgba(250,250,250,0.2)", "rgba(210,219,238,0.2)"]
             },
             {
                 "type": "time",
@@ -142,14 +118,9 @@
                 "axisLabelShow": true,
                 "axisLabelColor": "#333333",
                 "splitLineShow": false,
-                "splitLineColor": [
-                    "#E0E6F1"
-                ],
+                "splitLineColor": ["#E0E6F1"],
                 "splitAreaShow": false,
-                "splitAreaColor": [
-                    "rgba(250,250,250,0.2)",
-                    "rgba(210,219,238,0.2)"
-                ]
+                "splitAreaColor": ["rgba(250,250,250,0.2)", "rgba(210,219,238,0.2)"]
             }
         ],
         "axisSeperateSetting": true,

@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {BannerType, HcBannerComponent} from './hc-banner.component';
+import { BannerType, HcBannerComponent } from './hc-banner.component';
 
 describe('HcBannerComponent', () => {
     let component: HcBannerComponent;

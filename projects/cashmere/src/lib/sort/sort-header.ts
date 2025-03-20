@@ -7,8 +7,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
-import {CdkColumnDef} from '@angular/cdk/table';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { CdkColumnDef } from '@angular/cdk/table';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -21,12 +21,12 @@ import {
     HostBinding,
     HostListener
 } from '@angular/core';
-import {merge, Subscription} from 'rxjs';
-import {HcSort, HcSortable} from './sort';
-import {hcSortAnimations} from './sort-animations';
-import {SortDirection} from './sort-direction';
-import {getSortHeaderNotContainedWithinSortError} from './sort-errors';
-import {HcSortHeaderIntl} from './sort-header-intl';
+import { merge, Subscription } from 'rxjs';
+import { HcSort, HcSortable } from './sort';
+import { hcSortAnimations } from './sort-animations';
+import { SortDirection } from './sort-direction';
+import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
+import { HcSortHeaderIntl } from './sort-header-intl';
 
 /**
  * Valid positions for the arrow to be in for its opacity and translation. If the state is a
@@ -156,7 +156,7 @@ export class HcSortHeader implements HcSortable, OnDestroy, OnInit {
             // If this header was recently active and now no longer sorted, animate away the arrow.
             if (!this._isSorted() && this._viewState && this._viewState.toState === 'active') {
                 this._disableViewStateAnimation = false;
-                this._setAnimationTransitionState({fromState: 'active', toState: this._arrowDirection});
+                this._setAnimationTransitionState({ fromState: 'active', toState: this._arrowDirection });
             }
 
             changeDetectorRef.markForCheck();
@@ -170,7 +170,7 @@ export class HcSortHeader implements HcSortable, OnDestroy, OnInit {
 
         // Initialize the direction of the arrow and set the view state to be immediately that state.
         this._updateArrowDirection();
-        this._setAnimationTransitionState({toState: this._isSorted() ? 'active' : this._arrowDirection});
+        this._setAnimationTransitionState({ toState: this._isSorted() ? 'active' : this._arrowDirection });
 
         this._sort.register(this);
     }
@@ -195,9 +195,9 @@ export class HcSortHeader implements HcSortable, OnDestroy, OnInit {
         if (!this._isSorted()) {
             this._updateArrowDirection();
             if (this._showIndicatorHint) {
-                this._setAnimationTransitionState({fromState: this._arrowDirection, toState: 'hint'});
+                this._setAnimationTransitionState({ fromState: this._arrowDirection, toState: 'hint' });
             } else {
-                this._setAnimationTransitionState({fromState: 'hint', toState: this._arrowDirection});
+                this._setAnimationTransitionState({ fromState: 'hint', toState: this._arrowDirection });
             }
         }
     }
@@ -213,7 +213,7 @@ export class HcSortHeader implements HcSortable, OnDestroy, OnInit {
         // If the animation for arrow position state (opacity/translation) should be disabled,
         // remove the fromState so that it jumps right to the toState.
         if (this._disableViewStateAnimation) {
-            this._viewState = {toState: viewState.toState};
+            this._viewState = { toState: viewState.toState };
         }
     }
 
@@ -234,8 +234,8 @@ export class HcSortHeader implements HcSortable, OnDestroy, OnInit {
         // If the arrow is now sorted, animate the arrow into place. Otherwise, animate it away into
         // the direction it is facing.
         const viewState: ArrowViewStateTransition = this._isSorted()
-            ? {fromState: this._arrowDirection, toState: 'active'}
-            : {fromState: 'active', toState: this._arrowDirection};
+            ? { fromState: this._arrowDirection, toState: 'active' }
+            : { fromState: 'active', toState: this._arrowDirection };
         this._setAnimationTransitionState(viewState);
 
         this._showIndicatorHint = false;

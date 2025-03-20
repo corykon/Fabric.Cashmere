@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 interface Topping {
     id: number;
@@ -18,18 +18,18 @@ interface Topping {
 export class SelectCompareWithExampleComponent implements OnInit {
     pizzaToppingForm: FormGroup;
     toppings: Array<Topping> = [
-        {id: 1, name: 'Pepperoni', price: "$0.59"},
-        {id: 2, name: 'Olives', price: "$0.79"},
-        {id: 3, name: 'Sausage', price: "$0.99"},
-        {id: 4, name: 'Bacon', price: "$0.99"},
-        {id: 5, name: 'Chicken', price: "$0.99"},
+        { id: 1, name: 'Pepperoni', price: '$0.59' },
+        { id: 2, name: 'Olives', price: '$0.79' },
+        { id: 3, name: 'Sausage', price: '$0.99' },
+        { id: 4, name: 'Bacon', price: '$0.99' },
+        { id: 5, name: 'Chicken', price: '$0.99' }
     ];
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder) {}
 
     public ngOnInit(): void {
         this.pizzaToppingForm = this.formBuilder.group({
-            "selectedTopping": {id: 5, name: 'Chicken', price: '$0.99'}
+            selectedTopping: { id: 5, name: 'Chicken', price: '$0.99' }
         });
     }
 

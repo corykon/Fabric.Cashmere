@@ -1,4 +1,4 @@
-const md = require('markdown-it')({html: true});
+const md = require('markdown-it')({ html: true });
 const mdnh = require('markdown-it-named-headers');
 const glob = require('glob').glob;
 const path = require('path');
@@ -9,8 +9,8 @@ const outputDir = 'dist/docs/usage';
 // plugin to add id values to header tags
 md.use(mdnh);
 
-console.log('rendering usage docs from Markdown...')
-glob('projects/@(cashmere)/src/lib/**/*.md', {posix: true}).then(function(files) {
+console.log('rendering usage docs from Markdown...');
+glob('projects/@(cashmere)/src/lib/**/*.md', { posix: true }).then(function (files) {
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
     }

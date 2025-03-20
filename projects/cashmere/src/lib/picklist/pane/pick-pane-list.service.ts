@@ -15,9 +15,8 @@ export interface PanelDimensions {
 @Injectable()
 /** Performs calculations for virtual scrolling.
  * @docs-private
-*/
+ */
 export class PickPaneListService {
-
     private _dimensions: PanelDimensions = {
         itemHeight: 0,
         panelHeight: 0,
@@ -33,14 +32,14 @@ export class PickPaneListService {
         const scrollHeight = d.itemHeight * itemsLength;
 
         const scrollTop = Math.max(0, scrollPos);
-        const indexByScrollTop = scrollTop / scrollHeight * itemsLength;
+        const indexByScrollTop = (scrollTop / scrollHeight) * itemsLength;
         let end = Math.min(itemsLength, Math.ceil(indexByScrollTop) + (d.itemsPerViewport + 1));
 
         const maxStartEnd = end;
         const maxStart = Math.max(0, maxStartEnd - d.itemsPerViewport);
         let start = Math.min(maxStart, Math.floor(indexByScrollTop));
 
-        let topPadding = d.itemHeight * Math.ceil(start) - (d.itemHeight * Math.min(start, buffer));
+        let topPadding = d.itemHeight * Math.ceil(start) - d.itemHeight * Math.min(start, buffer);
         topPadding = !isNaN(topPadding) ? topPadding : 0;
         start = !isNaN(start) ? start : -1;
         end = !isNaN(end) ? end : -1;

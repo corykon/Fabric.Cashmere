@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Example of various styles of inputs
@@ -10,7 +10,7 @@ import {FormControl} from '@angular/forms';
     styleUrls: ['input-styles-example.component.scss']
 })
 export class InputStylesExampleComponent {
-    inlineState = new FormControl(false, {nonNullable: true});
-    tightState =  new FormControl(false, {nonNullable: true});
-    mobileState = new FormControl(false, {nonNullable: true});
+    inlineState = new FormControl(false, { nonNullable: true });
+    tightState = new FormControl(false, { nonNullable: true });
+    mobileState = new FormControl(false, { nonNullable: true });
 }

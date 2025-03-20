@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {supportedStyles} from '../button/button.component';
-import {BasePaginationComponent} from './base-pagination';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { supportedStyles } from '../button/button.component';
+import { BasePaginationComponent } from './base-pagination';
 import { supportedColors } from '../utils/supported-colors';
 import { validateInput } from '../util';
 

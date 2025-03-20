@@ -1,5 +1,5 @@
-import {ModalService, SimpleModalOptions, ModalOptions, ModalSize} from '@healthcatalyst/cashmere';
-import {Component} from '@angular/core';
+import { ModalService, SimpleModalOptions, ModalOptions, ModalSize } from '@healthcatalyst/cashmere';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 /**
@@ -12,18 +12,21 @@ import { FormControl } from '@angular/forms';
 })
 export class ModalSimpleOverviewExampleComponent {
     constructor(private modalService: ModalService) {}
-    readonly message = new FormControl(`<p>Are you sure you to purchase this <strong>Didgeridoo</strong>?</p><p>It is a <em>really cool</em> wind instrument, played with vibrating lips to produce a continuous drone while using a special breathing technique called circular breathing.</p>`, {nonNullable: true});
-    readonly headerText = new FormControl('Buy a Didgeridoo?', {nonNullable: true});
-    readonly icon = new FormControl('fa fa-dollar', {nonNullable: true});
-    readonly cancelButtonText = new FormControl('Cancel', {nonNullable: true});
-    readonly confirmButtonText = new FormControl('Buy didgeridoo', {nonNullable: true});
-    readonly confirmButtonIcon = new FormControl('fa fa-dollar', {nonNullable: true});
-    readonly confirmButtonIsDestructive = new FormControl(false, {nonNullable: true});
-    readonly footerTooltipText = new FormControl('Help is on the way...', {nonNullable: true});
-    readonly modalSize = new FormControl('lg', {nonNullable: true});
-    readonly modalIsResizable = new FormControl(false, {nonNullable: true});
-    readonly modalIsDraggable = new FormControl(false, {nonNullable: true});
-    readonly shouldAllowHTML = new FormControl(true, {nonNullable: true});
+    readonly message = new FormControl(
+        `<p>Are you sure you to purchase this <strong>Didgeridoo</strong>?</p><p>It is a <em>really cool</em> wind instrument, played with vibrating lips to produce a continuous drone while using a special breathing technique called circular breathing.</p>`,
+        { nonNullable: true }
+    );
+    readonly headerText = new FormControl('Buy a Didgeridoo?', { nonNullable: true });
+    readonly icon = new FormControl('fa fa-dollar', { nonNullable: true });
+    readonly cancelButtonText = new FormControl('Cancel', { nonNullable: true });
+    readonly confirmButtonText = new FormControl('Buy didgeridoo', { nonNullable: true });
+    readonly confirmButtonIcon = new FormControl('fa fa-dollar', { nonNullable: true });
+    readonly confirmButtonIsDestructive = new FormControl(false, { nonNullable: true });
+    readonly footerTooltipText = new FormControl('Help is on the way...', { nonNullable: true });
+    readonly modalSize = new FormControl('lg', { nonNullable: true });
+    readonly modalIsResizable = new FormControl(false, { nonNullable: true });
+    readonly modalIsDraggable = new FormControl(false, { nonNullable: true });
+    readonly shouldAllowHTML = new FormControl(true, { nonNullable: true });
 
     open(): void {
         // set confirmation content options
@@ -44,12 +47,12 @@ export class ModalSimpleOverviewExampleComponent {
             size: this.modalSize.value as ModalSize,
             isResizable: this.modalIsResizable.value,
             isDraggable: this.modalIsDraggable.value
-        }
+        };
         this.modalService.confirm(contentOptions, modalOptions).subscribe(confirmed => {
-            if(confirmed) {
-                console.log("Action confirmed.");
+            if (confirmed) {
+                console.log('Action confirmed.');
             } else {
-                console.log("Action cancelled. Do something else.")
+                console.log('Action cancelled. Do something else.');
             }
         });
     }

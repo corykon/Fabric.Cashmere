@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {EllipsisPipe} from './ellipsis.pipe';
+import { NgModule } from '@angular/core';
+import { EllipsisPipe } from './ellipsis.pipe';
 
 @NgModule({
     declarations: [EllipsisPipe],

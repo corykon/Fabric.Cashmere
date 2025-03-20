@@ -33,20 +33,23 @@ export class ReleaseNote implements IReleaseNote {
     /** True if this release note accordion should be open */
     public isOpen = false;
     /** Merges the release day, month and year into a string: "DD MMM YYYY" */
-    public get releaseDateStr(): string { return this._releaseDateStr; }
+    public get releaseDateStr(): string {
+        return this._releaseDateStr;
+    }
     private _releaseDateStr: string;
     constructor(
         /** Release version. Semantic versioning recommended. */
         public version: string,
         /** Release notes for the given version.
-        * **WARNING:** You are responsible to sanitize any unsafe user input. */
+         * **WARNING:** You are responsible to sanitize any unsafe user input. */
         public notesHTML: string,
         /** Optional. What month is the release from? [1-12] */
         public releaseMonth: number,
         /** Optional. What year is the release from? [YYYY] */
         public releaseYear: number,
         /** Optional. What day is the release from? [1-31] */
-        public releaseDay: number = 0) {
+        public releaseDay: number = 0
+    ) {
         // take a number 1-12 and produce a string like 'Jan', 'Feb', etc.
         const monthStr = new Date(releaseYear, releaseMonth - 1, 1).toLocaleString('en-us', { month: 'short' });
         this._releaseDateStr = `${releaseDay ? releaseDay : ''} ${monthStr} ${releaseYear}`;

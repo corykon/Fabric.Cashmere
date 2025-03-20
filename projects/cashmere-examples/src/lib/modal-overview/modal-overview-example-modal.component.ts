@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ActiveModal} from '@healthcatalyst/cashmere';
+import { Component } from '@angular/core';
+import { ActiveModal } from '@healthcatalyst/cashmere';
 
 @Component({
     selector: 'hc-modal-overview-example-modal',

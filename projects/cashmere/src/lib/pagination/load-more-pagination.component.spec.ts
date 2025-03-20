@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ButtonModule} from '../button';
-import {LoadMorePaginationComponent} from './load-more-pagination.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ButtonModule } from '../button';
+import { LoadMorePaginationComponent } from './load-more-pagination.component';
 
 describe('LoadMorePaginationComponent', () => {
     let fixture: ComponentFixture<LoadMorePaginationComponent>;
@@ -17,7 +17,7 @@ describe('LoadMorePaginationComponent', () => {
     });
 
     function beforeEachWithTimeout(action: () => void): void {
-        beforeEach((done) => {
+        beforeEach(done => {
             action();
             setTimeout(done);
         });
@@ -52,7 +52,7 @@ describe('LoadMorePaginationComponent', () => {
             component.length = 100;
             component.pageSize = 10;
         });
-        it('should set the pageNumber to be 2', (done) => {
+        it('should set the pageNumber to be 2', done => {
             component._loadNextPage();
 
             // wait for page number to be set in next change detection cycle
@@ -68,7 +68,7 @@ describe('LoadMorePaginationComponent', () => {
             component.length = 100;
             component.pageSize = 10;
         });
-        it('should set the pageNumber to be 10', (done) => {
+        it('should set the pageNumber to be 10', done => {
             component._loadNextPage();
 
             // wait for page number to be set in next change detection cycle

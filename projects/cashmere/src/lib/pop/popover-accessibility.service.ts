@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 
 export interface HcPopKeyboardNotifier {
     isOpen: boolean;
@@ -17,7 +17,7 @@ export class HcPopoverAccessibilityService implements OnDestroy {
         window.addEventListener('keydown', this.handleKeydown);
     }
 
-    ngOnDestroy():void {
+    ngOnDestroy(): void {
         window.removeEventListener('keydown', this.handleKeydown);
     }
 

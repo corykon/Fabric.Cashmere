@@ -1,5 +1,5 @@
-export {PicklistOldComponent} from './picklist-old.component';
-export {PicklistOldModule} from './picklist-old.module';
+export { PicklistOldComponent } from './picklist-old.component';
+export { PicklistOldModule } from './picklist-old.module';
 export {
     IPicklistSettings,
     IValueOption,
@@ -11,4 +11,4 @@ export {
     IPageSettings,
     IPagedCollection
 } from './picklist-old.model';
-export {PicklistPaneComponent} from './pane/picklist-pane.component';
+export { PicklistPaneComponent } from './pane/picklist-pane.component';

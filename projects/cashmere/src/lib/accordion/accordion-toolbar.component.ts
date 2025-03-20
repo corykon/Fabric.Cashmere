@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
 
 /** Container for content that is to be shown in-line with the accordion trigger  */
 @Component({

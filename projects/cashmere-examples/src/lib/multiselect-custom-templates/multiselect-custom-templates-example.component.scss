@@ -1,5 +1,5 @@
-@import "@healthcatalyst/cashmere/scss/_colors";
-@import "@healthcatalyst/cashmere/scss/_mixins";
+@import '@healthcatalyst/cashmere/scss/_colors';
+@import '@healthcatalyst/cashmere/scss/_mixins';
 
 p {
     font-size: 14px;
@@ -35,10 +35,22 @@ p {
     margin-right: 7px;
     color: $white;
 
-    &.blue { background-color: $blue; }
-    &.green { background-color: $green; }
-    &.teal { background-color: $teal; }
-    &.purple { background-color: $purple; }
-    &.orange { background-color: $orange; }
-    &.dark-blue { background-color: $dark-blue; }
+    &.blue {
+        background-color: $blue;
+    }
+    &.green {
+        background-color: $green;
+    }
+    &.teal {
+        background-color: $teal;
+    }
+    &.purple {
+        background-color: $purple;
+    }
+    &.orange {
+        background-color: $orange;
+    }
+    &.dark-blue {
+        background-color: $dark-blue;
+    }
 }

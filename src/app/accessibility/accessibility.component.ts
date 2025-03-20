@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {ActivatedRoute, Data, NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {ApplicationInsightsService} from '../shared/application-insights/application-insights.service';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Data, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ApplicationInsightsService } from '../shared/application-insights/application-insights.service';
 
 @Component({
     selector: 'hc-accessibility',
@@ -36,12 +36,12 @@ export class AccessibilityComponent implements OnDestroy {
 
         // Populate the responsive select component with the router information
         const root = this.activatedRoute.routeConfig;
-        if ( root && root.children ) {
-            for (const entry of root.children ) {
+        if (root && root.children) {
+            for (const entry of root.children) {
                 if (entry.data && entry.data.title) {
                     this.selectOptions.push(entry);
-                    if ( entry.data.category && !this.categories.includes( entry.data.category )) {
-                        this.categories.push( entry.data.category );
+                    if (entry.data.category && !this.categories.includes(entry.data.category)) {
+                        this.categories.push(entry.data.category);
                     }
                 }
             }

@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AnalyticsComponent} from './analytics.component';
-import {AnalyticsTemplateComponent} from './template/analytics-template.component';
-import {MarkdownContentComponent} from '../shared/markdown-content.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AnalyticsComponent } from './analytics.component';
+import { AnalyticsTemplateComponent } from './template/analytics-template.component';
+import { MarkdownContentComponent } from '../shared/markdown-content.component';
 
 const routes: Routes = [
     {

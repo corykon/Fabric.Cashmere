@@ -8,15 +8,19 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['./navbar-mobile-menu.component.scss'],
     animations: [
         trigger('openClose', [
-            state('open', style({
-                top: '0'
-            })),
-            state('closed', style({
-                top: '-100vh'
-            })),
-            transition('open <=> closed', [
-                animate('0.7s ease')
-            ])
+            state(
+                'open',
+                style({
+                    top: '0'
+                })
+            ),
+            state(
+                'closed',
+                style({
+                    top: '-100vh'
+                })
+            ),
+            transition('open <=> closed', [animate('0.7s ease')])
         ])
     ],
     encapsulation: ViewEncapsulation.None

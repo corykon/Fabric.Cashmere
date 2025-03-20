@@ -1,6 +1,6 @@
-@import "../sass/button-toggle.scss";
-@import "../sass/button.scss";
-@import "../sass/colors";
+@import '../sass/button-toggle.scss';
+@import '../sass/button.scss';
+@import '../sass/colors';
 
 .hc-button-toggle-group {
     @include hc-button-toggle-group();

@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {DocCollection, Processor} from 'dgeni';
-import {ApiDoc} from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
-import {ClassExportDoc} from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
-import {MemberDoc} from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
+import { DocCollection, Processor } from 'dgeni';
+import { ApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
+import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
+import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 
 const INTERNAL_METHODS = [
     // Lifecycle methods

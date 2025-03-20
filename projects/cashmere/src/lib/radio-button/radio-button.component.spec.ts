@@ -1,8 +1,8 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RadioButtonComponent, RadioButtonChangeEvent} from './radio';
-import {RadioButtonModule} from './radio-button.module';
-import {Component, DebugElement} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RadioButtonComponent, RadioButtonChangeEvent } from './radio';
+import { RadioButtonModule } from './radio-button.module';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
@@ -37,13 +37,15 @@ export class SingleRadioComponent {
 describe('RadioButtonComponent', () => {
     let fixture: ComponentFixture<unknown>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [RadioButtonModule],
-            declarations: [SingleRadioComponent]
-        }).compileComponents();
-        fixture = TestBed.createComponent(RadioButtonComponent);
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [RadioButtonModule],
+                declarations: [SingleRadioComponent]
+            }).compileComponents();
+            fixture = TestBed.createComponent(RadioButtonComponent);
+        })
+    );
 
     describe('basic behaviors', () => {
         let radioDebugElement: DebugElement;

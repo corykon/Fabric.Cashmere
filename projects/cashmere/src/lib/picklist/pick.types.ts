@@ -31,8 +31,12 @@ export class PickOption {
     /** true if this group should be collapsed in the UI*/
     isClosed = false;
 
-    get isChild(): boolean { return !!this.parent; }
-    get isParent(): boolean { return !!this.children; }
+    get isChild(): boolean {
+        return !!this.parent;
+    }
+    get isParent(): boolean {
+        return !!this.children;
+    }
 
     constructor(config: IPickOption) {
         Object.assign(this, config);
@@ -57,7 +61,7 @@ export enum KeyCode {
 }
 
 export const SELECTION_MODEL_FACTORY = new InjectionToken<SelectionModelFactory>('ng-select-selection-model');
-export type AddCustomItemFn = ((term: string) => any | Promise<any>);
+export type AddCustomItemFn = (term: string) => any | Promise<any>;
 export type CompareWithFn = (a: any, b: any) => boolean;
 export type GroupValueFn = (key: string | Record<string, any>, children: any[]) => string | Record<string, any>;
 export type GroupByFn = (item: any) => any;

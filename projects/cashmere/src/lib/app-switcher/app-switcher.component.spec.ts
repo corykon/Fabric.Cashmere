@@ -1,30 +1,32 @@
-import {ComponentFixture, TestBed, fakeAsync, tick, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 
-import {AppSwitcherComponent} from './app-switcher.component';
-import {PopModule} from '../pop/popover.module';
-import {PipesModule} from '../pipes/pipes.module';
-import {APP_SWITCHER_SERVICE, MockAppSwitcherService} from './app-switcher-interfaces';
-import {By} from '@angular/platform-browser';
-import {ProgressIndicatorsModule} from '../progress-indicators';
-import {WorkTrackerService} from '../shared/work-tracker.service';
+import { AppSwitcherComponent } from './app-switcher.component';
+import { PopModule } from '../pop/popover.module';
+import { PipesModule } from '../pipes/pipes.module';
+import { APP_SWITCHER_SERVICE, MockAppSwitcherService } from './app-switcher-interfaces';
+import { By } from '@angular/platform-browser';
+import { ProgressIndicatorsModule } from '../progress-indicators';
+import { WorkTrackerService } from '../shared/work-tracker.service';
 
 describe('AppSwitcherComponent', () => {
     let component: AppSwitcherComponent;
     let fixture: ComponentFixture<AppSwitcherComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [PopModule, PipesModule, ProgressIndicatorsModule],
-            declarations: [AppSwitcherComponent],
-            providers: [
-                {
-                    provide: APP_SWITCHER_SERVICE,
-                    useClass: MockAppSwitcherService
-                },
-                WorkTrackerService
-            ]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [PopModule, PipesModule, ProgressIndicatorsModule],
+                declarations: [AppSwitcherComponent],
+                providers: [
+                    {
+                        provide: APP_SWITCHER_SERVICE,
+                        useClass: MockAppSwitcherService
+                    },
+                    WorkTrackerService
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppSwitcherComponent);

@@ -10,6 +10,6 @@ import { FormControl } from '@angular/forms';
     styleUrls: ['./popover-fixed-position-example.component.scss']
 })
 export class PopoverFixedPositionExampleComponent {
-    xPos = new FormControl(250, {nonNullable: true});
-    yPos = new FormControl(60, {nonNullable: true});
+    xPos = new FormControl(250, { nonNullable: true });
+    yPos = new FormControl(60, { nonNullable: true });
 }

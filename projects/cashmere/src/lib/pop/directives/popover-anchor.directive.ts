@@ -106,7 +106,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
 
     set maxWidth(val: string) {
         this._maxWidth = val;
-        if ( this.attachedPopover ) {
+        if (this.attachedPopover) {
             this._attachedPopover.maxWidth = val;
         }
     }
@@ -119,7 +119,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         return this._attachedPopover.restoreFocus && this._attachedPopover._restoreFocusOverride;
     }
     set restoreFocus(val: boolean) {
-        if ( this.attachedPopover ) {
+        if (this.attachedPopover) {
             this._attachedPopover.restoreFocus = parseBooleanAttribute(val);
         }
     }
@@ -140,7 +140,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         return this._attachedPopover.horizontalAlign;
     }
     set horizontalAlign(val: HcPopoverHorizontalAlign) {
-        if ( this.attachedPopover ) {
+        if (this.attachedPopover) {
             this.attachedPopover.horizontalAlign = val;
         }
     }
@@ -152,7 +152,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         return this._attachedPopover.verticalAlign;
     }
     set verticalAlign(val: HcPopoverVerticalAlign) {
-        if ( this.attachedPopover ) {
+        if (this.attachedPopover) {
             this.attachedPopover.verticalAlign = val;
         }
     }
@@ -178,15 +178,13 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         public _anchoring: HcPopoverAnchoringService,
         private _accessibility: HcPopoverAccessibilityService,
         private _componentFactoryResolver: ComponentFactoryResolver
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         // Re-emit open and close events
         const opened$ = this._anchoring.popoverOpened.pipe(tap(() => this.popoverOpened.emit()));
         const closed$ = this._anchoring.popoverClosed.pipe(tap(value => this.popoverClosed.emit(value)));
-        merge(opened$, closed$)
-            .pipe(takeUntil(this._onDestroy))
-            .subscribe();
+        merge(opened$, closed$).pipe(takeUntil(this._onDestroy)).subscribe();
     }
 
     ngAfterContentInit(): void {
@@ -219,13 +217,13 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
     _showOrHideOnEnter(event: KeyboardEvent): void {
         // buttons already trigger a click when you press enter, so executing this event handler would be redundant
         const targetElement = event.target as Element;
-        const triggerFromButton = targetElement && targetElement.tagName === "BUTTON";
+        const triggerFromButton = targetElement && targetElement.tagName === 'BUTTON';
         // not triggering popover on keypress unless the key pressed was enter or spacebar
         const keyPressedShouldTrigger = event.key === 'Enter' || event.key === ' ';
         // not triggering popover on keypress unless the trigger is 'click'
         const anchorHasClickTrigger = this.trigger === 'click';
 
-        if (triggerFromButton || !keyPressedShouldTrigger || !anchorHasClickTrigger ) {
+        if (triggerFromButton || !keyPressedShouldTrigger || !anchorHasClickTrigger) {
             return;
         }
         this.togglePopover();
@@ -265,7 +263,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         this.hoverInterval = window.setTimeout(() => {
             // Hover triggers on hcMenu sub-menus should only ever open on mouseenter
             // Toggle would cause the menu to close unexpectedly
-            if ( this._hasSubmenu ) {
+            if (this._hasSubmenu) {
                 this.openPopover();
             } else {
                 this.togglePopover();
@@ -282,7 +280,7 @@ export class HcPopoverAnchorDirective implements OnInit, AfterContentInit, OnDes
         }
         // For hcMenu sub-menus, closing on mouseleave would cause the sub-menu
         // to close when you leave the anchor and try to move your mouse to the sub-menu
-        if ( !this._hasSubmenu ) {
+        if (!this._hasSubmenu) {
             this.closePopover();
         }
     }

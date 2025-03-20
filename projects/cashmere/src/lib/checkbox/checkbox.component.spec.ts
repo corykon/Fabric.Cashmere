@@ -1,9 +1,9 @@
-import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
-import {CheckboxChangeEvent, CheckboxComponent} from './checkbox.component';
-import {FormControl, FormsModule, NgModel, ReactiveFormsModule} from '@angular/forms';
-import {Component, DebugElement} from '@angular/core';
-import {CheckboxModule} from './checkbox.module';
-import {By} from '@angular/platform-browser';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { CheckboxChangeEvent, CheckboxComponent } from './checkbox.component';
+import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { Component, DebugElement } from '@angular/core';
+import { CheckboxModule } from './checkbox.module';
+import { By } from '@angular/platform-browser';
 
 describe('CheckboxComponent', () => {
     let fixture: ComponentFixture<unknown>;
@@ -265,7 +265,7 @@ export class SingleCheckboxComponent {
     parentElementKeyedUp = false;
     checkboxId: string | null = 'simple-check';
     checkboxValue = 'single_checkbox';
-    alignVal = "top";
+    alignVal = 'top';
 
     onCheckboxClick: (event?: Event) => void = () => {
         // do nothing

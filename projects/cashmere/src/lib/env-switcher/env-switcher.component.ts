@@ -1,9 +1,9 @@
-import {Component, OnDestroy, Input, ViewEncapsulation, Output, EventEmitter, ViewChild, forwardRef, HostBinding} from '@angular/core';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy, Input, ViewEncapsulation, Output, EventEmitter, ViewChild, forwardRef, HostBinding } from '@angular/core';
+import { Subject } from 'rxjs';
 
-import {IMetadataEnvironment, IMetadataEnvironmentVM, badgeColorClasses} from './env-switcher-interfaces';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {HcPopComponent} from '../pop/popover.component';
+import { IMetadataEnvironment, IMetadataEnvironmentVM, badgeColorClasses } from './env-switcher-interfaces';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { HcPopComponent } from '../pop/popover.component';
 
 @Component({
     selector: 'hc-env-switcher',
@@ -65,7 +65,7 @@ export class EnvSwitcherComponent implements OnDestroy, ControlValueAccessor {
     @Input() public failedToLoad = false;
 
     /** Header to display above the expanded list of environments. *Defaults to 'Environments'.* */
-    @Input() public listHeader = "Environments";
+    @Input() public listHeader = 'Environments';
 
     /** If true, will allow multiple environments to be selected at once. *Defaults to false.* */
     @Input()

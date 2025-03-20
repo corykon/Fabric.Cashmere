@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { PickPaneListService } from './pick-pane-list.service';
 
 describe('PickPaneListService', () => {
-
     let service: PickPaneListService;
 
     beforeEach(() => {

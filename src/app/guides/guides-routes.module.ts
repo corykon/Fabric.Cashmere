@@ -1,7 +1,7 @@
-import {RouterModule, Routes} from '@angular/router';
-import {GuidesComponent} from './guides.component';
-import {GuideComponent} from './guide/guide.component';
-import {NgModule} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { GuidesComponent } from './guides.component';
+import { GuideComponent } from './guide/guide.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
     {
@@ -12,7 +12,7 @@ const routes: Routes = [
                 path: ':id',
                 component: GuideComponent
             },
-            {path: '**', redirectTo: 'getting-started'}
+            { path: '**', redirectTo: 'getting-started' }
         ]
     }
 ];

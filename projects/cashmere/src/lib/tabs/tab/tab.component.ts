@@ -1,9 +1,19 @@
-import {Component, Input, ContentChildren, AfterContentInit, Output, ViewEncapsulation, HostBinding, HostListener, ElementRef} from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {EventEmitter, TemplateRef, ViewChild} from '@angular/core';
-import {HcTabTitleComponent} from './tab-title.component';
-import {Params} from '@angular/router';
-import {parseBooleanAttribute} from '../../util';
+import {
+    Component,
+    Input,
+    ContentChildren,
+    AfterContentInit,
+    Output,
+    ViewEncapsulation,
+    HostBinding,
+    HostListener,
+    ElementRef
+} from '@angular/core';
+import type { QueryList } from '@angular/core';
+import { EventEmitter, TemplateRef, ViewChild } from '@angular/core';
+import { HcTabTitleComponent } from './tab-title.component';
+import { Params } from '@angular/router';
+import { parseBooleanAttribute } from '../../util';
 
 @Component({
     templateUrl: './tab.component.html',
@@ -41,8 +51,8 @@ export class TabComponent implements AfterContentInit {
     get hidden(): boolean {
         return this._hidden || this._hideOverride;
     }
-    set hidden( val: string | boolean ) {
-        if ( parseBooleanAttribute( val ) ) {
+    set hidden(val: string | boolean) {
+        if (parseBooleanAttribute(val)) {
             this._hide();
             this._hideOverride = true;
         } else {
@@ -79,7 +89,7 @@ export class TabComponent implements AfterContentInit {
     @ContentChildren(HcTabTitleComponent)
     _tabTitle: QueryList<HcTabTitleComponent>;
 
-    constructor( public _el: ElementRef ) {}
+    constructor(public _el: ElementRef) {}
 
     ngAfterContentInit(): void {
         if (this._tabTitle) {
@@ -104,8 +114,8 @@ export class TabComponent implements AfterContentInit {
     }
 
     // Listens for changes to routerLinkActive and reports to TabSet
-    _isActiveChange( state: boolean ): void {
-        if ( state ) {
+    _isActiveChange(state: boolean): void {
+        if (state) {
             this._routerActiveChange.emit(this);
         }
     }

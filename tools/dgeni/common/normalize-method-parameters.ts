@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {MethodMemberDoc} from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 
 export class NormalizedMethodMemberDoc extends MethodMemberDoc {
     params?: MethodParameterInfo[];

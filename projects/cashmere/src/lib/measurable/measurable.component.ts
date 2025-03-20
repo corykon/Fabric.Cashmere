@@ -5,12 +5,11 @@ import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild, ViewEncapsu
  * overflows components into a more menu.
  */
 @Component({
-  selector: 'hc-measurable',
-  templateUrl: './measurable.component.html',
-  encapsulation: ViewEncapsulation.None
+    selector: 'hc-measurable',
+    templateUrl: './measurable.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class MeasurableComponent {
-
     private _width = 0;
     private _height = 0;
 
@@ -26,7 +25,7 @@ export class MeasurableComponent {
     @Input()
     get itemKey(): string {
         if (this._itemKey) {
-            return this._itemKey
+            return this._itemKey;
         }
 
         throw new Error('The current item is missing its unique key.');
@@ -59,7 +58,7 @@ export class MeasurableComponent {
      * Calculates and returns the measured height of this container.
      * The height is cached for future calls to this property.
      */
-     get height(): number {
+    get height(): number {
         if (!this._height) {
             const shouldShow = this._isShown;
             this.show();
@@ -89,7 +88,7 @@ export class MeasurableComponent {
      * Hides the contents of this container, forcing a change detection
      * cycle to run.
      */
-     hide(): void {
+    hide(): void {
         this._isShown = false;
         this.ref.detectChanges();
     }

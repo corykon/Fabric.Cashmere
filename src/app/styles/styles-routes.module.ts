@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {StylesComponent} from './styles.component';
-import {AboutModalComponent} from './about/about-modal.component';
-import {TableDemoComponent} from './table/table-demo.component';
-import {MarkdownContentComponent} from '../shared/markdown-content.component';
-import {IESupportComponent} from './ie-support/ie-support.component';
-import {ChartDemoComponent} from './chart/chart-demo.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { StylesComponent } from './styles.component';
+import { AboutModalComponent } from './about/about-modal.component';
+import { TableDemoComponent } from './table/table-demo.component';
+import { MarkdownContentComponent } from '../shared/markdown-content.component';
+import { IESupportComponent } from './ie-support/ie-support.component';
+import { ChartDemoComponent } from './chart/chart-demo.component';
 import { InfoIconsDemoComponent } from './info-icons/info-icons-demo.component';
 
 const routes: Routes = [
@@ -52,17 +52,17 @@ const routes: Routes = [
             {
                 path: 'ie-support',
                 component: IESupportComponent,
-                data: {title: 'IE Support Messaging', category: 'Screens & Messaging'}
+                data: { title: 'IE Support Messaging', category: 'Screens & Messaging' }
             },
             {
                 path: 'about',
                 component: AboutModalComponent,
-                data: {title: 'About Modal', category: 'Screens & Messaging'}
+                data: { title: 'About Modal', category: 'Screens & Messaging' }
             },
             {
                 path: 'charts',
                 component: ChartDemoComponent,
-                data: {title: 'Charts', category: 'Data Visualization'}
+                data: { title: 'Charts', category: 'Data Visualization' }
             },
             {
                 path: 'breadcrumbs',
@@ -90,7 +90,7 @@ const routes: Routes = [
             {
                 path: 'table',
                 component: TableDemoComponent,
-                data: {title: 'Tables', category: 'User Interface'}
+                data: { title: 'Tables', category: 'User Interface' }
             },
             {
                 path: '**',

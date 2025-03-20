@@ -1,5 +1,5 @@
-import {Initializable} from './initializable';
-import {Observable, Subscriber} from 'rxjs';
+import { Initializable } from './initializable';
+import { Observable, Subscriber } from 'rxjs';
 
 class MockInitializable extends Initializable {}
 

@@ -1,10 +1,10 @@
-import {Component, Input, ViewChild, OnInit, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
+import { Component, Input, ViewChild, OnInit, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import stackblitz from '@stackblitz/sdk';
-import {EXAMPLE_COMPONENTS} from '@healthcatalyst/cashmere-examples';
-import {ApplicationInsightsService} from '../../../../shared/application-insights/application-insights.service';
-import {ActivatedRoute} from '@angular/router';
-import {TabSetComponent} from 'projects/cashmere/src/lib/tabs';
+import { EXAMPLE_COMPONENTS } from '@healthcatalyst/cashmere-examples';
+import { ApplicationInsightsService } from '../../../../shared/application-insights/application-insights.service';
+import { ActivatedRoute } from '@angular/router';
+import { TabSetComponent } from 'projects/cashmere/src/lib/tabs';
 
 @Component({
     selector: 'hc-example-viewer',
@@ -12,7 +12,7 @@ import {TabSetComponent} from 'projects/cashmere/src/lib/tabs';
     styleUrls: ['example-viewer.component.scss']
 })
 export class ExampleViewerComponent implements OnInit {
-    @ViewChild('exampleContainer', {read: ViewContainerRef, static: true})
+    @ViewChild('exampleContainer', { read: ViewContainerRef, static: true })
     exampleContainer: ViewContainerRef;
     @ViewChild('tabSet') _tabSet: TabSetComponent;
 
@@ -22,7 +22,7 @@ export class ExampleViewerComponent implements OnInit {
     private appInsights;
     private selected: string;
     private section: string;
-    exampleFiles: Array<{name: string; contents: string}> = [];
+    exampleFiles: Array<{ name: string; contents: string }> = [];
 
     constructor(
         private httpClient: HttpClient,
@@ -157,7 +157,7 @@ export class ExampleViewerComponent implements OnInit {
         let m: RegExpExecArray | null;
 
         while ((m = TOKENS.exec(input)) !== null) {
-            const {0: token, index} = m;
+            const { 0: token, index } = m;
 
             if (
                 // Ignore already capitalized words.

@@ -17,7 +17,7 @@ export class SlideToggleFormsExampleComponent {
         this.invalid = !this.invalid;
         if (this.invalid) {
             this.slideControl.markAsTouched();
-            this.slideControl.setErrors({invalid: true});
+            this.slideControl.setErrors({ invalid: true });
         } else {
             this.slideControl.markAsTouched();
             this.slideControl.setErrors(null);
@@ -25,7 +25,7 @@ export class SlideToggleFormsExampleComponent {
     }
 
     toggleState(): void {
-        this.slideControl.setValue( !this.slideControl.value );
+        this.slideControl.setValue(!this.slideControl.value);
     }
 
     resetValid(): void {

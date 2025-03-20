@@ -1,4 +1,4 @@
-import {parseBooleanAttribute} from './util';
+import { parseBooleanAttribute } from './util';
 
 describe('parseBooleanAttribute', () => {
     describe('when value is boolean true', () => {

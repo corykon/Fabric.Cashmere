@@ -28,4 +28,3 @@ export class ButtonToggleStylesExampleComponent {
         this.multiSelectedButtonToggleValues = event.selectedValues ? event.selectedValues : [];
     }
 }
-

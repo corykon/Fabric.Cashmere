@@ -34,7 +34,10 @@
 
 // ### Icons
 @mixin hc-confirm-modal-icons() {
-    .hc-ico-question, .hc-ico-trash, .hc-ico-info, .hc-ico-warn {
+    .hc-ico-question,
+    .hc-ico-trash,
+    .hc-ico-info,
+    .hc-ico-warn {
         display: inline-block;
         height: 18px;
         width: 18px;

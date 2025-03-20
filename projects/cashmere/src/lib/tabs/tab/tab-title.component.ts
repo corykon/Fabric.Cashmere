@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, TemplateRef, ViewChild} from '@angular/core';
+import { Component, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 
 /** Contains the HTML markup for tab titles */
 @Component({

@@ -21,13 +21,13 @@ export class ComponentUsageComponent {
     docLoaded(): void {
         const preTags: Array<ElementRef> = this.el.nativeElement.getElementsByTagName('pre');
         for (const pre of preTags) {
-            const syntaxHighlight = new HighlightDirective( pre );
+            const syntaxHighlight = new HighlightDirective(pre);
             syntaxHighlight.ngAfterViewInit();
         }
 
-        if ( this.section ) {
+        if (this.section) {
             const el = document.getElementById(this.section);
-            if ( el ) {
+            if (el) {
                 el.scrollIntoView();
             }
         }

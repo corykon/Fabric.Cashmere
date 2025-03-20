@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {from, Observable} from 'rxjs';
-import {IValueOption, IValueSetOption} from '../picklist-old.model';
+import { from, Observable } from 'rxjs';
+import { IValueOption, IValueSetOption } from '../picklist-old.model';
 
 export class FilterableSelectList<T extends SelectListOption> {
     public selectedOptions = new Map<string, T>();

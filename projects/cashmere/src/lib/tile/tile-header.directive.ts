@@ -1,4 +1,4 @@
-import {Directive, HostBinding, Input} from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 export type TileHeaderType = 'blue' | 'title' | 'center';
 const tileHeaderTypes: TileHeaderType[] = ['blue', 'title', 'center'];

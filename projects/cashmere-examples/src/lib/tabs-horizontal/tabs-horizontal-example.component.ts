@@ -1,6 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {TabChangeEvent, TabSetComponent} from '@healthcatalyst/cashmere';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TabChangeEvent, TabSetComponent } from '@healthcatalyst/cashmere';
 
 /**
  * @title Horizontal Tabs with Event Handling
@@ -13,10 +13,10 @@ import {TabChangeEvent, TabSetComponent} from '@healthcatalyst/cashmere';
 export class TabsHorizontalExampleComponent {
     selectedIndex = 0;
     tabHidden = false;
-    overflowStyle = new FormControl('more', {nonNullable: true});
+    overflowStyle = new FormControl('more', { nonNullable: true });
     dynamicTabName = 'Renaming Tabs';
     dynamicTabIcon = 'fa-check';
-    tabNameControl = new FormControl(this.dynamicTabName, {nonNullable: true});
+    tabNameControl = new FormControl(this.dynamicTabName, { nonNullable: true });
     dynamicTabs: string[] = [];
 
     @ViewChild('tabSet')
@@ -48,7 +48,7 @@ export class TabsHorizontalExampleComponent {
     }
 
     addTab(): void {
-        this.dynamicTabs.push( "Dynamic Tab " + (this.dynamicTabs.length + 1));
+        this.dynamicTabs.push('Dynamic Tab ' + (this.dynamicTabs.length + 1));
         setTimeout(() => {
             this.selectLastTab();
         });

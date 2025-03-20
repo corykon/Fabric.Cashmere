@@ -1,7 +1,7 @@
-import {Component, EventEmitter, forwardRef, Input, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {PicklistPaneComponent} from './pane/picklist-pane.component';
-import {IPicklistOptions, IPicklistSettings, IValueOption, PicklistOptionsSource, PicklistSettings} from './picklist-old.model';
+import { Component, EventEmitter, forwardRef, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PicklistPaneComponent } from './pane/picklist-pane.component';
+import { IPicklistOptions, IPicklistSettings, IValueOption, PicklistOptionsSource, PicklistSettings } from './picklist-old.model';
 
 const supportedSortModes = ['asc', 'desc', 'none'];
 export function validateSortInput(inputStr: string): void {
@@ -49,7 +49,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
      */
     @Input()
     public set showHeaderText(shouldShow: boolean) {
-        this.update({showHeaderText: shouldShow});
+        this.update({ showHeaderText: shouldShow });
     }
     public get showHeaderText(): boolean {
         return this.picklistSettings.showHeaderText;
@@ -59,7 +59,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
      */
     @Input()
     public set leftHeaderText(text: string) {
-        this.update({leftHeaderText: text});
+        this.update({ leftHeaderText: text });
     }
     public get leftHeaderText(): string {
         return this.picklistSettings.leftHeaderText;
@@ -69,7 +69,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
      */
     @Input()
     public set rightHeaderText(text: string) {
-        this.update({rightHeaderText: text});
+        this.update({ rightHeaderText: text });
     }
     public get rightHeaderText(): string {
         return this.picklistSettings.rightHeaderText;
@@ -81,15 +81,15 @@ export class PicklistOldComponent implements ControlValueAccessor {
     @Input()
     public set sort(sort: string) {
         validateSortInput(sort);
-        this.update({sort: sort});
+        this.update({ sort: sort });
     }
     public get sort(): string {
         return this.picklistSettings.sort;
     }
 
-    @ViewChild('availableList', {static: true})
+    @ViewChild('availableList', { static: true })
     public _available: PicklistPaneComponent | undefined;
-    @ViewChild('confirmedList', {static: true})
+    @ViewChild('confirmedList', { static: true })
     public _confirmed: PicklistPaneComponent | undefined;
     /** Fired when a change is made to the picklist selection. */
     @Output()
@@ -104,7 +104,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
      * Current selected value of the picklist. Will be either `IPicklistOptions` or `string[]` depending on the type of options provided.
      */
     public set value(model: IPicklistOptions | string[]) {
-        const selectedValues: IPicklistOptions = {values: [], valueSets: []};
+        const selectedValues: IPicklistOptions = { values: [], valueSets: [] };
         if (this.picklistModelisArray(model)) {
             const selected = this.convertStringsToValueOptions(model);
             selectedValues.values = selected || [];
@@ -112,7 +112,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
             selectedValues.values = model.values || [];
             selectedValues.valueSets = model.valueSets || [];
         }
-        this.update({selected: selectedValues});
+        this.update({ selected: selectedValues });
     }
     public get value(): IPicklistOptions | string[] {
         if (this.stringOptions) {
@@ -190,7 +190,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
     private updateStateFromStringOptions(options: Array<string> | null) {
         const valueOptions = this.convertStringsToValueOptions(options);
         this.stringOptions = options;
-        this.update({options: {values: valueOptions || []}});
+        this.update({ options: { values: valueOptions || [] } });
     }
 
     private resetPanes() {
@@ -226,7 +226,7 @@ export class PicklistOldComponent implements ControlValueAccessor {
     }
 
     private convertStringsToValueOptions(vals: Array<string> | null): IValueOption[] | null {
-        return vals ? vals.map(o => ({code: `${o}`, title: `${o}`})) : null;
+        return vals ? vals.map(o => ({ code: `${o}`, title: `${o}` })) : null;
     }
 
     private picklistModelisArray(model: IPicklistOptions | Array<string>): model is Array<string> {

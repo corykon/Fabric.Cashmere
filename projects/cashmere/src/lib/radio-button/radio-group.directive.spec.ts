@@ -1,9 +1,9 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {Component, DebugElement} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RadioButtonChangeEvent, RadioGroupDirective} from './radio';
-import {RadioButtonModule} from './radio-button.module';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RadioButtonChangeEvent, RadioGroupDirective } from './radio';
+import { RadioButtonModule } from './radio-button.module';
 
 @Component({
     template: `
@@ -30,12 +30,14 @@ describe('RadioGroupComponent', () => {
     let component: TestRadioGroupComponent;
     let fixture: ComponentFixture<TestRadioGroupComponent>;
     let el: DebugElement;
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestRadioGroupComponent],
-            imports: [FormsModule, RadioButtonModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestRadioGroupComponent],
+                imports: [FormsModule, RadioButtonModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestRadioGroupComponent);
@@ -63,8 +65,8 @@ describe('RadioGroupComponent', () => {
 
     it('should set a unique id for the radio group if no name or id is set', () => {
         const directiveInstance = el.injector.get(RadioGroupDirective);
-        directiveInstance.name = "";
-        directiveInstance.id = "";
+        directiveInstance.name = '';
+        directiveInstance.id = '';
 
         expect(directiveInstance.id).toMatch(/hc-radio-group-\d+/);
     });
@@ -193,12 +195,14 @@ describe('RadioGroups with ngModel', () => {
     let fixture: ComponentFixture<RadioWithNgModelComponent>;
     let el: DebugElement;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [RadioWithNgModelComponent],
-            imports: [RadioButtonModule, FormsModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [RadioWithNgModelComponent],
+                imports: [RadioButtonModule, FormsModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RadioWithNgModelComponent);

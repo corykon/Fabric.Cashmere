@@ -1,5 +1,5 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {AnchorComponent} from './anchor.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AnchorComponent } from './anchor.component';
 
 describe('a[hc-button]', () => {
     let component: AnchorComponent;
@@ -21,7 +21,7 @@ describe('a[hc-button]', () => {
     describe('when not disabled', () => {
         it('should handle click events', () => {
             const inlineStyles = getComputedStyle(fixture.nativeElement);
-            expect( inlineStyles['pointer-events'] ).toBe('auto');
+            expect(inlineStyles['pointer-events']).toBe('auto');
         });
 
         it('should not add aria-disabled', () => {
@@ -31,23 +31,23 @@ describe('a[hc-button]', () => {
 
     describe('when disabled', () => {
         it('should remove tabindex', () => {
-            expect( fixture.nativeElement.getAttribute('tabindex') ).toBe('0');
+            expect(fixture.nativeElement.getAttribute('tabindex')).toBe('0');
 
             component.disabled = true;
             fixture.detectChanges();
 
-            expect( fixture.nativeElement.getAttribute('tabindex') ).toBe('-1');
+            expect(fixture.nativeElement.getAttribute('tabindex')).toBe('-1');
         });
 
         it('should not handle click events', () => {
             let inlineStyles = getComputedStyle(fixture.nativeElement);
-            expect( inlineStyles['pointer-events'] ).toBe('auto');
+            expect(inlineStyles['pointer-events']).toBe('auto');
 
             component.disabled = true;
             fixture.detectChanges();
 
             inlineStyles = getComputedStyle(fixture.nativeElement);
-            expect( inlineStyles['pointer-events'] ).toBe('none');
+            expect(inlineStyles['pointer-events']).toBe('none');
         });
 
         it('should add aria-disabled', () => {

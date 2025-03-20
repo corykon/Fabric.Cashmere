@@ -1,11 +1,11 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CommonModule} from '@angular/common';
-import {ModalService} from './modal.service';
-import {ActiveModal} from './active-modal';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {BrowserModule} from '@angular/platform-browser';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {ModalWindowComponent} from './modal-window.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { ModalService } from './modal.service';
+import { ActiveModal } from './active-modal';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModalWindowComponent } from './modal-window.component';
 
 describe('hc-modal-window', () => {
     let windowComponent: ModalWindowComponent;

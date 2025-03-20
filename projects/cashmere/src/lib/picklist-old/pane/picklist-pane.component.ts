@@ -1,17 +1,17 @@
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {Subject} from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
 
-import {PicklistOldService} from '../services/picklist-old.service';
-import {PicklistActionService} from '../services/picklist-action.service';
-import {PicklistFilterService} from '../services/picklist-filter.service';
-import {PicklistFilterRemoteService} from '../services/picklist-filter-remote.service';
-import {PicklistFilterLocalService} from '../services/picklist-filter-local.service';
-import {PicklistStateService} from '../services/picklist-state.service';
-import {PicklistValuesetMovingService} from '../services/picklist-valueset-moving.service';
-import {WorkTrackerService} from '../../shared/work-tracker.service';
-import {PicklistOptionsSource, PicklistSettings, PicklistValueType} from '../picklist-old.model';
-import {FilterableSelectList, SelectListOption, ValueListOption, ValueSetListOption} from './picklist-pane.model';
+import { PicklistOldService } from '../services/picklist-old.service';
+import { PicklistActionService } from '../services/picklist-action.service';
+import { PicklistFilterService } from '../services/picklist-filter.service';
+import { PicklistFilterRemoteService } from '../services/picklist-filter-remote.service';
+import { PicklistFilterLocalService } from '../services/picklist-filter-local.service';
+import { PicklistStateService } from '../services/picklist-state.service';
+import { PicklistValuesetMovingService } from '../services/picklist-valueset-moving.service';
+import { WorkTrackerService } from '../../shared/work-tracker.service';
+import { PicklistOptionsSource, PicklistSettings, PicklistValueType } from '../picklist-old.model';
+import { FilterableSelectList, SelectListOption, ValueListOption, ValueSetListOption } from './picklist-pane.model';
 
 @Component({
     selector: 'hc-picklist-pane',
@@ -52,7 +52,12 @@ export class PicklistPaneComponent {
         public filterService: PicklistFilterService
     ) {}
 
-    public reset(source: PicklistOptionsSource, settings: PicklistSettings, companion: PicklistPaneComponent, excludeCompanion = false): void {
+    public reset(
+        source: PicklistOptionsSource,
+        settings: PicklistSettings,
+        companion: PicklistPaneComponent,
+        excludeCompanion = false
+    ): void {
         this.companion = companion;
         this.shouldExcludeCompanion = excludeCompanion;
         this.codeIsSignificant = settings.codeIsSignificant;
@@ -135,10 +140,10 @@ export class PicklistPaneComponent {
     public preventIEHighlightBug(): void {
         // for IE: https://stackoverflow.com/questions/1527751/disable-text-selection-while-pressing-shift
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (document as any).onselectstart = function() {
+        (document as any).onselectstart = function () {
             return false;
         };
-        setTimeout(function() {
+        setTimeout(function () {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (document as any).onselectstart = () => null;
         }, 0);

@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {ProductCentricIndexService, ProductFile} from '../product-centric-index-service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ProductCentricIndexService, ProductFile } from '../product-centric-index-service';
 
 @Component({
     selector: 'hc-product-personas-viewer',

@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /** `hcIconSm` - small size of hc-icon (14px) */
 @Directive({

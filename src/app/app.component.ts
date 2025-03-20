@@ -13,13 +13,12 @@ import { ApplicationInsightsService } from './shared/application-insights/applic
     styleUrls: ['./app.component.scss'],
     templateUrl: './app.component.html'
 })
-
 export class AppComponent implements AfterViewInit, OnDestroy {
     @ViewChild('search') search: HcPopComponent;
     @ViewChild('searchInput') input: ElementRef;
 
     searchUpdated = false;
-    navSearchBar = new FormControl('', {nonNullable: true});
+    navSearchBar = new FormControl('', { nonNullable: true });
     webActive = false;
     private unsubscribe = new Subject<void>();
 
@@ -27,23 +26,23 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     showAll = false;
     searchValue = '';
     searchIcons = {
-        'components': { icon: 'fa-code' },
-        'guides': { icon: 'fa-graduation-cap' },
-        'foundations': { icon: 'fa-cogs' },
-        'content': { icon: 'fa-file-text-o' },
-        'analytics': { icon: 'fa-bar-chart' }
+        components: { icon: 'fa-code' },
+        guides: { icon: 'fa-graduation-cap' },
+        foundations: { icon: 'fa-cogs' },
+        content: { icon: 'fa-file-text-o' },
+        analytics: { icon: 'fa-bar-chart' }
     };
 
-    constructor( private router: Router, private searchService: SearchService, private appInsights: ApplicationInsightsService ) {
+    constructor(private router: Router, private searchService: SearchService, private appInsights: ApplicationInsightsService) {
         this.router.events.pipe(takeUntil(this.unsubscribe)).subscribe(event => {
             if (event instanceof NavigationEnd) {
-                this.webActive = event.url.includes( '/web' );
+                this.webActive = event.url.includes('/web');
             }
         });
     }
 
     ngAfterViewInit(): void {
-        this.navSearchBar.valueChanges.subscribe((val) => {
+        this.navSearchBar.valueChanges.subscribe(val => {
             if (val !== '') {
                 const tempResults = this.getItems(val);
                 this.searchResults = tempResults.slice(0, 5);
@@ -63,15 +62,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     getItems = (value: string): SearchResult[] => {
         const results = this.searchService.miniSearch.search(value);
         return results;
-    }
+    };
 
     setInputFocus(): void {
         this.input.nativeElement.focus();
     }
 
     logSearch(): void {
-        if ( this.searchUpdated ) {
-            this.appInsights.logSiteSearch( this.navSearchBar.value );
+        if (this.searchUpdated) {
+            this.appInsights.logSiteSearch(this.navSearchBar.value);
         }
         this.searchUpdated = false;
     }

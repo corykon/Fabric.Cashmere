@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {ElementRef, Injectable, NgZone, OnDestroy, Optional, Renderer2, ViewContainerRef} from '@angular/core';
+import { ElementRef, Injectable, NgZone, OnDestroy, Optional, Renderer2, ViewContainerRef } from '@angular/core';
 import {
     ConnectionPositionPair,
     FlexibleConnectedPositionStrategy,
@@ -11,16 +11,16 @@ import {
     ScrollStrategy,
     VerticalConnectionPos
 } from '@angular/cdk/overlay';
-import {Directionality, Direction} from '@angular/cdk/bidi';
-import {TemplatePortal} from '@angular/cdk/portal';
-import {Subscription, Subject} from 'rxjs';
-import {takeUntil, take, filter, tap} from 'rxjs/operators';
+import { Directionality, Direction } from '@angular/cdk/bidi';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil, take, filter, tap } from 'rxjs/operators';
 
-import {HcPopComponent} from './popover.component';
-import {HcPopoverHorizontalAlign, HcPopoverVerticalAlign, HcPopoverScrollStrategy, HcPopoverOpenOptions} from './types';
+import { HcPopComponent } from './popover.component';
+import { HcPopoverHorizontalAlign, HcPopoverVerticalAlign, HcPopoverScrollStrategy, HcPopoverOpenOptions } from './types';
 
-import {PopoverNotificationService, NotificationAction} from './notification.service';
-import {HcPopoverAnchorDirective} from './directives/popover-anchor.directive';
+import { PopoverNotificationService, NotificationAction } from './notification.service';
+import { HcPopoverAnchorDirective } from './directives/popover-anchor.directive';
 
 /**
  * Configuration provided by the popover for the anchoring service
@@ -83,7 +83,12 @@ export class HcPopoverAnchoringService implements OnDestroy {
     /** Function to remove a right-click event listener if added */
     private _unlistener: () => void;
 
-    constructor(private _overlay: Overlay, private _renderer: Renderer2, private _ngZone: NgZone, @Optional() private _dir: Directionality) {}
+    constructor(
+        private _overlay: Overlay,
+        private _renderer: Renderer2,
+        private _ngZone: NgZone,
+        @Optional() private _dir: Directionality
+    ) {}
 
     ngOnDestroy(): void {
         // Destroy popover before terminating subscriptions so that any resulting
@@ -145,7 +150,7 @@ export class HcPopoverAnchoringService implements OnDestroy {
 
     /** Closes the popover. */
     closePopover(value?: unknown, neighborSubMenusAreOpen = false): void {
-        if ( this._unlistener ) {
+        if (this._unlistener) {
             this._unlistener();
         }
         if (this._popover._componentOverlay) {
@@ -180,7 +185,7 @@ export class HcPopoverAnchoringService implements OnDestroy {
         this._popover._autoFocusOverride = autoFocus;
 
         // Set the fixed position coordinates if a x or y value is provided
-        if ( options.x || options.y ) {
+        if (options.x || options.y) {
             this._destroyPopoverOnceClosed();
 
             this._fixedPos[0] = options.x ? options.x : 0;
@@ -207,12 +212,12 @@ export class HcPopoverAnchoringService implements OnDestroy {
             const overlayConfig = this._getOverlayConfig(popoverConfig, this._anchor);
 
             // Only subscribe to position changes when the popover is not fixed position
-            if ( !this._fixedPos.length ) {
+            if (!this._fixedPos.length) {
                 this._subscribeToPositionChanges(overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy);
             }
 
             this._overlayRef = this._overlay.create(overlayConfig);
-        } else if (this._popover.horizontalAlign === 'mouse' || this._popover.verticalAlign === 'mouse' && !this._fixedPos.length ) {
+        } else if (this._popover.horizontalAlign === 'mouse' || (this._popover.verticalAlign === 'mouse' && !this._fixedPos.length)) {
             /* If aligning to mouse clicks - adjust the strategy based on the most current click */
             this._overlayRef.updatePositionStrategy(
                 this._getPositionStrategy(
@@ -301,8 +306,8 @@ export class HcPopoverAnchoringService implements OnDestroy {
             .subscribe(() => this.closePopover());
 
         // Allow right-clicks to close an open popover
-        if ( this._overlayRef.backdropElement && this._popover.interactiveClose ) {
-            this._unlistener = this._renderer.listen( this._overlayRef.backdropElement, 'contextmenu', event => {
+        if (this._overlayRef.backdropElement && this._popover.interactiveClose) {
+            this._unlistener = this._renderer.listen(this._overlayRef.backdropElement, 'contextmenu', event => {
                 event.preventDefault();
                 this._popover.backdropClicked.emit();
                 this.closePopover();
@@ -342,7 +347,7 @@ export class HcPopoverAnchoringService implements OnDestroy {
     private _saveOpenedState(): void {
         if (!this._popoverOpen) {
             this._popover._open = this._popoverOpen = true;
-            if ( this._popover.parent ) {
+            if (this._popover.parent) {
                 this._popover.parent._subMenuOpen = true;
             }
 
@@ -359,7 +364,7 @@ export class HcPopoverAnchoringService implements OnDestroy {
     private _saveClosedState(value?: any, neighborSubMenusAreOpen = false): void {
         if (this._popoverOpen) {
             this._popover._open = this._popoverOpen = false;
-            if ( this._popover.parent ) {
+            if (this._popover.parent) {
                 this._popover.parent._subMenuOpen = neighborSubMenusAreOpen;
             }
             this.popoverClosed.next(value);
@@ -375,15 +380,15 @@ export class HcPopoverAnchoringService implements OnDestroy {
     /** Create and return a config for creating the overlay. */
     private _getOverlayConfig(config: PopoverConfig, anchor: HcPopoverAnchorDirective): OverlayConfig {
         return new OverlayConfig({
-            positionStrategy: this._fixedPos.length ?
-                this._getFixedPositionStrategy() :
-                this._getPositionStrategy(
-                    config.horizontalAlign,
-                    config.verticalAlign,
-                    config.forceAlignment,
-                    config.lockAlignment,
-                    anchor._elementRef
-                ),
+            positionStrategy: this._fixedPos.length
+                ? this._getFixedPositionStrategy()
+                : this._getPositionStrategy(
+                      config.horizontalAlign,
+                      config.verticalAlign,
+                      config.forceAlignment,
+                      config.lockAlignment,
+                      anchor._elementRef
+                  ),
             // make it hard for users to shoot themselves in the foot by disabling backdrop if hover is the trigger
             hasBackdrop: anchor.trigger !== 'hover' ? config.hasBackdrop : false,
 
@@ -536,9 +541,9 @@ function getVPopAlignmentForArrow(vOverlay: VerticalConnectionPos, vOrigin: Vert
 
 /** Helper function to get a cdk position pair from HcPopover alignments. */
 function getPosition(h: HcPopoverHorizontalAlign, v: HcPopoverVerticalAlign, offset: number[]): ConnectionPositionPair {
-    const {originX, overlayX} = getHorizontalConnectionPosPair(h);
-    const {originY, overlayY} = getVerticalConnectionPosPair(v);
-    return new ConnectionPositionPair({originX, originY}, {overlayX, overlayY}, offset[0], offset[1]);
+    const { originX, overlayX } = getHorizontalConnectionPosPair(h);
+    const { originY, overlayY } = getVerticalConnectionPosPair(v);
+    return new ConnectionPositionPair({ originX, originY }, { overlayX, overlayY }, offset[0], offset[1]);
 }
 
 /** Helper function to convert an overlay connection position to equivalent popover alignment. */
@@ -570,36 +575,36 @@ function getVerticalPopoverAlignment(v: VerticalConnectionPos): HcPopoverVertica
 /** Helper function to convert alignment to origin/overlay position pair. */
 function getHorizontalConnectionPosPair(
     h: HcPopoverHorizontalAlign
-): {originX: HorizontalConnectionPos; overlayX: HorizontalConnectionPos} {
+): { originX: HorizontalConnectionPos; overlayX: HorizontalConnectionPos } {
     switch (h) {
         case 'before':
-            return {originX: 'start', overlayX: 'end'};
+            return { originX: 'start', overlayX: 'end' };
         case 'start':
         case 'mouse':
-            return {originX: 'start', overlayX: 'start'};
+            return { originX: 'start', overlayX: 'start' };
         case 'end':
-            return {originX: 'end', overlayX: 'end'};
+            return { originX: 'end', overlayX: 'end' };
         case 'after':
-            return {originX: 'end', overlayX: 'start'};
+            return { originX: 'end', overlayX: 'start' };
         default:
-            return {originX: 'center', overlayX: 'center'};
+            return { originX: 'center', overlayX: 'center' };
     }
 }
 
 /** Helper function to convert alignment to origin/overlay position pair. */
-function getVerticalConnectionPosPair(v: HcPopoverVerticalAlign): {originY: VerticalConnectionPos; overlayY: VerticalConnectionPos} {
+function getVerticalConnectionPosPair(v: HcPopoverVerticalAlign): { originY: VerticalConnectionPos; overlayY: VerticalConnectionPos } {
     switch (v) {
         case 'above':
-            return {originY: 'top', overlayY: 'bottom'};
+            return { originY: 'top', overlayY: 'bottom' };
         case 'start':
         case 'mouse':
-            return {originY: 'top', overlayY: 'top'};
+            return { originY: 'top', overlayY: 'top' };
         case 'end':
-            return {originY: 'bottom', overlayY: 'bottom'};
+            return { originY: 'bottom', overlayY: 'bottom' };
         case 'below':
-            return {originY: 'bottom', overlayY: 'top'};
+            return { originY: 'bottom', overlayY: 'top' };
         default:
-            return {originY: 'center', overlayY: 'center'};
+            return { originY: 'center', overlayY: 'center' };
     }
 }
 

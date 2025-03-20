@@ -7,7 +7,7 @@ import { isDefined, isFunction, isObject } from '../../util';
 export function newId(): string {
     // First character is an 'a', it's good practice for unique id to begin with a letter
     return 'axxxxxxxxxxx'.replace(/[x]/g, function () {
-        const val = Math.random() * 16 | 0;
+        const val = (Math.random() * 16) | 0;
         return val.toString(16);
     });
 }
@@ -19,20 +19,30 @@ type ChildrenByGroupKeyMap = Map<string | PickOption, Array<PickOption>>;
 export class ItemsList {
     constructor(private _pickPane: PickPaneComponent, private _selectionModel: PickSelectionModel) {}
 
-    get itemsShownCountStr(): string { return this._itemsShownCountStr; }
+    get itemsShownCountStr(): string {
+        return this._itemsShownCountStr;
+    }
     private _itemsShownCountStr = '';
 
-    get itemsTotalCountStr(): string { return this._itemsTotalCountStr; }
+    get itemsTotalCountStr(): string {
+        return this._itemsTotalCountStr;
+    }
     private _itemsTotalCountStr = '';
 
-    get itemsTotalCount(): number { return this._itemsTotalCount; }
+    get itemsTotalCount(): number {
+        return this._itemsTotalCount;
+    }
     private _itemsTotalCount = 0;
 
     /** containts all items in the list, including parent items */
-    get items(): Array<PickOption> { return this._items; }
+    get items(): Array<PickOption> {
+        return this._items;
+    }
     private _items = new Array<PickOption>();
 
-    get filteredItems(): Array<PickOption> { return this._filteredItems; }
+    get filteredItems(): Array<PickOption> {
+        return this._filteredItems;
+    }
     private _filteredItems = new Array<PickOption>();
 
     private _optionGroups = new Array<PickOption>();
@@ -40,13 +50,21 @@ export class ItemsList {
     private _markedIndex = -1;
 
     /** Represents the "focused" item */
-    get markedIndex(): number { return this._markedIndex; }
+    get markedIndex(): number {
+        return this._markedIndex;
+    }
     /** Return true if some item in the list should have focus. -1 means nothing is focused. */
-    get hasMarkedItem(): boolean { return this._markedIndex !== -1; }
+    get hasMarkedItem(): boolean {
+        return this._markedIndex !== -1;
+    }
     /** The highlighted options in this list */
-    get selectedItems(): Array<PickOption> { return this._selectionModel.value; }
+    get selectedItems(): Array<PickOption> {
+        return this._selectionModel.value;
+    }
     /** The HcOption that currently has focus */
-    get markedItem(): PickOption { return this._filteredItems[this._markedIndex]; }
+    get markedItem(): PickOption {
+        return this._filteredItems[this._markedIndex];
+    }
     /** The last option in the list to be highlighted */
     get lastSelectedItem(): PickOption | null {
         let i = this.selectedItems.length - 1;
@@ -77,12 +95,14 @@ export class ItemsList {
 
     /** Reset the indexes on each HcOption */
     reIndex(): void {
-        this._items.forEach((o, index) => o.index = index);
+        this._items.forEach((o, index) => (o.index = index));
     }
 
     /** Highlight a given option in the list */
     select(item: PickOption): void {
-        if (item.selected) { return; }
+        if (item.selected) {
+            return;
+        }
         if (item.children) {
             const availableChildren = item.children.filter(i => this._filteredItems.some(fi => fi.htmlId === i.htmlId && !i.disabled));
             availableChildren.forEach(child => this._selectionModel.select(child));
@@ -93,7 +113,9 @@ export class ItemsList {
 
     /** Remove highlight from a given option in the list */
     unselect(item: PickOption): void {
-        if (!item.selected) { return; }
+        if (!item.selected) {
+            return;
+        }
         this._selectionModel.unselect(item);
     }
 
@@ -108,16 +130,21 @@ export class ItemsList {
         } else if (this._pickPane.bindValue) {
             findBy = item => !item.children && this.resolveNested(item.value, this._pickPane.bindValue) === value;
         } else {
-            findBy = item => item.value === value ||
-                !item.children && !!item.label && item.label === this.resolveNested(value, this._pickPane.bindLabel);
+            findBy = item =>
+                item.value === value ||
+                (!item.children && !!item.label && item.label === this.resolveNested(value, this._pickPane.bindLabel));
         }
         return this._items.filter(i => !i.isParent).find(item => findBy(item));
     }
 
     /** Adds an existing HcOption to the list. */
     addOption(option: PickOption): void {
-        if (option.isParent) { throw new Error(`Trying to add an option that has children: ${option}`); }
-        if (!option.parent) { throw new Error(`Trying to add an option that does not have a parent: ${option}`); }
+        if (option.isParent) {
+            throw new Error(`Trying to add an option that has children: ${option}`);
+        }
+        if (!option.parent) {
+            throw new Error(`Trying to add an option that does not have a parent: ${option}`);
+        }
         const parentKey = option.parent.groupKey;
         const parentGroup = this._optionGroups.find(pg => pg.groupKey === parentKey);
         if (parentGroup) {
@@ -143,7 +170,9 @@ export class ItemsList {
 
     /** Removes an existing HcOption from the list */
     removeOption(option: PickOption): void {
-        if (!option.parent) { throw new Error(`Trying to remove an option that does not have a parent: ${option}`); }
+        if (!option.parent) {
+            throw new Error(`Trying to remove an option that does not have a parent: ${option}`);
+        }
         this._deleteItem(option, this._items);
 
         const parentGroup = this._optionGroups.find(pg => pg.groupKey === option?.parent?.groupKey);
@@ -176,14 +205,17 @@ export class ItemsList {
             label: isDefined(label) ? label.toString() : '',
             value: value,
             disabled: item.disabled,
-            htmlId: `${this._pickPane.paneId}-${index}`,
+            htmlId: `${this._pickPane.paneId}-${index}`
         });
     }
 
     private _deleteItem(item: PickOption, list: Array<PickOption>) {
         const findIndexFunc = (i: PickOption) => i.index === item.index;
         const indexToRemove = list.findIndex(findIndexFunc);
-        if (indexToRemove === -1) { console.error(`Couldn't find the item to remove: ${item}`); return; }
+        if (indexToRemove === -1) {
+            console.error(`Couldn't find the item to remove: ${item}`);
+            return;
+        }
         list.splice(indexToRemove, 1);
     }
 
@@ -195,13 +227,19 @@ export class ItemsList {
 
     /** If a sort function was provided, sort at the child and group level*/
     private _sortOptions(groups: Array<PickOption>) {
-        if (!this._pickPane.sortFn) { return; }
-        groups.forEach(g => { g.children?.sort(this._pickPane.sortFn); });
+        if (!this._pickPane.sortFn) {
+            return;
+        }
+        groups.forEach(g => {
+            g.children?.sort(this._pickPane.sortFn);
+        });
         groups.sort(this._pickPane.sortFn);
 
         // if default group exists, sort it at the bottom
         const defaultGroupIndex = groups.findIndex(g => g.groupKey === this.DEFAULT_GROUP_KEY);
-        if (defaultGroupIndex === -1) { return; }
+        if (defaultGroupIndex === -1) {
+            return;
+        }
         const defaultGroup = groups.splice(defaultGroupIndex, 1);
         groups.push(...defaultGroup);
     }
@@ -209,7 +247,7 @@ export class ItemsList {
     /**
      * Removed highlight from all items in the list.
      * @param keepDisabled if true, don't deselect any options that are currently disabled
-    */
+     */
     clearSelected(keepDisabled = false): void {
         this._selectionModel.clear(keepDisabled);
         this._items.forEach(item => {
@@ -234,7 +272,10 @@ export class ItemsList {
 
     /** Filter the options in the list with the given search term */
     filter(term: string): void {
-        if (!term) { this.resetFilteredItems(); return; }
+        if (!term) {
+            this.resetFilteredItems();
+            return;
+        }
         this._filteredItems = [];
         term = this._pickPane.searchFn ? term : term.toLocaleLowerCase();
         const searchFn = this._pickPane.searchFn || this._defaultSearchFn;
@@ -265,7 +306,10 @@ export class ItemsList {
 
     /** Unfilter the list */
     resetFilteredItems(): void {
-        if (this._filteredItems.length === this._items.length) { this.updateCounts(); return; }
+        if (this._filteredItems.length === this._items.length) {
+            this.updateCounts();
+            return;
+        }
         this._filteredItems = [...this._items];
         this.updateCounts();
     }
@@ -293,7 +337,9 @@ export class ItemsList {
 
     /** Focus on the last selected item, or the first item in the list */
     markSelectedOrDefault(): void {
-        if (this._filteredItems.length === 0) { return; }
+        if (this._filteredItems.length === 0) {
+            return;
+        }
         const lastMarkedIndex = this._getLastMarkedIndex();
         if (lastMarkedIndex > -1) {
             this._markedIndex = lastMarkedIndex;
@@ -311,7 +357,9 @@ export class ItemsList {
     /** Obtain a nested value from a given object. It could be a direct property, or a nested property */
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     resolveNested(option: any, key: string): any {
-        if (!isObject(option)) { return option; }
+        if (!isObject(option)) {
+            return option;
+        }
         if (!key || key.indexOf('.') === -1) {
             return option[key];
         } else {
@@ -336,46 +384,62 @@ export class ItemsList {
 
     /** If picklist is not configured with a search function, use this one. */
     private _defaultSearchFn(searchTerm: string, opt: PickOption): boolean {
-        const label = opt.label?.toLocaleLowerCase() || "";
+        const label = opt.label?.toLocaleLowerCase() || '';
         return label.indexOf(searchTerm) > -1;
     }
 
     /** Get index of an item a given number of steps above or below the current focus item */
     private _getNextItemIndex(steps: number): number {
         if (steps > 0) {
-            return (this._markedIndex === this._filteredItems.length - 1) ? 0 : (this._markedIndex + 1);
+            return this._markedIndex === this._filteredItems.length - 1 ? 0 : this._markedIndex + 1;
         }
-        return (this._markedIndex <= 0) ? (this._filteredItems.length - 1) : (this._markedIndex - 1);
+        return this._markedIndex <= 0 ? this._filteredItems.length - 1 : this._markedIndex - 1;
     }
 
     /** Move focus a certain number of steps above or below the current focused item */
     private _stepToItem(steps: number) {
-        if (this._filteredItems.every(x => x.disabled)) { this.unmark(); return; }
+        if (this._filteredItems.every(x => x.disabled)) {
+            this.unmark();
+            return;
+        }
         this._markedIndex = this._getNextItemIndex(steps);
-        if (this.markedItem.disabled) { this._stepToItem(steps); }
+        if (this.markedItem.disabled) {
+            this._stepToItem(steps);
+        }
     }
 
     /** Find the index of the item in the list was marked most recently */
     private _getLastMarkedIndex(): number {
-        if (this._markedIndex > -1 && this.markedItem === undefined) { return -1; }
+        if (this._markedIndex > -1 && this.markedItem === undefined) {
+            return -1;
+        }
 
         const selectedIndex = this._filteredItems.indexOf(this.lastSelectedItem as PickOption);
-        if (this.lastSelectedItem && selectedIndex < 0) { return -1; }
+        if (this.lastSelectedItem && selectedIndex < 0) {
+            return -1;
+        }
         return Math.max(this.markedIndex, selectedIndex);
     }
 
     /** Group the items in the list as configured */
     private _groupBy(items: Array<PickOption>, groupBy: string | GroupByFn | undefined): ChildrenByGroupKeyMap {
         const groups: ChildrenByGroupKeyMap = new Map<string | PickOption, Array<PickOption>>();
-        if (items.length === 0) { return groups; }
+        if (items.length === 0) {
+            return groups;
+        }
 
         // if not asked to group, everything goes into a hidden default group
-        if (!groupBy) { groups.set(this.DEFAULT_GROUP_KEY, items); return groups; }
+        if (!groupBy) {
+            groups.set(this.DEFAULT_GROUP_KEY, items);
+            return groups;
+        }
 
         // Check if items are already grouped by given key.
         if (Array.isArray((items[0].value as Record<string, any>)?.[<string>groupBy])) {
             for (const item of items) {
-                const children = ((item.value as Record<string, any>)?.[<string>groupBy] || []).map((x: unknown, index: number | undefined) => this._createHcOption(x, index));
+                const children = (
+                    (item.value as Record<string, any>)?.[<string>groupBy] || []
+                ).map((x: unknown, index: number | undefined) => this._createHcOption(x, index));
                 groups.set(item, children);
             }
             return groups;
@@ -409,10 +473,14 @@ export class ItemsList {
             const isObjectKey = isObject(key);
             const parent = this.createOptionGroup(key, isObjectKey);
             const keyForGroupVal = isGroupByFn ? this._pickPane.bindLabel : <string>this._pickPane.groupBy;
-            const groupValue = this._pickPane.groupValue || (() => {
-                if (isObjectKey) { return (<PickOption>key).value; }
-                return { [keyForGroupVal]: this.getStringForKey(key) };
-            });
+            const groupValue =
+                this._pickPane.groupValue ||
+                (() => {
+                    if (isObjectKey) {
+                        return (<PickOption>key).value;
+                    }
+                    return { [keyForGroupVal]: this.getStringForKey(key) };
+                });
             const children = groups.get(key)?.map(x => {
                 x.parent = parent;
                 x.children = undefined;

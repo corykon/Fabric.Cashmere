@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {Component, Input, OnChanges, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 /** Interface for making/receiving assignments */
 export interface DragDropAssignment {
@@ -67,10 +67,10 @@ export class DragListComponent implements OnChanges {
     @Input() requireAllAssignments = false;
 
     _modifiedAssignments: DragDropAssignment[] = [];
-    _targetsById: {[id: string]: any} = {};
-    _optionsById: {[id: string]: any} = {};
-    _optionIsAssigned: {[id: string]: boolean} = {};
-    _tooltipsByOptionId: {[id: string]: string} = {};
+    _targetsById: { [id: string]: any } = {};
+    _optionsById: { [id: string]: any } = {};
+    _optionIsAssigned: { [id: string]: boolean } = {};
+    _tooltipsByOptionId: { [id: string]: string } = {};
 
     get _unassignedOptions(): any {
         return this.options.filter(o => !this._optionIsAssigned[o[this.optionIdField]]);
@@ -106,10 +106,10 @@ export class DragListComponent implements OnChanges {
         return this._modifiedAssignments;
     }
 
-    private _dragData: {optionId: string | null; targetId: string | null} = {optionId: null, targetId: null};
+    private _dragData: { optionId: string | null; targetId: string | null } = { optionId: null, targetId: null };
 
     ngOnChanges(changes: SimpleChanges): void {
-        this._modifiedAssignments = (changes.assignments.currentValue || []).map(a => ({...a}));
+        this._modifiedAssignments = (changes.assignments.currentValue || []).map(a => ({ ...a }));
         this._tooltipsByOptionId = this._indexByExt(
             changes.options.currentValue || [],
             (o: any) => o[this.optionIdField],
@@ -129,7 +129,7 @@ export class DragListComponent implements OnChanges {
         this._setOptionIsAssigned(this._modifiedAssignments, changes.options.currentValue);
     }
 
-    private _indexBy<T>(arr: T[], propFn: (item: T) => string): {[id: string]: T} {
+    private _indexBy<T>(arr: T[], propFn: (item: T) => string): { [id: string]: T } {
         return (arr || []).reduce((obj, item) => {
             obj[propFn(item)] = item;
             return obj;
@@ -140,7 +140,7 @@ export class DragListComponent implements OnChanges {
         arr: T[],
         propFn: (item: T) => string,
         valFn: (item: T) => V = it => (it as unknown) as V
-    ): {[id: string]: V} {
+    ): { [id: string]: V } {
         return (arr || []).reduce((obj, item) => {
             obj[propFn(item)] = valFn(item);
             return obj;
@@ -252,12 +252,12 @@ export class DragListComponent implements OnChanges {
 
     /** Marks control as pristine. Typically called after saving modifications. */
     setPristine(): void {
-        this.assignments = (this._modifiedAssignments || []).map(a => ({...a}));
+        this.assignments = (this._modifiedAssignments || []).map(a => ({ ...a }));
     }
 
     /** Resets assigments to original values. */
     resetChanges(): void {
-        this._modifiedAssignments = (this.assignments || []).map(a => ({...a}));
+        this._modifiedAssignments = (this.assignments || []).map(a => ({ ...a }));
         this._setOptionIsAssigned(this._modifiedAssignments, this.options);
     }
 }

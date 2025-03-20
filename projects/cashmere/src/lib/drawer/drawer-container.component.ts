@@ -13,12 +13,12 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {Drawer, DrawerPromiseResult} from './drawer.component';
-import {debounceTime, filter, startWith, takeUntil} from 'rxjs/operators';
-import {AnimationEvent} from '@angular/animations';
-import {Subject} from 'rxjs';
-import {parseBooleanAttribute} from '../util';
+import type { QueryList } from '@angular/core';
+import { Drawer, DrawerPromiseResult } from './drawer.component';
+import { debounceTime, filter, startWith, takeUntil } from 'rxjs/operators';
+import { AnimationEvent } from '@angular/animations';
+import { Subject } from 'rxjs';
+import { parseBooleanAttribute } from '../util';
 import { BackdropHostDirective } from '../backdrop/backdrop-host.directive';
 
 function throwDrawerContainerError(align: string) {
@@ -36,14 +36,14 @@ export class DrawerContainer implements AfterContentInit, DoCheck, OnDestroy {
     @ContentChildren(Drawer)
     _drawers: QueryList<Drawer>;
 
-    @ViewChild(BackdropHostDirective, {static: true}) _backdropHost: BackdropHostDirective;
+    @ViewChild(BackdropHostDirective, { static: true }) _backdropHost: BackdropHostDirective;
 
     private _leftDrawer: Drawer;
     private _rightDrawer: Drawer;
     private _animated = true;
     private _useBackdrop = false;
 
-    _contentMargins = {left: 0, right: 0};
+    _contentMargins = { left: 0, right: 0 };
 
     private readonly _doCheckSubject = new Subject<void>();
     private readonly _destroyed = new Subject<void>();
@@ -59,8 +59,8 @@ export class DrawerContainer implements AfterContentInit, DoCheck, OnDestroy {
 
     set animated(val: boolean) {
         this._animated = parseBooleanAttribute(val);
-        if ( this._drawers ) {
-            this._drawers.forEach((drawer: Drawer) => drawer._animated = this._animated);
+        if (this._drawers) {
+            this._drawers.forEach((drawer: Drawer) => (drawer._animated = this._animated));
         }
     }
 
@@ -88,7 +88,7 @@ export class DrawerContainer implements AfterContentInit, DoCheck, OnDestroy {
     }
 
     ngAfterContentInit(): void {
-        this._drawers.forEach((drawer: Drawer) => drawer._animated = this.animated);
+        this._drawers.forEach((drawer: Drawer) => (drawer._animated = this.animated));
 
         // debounceTime allows the component to render before the margins are calculated
         this._doCheckSubject
@@ -163,7 +163,7 @@ export class DrawerContainer implements AfterContentInit, DoCheck, OnDestroy {
         }
 
         if (left !== this._contentMargins.left || right !== this._contentMargins.right) {
-            this._contentMargins = {left, right};
+            this._contentMargins = { left, right };
 
             this._ngZone.run(() => this._changeDetector.markForCheck());
         }

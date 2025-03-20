@@ -1,4 +1,4 @@
-import { ModalOptions } from "../modal-options";
+import { ModalOptions } from '../modal-options';
 
 /** Used with ModalService's `alert()`, `confirm()`, and `confirmDestructive()` functions, which generate a
  * quick alert or confirmation modal. */
@@ -42,7 +42,7 @@ export function getDefaultConfirmationOptions(): SimpleModalOptions {
         icon: 'hc-ico-question',
         cancelButtonText: 'Cancel',
         confirmButtonText: 'Confirm',
-        confirmButtonIsDestructive: false,
+        confirmButtonIsDestructive: false
     };
 }
 
@@ -53,7 +53,7 @@ export function getDefaultDestructiveOptions(): SimpleModalOptions {
         headerText: 'Delete item?',
         icon: 'hc-ico-trash',
         confirmButtonText: 'Delete item',
-        confirmButtonIsDestructive: true,
+        confirmButtonIsDestructive: true
     };
 }
 
@@ -62,7 +62,7 @@ export function getDefaultAlertOptions(): SimpleModalOptions {
     return {
         icon: 'hc-ico-warn',
         cancelButtonText: '',
-        confirmButtonText: 'OK',
+        confirmButtonText: 'OK'
     };
 }
 

@@ -16,7 +16,9 @@ export class PickPaneDragService {
 
     public drag(event: DragEvent, list: ItemsList, item: PickOption): void {
         event.stopPropagation();
-        if (!item.selected) { list.clearSelected(true); }
+        if (!item.selected) {
+            list.clearSelected(true);
+        }
         list.select(item);
         this.pane._isDragging = true;
     }

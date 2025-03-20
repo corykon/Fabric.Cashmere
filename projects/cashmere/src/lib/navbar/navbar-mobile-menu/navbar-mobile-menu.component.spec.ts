@@ -1,19 +1,21 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {IconModule} from '../../icon/icon.module';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconModule } from '../../icon/icon.module';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {NavbarMobileMenuComponent} from './navbar-mobile-menu.component';
+import { NavbarMobileMenuComponent } from './navbar-mobile-menu.component';
 
 describe('NavbarMobileMenuComponent', () => {
     let component: NavbarMobileMenuComponent;
     let fixture: ComponentFixture<NavbarMobileMenuComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [NavbarMobileMenuComponent],
-            imports: [IconModule, BrowserAnimationsModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [NavbarMobileMenuComponent],
+                imports: [IconModule, BrowserAnimationsModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(NavbarMobileMenuComponent);

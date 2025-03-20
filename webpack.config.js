@@ -1,5 +1,5 @@
 module.exports = {
     module: {
-        rules: [{ test: /\.md$/, type: 'asset/source' }],
+        rules: [{ test: /\.md$/, type: 'asset/source' }]
     }
 };

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {FileSizePipe} from './file-size.pipe';
+import { FileSizePipe } from './file-size.pipe';
 
 describe('FileSizePipe.transform', () => {
     let pipe: FileSizePipe;

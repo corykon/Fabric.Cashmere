@@ -275,9 +275,11 @@ tr:hover .hc-table-actions .hc-action-ico,
     }
 }
 
-
 // sticky no borders
-th.hc-table-sticky.hc-table-sticky-border-elem-top, .hc-sticky-header th, .hc-sticky-header th.hc-col-sortable-left, .hc-sticky-header th.hc-col-sortable{
+th.hc-table-sticky.hc-table-sticky-border-elem-top,
+.hc-sticky-header th,
+.hc-sticky-header th.hc-col-sortable-left,
+.hc-sticky-header th.hc-col-sortable {
     @include th-header-sticky();
 
     &:first-child {
@@ -289,14 +291,17 @@ th.hc-table-sticky.hc-table-sticky-border-elem-top, .hc-sticky-header th, .hc-st
     }
 }
 
-td, th:first-child {
-    &.hc-table-sticky.hc-table-sticky-border-elem-left, &.hc-sticky-col {
+td,
+th:first-child {
+    &.hc-table-sticky.hc-table-sticky-border-elem-left,
+    &.hc-sticky-col {
         @include th-col-sticky();
-     }
+    }
 }
 
 .hc-table-container-gray {
-    th.hc-table-sticky.hc-table-sticky-border-elem-top, .hc-sticky-header th{
+    th.hc-table-sticky.hc-table-sticky-border-elem-top,
+    .hc-sticky-header th {
         @include th-header-sticky-gray();
 
         &:first-child {
@@ -309,15 +314,20 @@ td, th:first-child {
     }
 }
 
-.hc-table-container-gray, :not(.hc-table-container-gray) {
-    th.hc-table-sticky-border-elem-left.hc-table-sticky-border-elem-top, tr.hc-sticky-header th.hc-sticky-col:first-child {
+.hc-table-container-gray,
+:not(.hc-table-container-gray) {
+    th.hc-table-sticky-border-elem-left.hc-table-sticky-border-elem-top,
+    tr.hc-sticky-header th.hc-sticky-col:first-child {
         @include th-sticky-row-and-col();
     }
 }
 
 // sticky w borders
 .hc-table-borders {
-    th.hc-table-sticky, .hc-sticky-header th, .hc-sticky-header th.hc-col-sortable-left, .hc-sticky-header th.hc-col-sortable {
+    th.hc-table-sticky,
+    .hc-sticky-header th,
+    .hc-sticky-header th.hc-col-sortable-left,
+    .hc-sticky-header th.hc-col-sortable {
         @include th-border-header-sticky();
 
         &.hc-table-sticky-border-elem-left {
@@ -325,7 +335,9 @@ td, th:first-child {
         }
     }
 
-    td.hc-table-sticky, td.hc-sticky-col, th.hc-sticky-col{
+    td.hc-table-sticky,
+    td.hc-sticky-col,
+    th.hc-sticky-col {
         @include th-border-col-sticky();
     }
 
@@ -333,7 +345,6 @@ td, th:first-child {
         @include th-sticky-row-and-col-borders();
     }
 }
-
 
 // drag/drop stuff
 .hc-draggable-header {
@@ -353,7 +364,8 @@ td, th:first-child {
         cursor: pointer;
     }
 
-    &:hover, &.cdk-drag-preview {
+    &:hover,
+    &.cdk-drag-preview {
         .ico-grip {
             opacity: 1;
             cursor: move;
@@ -368,7 +380,7 @@ td, th:first-child {
 
     .hc-draggable-header {
         &:before {
-            content: " ";
+            content: ' ';
             position: absolute;
             height: calc(100vh - 220px);
             max-height: calc(100vh - 220px);

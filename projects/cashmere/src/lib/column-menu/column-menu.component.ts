@@ -9,7 +9,7 @@ import { readFromStorage, writeToStorage } from '../utils/local-storage';
 @Component({
     selector: 'hc-column-menu',
     templateUrl: './column-menu.component.html',
-    styleUrls: ['./column-menu.component.scss'],
+    styleUrls: ['./column-menu.component.scss']
 })
 export class ColumnMenuComponent implements OnInit {
     /** Reference to the popover menu. */
@@ -25,7 +25,9 @@ export class ColumnMenuComponent implements OnInit {
         this._staticPrefixCols = prefixCols;
         this._refreshCols();
     }
-    get staticPrefixCols(): string[] { return this._staticPrefixCols; }
+    get staticPrefixCols(): string[] {
+        return this._staticPrefixCols;
+    }
     private _staticPrefixCols: string[] = [];
 
     /** Keys for columns that cannot be moved or hidden and sit at the end of the row. */
@@ -33,7 +35,9 @@ export class ColumnMenuComponent implements OnInit {
         this._staticSuffixCols = suffixCols;
         this._refreshCols();
     }
-    get staticSuffixCols(): string[] { return this._staticSuffixCols; }
+    get staticSuffixCols(): string[] {
+        return this._staticSuffixCols;
+    }
     private _staticSuffixCols: string[] = [];
 
     /** Collection of columns that can be hidden and/or reordered. */
@@ -42,15 +46,21 @@ export class ColumnMenuComponent implements OnInit {
         this._generateColumnSelectionForms(cols);
         this._getCachedPreferences();
     }
-    get dynamicCols(): Array<HcDynamicColumn> { return this._dynamicCols; }
+    get dynamicCols(): Array<HcDynamicColumn> {
+        return this._dynamicCols;
+    }
     private _dynamicCols = new Array<HcDynamicColumn>();
 
     /** An array of the currently displayed column keys sorted in their proper order. */
-    get displayedColumns(): string[] { return this._displayedColumns; }
+    get displayedColumns(): string[] {
+        return this._displayedColumns;
+    }
     _displayedColumns: string[] = [];
 
     /** Collection of the sortable/hidable column forms. */
-    get colSelectionForm(): FormGroup { return this._colSelectionForm; }
+    get colSelectionForm(): FormGroup {
+        return this._colSelectionForm;
+    }
     _colSelectionForm = new FormGroup({});
 
     ngOnInit(): void {
@@ -92,7 +102,7 @@ export class ColumnMenuComponent implements OnInit {
 
     _generateColumnSelectionForms(cols: Array<HcDynamicColumn>): void {
         this._colSelectionForm = new FormGroup({});
-        cols.filter(c => this._interpretOptionalBoolean(c.isHidable)).forEach((c) => {
+        cols.filter(c => this._interpretOptionalBoolean(c.isHidable)).forEach(c => {
             this._colSelectionForm.addControl(c.name, new FormControl(this._interpretOptionalBoolean(c.isShownByDefault)));
         });
         this._refreshCols();
@@ -104,9 +114,7 @@ export class ColumnMenuComponent implements OnInit {
 
     _refreshCols(): string[] {
         // merge user controlled columns with static columns
-        this._displayedColumns = this.staticPrefixCols
-            .concat(this._getDisplayedColumns())
-            .concat(this.staticSuffixCols);
+        this._displayedColumns = this.staticPrefixCols.concat(this._getDisplayedColumns()).concat(this.staticSuffixCols);
 
         setTimeout(() => this.displayedColumnChange.emit(this._displayedColumns));
         return this._displayedColumns;
@@ -114,10 +122,8 @@ export class ColumnMenuComponent implements OnInit {
 
     _getDisplayedColumns(): string[] {
         return this.dynamicCols
-        .filter((col) =>
-        this._interpretOptionalBoolean(col.isHidable) ? this._colSelectionForm.get(col.name)?.value : true
-        )
-        .map((cd) => cd.name as string);
+            .filter(col => (this._interpretOptionalBoolean(col.isHidable) ? this._colSelectionForm.get(col.name)?.value : true))
+            .map(cd => cd.name as string);
     }
 
     /**
@@ -128,13 +134,11 @@ export class ColumnMenuComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columnDropped(event: CdkDragDrop<any>, isInDataGrid = true): void {
         if (event) {
-            const prevIndex = isInDataGrid ?
-                this._dynamicCols.findIndex(c => c.name === event.item.data.name) :
-                event.previousIndex;
+            const prevIndex = isInDataGrid ? this._dynamicCols.findIndex(c => c.name === event.item.data.name) : event.previousIndex;
             const adjustedIndexForPrefixes = event.currentIndex + this.staticPrefixCols.length;
-            const newIndex = isInDataGrid ?
-                this._dynamicCols.findIndex( c => c.name === this._displayedColumns[adjustedIndexForPrefixes]) :
-                event.currentIndex;
+            const newIndex = isInDataGrid
+                ? this._dynamicCols.findIndex(c => c.name === this._displayedColumns[adjustedIndexForPrefixes])
+                : event.currentIndex;
             moveItemInArray(this._dynamicCols, prevIndex, newIndex);
             this._refreshCols();
             this.saveCachedPreferences();
@@ -145,9 +149,13 @@ export class ColumnMenuComponent implements OnInit {
      * Save ordered list of columns with their display status to local storage
      */
     saveCachedPreferences(): void {
-        if (!this.cacheKey) { return; } // don't save if no key is provided
-        const cachedColumns: HcCachedColumn[] = this.dynamicCols
-            .map((col) => ({ key: col.name, isHidden: !this._colSelectionForm.get(col.name?.toString())?.value}));
+        if (!this.cacheKey) {
+            return;
+        } // don't save if no key is provided
+        const cachedColumns: HcCachedColumn[] = this.dynamicCols.map(col => ({
+            key: col.name,
+            isHidden: !this._colSelectionForm.get(col.name?.toString())?.value
+        }));
         writeToStorage(this.cacheKey, cachedColumns);
     }
 
@@ -155,12 +163,16 @@ export class ColumnMenuComponent implements OnInit {
      * Load user preferences for columns order and display status
      */
     _getCachedPreferences(): void {
-        if (!this.cacheKey) { return; } // don't load if no key is provided
+        if (!this.cacheKey) {
+            return;
+        } // don't load if no key is provided
         const cachedColumns: HcCachedColumn[] = readFromStorage(this.cacheKey) || new Array<HcCachedColumn>();
         const orderedAvailableColumns = new Array<HcDynamicColumn>();
-        cachedColumns?.forEach((col) => {
+        cachedColumns?.forEach(col => {
             const existingColumn = this._dynamicCols.find(c => c.name === col.key);
-            if(!existingColumn) { return; } // watch for columns that don't exist anymore
+            if (!existingColumn) {
+                return;
+            } // watch for columns that don't exist anymore
 
             // if the cached column still exists, set display status & add at correct index
             this._colSelectionForm.get(col.key)?.setValue(!col.isHidden);
@@ -170,7 +182,7 @@ export class ColumnMenuComponent implements OnInit {
         // if available columns don't exist in cache (like a newly introduced column),
         // add them in at their default index
         this._dynamicCols.forEach((availableColumn, index) => {
-            if(!cachedColumns.find(c => c.key === availableColumn.name)) {
+            if (!cachedColumns.find(c => c.key === availableColumn.name)) {
                 orderedAvailableColumns.splice(index, 0, availableColumn);
             }
         });

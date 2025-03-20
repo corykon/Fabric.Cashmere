@@ -14,11 +14,13 @@ export class ReleaseNotesService {
      * @param data Configuration data for the modal. See ReleaseNotesModalData class for details.
      * @param modalOptions Options for the modal. See ModalOptions class for details.
      * @returns A reference to the opened modal.
-    */
+     */
     open(data: IReleaseNotesModalData, modalOptions?: ModalOptions): HcModal<unknown> {
-        const mergedModalOptions = Object.assign({ size: 'lg'}, modalOptions);
+        const mergedModalOptions = Object.assign({ size: 'lg' }, modalOptions);
         const modalData = Object.assign(new ReleaseNotesModalData(), data);
-        modalData.releaseNotes = modalData.releaseNotes.map(rn => new ReleaseNote(rn.version, rn.notesHTML, rn.releaseMonth, rn.releaseYear, rn.releaseDay));
+        modalData.releaseNotes = modalData.releaseNotes.map(
+            rn => new ReleaseNote(rn.version, rn.notesHTML, rn.releaseMonth, rn.releaseYear, rn.releaseDay)
+        );
         modalData.releaseNotes[0].isOpen = true; // open the first release notes by default
         mergedModalOptions.data = modalData;
 

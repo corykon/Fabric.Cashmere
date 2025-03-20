@@ -1,12 +1,12 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BrowserModule} from '@angular/platform-browser';
-import {ComponentFixture, TestBed, fakeAsync, flush} from '@angular/core/testing';
-import {dispatchEvent} from '../utils/dispatch-events';
-import {ActiveModal} from './active-modal';
-import {ModalService} from './modal.service';
-import {CommonModule} from '@angular/common';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {ModalOverlayComponent} from './modal-overlay.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { dispatchEvent } from '../utils/dispatch-events';
+import { ActiveModal } from './active-modal';
+import { ModalService } from './modal.service';
+import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModalOverlayComponent } from './modal-overlay.component';
 
 describe('hc-modal-overlay', () => {
     let overlayComponent: ModalOverlayComponent;

@@ -27,36 +27,38 @@ describe('ModalService', () => {
         let service: ModalService;
         let mockModalRef: HcModal<ModalOverviewExampleModalComponent>;
 
-        beforeEach(waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [ModalModule],
-                declarations: [ModalOverviewExampleModalComponent],
-                providers: [ModalService, HcModal],
+        beforeEach(
+            waitForAsync(() => {
+                TestBed.configureTestingModule({
+                    imports: [ModalModule],
+                    declarations: [ModalOverviewExampleModalComponent],
+                    providers: [ModalService, HcModal]
+                })
+                    .overrideModule(BrowserDynamicTestingModule, {})
+                    .compileComponents();
             })
-            .overrideModule(BrowserDynamicTestingModule, {})
-            .compileComponents();
-        }));
+        );
 
         beforeEach(() => (service = TestBed.inject(ModalService)));
 
         it('should open a modal without options', () => {
-            mockModalRef = service.open( ModalOverviewExampleModalComponent);
+            mockModalRef = service.open(ModalOverviewExampleModalComponent);
             expect(mockModalRef).toBeTruthy();
         });
 
         it('should open a modal with options and set the size', () => {
-            const options: ModalOptions = {size: 'lg'};
-            mockModalRef = service.open( ModalOverviewExampleModalComponent, options);
+            const options: ModalOptions = { size: 'lg' };
+            mockModalRef = service.open(ModalOverviewExampleModalComponent, options);
 
-            const size =  mockModalRef.window?.instance?._size;
+            const size = mockModalRef.window?.instance?._size;
             expect(size).toBe('lg');
         });
 
         it('should open a modal with options and set to resizable', () => {
-            const options: ModalOptions = {isResizable: true};
-            mockModalRef = service.open( ModalOverviewExampleModalComponent, options);
+            const options: ModalOptions = { isResizable: true };
+            mockModalRef = service.open(ModalOverviewExampleModalComponent, options);
 
-            const resizable =  mockModalRef.window?.instance?._isResizable;
+            const resizable = mockModalRef.window?.instance?._isResizable;
             expect(resizable).toBe(true);
         });
     });

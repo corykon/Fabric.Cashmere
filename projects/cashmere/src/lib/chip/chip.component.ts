@@ -1,5 +1,5 @@
-import {Component, Input, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
-import {parseBooleanAttribute} from '../util';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { parseBooleanAttribute } from '../util';
 
 const supportedColors = ['neutral', 'yellow', 'green', 'red', 'blue'];
 

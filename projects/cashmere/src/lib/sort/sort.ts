@@ -6,12 +6,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Directive, EventEmitter, Input, isDevMode, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
-import {SortDirection} from './sort-direction';
-import {getSortDuplicateSortableIdError, getSortHeaderMissingIdError, getSortInvalidDirectionError} from './sort-errors';
-import {Subject} from 'rxjs';
-import {Initializable} from '../shared/initializable';
+import { Directive, EventEmitter, Input, isDevMode, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { SortDirection } from './sort-direction';
+import { getSortDuplicateSortableIdError, getSortHeaderMissingIdError, getSortInvalidDirectionError } from './sort-errors';
+import { Subject } from 'rxjs';
+import { Initializable } from '../shared/initializable';
 
 /** Interface for a directive that holds sorting state consumed by `HcSortHeaderComponent`. */
 export interface HcSortable {
@@ -128,7 +128,7 @@ export class HcSort extends Initializable implements OnChanges, OnDestroy, OnIni
             this.direction = this.getNextSortDirection(sortable);
         }
 
-        this.sortChange.emit({active: this.active, direction: this.direction});
+        this.sortChange.emit({ active: this.active, direction: this.direction });
     }
 
     /** Returns the next sort direction of the active sortable, checking for potential overrides. */

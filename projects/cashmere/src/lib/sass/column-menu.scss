@@ -66,7 +66,8 @@
         background-color: transparentize($blue, 0.7);
     }
 
-    &:hover, &.cdk-drag-preview {
+    &:hover,
+    &.cdk-drag-preview {
         .ico-grip {
             opacity: 1;
             cursor: move;
@@ -74,8 +75,9 @@
     }
 
     ::ng-deep {
-        .hc-checkbox-content, .hc-checkbox-label {
-            width: 100%
+        .hc-checkbox-content,
+        .hc-checkbox-label {
+            width: 100%;
         }
     }
 }

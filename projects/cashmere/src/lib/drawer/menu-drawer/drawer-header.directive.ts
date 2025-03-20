@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /* MenuDrawer toolbar that is fixed to the top */
 @Directive({

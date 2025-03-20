@@ -1,5 +1,5 @@
-import {Component, EventEmitter, HostBinding, HostListener, Input, Output, ViewEncapsulation} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, EventEmitter, HostBinding, HostListener, Input, Output, ViewEncapsulation } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'hc-backdrop',
@@ -21,7 +21,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ],
     animations: [
         trigger('fadeInOut', [
-            state('in', style({opacity: 0.5})),
+            state('in', style({ opacity: 0.5 })),
             transition('void <=> *', [
                 style({
                     opacity: 0

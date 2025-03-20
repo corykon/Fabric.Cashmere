@@ -30,7 +30,6 @@
 
 // more specifity necessary to override default styles from hc-button
 .hc-pagination-container .hc-page-btns-container {
-
     .hc-page-button {
         @include hc-page-button();
 

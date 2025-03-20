@@ -8,7 +8,7 @@
 }
 
 ::ng-deep .term-field li::before {
-    content: "\2022 ";
+    content: '\2022 ';
     display: table-cell;
     padding-right: 10px;
 }
@@ -31,7 +31,7 @@
     display: inline-flex;
     justify-content: space-between;
     margin: 20px 0;
-    width: 100%
+    width: 100%;
 }
 
 .usage-table-filters_categories {

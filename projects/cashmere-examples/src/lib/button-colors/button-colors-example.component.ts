@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * @title Colored Buttons
@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
     styleUrls: ['button-colors-example.component.scss']
 })
 export class ButtonColorsExampleComponent {
-    color = "ruby-red"
+    color = 'ruby-red';
     colorOptions = [
         'blue',
         'green',

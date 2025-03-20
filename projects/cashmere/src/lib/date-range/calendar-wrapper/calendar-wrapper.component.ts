@@ -11,10 +11,10 @@ import {
     HostBinding,
     ChangeDetectorRef
 } from '@angular/core';
-import {ConfigStoreService} from '../services/config-store.service';
-import {CalendarComponent} from '../../datepicker/calendar/calendar.component';
-import {DatepickerInputDirective, HcDatepickerInputEvent} from '../../datepicker/datepicker-input/datepicker-input.directive';
-import {D} from '../../datepicker/datetime/date-formats';
+import { ConfigStoreService } from '../services/config-store.service';
+import { CalendarComponent } from '../../datepicker/calendar/calendar.component';
+import { DatepickerInputDirective, HcDatepickerInputEvent } from '../../datepicker/datepicker-input/datepicker-input.directive';
+import { D } from '../../datepicker/datetime/date-formats';
 
 /** Component combining a calendar and input as a representation of a date  */
 @Component({
@@ -28,10 +28,10 @@ export class CalendarWrapperComponent implements OnChanges {
     @HostBinding('class.hc-calendar-wrapper')
     _hostClass = true;
 
-    @ViewChild(CalendarComponent, {static: true})
+    @ViewChild(CalendarComponent, { static: true })
     hcCalendar: CalendarComponent;
 
-    @ViewChild(DatepickerInputDirective, {static: true})
+    @ViewChild(DatepickerInputDirective, { static: true })
     datePickerInput: DatepickerInputDirective;
 
     /** Emits when selected date has changed. */

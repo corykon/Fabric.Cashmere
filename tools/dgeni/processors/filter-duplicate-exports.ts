@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {DocCollection, Processor} from 'dgeni';
-import {ExportDoc} from 'dgeni-packages/typescript/api-doc-types/ExportDoc';
+import { DocCollection, Processor } from 'dgeni';
+import { ExportDoc } from 'dgeni-packages/typescript/api-doc-types/ExportDoc';
 
 /**
  * Processor to filter out Dgeni documents that are exported multiple times. This is necessary

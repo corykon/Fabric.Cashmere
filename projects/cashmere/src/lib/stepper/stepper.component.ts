@@ -1,6 +1,6 @@
-import {Component, Input, AfterContentInit, HostBinding, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
-import {Router, NavigationEnd, Params, UrlSerializer} from '@angular/router';
-import {parseBooleanAttribute} from '../util';
+import { Component, Input, AfterContentInit, HostBinding, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Router, NavigationEnd, Params, UrlSerializer } from '@angular/router';
+import { parseBooleanAttribute } from '../util';
 
 export function throwErrorForMissingRouterLink(stepsWithoutRouterLink: StepInterface[]): void {
     const stepLabels = stepsWithoutRouterLink.map(step => step.label);
@@ -138,7 +138,7 @@ export class StepperComponent implements AfterContentInit {
     /** Can be used to activate the current step following @Input() steps routerLink or queryParams updates  */
     findCurrentStep(): void {
         const foundActiveRouteIndex = this.steps.findIndex(step => {
-            const urlTree = this.router.createUrlTree([step.routerLink], {queryParams: step.queryParams});
+            const urlTree = this.router.createUrlTree([step.routerLink], { queryParams: step.queryParams });
             const stepURL = this.urlSerializer.serialize(urlTree);
             return this.router.isActive(stepURL, true);
         });

@@ -79,7 +79,7 @@
         @include hc-checkbox-overlay-checked();
     }
 
-    .hc-checkbox-disabled input[type=checkbox] + & {
+    .hc-checkbox-disabled input[type='checkbox'] + & {
         @include hc-checkbox-overlay-disabled();
     }
 
@@ -102,10 +102,9 @@
     }
 }
 
-
-
 .hc-checkbox-stub {
-    .hc-checkbox-label, .hc-checkbox-overlay {
+    .hc-checkbox-label,
+    .hc-checkbox-overlay {
         @include hc-checkbox-stubbed();
     }
 }

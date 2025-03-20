@@ -1,6 +1,6 @@
-import {Observable, Subject} from 'rxjs';
-import {IDiscoveryRequest, IDiscoveryApplication} from '@healthcatalyst/cashmere';
-import {Injectable} from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { IDiscoveryRequest, IDiscoveryApplication } from '@healthcatalyst/cashmere';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 /**
@@ -50,20 +50,26 @@ export class CustomAppSwitcherService {
     readonly allApplicationsUri = 'http://example.com/';
     appSubject: Subject<IDiscoveryRequest> = new Subject();
 
-    constructor( private http: HttpClient ){
+    constructor(private http: HttpClient) {
         // For this mock service we'll be loading the Cashmere base64 icons, an actual discovery service will already have them defined
-        this.http.get('https://cashmere.healthcatalyst.net/assets/product-icons/Atlas.txt', {responseType: 'text'}).subscribe( atlasIcon => {
-            this.http.get('https://cashmere.healthcatalyst.net/assets/product-icons/OpsConsole.txt', {responseType: 'text'}).subscribe( opsIcon => {
-                this.http.get('https://cashmere.healthcatalyst.net/assets/product-icons/IDEA.txt', {responseType: 'text'}).subscribe( ideaIcon => {
-                    mockApplications[0].Icon = atlasIcon;
-                    mockApplications[1].Icon = opsIcon;
-                    mockApplications[2].Icon = ideaIcon;
+        this.http
+            .get('https://cashmere.healthcatalyst.net/assets/product-icons/Atlas.txt', { responseType: 'text' })
+            .subscribe(atlasIcon => {
+                this.http
+                    .get('https://cashmere.healthcatalyst.net/assets/product-icons/OpsConsole.txt', { responseType: 'text' })
+                    .subscribe(opsIcon => {
+                        this.http
+                            .get('https://cashmere.healthcatalyst.net/assets/product-icons/IDEA.txt', { responseType: 'text' })
+                            .subscribe(ideaIcon => {
+                                mockApplications[0].Icon = atlasIcon;
+                                mockApplications[1].Icon = opsIcon;
+                                mockApplications[2].Icon = ideaIcon;
 
-                    this.appSubject.next({value: mockApplications});
-                    this.appSubject.complete();
-                });
-            });       
-        });
+                                this.appSubject.next({ value: mockApplications });
+                                this.appSubject.complete();
+                            });
+                    });
+            });
     }
 
     getApplications(): Observable<IDiscoveryRequest> {

@@ -1,4 +1,4 @@
-import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 
 /** Parent component that can house multiple `<hc-list-item>` and applies Cashmere list styling */
 @Component({

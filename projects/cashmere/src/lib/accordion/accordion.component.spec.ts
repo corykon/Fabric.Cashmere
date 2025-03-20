@@ -1,10 +1,10 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {AccordionComponent} from './accordion.component';
-import {AccordionToolbarComponent} from './accordion-toolbar.component';
-import {AccordionModule} from './accordion.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { AccordionComponent } from './accordion.component';
+import { AccordionToolbarComponent } from './accordion-toolbar.component';
+import { AccordionModule } from './accordion.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({
     template: `
@@ -47,12 +47,14 @@ describe('AccordionComponent', () => {
     let component: TestAccordionComponent;
     let fixture: ComponentFixture<TestAccordionComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestAccordionComponent],
-            imports: [AccordionModule, NoopAnimationsModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TestAccordionComponent],
+                imports: [AccordionModule, NoopAnimationsModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestAccordionComponent);

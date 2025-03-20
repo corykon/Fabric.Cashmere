@@ -12,13 +12,26 @@ import { FormControl } from '@angular/forms';
 export class MultiselectWrappedExampleComponent {
     private invalid = false;
     multiselectDisabled = false;
-    multiselectControl = new FormControl(["France", "Spain"]);
-    countries = ['France', 'Spain', 'Italy', 'Germany', 'Portugal', 'Greece', 'Austria', 'Belgium', 'Denmark', 'Finland', 'Ireland', 'Luxembourg'];
+    multiselectControl = new FormControl(['France', 'Spain']);
+    countries = [
+        'France',
+        'Spain',
+        'Italy',
+        'Germany',
+        'Portugal',
+        'Greece',
+        'Austria',
+        'Belgium',
+        'Denmark',
+        'Finland',
+        'Ireland',
+        'Luxembourg'
+    ];
 
     toggleValid(): void {
         this.invalid = !this.invalid;
         if (this.invalid) {
-            this.multiselectControl.setErrors({invalid: true});
+            this.multiselectControl.setErrors({ invalid: true });
         } else {
             this.multiselectControl.setErrors(null);
         }

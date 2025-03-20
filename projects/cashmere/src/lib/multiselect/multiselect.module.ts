@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MultiselectComponent } from './multiselect.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MultiselectComponent } from './multiselect.component';
 
 @NgModule({
     imports: [CommonModule],

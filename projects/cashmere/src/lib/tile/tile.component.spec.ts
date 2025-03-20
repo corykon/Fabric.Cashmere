@@ -6,11 +6,13 @@ describe('TileComponent', () => {
     let component: TileComponent;
     let fixture: ComponentFixture<TileComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [TileModule]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [TileModule]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TileComponent);
@@ -22,7 +24,7 @@ describe('TileComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    describe("_tight", () => {
+    describe('_tight', () => {
         it('should check _tight to be false after being created', () => {
             expect(component._tight).toBeFalsy();
         });
@@ -32,5 +34,4 @@ describe('TileComponent', () => {
             expect(component._tight).toBeTruthy();
         });
     });
-
 });

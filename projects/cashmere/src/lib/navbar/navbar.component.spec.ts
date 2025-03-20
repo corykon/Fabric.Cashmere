@@ -1,11 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {RouterTestingModule} from '@angular/router/testing';
-import {ListModule} from '../list/list.module';
-import {NavbarComponent} from './navbar.component';
-import {NavbarModule} from './navbar.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Component, ViewChild } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ListModule } from '../list/list.module';
+import { NavbarComponent } from './navbar.component';
+import { NavbarModule } from './navbar.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
     template: `
@@ -29,12 +29,14 @@ describe('NavbarComponent', () => {
     let testHostComponent: TestAppComponent;
     let testHostFixture: ComponentFixture<TestAppComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [RouterTestingModule, NavbarModule, ListModule, BrowserAnimationsModule],
-            declarations: [TestAppComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [RouterTestingModule, NavbarModule, ListModule, BrowserAnimationsModule],
+                declarations: [TestAppComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         testHostFixture = TestBed.createComponent(TestAppComponent);

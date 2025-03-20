@@ -1,9 +1,21 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnDestroy, Optional, Output, Self, ViewEncapsulation} from '@angular/core';
-import {FormGroupDirective, NgControl, NgForm} from '@angular/forms';
-import {Subject} from 'rxjs';
-import {delay, takeUntil} from 'rxjs/operators';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {parseBooleanAttribute} from '../util';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    OnDestroy,
+    Optional,
+    Output,
+    Self,
+    ViewEncapsulation
+} from '@angular/core';
+import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { parseBooleanAttribute } from '../util';
 
 let nextToggleId = 1;
 
@@ -23,7 +35,7 @@ export enum labelPosition {
 }
 
 export function validateLabelType(inputStr: string): void {
-    if (inputStr !== 'none' && inputStr !== 'on' && inputStr !== 'true' && inputStr !== 'yes' ) {
+    if (inputStr !== 'none' && inputStr !== 'on' && inputStr !== 'true' && inputStr !== 'yes') {
         throw Error('Unsupported inside label type: ' + inputStr);
     }
 }
@@ -34,7 +46,7 @@ export function validateLabelType(inputStr: string): void {
     templateUrl: 'slide-toggle.component.html',
     styleUrls: ['slide-toggle.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => SlideToggleComponent)}]
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => SlideToggleComponent) }]
 })
 export class SlideToggleComponent extends HcFormControlComponent implements AfterViewInit, OnDestroy {
     private _uniqueId = `hc-slide-toggle-${nextToggleId++}`;
@@ -44,10 +56,10 @@ export class SlideToggleComponent extends HcFormControlComponent implements Afte
     _disabled = false;
     _insideLabel = 'on';
     _insideLabelTypes = {
-        'none': [' ',' '],
-        'on': ['ON','OFF'],
-        'true': ['TRUE','FALSE'],
-        'yes': ['YES','NO']
+        none: [' ', ' '],
+        on: ['ON', 'OFF'],
+        true: ['TRUE', 'FALSE'],
+        yes: ['YES', 'NO']
     };
 
     /** Unique id for the slide toggle element. If none is supplied, one will be auto-generated. */
@@ -90,7 +102,7 @@ export class SlideToggleComponent extends HcFormControlComponent implements Afte
         return this._isRequired;
     }
 
-    set required( requiredVal: boolean | string ) {
+    set required(requiredVal: boolean | string) {
         this._isRequired = parseBooleanAttribute(requiredVal);
     }
 
@@ -109,9 +121,9 @@ export class SlideToggleComponent extends HcFormControlComponent implements Afte
         return this._buttonState;
     }
 
-    set buttonState( val: boolean | string ) {
+    set buttonState(val: boolean | string) {
         const tempVal = parseBooleanAttribute(val);
-        if ( tempVal !== this._buttonState ) {
+        if (tempVal !== this._buttonState) {
             this._buttonState = parseBooleanAttribute(val);
             this.onChange(this._buttonState);
             this.buttonStateChanged.emit(this._buttonState);
@@ -122,16 +134,16 @@ export class SlideToggleComponent extends HcFormControlComponent implements Afte
     @Output() buttonStateChanged = new EventEmitter<boolean>();
 
     ngAfterViewInit(): void {
-        if ( this._ngControl?.statusChanges ) {
+        if (this._ngControl?.statusChanges) {
             // delay() is necessary to make sure any form or control state changes have been applied before rechecking error states
             this._ngControl.statusChanges.pipe(delay(0), takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
-        if ( this._form ) {
+        if (this._form) {
             this._form.ngSubmit.pipe(takeUntil(this._unsubscribe)).subscribe(() => this._updateErrorState());
         }
 
         /** Monkey patching the markAsTouched function to call error state checking because there is not an event for touched changes */
-        if ( this._ngControl && this._ngControl.control ) {
+        if (this._ngControl && this._ngControl.control) {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             const originalMarkMethod = this._ngControl.control.markAsTouched;
@@ -166,7 +178,7 @@ export class SlideToggleComponent extends HcFormControlComponent implements Afte
 
     writeValue(value: unknown): void {
         // Prevent the form control from trying to write a value when removing the control
-        if ( this.onChange.name !== 'noop' ) {
+        if (this.onChange.name !== 'noop') {
             this.buttonState = !!value;
         }
     }

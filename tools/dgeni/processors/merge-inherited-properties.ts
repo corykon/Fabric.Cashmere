@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {DocCollection, Processor} from 'dgeni';
-import {ClassExportDoc} from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
-import {MemberDoc} from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
+import { DocCollection, Processor } from 'dgeni';
+import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
+import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 
 /**
  * Processor that merges inherited properties of a class with the class doc. This is necessary

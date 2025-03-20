@@ -28,16 +28,19 @@ const SCROLL_SCHEDULER = typeof requestAnimationFrame !== 'undefined' ? animatio
     template: `
         <div #scroll class="hc-pick-pane-list-items hc-pick-pane-list-scroll-host">
             <div #padding [class.hc-pick-pane-list-total-padding]="virtualScroll"></div>
-            <div #content class="hc-pick-pane-list-scrollable-content"
-                [class.hc-pick-pane-list-scrollable-content-virtual]="virtualScroll && items.length">
-                    <ng-content></ng-content>
+            <div
+                #content
+                class="hc-pick-pane-list-scrollable-content"
+                [class.hc-pick-pane-list-scrollable-content-virtual]="virtualScroll && items.length"
+            >
+                <ng-content></ng-content>
             </div>
         </div>
     `
 })
 /** Component that contains that displays options list and manages virtual scroll as needed.
  * @docs-private
-*/
+ */
 export class PickPaneListComponent implements OnInit, OnChanges, OnDestroy {
     @Input() items: PickOption[] = [];
     @Input() markedItem: PickOption;
@@ -149,7 +152,7 @@ export class PickPaneListComponent implements OnInit, OnChanges, OnDestroy {
         this._zone.runOutsideAngular(() => {
             fromEvent(this.scrollElementRef.nativeElement, 'scroll')
                 .pipe(takeUntil(this._destroy$), auditTime(0, SCROLL_SCHEDULER))
-                .subscribe((e: { path, composedPath, target }) => {
+                .subscribe((e: { path; composedPath; target }) => {
                     const path = e.path || (e.composedPath && e.composedPath());
                     const scrollTop = path.length === 0 ? e.target.scrollTop : path[0].scrollTop;
                     this._onContentScrolled(scrollTop);
@@ -208,7 +211,9 @@ export class PickPaneListComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     private _setVirtualHeight() {
-        if (!this._virtualPadding) { return; }
+        if (!this._virtualPadding) {
+            return;
+        }
         this._virtualPadding.style.height = `0px`;
     }
 
@@ -217,7 +222,9 @@ export class PickPaneListComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     private _renderItemsRange(scrollTop: number | null = null) {
-        if (scrollTop && this._lastScrollPosition === scrollTop) { return; }
+        if (scrollTop && this._lastScrollPosition === scrollTop) {
+            return;
+        }
 
         scrollTop = scrollTop || this._scrollablePanel.scrollTop;
         const range = this._panelService.calculateItems(scrollTop, this.itemsLength, this.bufferAmount);
@@ -255,11 +262,11 @@ export class PickPaneListComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     private _fireScrollToEnd(scrollTop: number) {
-        if (this._scrollToEndFired || scrollTop === 0) { return; }
+        if (this._scrollToEndFired || scrollTop === 0) {
+            return;
+        }
 
-        const padding = this.virtualScroll ?
-            this._virtualPadding :
-            this._contentPanel;
+        const padding = this.virtualScroll ? this._virtualPadding : this._contentPanel;
 
         if (scrollTop + this._panel.clientHeight >= padding.clientHeight) {
             this._zone.run(() => this.scrollToEnd.emit());

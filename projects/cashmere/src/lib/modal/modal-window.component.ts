@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {ConfigurableFocusTrap, ConfigurableFocusTrapFactory} from '@angular/cdk/a11y';
-import {DOCUMENT} from '@angular/common';
-import {Component, ElementRef, HostBinding, HostListener, Inject, Optional, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ActiveModal} from './active-modal';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ConfigurableFocusTrap, ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, HostBinding, HostListener, Inject, Optional, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActiveModal } from './active-modal';
 import { ButtonComponent } from '../button';
 
 // hcmodal[0].setAttribute('class', options.isResizable ? `hc-modal-resizable hc-modal-${options.size}` : `hc-modal-static hc-modal-${options.size}`);
@@ -12,10 +12,16 @@ import { ButtonComponent } from '../button';
 @Component({
     selector: 'hc-modal-window',
     template: `
-        <div #focusTrapElement
-            class="hc-modal {{_disableFullScreen ? '' : 'hc-modal-responsive'}} {{_isResizable ? 'hc-modal-resizable' : 'hc-modal-static'}} hc-modal-{{_size}}
-            {{_tight ? 'hc-modal-tight' : ''}} {{_isDraggable && _tight ? 'hc-modal-drag-header' : ''}}"
-            cdkDrag [cdkDragDisabled]="!_isDraggable" cdkDragBoundary=".hc-modal-window">
+        <div
+            #focusTrapElement
+            class="hc-modal {{ _disableFullScreen ? '' : 'hc-modal-responsive' }} {{
+                _isResizable ? 'hc-modal-resizable' : 'hc-modal-static'
+            }} hc-modal-{{ _size }}
+            {{ _tight ? 'hc-modal-tight' : '' }} {{ _isDraggable && _tight ? 'hc-modal-drag-header' : '' }}"
+            cdkDrag
+            [cdkDragDisabled]="!_isDraggable"
+            cdkDragBoundary=".hc-modal-window"
+        >
             <div *ngIf="_isDraggable" class="hc-modal-drag-handle" cdkDragHandle></div>
             <button *ngIf="_closeIcon" #closeBtn class="hc-modal-close-icon" hc-icon-button (click)="_dismiss()"></button>
             <ng-content></ng-content>
@@ -25,7 +31,7 @@ import { ButtonComponent } from '../button';
     styleUrls: ['./modal-window.component.scss'],
     animations: [
         trigger('fadeInOut', [
-            state('in', style({opacity: 1})),
+            state('in', style({ opacity: 1 })),
             transition('void <=> *', [
                 style({
                     opacity: 0
@@ -147,7 +153,6 @@ export class ModalWindowComponent {
             this._focusTrap.focusInitialElementWhenReady().then(() => {
                 this._avoidInitialFocusOnCloseButton();
             });
-
         }
     }
 

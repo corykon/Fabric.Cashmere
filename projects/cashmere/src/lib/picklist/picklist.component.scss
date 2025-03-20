@@ -6,7 +6,7 @@
     .hc-picklist-pane-container {
         @include hc-picklist-pane-container();
     }
-    
+
     .hc-picklist-pane-header {
         @include hc-picklist-pane-header();
     }
@@ -23,7 +23,8 @@
         @include hc-picklist-max-limit-exceeded();
     }
 
-    .hc-pick-pane, .hc-pick-pane-list {
+    .hc-pick-pane,
+    .hc-pick-pane-list {
         @include hc-pick-pane-container();
     }
 
@@ -58,7 +59,7 @@
 
 .hc-pick-pane {
     @include hc-pick-pane();
-    
+
     .hc-pick-search-outer {
         @include hc-pick-search-outer();
     }
@@ -117,10 +118,12 @@
     @include hc-pick-pane-list-footer();
 }
 
-.hc-pick-option, .hc-pick-optgroup {
+.hc-pick-option,
+.hc-pick-optgroup {
     @include hc-pick-option-row();
 
-    &.hc-pick-option-selected, &.hc-pick-option-selected.hc-pick-option-marked {
+    &.hc-pick-option-selected,
+    &.hc-pick-option-selected.hc-pick-option-marked {
         @include hc-pick-option-selected();
     }
     &:not(.hc-pick-option-disabled):hover {
@@ -130,7 +133,7 @@
         @include hc-pick-option-selected-hover();
     }
     &.hc-pick-custom-option.hc-pick-option-marked {
-       @include hc-pick-custom-option-marked();
+        @include hc-pick-custom-option-marked();
     }
     &.hc-pick-option-hide {
         @include hc-pick-option-hide();
@@ -154,7 +157,7 @@
 }
 
 .hc-pick-optgroup {
-    @include hc-pick-optgroup()
+    @include hc-pick-optgroup();
 }
 
 .hc-pick-option {

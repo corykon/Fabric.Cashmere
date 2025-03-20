@@ -1,5 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    HostListener,
+    OnDestroy,
+    QueryList,
+    ViewChild,
+    ViewChildren
+} from '@angular/core';
 import { HcPopoverAnchorDirective, MeasurableComponent, MeasurableService } from '@healthcatalyst/cashmere';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -54,9 +64,7 @@ export class MeasurableOverviewExampleComponent implements AfterViewInit, OnDest
     containerRef: ElementRef;
 
     ngAfterViewInit(): void {
-        this.buttonComponents.changes.pipe(
-            takeUntil(this.unsubscribe$)
-        ).subscribe(() => this.refreshButtons());
+        this.buttonComponents.changes.pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.refreshButtons());
     }
 
     @HostListener('window:resize')
@@ -69,21 +77,14 @@ export class MeasurableOverviewExampleComponent implements AfterViewInit, OnDest
             return;
         }
 
-        const moreKeys = this.measurableService.fillContainer(
-            this.buttonComponents.toArray(),
-            this.calculateAvailableSize(),
-            150
-        );
+        const moreKeys = this.measurableService.fillContainer(this.buttonComponents.toArray(), this.calculateAvailableSize(), 150);
 
         this.moreButtons = this.buttons.filter(button => moreKeys.has(button.key));
 
         this.ref.detectChanges();
     }
 
-    constructor(
-        private measurableService: MeasurableService,
-        private ref: ChangeDetectorRef
-    ) {}
+    constructor(private measurableService: MeasurableService, private ref: ChangeDetectorRef) {}
 
     ngOnDestroy(): void {
         this.unsubscribe$.next();

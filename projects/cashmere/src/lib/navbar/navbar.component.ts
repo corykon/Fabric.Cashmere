@@ -10,16 +10,16 @@ import {
     OnDestroy,
     AfterViewInit
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {HcPopoverAnchorDirective} from '../pop/directives/popover-anchor.directive';
-import {HcPopComponent} from '../pop/popover.component';
-import {MoreItem} from './more-item';
-import {NavbarLinkComponent} from './navbar-link/navbar-link.component';
-import {NavbarMobileMenuComponent} from './navbar-mobile-menu/navbar-mobile-menu.component';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {HcIcon} from '../icon/icon.component';
-import {NavbarDropdownComponent} from './navbar-dropdown/navbar-dropdown.component';
+import type { QueryList } from '@angular/core';
+import { HcPopoverAnchorDirective } from '../pop/directives/popover-anchor.directive';
+import { HcPopComponent } from '../pop/popover.component';
+import { MoreItem } from './more-item';
+import { NavbarLinkComponent } from './navbar-link/navbar-link.component';
+import { NavbarMobileMenuComponent } from './navbar-mobile-menu/navbar-mobile-menu.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { HcIcon } from '../icon/icon.component';
+import { NavbarDropdownComponent } from './navbar-dropdown/navbar-dropdown.component';
 
 /** The navbar is a wrapper that positions branding, navigation, and other elements in a concise header. */
 @Component({
@@ -93,7 +93,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
         if (this._navbarMore) {
             this._navbarMore.closePopover();
         }
-        if ( this._linksTotalWidth === 0 || this._linkWidths.length !== this._navLinks.length ) {
+        if (this._linksTotalWidth === 0 || this._linkWidths.length !== this._navLinks.length) {
             this._collectNavLinkWidths();
         }
 
@@ -118,7 +118,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
                 t.show();
                 // Reset the parent and positioning of any dropdown popovers that aren't in the More menu
                 const tempDrop = t as NavbarDropdownComponent;
-                if ( tempDrop._menuPop ) {
+                if (tempDrop._menuPop) {
                     tempDrop._menuPop.horizontalAlign = 'start';
                     tempDrop._menuPop.verticalAlign = 'below';
                     tempDrop._menuPop.parent = null;
@@ -128,13 +128,13 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
                 this._collapse = true;
                 const tempDrop = t as NavbarDropdownComponent;
                 // Translate any navbar dropdown menus into secondary menus in the More dropdown
-                if ( tempDrop._menuPop ) {
+                if (tempDrop._menuPop) {
                     tempDrop._menuPop.horizontalAlign = 'after';
                     tempDrop._menuPop.verticalAlign = 'start';
                     tempDrop._menuPop.parent = this._morePop;
-                    this._moreList.push({name: t.linkText, uri: t.uri, dropdown: tempDrop._menuPop});
+                    this._moreList.push({ name: t.linkText, uri: t.uri, dropdown: tempDrop._menuPop });
                 } else {
-                    this._moreList.push({name: t.linkText, uri: t.uri});
+                    this._moreList.push({ name: t.linkText, uri: t.uri });
                 }
             }
         });

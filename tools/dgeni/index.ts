@@ -22,16 +22,16 @@
  * THE SOFTWARE.
  */
 
-import {Package} from 'dgeni';
-import {patchLogService} from './patch-log-service';
-import {DocsPrivateFilter} from './processors/docs-private-filter';
-import {Categorizer} from './processors/categorizer';
-import {FilterDuplicateExports} from './processors/filter-duplicate-exports';
-import {MergeInheritedProperties} from './processors/merge-inherited-properties';
-import {ComponentGrouper} from './processors/component-grouper';
-import {ReadTypeScriptModules} from 'dgeni-packages/typescript/processors/readTypeScriptModules';
-import {TsParser} from 'dgeni-packages/typescript/services/TsParser';
-import {sync as globSync} from 'glob';
+import { Package } from 'dgeni';
+import { patchLogService } from './patch-log-service';
+import { DocsPrivateFilter } from './processors/docs-private-filter';
+import { Categorizer } from './processors/categorizer';
+import { FilterDuplicateExports } from './processors/filter-duplicate-exports';
+import { MergeInheritedProperties } from './processors/merge-inherited-properties';
+import { ComponentGrouper } from './processors/component-grouper';
+import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/readTypeScriptModules';
+import { TsParser } from 'dgeni-packages/typescript/services/TsParser';
+import { sync as globSync } from 'glob';
 import * as path from 'path';
 
 // Dgeni packages that the Cashmere docs package depends on.
@@ -46,7 +46,9 @@ const outputDir = path.resolve(projectRootDir, 'dist/docs/api');
 const templateDir = path.resolve(__dirname, './templates');
 
 /** List of Cashmere packages that need to be documented. */
-const cashmerePackages = globSync(path.join(sourceDir, 'lib', '*/').split(path.sep).join("/")).map(packagePath => path.basename(packagePath));
+const cashmerePackages = globSync(path.join(sourceDir, 'lib', '*/').split(path.sep).join('/')).map(packagePath =>
+    path.basename(packagePath)
+);
 
 /**
  * Dgeni package for the Cashmere API docs. This just defines the package, but doesn't
@@ -79,12 +81,12 @@ apiDocsPackage.processor(new Categorizer());
 apiDocsPackage.processor(new ComponentGrouper());
 
 // Configure the log level of the API docs dgeni package.
-apiDocsPackage.config( function(log: any) {
+apiDocsPackage.config(function (log: any) {
     log.level = 'info';
 });
 
 // Configure the processor for reading files from the file system.
-apiDocsPackage.config( function(readFilesProcessor: any, writeFilesProcessor: any) {
+apiDocsPackage.config(function (readFilesProcessor: any, writeFilesProcessor: any) {
     readFilesProcessor.basePath = sourceDir;
     readFilesProcessor.$enabled = false; // disable for now as we are using readTypeScriptModules
 
@@ -92,12 +94,12 @@ apiDocsPackage.config( function(readFilesProcessor: any, writeFilesProcessor: an
 });
 
 // Patches Dgeni's log service to not print warnings about unresolved mixin base symbols.
-apiDocsPackage.config( function(log: any) {
+apiDocsPackage.config(function (log: any) {
     patchLogService(log);
 });
 
 // Configure the output path for written files (i.e., file names).
-apiDocsPackage.config( function(computePathsProcessor: any) {
+apiDocsPackage.config(function (computePathsProcessor: any) {
     computePathsProcessor.pathTemplates = [
         {
             docTypes: ['componentGroup'],
@@ -108,12 +110,12 @@ apiDocsPackage.config( function(computePathsProcessor: any) {
 });
 
 // Configure custom JsDoc tags.
-apiDocsPackage.config( function(parseTagsProcessor: any) {
-    parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([{name: 'docs-private'}, {name: 'deletion-target'}]);
+apiDocsPackage.config(function (parseTagsProcessor: any) {
+    parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([{ name: 'docs-private' }, { name: 'deletion-target' }]);
 });
 
 // Configure the processor for understanding TypeScript.
-apiDocsPackage.config( function(readTypeScriptModules: ReadTypeScriptModules, tsParser: TsParser) {
+apiDocsPackage.config(function (readTypeScriptModules: ReadTypeScriptModules, tsParser: TsParser) {
     readTypeScriptModules.basePath = sourceDir;
     readTypeScriptModules.ignoreExportsMatching = [/^_/];
     readTypeScriptModules.hidePrivateMembers = true;
@@ -135,7 +137,7 @@ apiDocsPackage.config( function(readTypeScriptModules: ReadTypeScriptModules, ts
 });
 
 // Configure processor for finding nunjucks templates.
-apiDocsPackage.config( function(templateFinder: any, templateEngine: any) {
+apiDocsPackage.config(function (templateFinder: any, templateEngine: any) {
     // Where to find the templates for the doc rendering
     templateFinder.templateFolders = [templateDir];
 

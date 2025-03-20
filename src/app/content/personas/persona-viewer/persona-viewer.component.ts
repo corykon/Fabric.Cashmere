@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {PersonaFile, PersonaService} from '../persona-list.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { PersonaFile, PersonaService } from '../persona-list.service';
 
 @Component({
     selector: 'hc-persona-viewer',
@@ -28,8 +28,8 @@ export class PersonaViewerComponent implements OnInit, OnDestroy {
 
         const url = this.router.url;
         const parsed = this.router.parseUrl(url);
-        if ( parsed.queryParamMap.get('referrer') ) {
-            if ( parsed.queryParamMap.get('referrer') === 'chart' ) {
+        if (parsed.queryParamMap.get('referrer')) {
+            if (parsed.queryParamMap.get('referrer') === 'chart') {
                 this.referrer = '/content/org-chart';
                 this.backText = 'Back to Org Chart';
             } else {

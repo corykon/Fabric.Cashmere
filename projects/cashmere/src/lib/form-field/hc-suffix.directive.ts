@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /** Position an element at the end of HcFormFieldComponent */
 @Directive({

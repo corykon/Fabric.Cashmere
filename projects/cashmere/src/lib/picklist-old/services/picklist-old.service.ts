@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {WorkTrackerService} from '../../shared/work-tracker.service';
-import {PicklistFilterService} from './picklist-filter.service';
-import {PicklistValuesetMovingService} from './picklist-valueset-moving.service';
-import {PicklistFilterLocalService} from './picklist-filter-local.service';
-import {PicklistStateService} from './picklist-state.service';
-import {PicklistPaneComponent} from '../pane/picklist-pane.component';
-import {PicklistOptionsSource, PicklistSettings} from '../picklist-old.model';
-import {FilterableSelectList, PicklistValueOptions, ValueListOption, ValueSetListOption} from '../pane/picklist-pane.model';
+import { WorkTrackerService } from '../../shared/work-tracker.service';
+import { PicklistFilterService } from './picklist-filter.service';
+import { PicklistValuesetMovingService } from './picklist-valueset-moving.service';
+import { PicklistFilterLocalService } from './picklist-filter-local.service';
+import { PicklistStateService } from './picklist-state.service';
+import { PicklistPaneComponent } from '../pane/picklist-pane.component';
+import { PicklistOptionsSource, PicklistSettings } from '../picklist-old.model';
+import { FilterableSelectList, PicklistValueOptions, ValueListOption, ValueSetListOption } from '../pane/picklist-pane.model';
 
 /**
  * Handles loading + moving items to/from list

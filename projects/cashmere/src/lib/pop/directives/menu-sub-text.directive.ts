@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 /** Use `hcMenuSubText` for right-aligned subtext of a button inside of a menu. Often used for keyboard shortcuts. */
 @Directive({

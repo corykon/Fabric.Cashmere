@@ -10,12 +10,14 @@ describe('SidenavComponent', () => {
     let component: SidenavComponent;
     let fixture: ComponentFixture<SidenavComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [SidenavModule],
-            providers: [{provide: ActivatedRoute, useClass: MockActivateRoute}]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [SidenavModule],
+                providers: [{ provide: ActivatedRoute, useClass: MockActivateRoute }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SidenavComponent);

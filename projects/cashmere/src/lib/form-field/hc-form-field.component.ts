@@ -9,16 +9,16 @@ import {
     ElementRef,
     OnDestroy
 } from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {HcFormControlComponent} from './hc-form-control.component';
-import {HcErrorComponent} from './hc-error.component';
-import {HcPrefixDirective} from './hc-prefix.directive';
-import {HcSuffixDirective} from './hc-suffix.directive';
-import {HcLabelComponent} from './hc-label.component';
-import {parseBooleanAttribute} from '../util';
-import {InputDirective} from '../input/input.directive';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import type { QueryList } from '@angular/core';
+import { HcFormControlComponent } from './hc-form-control.component';
+import { HcErrorComponent } from './hc-error.component';
+import { HcPrefixDirective } from './hc-prefix.directive';
+import { HcSuffixDirective } from './hc-suffix.directive';
+import { HcLabelComponent } from './hc-label.component';
+import { parseBooleanAttribute } from '../util';
+import { InputDirective } from '../input/input.directive';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export function getControlMissing(): Error {
     return new Error(`HcFormField must contain a component that extends HcFormControl`);

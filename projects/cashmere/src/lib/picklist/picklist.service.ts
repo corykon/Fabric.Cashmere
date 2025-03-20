@@ -15,13 +15,16 @@ export class PicklistService {
     /** When the option/items are updated, update corresponding selected options in the selected pane.
      *  Make sure they aren't duplicated in the available pane */
     public mapIncomingOptionsToSelected(bindValue?: string): void {
-        if (!isDefined(this.availablePane) || !isDefined(this.selectedPane)) { return; }
+        if (!isDefined(this.availablePane) || !isDefined(this.selectedPane)) {
+            return;
+        }
         const selectedItems = this.selectedPane.itemsList.items.filter(i => !i.isParent);
         selectedItems.forEach(selected => {
-            const value = bindValue ?
-                this.selectedPane.itemsList.resolveNested(selected.value, bindValue) : selected.value;
+            const value = bindValue ? this.selectedPane.itemsList.resolveNested(selected.value, bindValue) : selected.value;
             const item = isDefined(value) ? this.availablePane.itemsList.findOption(value) : null;
-            if (item) { this.availablePane.itemsList.removeOption(item); }
+            if (item) {
+                this.availablePane.itemsList.removeOption(item);
+            }
             this.selectedPane.itemsList.removeOption(selected);
             this.selectedPane.itemsList.addOption(item || selected);
         });

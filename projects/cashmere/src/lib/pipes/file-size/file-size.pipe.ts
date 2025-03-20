@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 // Convert bytes into largest possible unit.
 // Credit to https://gist.github.com/JonCatmull/ecdf9441aaa37336d9ae2c7f9cb7289a
-@Pipe({name: 'fileSize', pure: true})
+@Pipe({ name: 'fileSize', pure: true })
 export class FileSizePipe implements PipeTransform {
     private units: string[] = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 

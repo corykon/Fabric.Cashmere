@@ -8,10 +8,14 @@
         width: 200px;
     }
 
-    hc-checkbox { margin-top: 27px; }
+    hc-checkbox {
+        margin-top: 27px;
+    }
 
     &.checkbox-only-group {
         margin-bottom: 24px;
-        hc-checkbox { margin-top: 5px; }
+        hc-checkbox {
+            margin-top: 5px;
+        }
     }
 }

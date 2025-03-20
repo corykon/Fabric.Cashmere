@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HcBannerComponent} from './hc-banner.component';
-import {BannerStampDirective} from './hc-banner-stamp.directive';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HcBannerComponent } from './hc-banner.component';
+import { BannerStampDirective } from './hc-banner-stamp.directive';
 
 @NgModule({
     imports: [CommonModule],

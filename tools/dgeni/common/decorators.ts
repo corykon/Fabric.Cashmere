@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {ClassExportDoc} from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
-import {PropertyMemberDoc} from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
-import {MemberDoc} from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
-import {CategorizedClassDoc, DeprecationDoc, HasDecoratorsDoc} from './dgeni-definitions';
+import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
+import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
+import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
+import { CategorizedClassDoc, DeprecationDoc, HasDecoratorsDoc } from './dgeni-definitions';
 
 /**
  * We want to avoid emitting selectors that are deprecated but don't have a way to mark

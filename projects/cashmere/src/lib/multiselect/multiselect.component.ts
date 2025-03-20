@@ -1,6 +1,6 @@
-import {Component, forwardRef, HostBinding, Input, ViewEncapsulation} from '@angular/core';
-import {HcFormControlComponent} from '../form-field/hc-form-control.component';
-import {parseBooleanAttribute} from '../util';
+import { Component, forwardRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { HcFormControlComponent } from '../form-field/hc-form-control.component';
+import { parseBooleanAttribute } from '../util';
 
 let uniqueMultiselectId = 1;
 
@@ -11,7 +11,7 @@ let uniqueMultiselectId = 1;
         <ng-content></ng-content>
     `,
     encapsulation: ViewEncapsulation.None,
-    providers: [{provide: HcFormControlComponent, useExisting: forwardRef(() => MultiselectComponent)}]
+    providers: [{ provide: HcFormControlComponent, useExisting: forwardRef(() => MultiselectComponent) }]
 })
 export class MultiselectComponent extends HcFormControlComponent {
     private _uniqueInputId = `hc-multiselect-${uniqueMultiselectId++}`;
@@ -36,7 +36,7 @@ export class MultiselectComponent extends HcFormControlComponent {
         return !this._errorState;
     }
 
-    set valid( val: boolean | string ) {
+    set valid(val: boolean | string) {
         this._errorState = !parseBooleanAttribute(val);
     }
 
@@ -46,7 +46,7 @@ export class MultiselectComponent extends HcFormControlComponent {
         return this._isRequired;
     }
 
-    set required( requiredVal: boolean | string ) {
+    set required(requiredVal: boolean | string) {
         this._isRequired = parseBooleanAttribute(requiredVal);
     }
 }

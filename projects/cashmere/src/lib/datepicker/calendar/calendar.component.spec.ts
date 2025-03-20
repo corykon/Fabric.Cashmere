@@ -1,14 +1,14 @@
-import {Directionality} from '@angular/cdk/bidi';
-import {Component} from '@angular/core';
-import {waitForAsync, ComponentFixture, inject, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DatepickerModule} from '../datepicker.module';
-import {JAN, FEB, DEC, NOV, JUL} from '../../utils/month-constants';
-import {dispatchFakeEvent, dispatchMouseEvent, dispatchEvent} from '../../utils/dispatch-events';
-import {HcNativeDateModule} from '../datetime/datetime.module';
-import {DateAdapter} from '../datetime/date-adapter';
-import {CalendarComponent} from './calendar.component';
-import {HcDatepickerIntl} from '../datepicker-intl';
+import { Directionality } from '@angular/cdk/bidi';
+import { Component } from '@angular/core';
+import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DatepickerModule } from '../datepicker.module';
+import { JAN, FEB, DEC, NOV, JUL } from '../../utils/month-constants';
+import { dispatchFakeEvent, dispatchMouseEvent, dispatchEvent } from '../../utils/dispatch-events';
+import { HcNativeDateModule } from '../datetime/datetime.module';
+import { DateAdapter } from '../datetime/date-adapter';
+import { CalendarComponent } from './calendar.component';
+import { HcDatepickerIntl } from '../datepicker-intl';
 
 @Component({
     template: `
@@ -74,24 +74,23 @@ class CalendarWithSelectableMinDate {
 describe('CalendarComponent', () => {
     const mockNgZone = jasmine.createSpyObj('mockNgZone', ['run', 'runOutsideAngular']);
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [HcNativeDateModule, DatepickerModule],
-            declarations: [
-                // Test components.
-                StandardCalendar,
-                CalendarWithMinMax,
-                CalendarWithDateFilter,
-                CalendarWithSelectableMinDate
-            ],
-            providers: [
-                HcDatepickerIntl,
-                {provide: Directionality, useFactory: () => ({value: 'ltr'})}
-            ]
-        });
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [HcNativeDateModule, DatepickerModule],
+                declarations: [
+                    // Test components.
+                    StandardCalendar,
+                    CalendarWithMinMax,
+                    CalendarWithDateFilter,
+                    CalendarWithSelectableMinDate
+                ],
+                providers: [HcDatepickerIntl, { provide: Directionality, useFactory: () => ({ value: 'ltr' }) }]
+            });
 
-        TestBed.compileComponents();
-    }));
+            TestBed.compileComponents();
+        })
+    );
 
     describe('standard calendar', () => {
         let fixture: ComponentFixture<StandardCalendar>;

@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {ChangeDetectionStrategy, Component, Directive, HostBinding, ViewEncapsulation} from '@angular/core';
-import {CDK_ROW_TEMPLATE, CdkFooterRow, CdkFooterRowDef, CdkHeaderRow, CdkHeaderRowDef, CdkRow, CdkRowDef} from '@angular/cdk/table';
+import { ChangeDetectionStrategy, Component, Directive, HostBinding, ViewEncapsulation } from '@angular/core';
+import { CDK_ROW_TEMPLATE, CdkFooterRow, CdkFooterRowDef, CdkHeaderRow, CdkHeaderRowDef, CdkRow, CdkRowDef } from '@angular/cdk/table';
 
 /**
  * Header row definition for the hc-table.
@@ -15,7 +15,7 @@ import {CDK_ROW_TEMPLATE, CdkFooterRow, CdkFooterRowDef, CdkHeaderRow, CdkHeader
  */
 @Directive({
     selector: '[hcHeaderRowDef]',
-    providers: [{provide: CdkHeaderRowDef, useExisting: HcHeaderRowDef}],
+    providers: [{ provide: CdkHeaderRowDef, useExisting: HcHeaderRowDef }],
     inputs: ['columns: hcHeaderRowDef', 'sticky: hcHeaderRowDefSticky']
 })
 export class HcHeaderRowDef extends CdkHeaderRowDef {}
@@ -26,7 +26,7 @@ export class HcHeaderRowDef extends CdkHeaderRowDef {}
  */
 @Directive({
     selector: '[hcFooterRowDef]',
-    providers: [{provide: CdkFooterRowDef, useExisting: HcFooterRowDef}],
+    providers: [{ provide: CdkFooterRowDef, useExisting: HcFooterRowDef }],
     inputs: ['columns: hcFooterRowDef', 'sticky: hcFooterRowDefSticky']
 })
 export class HcFooterRowDef extends CdkFooterRowDef {}
@@ -38,7 +38,7 @@ export class HcFooterRowDef extends CdkFooterRowDef {}
  */
 @Directive({
     selector: '[hcRowDef]',
-    providers: [{provide: CdkRowDef, useExisting: HcRowDef}],
+    providers: [{ provide: CdkRowDef, useExisting: HcRowDef }],
     inputs: ['columns: hcRowDefColumns', 'when: hcRowDefWhen']
 })
 export class HcRowDef<T> extends CdkRowDef<T> {}
@@ -50,7 +50,7 @@ export class HcRowDef<T> extends CdkRowDef<T> {}
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     exportAs: 'hcHeaderRow',
-    providers: [{provide: CdkHeaderRow, useExisting: HcHeaderRow}]
+    providers: [{ provide: CdkHeaderRow, useExisting: HcHeaderRow }]
 })
 export class HcHeaderRow extends CdkHeaderRow {
     @HostBinding('class.hc-header-row') _hostClass = true;
@@ -64,7 +64,7 @@ export class HcHeaderRow extends CdkHeaderRow {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     exportAs: 'hcFooterRow',
-    providers: [{provide: CdkFooterRow, useExisting: HcFooterRow}]
+    providers: [{ provide: CdkFooterRow, useExisting: HcFooterRow }]
 })
 export class HcFooterRow extends CdkFooterRow {
     @HostBinding('class.hc-footer-row') _hostClass = true;
@@ -78,7 +78,7 @@ export class HcFooterRow extends CdkFooterRow {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     exportAs: 'hcRow',
-    providers: [{provide: CdkRow, useExisting: HcRow}]
+    providers: [{ provide: CdkRow, useExisting: HcRow }]
 })
 export class HcRow extends CdkRow {
     @HostBinding('class.hc-row') _hostClass = true;

@@ -1,20 +1,22 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Drawer} from './drawer.component';
-import {ElementRef} from '@angular/core';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Drawer } from './drawer.component';
+import { ElementRef } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DrawerComponent', () => {
     let component: Drawer;
     let fixture: ComponentFixture<Drawer>;
-    const el: ElementRef = new ElementRef({focus() {
-        // do nothing.
-    }});
+    const el: ElementRef = new ElementRef({
+        focus() {
+            // do nothing.
+        }
+    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [Drawer],
             imports: [NoopAnimationsModule],
-            providers: [{provide: ElementRef, useValue: el}]
+            providers: [{ provide: ElementRef, useValue: el }]
         }).compileComponents();
         fixture = TestBed.createComponent(Drawer);
         component = fixture.componentInstance;

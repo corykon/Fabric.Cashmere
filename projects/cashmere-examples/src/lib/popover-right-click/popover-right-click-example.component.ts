@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * @title Popover Menu
@@ -9,8 +9,8 @@ import {Component} from '@angular/core';
 })
 export class PopoverRightClickExampleComponent {
     items = [
-        {name: 'List Item One', subtext: 'Right-click on this cell for a context menu'},
-        {name: 'List Item Two', subtext: 'Right-click on this cell for another context menu'}
+        { name: 'List Item One', subtext: 'Right-click on this cell for a context menu' },
+        { name: 'List Item Two', subtext: 'Right-click on this cell for another context menu' }
     ];
-    context = {name: '', subtext: ''};
+    context = { name: '', subtext: '' };
 }

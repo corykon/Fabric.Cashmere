@@ -1,7 +1,7 @@
-import {RouterModule, Routes} from '@angular/router';
-import {AccessibilityComponent} from './accessibility.component';
-import {MarkdownContentComponent} from '../shared/markdown-content.component';
-import {NgModule} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AccessibilityComponent } from './accessibility.component';
+import { MarkdownContentComponent } from '../shared/markdown-content.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
     {

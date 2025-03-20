@@ -30,30 +30,27 @@ export class SearchService {
     constructor(private http: HttpClient) {
         const loadSub: Subscription = this.loadSearchIndex().subscribe(data => {
             this.miniSearch.addAll(data);
-            this.loaded.next( true );
+            this.loaded.next(true);
             loadSub.unsubscribe();
         });
     }
 
     loadSearchIndex(): Observable<Array<unknown>> {
-        return this.http.get<Array<unknown>>( './assets/docs/search/search.json' )
-            .pipe(
-                retry(3), // retry a failed request up to 3 times
-                catchError(this.handleError) // then handle the error
-            );
+        return this.http.get<Array<unknown>>('./assets/docs/search/search.json').pipe(
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.handleError) // then handle the error
+        );
     }
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
-        // A client-side or network error occurred. Handle it accordingly.
-        console.error('An error occurred:', error.error.message);
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
         } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-        console.log( error );
-        console.error(
-            `Backend returned code ${error.status}, ` +
-            `body was: ${error.error}`);
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(error);
+            console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
         }
         // return an observable with a user-facing error message
         return throwError('Unable to retrieve Cashmere search index; please try again later.');

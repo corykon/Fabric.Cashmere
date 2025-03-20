@@ -30,7 +30,7 @@ export class SliderRangeExampleComponent {
     toggleValid(): void {
         this.invalid = !this.invalid;
         if (this.invalid) {
-            this.sliderControl.setErrors({invalid: true});
+            this.sliderControl.setErrors({ invalid: true });
         } else {
             this.sliderControl.setErrors(null);
         }

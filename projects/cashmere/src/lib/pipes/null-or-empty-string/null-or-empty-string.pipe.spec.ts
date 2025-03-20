@@ -17,8 +17,11 @@ describe('NullOrEmptyStringPipe', () => {
     });
 
     it('return alternate text contains just white space characters', () => {
-        const result = pipe.transform(`
-        `, 'alternate text');
+        const result = pipe.transform(
+            `
+        `,
+            'alternate text'
+        );
         expect(result).toEqual('alternate text');
     });
 
@@ -64,7 +67,7 @@ describe('NullOrEmptyStringPipe', () => {
     });
 
     it('return function as is', () => {
-        const input = () => "foo";
+        const input = () => 'foo';
         const result = pipe.transform(input, 'alternate text');
         expect(result).toEqual(input);
     });

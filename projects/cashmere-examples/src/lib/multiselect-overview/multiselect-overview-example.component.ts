@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 /**
  * @title Multiselect overview
@@ -11,15 +11,15 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class MultiselectOverviewExampleComponent {
     cities = ['Philadelphia', 'Atlanta', 'Salt Lake City', 'Chicago', 'Orlando'];
-    readonly selectedCitiesControl = new FormControl([], {nonNullable: true});
+    readonly selectedCitiesControl = new FormControl([], { nonNullable: true });
     multiselectGroup = new FormGroup({
         selectedCitiesControl: this.selectedCitiesControl
     });
     selectedCareTeamRoles = [];
-    careTeamRoles = [{name: 'group 1'}, {name: 'group 2'}, {name: 'group 3'}];
+    careTeamRoles = [{ name: 'group 1' }, { name: 'group 2' }, { name: 'group 3' }];
 
     toggleDisabled(): void {
-        if ( this.selectedCitiesControl.enabled ) {
+        if (this.selectedCitiesControl.enabled) {
             this.selectedCitiesControl.disable();
         } else {
             this.selectedCitiesControl.enable();

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {DateRangeOptions, DateRange} from '../model/model';
-import {Observable, BehaviorSubject} from 'rxjs';
-import {D} from '../../datepicker';
-import {map, tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { DateRangeOptions, DateRange } from '../model/model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { D } from '../../datepicker';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ConfigStoreService {
@@ -26,7 +26,7 @@ export class ConfigStoreService {
     private dateRangeOptionsSubject: BehaviorSubject<DateRangeOptions> = new BehaviorSubject<DateRangeOptions>(this.defaultOptions);
     public dateRangeOptions$: Observable<DateRangeOptions>;
 
-    private rangeUpdateSubject: BehaviorSubject<DateRange> = new BehaviorSubject<DateRange>({fromDate: undefined, toDate: undefined});
+    private rangeUpdateSubject: BehaviorSubject<DateRange> = new BehaviorSubject<DateRange>({ fromDate: undefined, toDate: undefined });
     public rangeUpdate$: Observable<DateRange>;
 
     private presetUpdateSubject: BehaviorSubject<number | DateRange> = new BehaviorSubject<number | DateRange>({

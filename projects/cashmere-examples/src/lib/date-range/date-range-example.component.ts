@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {DateRangeOptions, PresetItem, DateRange} from '@healthcatalyst/cashmere';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { DateRangeOptions, PresetItem, DateRange } from '@healthcatalyst/cashmere';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'hc-date-range-example',
@@ -8,12 +8,12 @@ import {FormControl} from '@angular/forms';
     styleUrls: ['date-range-example.component.scss']
 })
 export class DateRangeExampleComponent implements OnInit {
-    range: DateRange = {fromDate: new Date(), toDate: new Date()};
+    range: DateRange = { fromDate: new Date(), toDate: new Date() };
     selected: number | DateRange = this.range;
     options: DateRangeOptions;
-    optionsControlExcludeWeekends = new FormControl(false, {nonNullable: true});
-    optionsControlStartDateRequired = new FormControl(true, {nonNullable: true});
-    optionsControlEndDateRequired = new FormControl(true, {nonNullable: true});
+    optionsControlExcludeWeekends = new FormControl(false, { nonNullable: true });
+    optionsControlStartDateRequired = new FormControl(true, { nonNullable: true });
+    optionsControlEndDateRequired = new FormControl(true, { nonNullable: true });
     presets: Array<PresetItem> = [];
     presetSelection = 'None';
 
@@ -29,8 +29,8 @@ export class DateRangeExampleComponent implements OnInit {
             presets: this.presets,
             format: 'mediumDate',
             applyLabel: 'Apply',
-            fromMinMax: {fromDate: fromMin, toDate: fromMax},
-            toMinMax: {fromDate: toMin, toDate: toMax},
+            fromMinMax: { fromDate: fromMin, toDate: fromMax },
+            toMinMax: { fromDate: toMin, toDate: toMax },
             startDateIsRequired: true,
             endDateIsRequired: true
         };
@@ -80,27 +80,27 @@ export class DateRangeExampleComponent implements OnInit {
         this.presets = [
             {
                 presetLabel: 'Yesterday',
-                range: {fromDate: yesterday, toDate: today}
+                range: { fromDate: yesterday, toDate: today }
             },
             {
                 presetLabel: 'Last 7 days',
-                range: {fromDate: minus7, toDate: today}
+                range: { fromDate: minus7, toDate: today }
             },
             {
                 presetLabel: 'Last 30 days',
-                range: {fromDate: minus30, toDate: today}
+                range: { fromDate: minus30, toDate: today }
             },
             {
                 presetLabel: 'This month',
-                range: {fromDate: currMonthStart, toDate: currMonthEnd}
+                range: { fromDate: currMonthStart, toDate: currMonthEnd }
             },
             {
                 presetLabel: '1 month to end',
-                range: {fromDate: currMonthStart, toDate: currMonthEnd}
+                range: { fromDate: currMonthStart, toDate: currMonthEnd }
             },
             {
                 presetLabel: 'Last month',
-                range: {fromDate: lastMonthStart, toDate: lastMonthEnd}
+                range: { fromDate: lastMonthStart, toDate: lastMonthEnd }
             }
         ];
     }

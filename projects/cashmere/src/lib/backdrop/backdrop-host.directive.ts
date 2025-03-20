@@ -1,8 +1,8 @@
 /* eslint-disable @angular-eslint/directive-selector */
-import { ComponentRef, Directive, EventEmitter, Input, OnDestroy, Output, ViewContainerRef } from "@angular/core";
-import { BackdropComponent } from "./backdrop.component";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { ComponentRef, Directive, EventEmitter, Input, OnDestroy, Output, ViewContainerRef } from '@angular/core';
+import { BackdropComponent } from './backdrop.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
     selector: '[backdropHost]'
@@ -33,9 +33,7 @@ export class BackdropHostDirective implements OnDestroy {
 
         const backdropRef = this.viewContainerRef.createComponent(BackdropComponent);
         backdropRef.instance._ignoreEscapeKey = this._ignoreEscapeKey;
-        backdropRef.instance.onClose
-            .pipe(takeUntil(this._destroyed))
-            .subscribe(() => this.onClose.emit());
+        backdropRef.instance.onClose.pipe(takeUntil(this._destroyed)).subscribe(() => this.onClose.emit());
 
         this._currentBackdrop = backdropRef;
         return backdropRef;

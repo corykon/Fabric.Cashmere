@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -21,11 +21,11 @@ export class DocumentViewerComponent {
     constructor(private http: HttpClient, private element: ElementRef) {}
 
     private fetchDocument(docUrl: string) {
-        this.http.get(docUrl, {responseType: 'text'}).subscribe(doc => this.updateDocument(doc));
+        this.http.get(docUrl, { responseType: 'text' }).subscribe(doc => this.updateDocument(doc));
     }
 
     private updateDocument(docHtml: string): void {
         this.element.nativeElement.innerHTML = docHtml;
-        this.loaded.emit( true );
+        this.loaded.emit(true);
     }
 }

@@ -1,9 +1,9 @@
-import {Directive, Input, ContentChildren, AfterContentInit, OnDestroy} from '@angular/core';
-import type {QueryList} from '@angular/core';
-import {parseBooleanAttribute} from '../util';
-import {HcFormFieldComponent} from './hc-form-field.component';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Directive, Input, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
+import type { QueryList } from '@angular/core';
+import { parseBooleanAttribute } from '../util';
+import { HcFormFieldComponent } from './hc-form-field.component';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 /** `hcForm` directive that allows settings to be applied to all included HcFormFields */
 @Directive({
@@ -13,7 +13,7 @@ export class HcFormDirective implements AfterContentInit, OnDestroy {
     private _tight = false;
     private unsubscribe$ = new Subject<void>();
 
-    @ContentChildren(HcFormFieldComponent, {descendants: true})
+    @ContentChildren(HcFormFieldComponent, { descendants: true })
     _formFields: QueryList<HcFormFieldComponent>;
 
     /** Set the tight parameter on all enclosed HcFormFields. *Defaults to `false`.*  */

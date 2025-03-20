@@ -24,7 +24,7 @@ module.exports = function (config) {
             dir: require('path').join(__dirname, 'test-results/coverage'),
             subdir: '.',
             includeAllSources: true,
-            reporters: [{type: 'html'}, {type: 'cobertura', file: 'cobertura.xml'}, {type: 'text-summary', file: 'summary.txt'}]
+            reporters: [{ type: 'html' }, { type: 'cobertura', file: 'cobertura.xml' }, { type: 'text-summary', file: 'summary.txt' }]
         },
         junitReporter: {
             outputDir: require('path').join(__dirname, 'test-results'),
